@@ -56,7 +56,9 @@ function init() {
                 showResult('danger', '<p><strong>' + this.status + ': </strong>' + this.statusText + '</p>');
             }
         };
-        xhr.onerror = showResult('warning', '<p><strong>AJAX Error:</strong> please check URL</p>');
+        xhr.onerror = function () {
+            showResult('warning', '<p><strong>AJAX Error:</strong> please check URL</p>');
+        };
         xhr.send();
     }, false);
 
