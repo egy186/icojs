@@ -1,0 +1,21 @@
+{
+  "name": "icojs",
+  "version": "0.0.0",
+  "author": "egy186",
+  "description": "parseico file",
+  "main": "ico.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/egy186/ico.js"
+  },
+  "keywords": [
+    "ico",
+    "parse",
+    "web"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/egy186/ico.js/issues"
+  },
+  "private": true
+}
