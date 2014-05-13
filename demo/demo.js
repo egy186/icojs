@@ -1,5 +1,6 @@
 /// <reference path="../ico.js" />
 /// <reference path="../lib/jquery.js" />
+/// <reference path="../lib/bootstrap/js/bootstrap.js" />
 /// <reference path="../lib/google-code-prettify/prettify.js" />
 
 addEventListener('load', init, false);
@@ -65,10 +66,15 @@ function init() {
     // google-code-prettify
     prettyPrint();
 
-    // bs scrollspy
-    if (screen.availWidth >= 992) { // col-md
-        jQuery(document.body).scrollspy({ target: '#page-nav' });
-    }
+    // #page-nav scrollspy affix
+    pageNavScrollspy();
+    addEventListener('resize', pageNavScrollspy, false);
+    addEventListener('transitionend', pageNavScrollspy, false);
+    // scrollspy support hitory
+    history.pushState({}, document.head.title, location.hash);
+    jQuery(document.body).on('activate.bs.scrollspy', function (evt) {
+        history.replaceState({}, document.head.title, evt.target.firstChild.href);
+    });
 }
 
 function showIconImgs(icoArrayBuffer) {
@@ -99,4 +105,23 @@ function showResult(status, message) {
     demosParse.className = 'alert alert-' + status + ' alert-dismissable fade in';
     demosParse.innerHTML = text;
     demosParseResults.insertBefore(demosParse, demosParseResults.firstChild.nextSibling.nextSibling);
+}
+
+function pageNavScrollspy() {
+    var pageNavNav = jQuery('#page-nav .nav');
+    var topHeight = 20;
+    if (window.innerWidth >= 992) { // col-md
+        pageNavNav.affix({
+            offset: {
+                top: pageNavNav.offset().top - topHeight
+            }
+        });
+        pageNavNav.css('top', topHeight);
+        jQuery(document.body).scrollspy({
+            target: '#page-nav'
+        });
+    }
+    pageNavNav.width(function () {
+        return pageNavNav.parent().width();
+    });
 }

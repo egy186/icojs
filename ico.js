@@ -92,52 +92,37 @@
             tmp.iconImage = new Uint8Array(buffer, tmp.iconImageOff, tmp.iconImageLn);
             delete tmp.iconImageLn;
             delete tmp.iconImageOff;
-            if (tmp.width === 256) {
-                tmp.iconImage[4] = 0;
-                tmp.iconImage[5] = 1;
-                tmp.iconImage[6] = 0;
-                tmp.iconImage[7] = 0;
-            } else {
-                tmp.iconImage[4] = tmp.width;
-                tmp.iconImage[5] = 0;
-                tmp.iconImage[6] = 0;
-                tmp.iconImage[7] = 0;
+            tmp.tmpwid = tmp.width;
+            for (j = 4; j < 8; j++) {
+                tmp.iconImage[j] = tmp.tmpwid; // width
+                tmp.tmpwid = (tmp.tmpwid - tmp.iconImage[j]) >> 8;
             }
-            if (tmp.height === 256) {
-                tmp.iconImage[8] = 0;
-                tmp.iconImage[9] = 1;
-                tmp.iconImage[10] = 0;
-                tmp.iconImage[11] = 0;
-            } else {
-                tmp.iconImage[8] = tmp.height;
-                tmp.iconImage[9] = 0;
-                tmp.iconImage[10] = 0;
-                tmp.iconImage[11] = 0;
+            delete tmp.tmpwid;
+            tmp.tmphei = tmp.height;
+            for (j = 8; j < 12; j++) {
+                tmp.iconImage[j] = tmp.tmphei; // height
+                tmp.tmphei = (tmp.tmphei - tmp.iconImage[j]) >> 8;
             }
+            delete tmp.tmphei;
             tmp.bitmap = new Uint8Array(14 + tmp.iconImage.length);
             tmp.bitmap[0] = 66; // B
             tmp.bitmap[1] = 77; // M
+            tmp.filesize = tmp.bitmap.length;
+            for (j = 2; j < 6; j++) {
+                tmp.bitmap[j] = tmp.filesize; // file size
+                tmp.filesize = (tmp.filesize - tmp.bitmap[j]) >> 8;
+                console.log(j);
+            }
+            delete tmp.filesize;
             tmp.bitmap[10] = 40; // imagedataOffset-base
             tmp.bitmap.set(tmp.iconImage, 14);
             tmp.bit = tmp.iconImage[14] + (tmp.iconImage[15] << 8);
-            switch (tmp.bit) {
-                case 1:
-                    tmp.bitmap[10] += 2;
-                    break;
-                case 2:
-                    tmp.bitmap[10] += 4;
-                    break;
-                case 4:
-                    tmp.bitmap[10] += 16;
-                    break;
-                case 8:
-                    tmp.bitmap[11] = 1;
-                    break;
-                default:
-                    break;
+            tmp.tmpbit = tmp.bit;
+            for (j = 10; j < 12; j++) {
+                tmp.bitmap[j] = tmp.tmpbit;
+                tmp.tmpbit = (tmp.tmpbit - tmp.bitmap[j]) >> 8;
             }
-            //var filesize = tmp.bitmap.length;
-            //filesize = filesize.toString(16);
+            delete tmp.tmpbit;
             delete tmp.iconImage;
             bitmaps.push(tmp);
         }
