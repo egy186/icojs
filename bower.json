@@ -1,0 +1,23 @@
+{
+  "name": "icojs",
+  "version": "0.0.0",
+  "authors": [
+    "egy186"
+  ],
+  "description": "parse ico file",
+  "main": "ico.js",
+  "keywords": [
+    "ico",
+    "parse",
+    "web"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/egy186/ico.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

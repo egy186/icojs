@@ -1,7 +1,9 @@
 /// <reference path="../ico.js" />
-/// <reference path="../lib/jquery.js" />
-/// <reference path="../lib/bootstrap/js/bootstrap.js" />
-/// <reference path="../lib/google-code-prettify/prettify.js" />
+/// <reference path="lib/jquery/jquery.js" />
+/// <reference path="lib/bootstrap/js/bootstrap.js" />
+/// <reference path="lib/highlight/highlight.pack.js" />
+
+/* global hljs:false, ico:false */
 
 addEventListener('load', init, false);
 
@@ -63,8 +65,8 @@ function init() {
         xhr.send();
     }, false);
 
-    // google-code-prettify
-    prettyPrint();
+    // highlight.js
+    hljs.initHighlighting();
 
     // #page-nav scrollspy affix
     pageNavScrollspy();

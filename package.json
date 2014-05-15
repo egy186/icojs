@@ -2,7 +2,7 @@
   "name": "icojs",
   "version": "0.0.0",
   "author": "egy186",
-  "description": "parseico file",
+  "description": "parse ico file",
   "main": "ico.js",
   "repository": {
     "type": "git",
@@ -16,6 +16,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/egy186/ico.js/issues"
-  },
-  "private": true
+  }
 }
