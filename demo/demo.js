@@ -1,15 +1,14 @@
 /// <reference path="../ico.js" />
 /// <reference path="lib/jquery/jquery.js" />
 /// <reference path="lib/bootstrap/js/bootstrap.js" />
-/// <reference path="lib/highlight/highlight.pack.js" />
+/// <reference path="lib/highlightjs/highlight.pack.js" />
 
 /* global hljs:false, ico:false */
 
-addEventListener('load', init, false);
-
-function init() {
+// init
+addEventListener('load', function () {
+    // add event
     var inputFilePath = document.getElementById('input-file-path');
-
     // drag and drop
     addEventListener('dragenter', function (evt) {
         evt.stopPropagation();
@@ -29,7 +28,6 @@ function init() {
         };
         reader.readAsArrayBuffer(evt.dataTransfer.files[0]);
     }, false);
-
     // file
     inputFilePath.addEventListener('click', inputFile, false);
     document.getElementById('input-file-emu').addEventListener('click', inputFile, false);
@@ -45,7 +43,6 @@ function init() {
         };
         reader.readAsArrayBuffer(evt.target.files[0]);
     }, false);
-
     // url
     document.getElementById('submit-url').addEventListener('click', function () {
         var url = document.getElementById('input-url').value;
@@ -77,9 +74,10 @@ function init() {
     jQuery(document.body).on('activate.bs.scrollspy', function (evt) {
         history.replaceState({}, document.head.title, evt.target.firstChild.href);
     });
-}
+}, false);
 
 function showIconImgs(icoArrayBuffer) {
+    // convert *.ico to *.bmp(s)
     var bitmaps;
     try {
         bitmaps = ico.Parse(icoArrayBuffer);
@@ -101,6 +99,7 @@ function showIconImgs(icoArrayBuffer) {
 }
 
 function showResult(status, message) {
+    // class is depend on Bootstrap
     var text = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + message;
     var demosParse = document.createElement('div'),
         demosParseResults = document.getElementById('demos-parse-results');
@@ -112,17 +111,15 @@ function showResult(status, message) {
 function pageNavScrollspy() {
     var pageNavNav = jQuery('#page-nav .nav');
     var topHeight = 20;
-    if (window.innerWidth >= 992) { // col-md
-        pageNavNav.affix({
-            offset: {
-                top: pageNavNav.offset().top - topHeight
-            }
-        });
-        pageNavNav.css('top', topHeight);
-        jQuery(document.body).scrollspy({
-            target: '#page-nav'
-        });
-    }
+    pageNavNav.affix({
+        offset: {
+            top: pageNavNav.offset().top - topHeight
+        }
+    });
+    pageNavNav.css('top', topHeight);
+    jQuery(document.body).scrollspy({
+        target: '#page-nav'
+    });
     pageNavNav.width(function () {
         return pageNavNav.parent().width();
     });

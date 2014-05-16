@@ -1,8 +1,8 @@
 /*!
- * ico.js
- * https://github.com/egy186/ico.js
+ * icojs v0.0.0
+ *  https://egy186.github.io/ico.js
  *
- * Copyright (c) 2014 egy186
+ * Copyright 2014 (c) egy186
  * Released under the MIT License.
  */
 

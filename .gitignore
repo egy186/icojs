@@ -1,5 +1,6 @@
 bower_components/
 node_modules/
+*.webinfo
 
 #################
 ## Eclipse
@@ -195,7 +196,7 @@ $RECYCLE.BIN/
 # Packages
 *.egg
 *.egg-info
-dist/
+#dist/
 build/
 eggs/
 parts/

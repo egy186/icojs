@@ -5,20 +5,23 @@
     "egy186"
   ],
   "description": "parse ico file",
-  "main": "ico.js",
+  "main": "dist/ico.js",
   "keywords": [
     "ico",
     "parse",
     "web"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/egy186/ico.js",
+  "homepage": "https://egy186.github.io/ico.js",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "Gruntfile.js",
+    "package.json",
+    "demo",
+    "index.html",
+    "src"
   ],
   "devDependencies": {
     "jquery": "~2.1.1",
