@@ -19,5 +19,29 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.1.1",
+    "highlightjs": "~8.0.0",
+    "html5shiv": "~3.7.2"
+  },
+  "exportsOverride": {
+    "bootstrap": {
+      "js": "dist/js/bootstrap.js",
+      "css": "dist/css/bootstrap.css",
+      "fonts": "dist/fonts/*.*"
+    },
+    "highlightjs": {
+        "/": "*.js",
+        "styles": [
+            "styles/github.css",
+            "styles/vs.css",
+            "styles/xcode.css"
+        ]
+    },
+    "html5shiv": {
+      "/": "dist/html5shiv-printshiv.js"
+    }
+  }
 }

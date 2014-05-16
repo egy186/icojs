@@ -6,8 +6,10 @@
  * Released under the MIT License.
  */
 
-(function (wdw) {
+(function (window) {
     'use strict';
+
+    var version = '0.0.0';
     /* jslint bitwise: true */
 
     // ref: http://msdn.microsoft.com/en-us/library/ms997538.aspx
@@ -129,7 +131,8 @@
         return bitmaps;
     };
 
-    wdw.ico = {
-        Parse: Parse
+    window.ico = {
+        Parse: Parse,
+        version: version
     };
 })(this);

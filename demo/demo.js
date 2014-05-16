@@ -65,7 +65,7 @@ function init() {
         xhr.send();
     }, false);
 
-    // highlight.js
+    // highlightjs
     hljs.initHighlighting();
 
     // #page-nav scrollspy affix
