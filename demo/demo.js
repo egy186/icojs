@@ -19,14 +19,16 @@ addEventListener('load', function () {
         evt.preventDefault();
     }, false);
     addEventListener('drop', function (evt) {
-        evt.stopPropagation();
-        evt.preventDefault();
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            //console.log(Uint8Array(e.target.result));
-            showIconImgs(e.target.result);
-        };
-        reader.readAsArrayBuffer(evt.dataTransfer.files[0]);
+        //if (typeof (evt.dataTransfer.files[0]) === 'object') {
+            evt.stopPropagation();
+            evt.preventDefault();
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                //console.log(Uint8Array(e.target.result));
+                showIconImgs(e.target.result);
+            };
+            reader.readAsArrayBuffer(evt.dataTransfer.files[0]);
+        //}
     }, false);
     // file
     inputFilePath.addEventListener('click', inputFile, false);
