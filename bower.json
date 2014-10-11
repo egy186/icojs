@@ -1,11 +1,11 @@
 {
   "name": "icojs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "authors": [
     "egy186"
   ],
   "description": "parse ico file",
-  "main": "dist/ico.js",
+  "main": "dist/ico.min.js",
   "keywords": [
     "ico",
     "parse",
@@ -19,15 +19,13 @@
     "bower_components",
     "Gruntfile.js",
     "package.json",
-    "demo",
-    "index.html",
     "src"
   ],
   "devDependencies": {
     "jquery": "~2.1.1",
-    "bootstrap": "~3.1.1",
-    "highlightjs": "~8.0.0",
-    "html5shiv": "~3.7.2"
+    "bootstrap": "~3.2.0",
+    "github-fork-ribbon-css": "~0.1.1",
+    "highlightjs": "~8.0.0"
   },
   "exportsOverride": {
     "bootstrap": {
@@ -36,15 +34,10 @@
       "fonts": "dist/fonts/*.*"
     },
     "highlightjs": {
-        "/": "*.js",
-        "styles": [
-            "styles/github.css",
-            "styles/vs.css",
-            "styles/xcode.css"
-        ]
-    },
-    "html5shiv": {
-      "/": "dist/html5shiv-printshiv.js"
+      "/": "*.js",
+      "styles": [
+        "styles/github.css"
+      ]
     }
   }
 }
