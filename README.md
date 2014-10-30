@@ -25,7 +25,6 @@ To use this library in your HTML page, please include `ico.js` or minified `ico.
 
 ```html
 <script type="text/javascript" src="/path/to/ico.js"></script>
-
 ```
 
 ## Demo
