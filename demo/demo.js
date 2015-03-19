@@ -46,18 +46,18 @@ function icoParse(file) {
   var reader = new FileReader();
   reader.onload = function (e) {
     // convert *.ico to *.png(s)
-    ico.Parse(e.target.result, function (err, pngs) {
-      if (err) {
-        return showResult('danger', '<p><strong>Error:</strong> ' + err.message + '</p>');
-      }
-      // success
-      console.dir(pngs); // debug
+    try {
+        var images = ico.Parse(e.target.result);
+      console.dir(images); // debug
       var text = '<p><strong>Success:</strong></p>';
-      for (var i = 0; i < pngs.length; i++) {
-        text += '<p><a href="' + pngs[i].data + '" target="_blank"><img src="' + pngs[i].data + '" /> ' + pngs[i].width + 'x' + pngs[i].height + '</a></p>';
+      for (var i = 0; i < images.length; i++) {
+        var url = URL.createObjectURL(new Blob([images[i].buffer], { type : images[i].type }));
+        text += '<p><a href="' + url + '" target="_blank"><img src="' + url + '" /> ' + images[i].width + 'x' + images[i].height + ', ' + images[i].bit + 'bit</a></p>';
       }
       showResult('success', text);
-    });
+    } catch (err) {
+      showResult('danger', '<p><strong>Error:</strong> ' + err.message + '</p>');
+    }
   };
   reader.readAsArrayBuffer(file);
 }
