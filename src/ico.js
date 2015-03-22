@@ -2,7 +2,7 @@
 
 'use strict';
 
-var extractOne = require('./extractOne');
+var extractOne = require('./extractone');
 var util = require('./util');
 var PNG = require('./png');
 

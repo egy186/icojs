@@ -4,7 +4,7 @@
 
 'use strict';
 
-var extractOne = require('./extractOne');
+var extractOne = require('./extractone');
 var util = require('./util');
 var PNG = require('./png');
 
@@ -157,7 +157,7 @@ module.exports = ICO;
 global.ICO = ICO;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./extractOne":2,"./png":3,"./util":4}],2:[function(require,module,exports){
+},{"./extractone":2,"./png":3,"./util":4}],2:[function(require,module,exports){
 /* jshint node: true */
 
 'use strict';
