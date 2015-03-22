@@ -5,11 +5,10 @@
     "egy186"
   ],
   "description": "parse ico file",
-  "main": "dist/ico.min.js",
+  "main": "dist/ico.js",
   "keywords": [
     "ico",
-    "parse",
-    "web"
+    "parse"
   ],
   "license": "MIT",
   "homepage": "https://egy186.github.io/ico.js",
@@ -17,27 +16,9 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "Gruntfile.js",
+    "gulpfile.js",
     "package.json",
-    "src"
-  ],
-  "devDependencies": {
-    "jquery": "~2.1.1",
-    "bootstrap": "~3.2.0",
-    "github-fork-ribbon-css": "~0.1.1",
-    "highlightjs": "~8.0.0"
-  },
-  "exportsOverride": {
-    "bootstrap": {
-      "js": "dist/js/bootstrap.js",
-      "css": "dist/css/bootstrap.css",
-      "fonts": "dist/fonts/*.*"
-    },
-    "highlightjs": {
-      "/": "*.js",
-      "styles": [
-        "styles/github.css"
-      ]
-    }
-  }
+    "src",
+    "test/coverage"
+  ]
 }
