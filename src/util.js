@@ -45,6 +45,17 @@ var util = {
       bit.push(buff[i]);
     }
     return bit;
+  },
+  /**
+   * Make number dividable by 4
+   * @param {Number} num number
+   * @returns {Number} number dividable by 4
+   */
+  toDividableBy4: function (num) {
+    if (num % 4 !== 0) {
+      num += 4 - num % 4;
+    }
+    return num;
   }
 };
 

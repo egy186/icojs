@@ -18,7 +18,8 @@
     "url": "https://github.com/egy186/icojs/issues"
   },
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "test": "gulp test"
   },
   "dependencies": {
     "canvas": "^1.2.1"

@@ -15,11 +15,12 @@ var data = require('./data/index');
 var bufferToBase64 = data.bufferToBase64;
 
 describe('util', function () {
-  it('is expected to have 3 functions', function () {
+  it('is expected to have 4 functions', function () {
     expect(util).to.be.a('object');
     expect(util.to1bitArray).to.be.a('function');
     expect(util.to4bitArray).to.be.a('function');
     expect(util.to8bitArray).to.be.a('function');
+    expect(util.toDividableBy4).to.be.a('function');
   });
   describe('.to1bitArray', function () {
     it('is expected to return 1 bit array', function () {
@@ -60,6 +61,16 @@ describe('util', function () {
       expect(util.to8bitArray(new Uint8Array([1, 64, 8, 16, 4, 32, 2, 128]).buffer).join()).to.equal([
         1, 64, 8, 16, 4, 32, 2, 128
       ].join());
+    });
+  });
+  describe('.toDividableBy4', function () {
+    it('is expected to return a number dividable by 4', function () {
+      expect(util.toDividableBy4(0)).to.equal(0);
+      expect(util.toDividableBy4(1)).to.equal(4);
+      expect(util.toDividableBy4(2)).to.equal(4);
+      expect(util.toDividableBy4(3)).to.equal(4);
+      expect(util.toDividableBy4(4)).to.equal(4);
+      expect(util.toDividableBy4(5)).to.equal(8);
     });
   });
 });

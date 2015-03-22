@@ -3,10 +3,137 @@
 'use strict';
 
 var extractOne = require('./extractone');
-var util = require('./util');
 var PNG = require('./png');
+var util = require('./util');
 
-var previousIco = global.ICO;
+/**
+ * make 1bit image imageData.data
+ * @param {Object} ico should have width, height, bit, colors, xor, and
+ * @returns {Uint8ClampedArray} imageData.data
+ */
+var make1bitImageData = function (ico) {
+  var color;
+  var xor = util.to1bitArray(ico.xor);
+  var and = util.to1bitArray(ico.and);
+  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  var andLine = util.toDividableBy4(ico.width / 8) * 8;
+  var index = 0;
+  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (var h = ico.height - 1; h >= 0; h--) {
+    for (var w = 0; w < ico.width; w++) {
+      color = ico.colors[xor[h * xorLine + w]];
+      data[index] = color[2];
+      data[index + 1] = color[1];
+      data[index + 2] = color[0];
+      data[index + 3] = and[h * andLine + w] ? 0 : 255;
+      index += 4;
+    }
+  }
+  return data;
+};
+
+/**
+ * make 4bit image imageData.data
+ * @param {Object} ico should have width, height, bit, colors, xor, and
+ * @returns {Uint8ClampedArray} imageData.data
+ */
+var make4bitImageData = function (ico) {
+  var color;
+  var xor = util.to4bitArray(ico.xor);
+  var and = util.to1bitArray(ico.and);
+  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  var andLine = util.toDividableBy4(ico.width / 8) * 8;
+  var index = 0;
+  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (var h = ico.height - 1; h >= 0; h--) {
+    for (var w = 0; w < ico.width; w++) {
+      color = ico.colors[xor[h * xorLine + w]];
+      data[index] = color[2];
+      data[index + 1] = color[1];
+      data[index + 2] = color[0];
+      data[index + 3] = and[h * andLine + w] ? 0 : 255;
+      index += 4;
+    }
+  }
+  return data;
+};
+
+/**
+ * make 8bit image imageData.data
+ * @param {Object} ico should have width, height, bit, colors, xor, and
+ * @returns {Uint8ClampedArray} imageData.data
+ */
+var make8bitImageData = function (ico) {
+  var color;
+  var xor = new Uint8Array(ico.xor);
+  var and = util.to1bitArray(ico.and);
+  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  var andLine = util.toDividableBy4(ico.width / 8) * 8;
+  var index = 0;
+  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  index = 0;
+  for (var h = ico.height - 1; h >= 0; h--) {
+    for (var w = 0; w < ico.width; w++) {
+      color = ico.colors[xor[h * xorLine + w]];
+      data[index] = color[2];
+      data[index + 1] = color[1];
+      data[index + 2] = color[0];
+      data[index + 3] = and[h * andLine + w] ? 0 : 255;
+      index += 4;
+    }
+  }
+  return data;
+};
+
+/**
+ * make 24bit image imageData.data
+ * @param {Object} ico should have width, height, bit, xor, and
+ * @returns {Uint8ClampedArray} imageData.data
+ */
+var make24bitImageData = function (ico) {
+  var xor = new Uint8Array(ico.xor);
+  var and = util.to1bitArray(ico.and);
+  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  var andLine = util.toDividableBy4(ico.width / 8) * 8;
+  var index = 0;
+  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (var h = ico.height - 1; h >= 0; h--) {
+    for (var w = 0; w < ico.width; w++) {
+      data[index] = xor[(h * xorLine + w) * 3 + 2];
+      data[index + 1] = xor[(h * xorLine + w) * 3 + 1];
+      data[index + 2] = xor[(h * xorLine + w) * 3];
+      data[index + 3] = and[h * andLine + w] ? 0 : 255;
+      index += 4;
+    }
+  }
+  return data;
+};
+
+/**
+ * make 32bit image imageData.data
+ * @param {Object} ico should have width, height, bit, xor, and
+ * @returns {Uint8ClampedArray} imageData.data
+ */
+var make32bitImageData = function (ico) {
+  var xor = new Uint8Array(ico.xor);
+  var and = util.to1bitArray(ico.and);
+  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  var andLine = util.toDividableBy4(ico.width / 8) * 8;
+  var index = 0;
+  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (var h = ico.height - 1; h >= 0; h--) {
+    for (var w = 0; w < ico.width; w++) {
+      data[index] = xor[(h * xorLine + w) * 4 + 2];
+      data[index + 1] = xor[(h * xorLine + w) * 4 + 1];
+      data[index + 2] = xor[(h * xorLine + w) * 4];
+      data[index + 3] = (and[h * andLine + w] === 1 || xor[(h * xorLine + w) * 4 + 3] === 1) ? 0 : (xor[(h * xorLine + w) * 4 + 3] > 1 ? xor[(h * xorLine + w) * 4 + 3] : 255);
+      index += 4;
+    }
+  }
+  return data;
+};
+
+var previousICO = global.ICO;
 
 var ICO = {
   /**
@@ -38,95 +165,27 @@ var ICO = {
     if (icoDv.getUint16(0, true) !== 0 || icoDv.getUint16(2, true) !== 1) {
       throw new Error('buffer is not ico');
     }
-    var i, j, k, index;
     // make single image icon
-    var ico, color, xorLine, andLine;
-    var data;
+    var ico, data;
     var icos = [];
     // var idCount = icoDv.getUint16(4, true);
-    for (i = 0; i < icoDv.getUint16(4, true); i++) {
+    for (var i = 0; i < icoDv.getUint16(4, true); i++) {
       ico = extractOne(buffer, i);
-      ico.and = util.to1bitArray(ico.and);
-      xorLine = ico.width * ico.bit / 8;
-      if (xorLine % 4 !== 0) {
-        xorLine += 4 - xorLine % 4;
-      }
-      xorLine *= 8 / ico.bit;
-      andLine = ico.width / 8;
-      if (andLine % 4 !== 0) {
-        andLine += 4 - andLine % 4;
-      }
-      andLine *= 8;
-
-      data = new Uint8ClampedArray(ico.width * ico.height * 4);
       switch (ico.bit) {
         case 1:
-          ico.xor = util.to1bitArray(ico.xor);
-          index = 0;
-          for (j = ico.height - 1; j >= 0; j--) {
-            for (k = 0; k < ico.width; k++) {
-              color = ico.colors[ico.xor[j * xorLine + k]];
-              data[index * 4] = color[2];
-              data[index * 4 + 1] = color[1];
-              data[index * 4 + 2] = color[0];
-              data[index * 4 + 3] = ico.and[j * andLine + k] ? 0 : 255;
-              index++;
-            }
-          }
+          data = make1bitImageData(ico);
           break;
         case 4:
-          ico.xor = util.to4bitArray(ico.xor);
-          index = 0;
-          for (j = ico.height - 1; j >= 0; j--) {
-            for (k = 0; k < ico.width; k++) {
-              color = ico.colors[ico.xor[j * xorLine + k]];
-              data[index * 4] = color[2];
-              data[index * 4 + 1] = color[1];
-              data[index * 4 + 2] = color[0];
-              data[index * 4 + 3] = ico.and[j * andLine + k] ? 0 : 255;
-              index++;
-            }
-          }
+          data = make4bitImageData(ico);
           break;
         case 8:
-          ico.xor = util.to8bitArray(ico.xor);
-          index = 0;
-          for (j = ico.height - 1; j >= 0; j--) {
-            for (k = 0; k < ico.width; k++) {
-              color = ico.colors[ico.xor[j * xorLine + k]];
-              data[index * 4] = color[2];
-              data[index * 4 + 1] = color[1];
-              data[index * 4 + 2] = color[0];
-              data[index * 4 + 3] = ico.and[j * andLine + k] ? 0 : 255;
-              index++;
-            }
-          }
+          data = make8bitImageData(ico);
           break;
         case 24:
-          ico.xor = util.to8bitArray(ico.xor);
-          index = 0;
-          for (j = ico.height - 1; j >= 0; j--) {
-            for (k = 0; k < ico.width; k++) {
-              data[index * 4] = ico.xor[(j * xorLine + k) * 3 + 2];
-              data[index * 4 + 1] = ico.xor[(j * xorLine + k) * 3 + 1];
-              data[index * 4 + 2] = ico.xor[(j * xorLine + k) * 3];
-              data[index * 4 + 3] = ico.and[j * andLine + k] ? 0 : 255;
-              index++;
-            }
-          }
+          data = make24bitImageData(ico);
           break;
         case 32:
-          ico.xor = util.to8bitArray(ico.xor);
-          index = 0;
-          for (j = ico.height - 1; j >= 0; j--) {
-            for (k = 0; k < ico.width; k++) {
-              data[index * 4] = ico.xor[(j * xorLine + k) * 4 + 2];
-              data[index * 4 + 1] = ico.xor[(j * xorLine + k) * 4 + 1];
-              data[index * 4 + 2] = ico.xor[(j * xorLine + k) * 4];
-              data[index * 4 + 3] = (ico.and[j * andLine + k] === 1 || ico.xor[(j * xorLine + k) * 4 + 3] === 1) ? 0 : (ico.xor[(j * xorLine + k) * 4 + 3] > 1 ? ico.xor[(j * xorLine + k) * 4 + 3] : 255);
-              index++;
-            }
-          }
+          data = make32bitImageData(ico);
           break;
       }
       icos.push({
@@ -146,7 +205,7 @@ var ICO = {
    * no conflict
    */
   noConflict: function() {
-    global.ICO = previousIco;
+    global.ICO = previousICO;
     return this;
   }
 };
