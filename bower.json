@@ -11,7 +11,7 @@
     "parse"
   ],
   "license": "MIT",
-  "homepage": "https://egy186.github.io/ico.js",
+  "homepage": "https://egy186.github.io/icojs",
   "ignore": [
     "**/.*",
     "node_modules",

@@ -1,9 +1,15 @@
-# ico.js
+# icojs
 
-[![Bower version](http://img.shields.io/bower/v/icojs.svg?style=flat)](https://github.com/egy186/ico.js) [![Code Climate](http://img.shields.io/codeclimate/github/egy186/ico.js.svg?style=flat)](https://codeclimate.com/github/egy186/ico.js) [![devDependency Status](http://img.shields.io/david/dev/egy186/ico.js.svg?style=flat)](https://david-dm.org/egy186/ico.js#info=devDependencies)
+[![Bower version](https://img.shields.io/bower/v/icojs.svg?style=flat)](https://github.com/egy186/icojs)
 
-`ico.js` is a JavaScript library to use `ICO`.
-Work on both NOde.js and Browser.
+[![Build Status](https://img.shields.io/travis/egy186/icojs.svg?style=flat)](https://travis-ci.org/egy186/icojs)
+[![Coverage Status](https://img.shields.io/coveralls/egy186/icojs.svg?style=flat)](https://coveralls.io/r/egy186/icojs)
+[![Code Climate](https://img.shields.io/codeclimate/github/egy186/icojs.svg?style=flat)](https://codeclimate.com/github/egy186/icojs)
+[![Dependency Status](https://img.shields.io/david/egy186/icojs.svg?style=flat)](https://david-dm.org/egy186/icojs)
+
+**icojs** is a JavaScript library to use `ICO`.
+
+Work on both Node.js and Browser.
 
 ## Example
 
@@ -15,15 +21,25 @@ var arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
 var images = ICO.parse(arrayBuffer);
 ```
 
-## In Node.js
+## Install
 
-### Install
+### In Node.js
 
 ```sh
 npm install icojs
 ```
 
-## In Browser
+### In Browser
+
+```sh
+bower install icojs
+```
+
+Add below to HTML:
+
+```html
+<script type="text/javascript" src="/path/to/ico.js"></script>
+```
 
 To fully use this library, browsers must support **JavaScript typed arrays** and some Web API Interfaces below:
 
@@ -34,21 +50,9 @@ To fully use this library, browsers must support **JavaScript typed arrays** and
 
 Google Chrome, Internet Explorer 10, Mozilla Firefox and Safari 6 support these function.
 
-### Install
-
-```sh
-bower install icojs
-```
-
-To use this library in your HTML page, please include `ico.js` or minified `ico.min.js` like this:
-
-```html
-<script type="text/javascript" src="/path/to/ico.js"></script>
-```
-
 ## Demo
 
-[http://egy186.github.io/ico.js/#demos](http://egy186.github.io/ico.js/#demos)
+[http://egy186.github.io/icojs/#demos](http://egy186.github.io/icojs/#demos)
 
 ## Documentation
 

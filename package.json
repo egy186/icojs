@@ -4,10 +4,10 @@
   "author": "egy186",
   "description": "parse ico file",
   "main": "src/ico.js",
-  "homepage": "https://egy186.github.io/ico.js",
+  "homepage": "https://egy186.github.io/icojs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/egy186/ico.js"
+    "url": "https://github.com/egy186/icojs"
   },
   "keywords": [
     "ico",
@@ -15,7 +15,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/egy186/ico.js/issues"
+    "url": "https://github.com/egy186/icojs/issues"
   },
   "scripts": {
     "build": "gulp build"
