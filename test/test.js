@@ -113,21 +113,21 @@ describe('extractOne', function () {
 describe('ICO', function () {
   it('is expected to have 3 functions', function () {
     expect(ICO).to.be.a('object');
-    expect(ICO.isIco).to.be.a('function');
+    expect(ICO.isICO).to.be.a('function');
     expect(ICO.parse).to.be.a('function');
     expect(ICO.noConflict).to.be.a('function');
   });
-  describe('.isIco', function () {
+  describe('.isICO', function () {
     it('is expected to return true or false', function () {
-      expect(ICO.isIco('it is not buffer')).to.be.false;
-      expect(ICO.isIco(data.arrayBuffer)).to.be.true;
+      expect(ICO.isICO('it is not buffer')).to.be.false;
+      expect(ICO.isICO(data.arrayBuffer)).to.be.true;
       var d = new ArrayBuffer(4);
       var dv = new DataView(d);
-      expect(ICO.isIco(d)).to.be.false;
+      expect(ICO.isICO(d)).to.be.false;
       dv.setUint16(2, 1, true);
-      expect(ICO.isIco(d)).to.be.true;
+      expect(ICO.isICO(d)).to.be.true;
       dv.setUint16(0, 1, true);
-      expect(ICO.isIco(d)).to.be.false;
+      expect(ICO.isICO(d)).to.be.false;
     });
   });
   describe('.parse', function () {
@@ -155,7 +155,7 @@ describe('ICO', function () {
       var newIco = ICO.noConflict();
       expect(newIco).to.be.a('object');
       expect(newIco.parse).to.be.a('function');
-      expect(newIco.isIco).to.be.a('function');
+      expect(newIco.isICO).to.be.a('function');
     });
   });
 });

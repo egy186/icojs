@@ -3,19 +3,38 @@
 [![Bower version](http://img.shields.io/bower/v/icojs.svg?style=flat)](https://github.com/egy186/ico.js) [![Code Climate](http://img.shields.io/codeclimate/github/egy186/ico.js.svg?style=flat)](https://codeclimate.com/github/egy186/ico.js) [![devDependency Status](http://img.shields.io/david/dev/egy186/ico.js.svg?style=flat)](https://david-dm.org/egy186/ico.js#info=devDependencies)
 
 `ico.js` is a JavaScript library to use `ICO`.
+Work on both NOde.js and Browser.
 
-## Requirements
+## Example
+
+```js
+var fs = require('fs');
+var ICO = require('icojs');
+
+var arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
+var images = ICO.parse(arrayBuffer);
+```
+
+## In Node.js
+
+### Install
+
+```sh
+npm install icojs
+```
+
+## In Browser
 
 To fully use this library, browsers must support **JavaScript typed arrays** and some Web API Interfaces below:
 
 - Canvas
-- Blob
+- Blob (optional)
 - FileReader (optional)
 - XMLHttpRequest (optional)
 
 Google Chrome, Internet Explorer 10, Mozilla Firefox and Safari 6 support these function.
 
-## Install
+### Install
 
 ```sh
 bower install icojs
@@ -33,25 +52,33 @@ To use this library in your HTML page, please include `ico.js` or minified `ico.
 
 ## Documentation
 
-### ico.Parse(buffer, callback)
+### ICO.parse(buffer)
 
 Parse `ICO` and return some `PNG`(s).
 
 #### Parameters
 
 - `buffer` **ArrayBuffer** The ArrayBuffer object contain the TypedArray of a `ICO` file.
-- `callback` **Function** Callback function. callback gets two arguments `(err, pngs)`. `pngs` is like below:
 
-```js
-pngs = [
-  {
-    width: Number width,
-    height: Number height,
-    data: String dataURI
-  },
-  ...
-]
-```
+#### Returns
+
+- `images` **Object[]** PNG images.
+- `images[].width` **Number** Image width.
+- `images[].height` **Number** Image height.
+- `images[].bit` **Number** Image bit depth.
+- `images[].buffer` **ArrayBuffer** Image buffer.
+
+### ICO.isICO(buffer)
+
+Check the ArrayBuffer is valid `ICO`.
+
+#### Parameters
+
+- `buffer` **ArrayBuffer** The ArrayBuffer object contain the TypedArray of a `ICO` file.
+
+#### Returns
+
+- `isICO` **Boolean** True if arg is `ICO`.
 
 ## License
 

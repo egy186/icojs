@@ -14,7 +14,7 @@ var ICO = {
    * @param {ArrayBuffer} buffer
    * @returns {Boolean} true if valid
    */
-  isIco: function (buffer) {
+  isICO: function (buffer) {
     if (!(buffer instanceof ArrayBuffer)) {
       return false;
     }
@@ -27,11 +27,11 @@ var ICO = {
    * parse ico file
    * @param {ArrayBuffer} buffer ico buffer
    * @returns {Object[]} ico Array of parsed ico
-   * @returns {Number} ico.bit bit depth
-   * @returns {Number} ico.width image width
-   * @returns {Number} ico.height image height
-   * @returns {String} ico.type image mime-type
-   * @returns {ArrayBuffer} ico.buffer image buffer
+   * @returns {Number} ico[].bit bit depth
+   * @returns {Number} ico[].width image width
+   * @returns {Number} ico[].height image height
+   * @returns {String} ico[].type image mime-type
+   * @returns {ArrayBuffer} ico[].buffer image buffer
    */
   parse: function (buffer) {
     var icoDv = new DataView(buffer);
