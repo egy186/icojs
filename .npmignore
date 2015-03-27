@@ -1,6 +1,9 @@
+**/.*
 node_modules/
 bin/
 test/coverage/
+dist/
+.travis.yml
 
 obj/
 .ntvs_analysis.*

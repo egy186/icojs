@@ -1,3 +1,5 @@
+/// <vs AfterBuild='default' />
+
 /* jshint node: true */
 
 'use strict';

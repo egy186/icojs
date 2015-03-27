@@ -45,7 +45,7 @@ Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support thes
 
 ## Demo
 
-[http://egy186.github.io/icojs/#demos](http://egy186.github.io/icojs/#demos)
+[http://egy186.github.io/icojs/#demo](http://egy186.github.io/icojs/#demo)
 
 ## Documentation
 
