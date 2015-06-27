@@ -1,7 +1,7 @@
 {
   "name": "icojs",
   "description": "parse ico file",
-  "version": "0.2.0",
+  "version": "0.3.0-alpha.1",
   "author": "egy186",
   "bugs": {
     "url": "https://github.com/egy186/icojs/issues"
@@ -24,6 +24,12 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
+  "files": [
+    "src",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "homepage": "https://egy186.github.io/icojs",
   "keywords": [
     "ico",
@@ -33,7 +39,7 @@
   "main": "src/ico.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/egy186/icojs"
+    "url": "git+https://github.com/egy186/icojs.git"
   },
   "scripts": {
     "build": "gulp build",
