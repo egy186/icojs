@@ -6,6 +6,7 @@ var util = require('./util');
 
 /**
  * make 1bit image imageData.data
+ * @private
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
@@ -32,6 +33,7 @@ var make1bitImageData = function (ico) {
 
 /**
  * make 4bit image imageData.data
+ * @private
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
@@ -58,6 +60,7 @@ var make4bitImageData = function (ico) {
 
 /**
  * make 8bit image imageData.data
+ * @private
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
@@ -85,6 +88,7 @@ var make8bitImageData = function (ico) {
 
 /**
  * make 24bit image imageData.data
+ * @private
  * @param {Object} ico should have width, height, bit, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
@@ -109,6 +113,7 @@ var make24bitImageData = function (ico) {
 
 /**
  * make 32bit image imageData.data
+ * @private
  * @param {Object} ico should have width, height, bit, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
@@ -133,30 +138,18 @@ var make32bitImageData = function (ico) {
 
 var previousICO = global.ICO;
 
+/**
+ * @class ICO
+ */
 var ICO = {
   /**
-   * check buffer is valid ico
-   * @param {ArrayBuffer} buffer
-   * @returns {Boolean} true if valid
-   */
-  isICO: function (buffer) {
-    if (!(buffer instanceof ArrayBuffer)) {
-      return false;
-    }
-    var icoDv = new DataView(buffer);
-    // idReserved = icoDv.getUint16(0, true)
-    // idType = icoDv.getUint16(0, true)
-    return icoDv.getUint16(0, true) === 0 && icoDv.getUint16(2, true) === 1;
-  },
-  /**
-   * parse ico file
-   * @param {ArrayBuffer} buffer ico buffer
-   * @returns {Object[]} ico Array of parsed ico
-   * @returns {Number} ico[].bit bit depth
-   * @returns {Number} ico[].width image width
-   * @returns {Number} ico[].height image height
-   * @returns {String} ico[].type image mime-type
-   * @returns {ArrayBuffer} ico[].buffer image buffer
+   * Parse ICO and return some PNGs.
+   * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
+   * @returns {Object[]} Array of parsed ICO.
+   * * .width <code>Number</code> - Image width.
+   * * .height <code>Number</code> - Image height.
+   * * .bit <code>Number</code> - Image bit depth.
+   * * .buffer <code>ArrayBuffer</code> - Image buffer.
    */
   parse: function (buffer) {
     var icoDv = new DataView(buffer);
@@ -200,7 +193,22 @@ var ICO = {
     return icos;
   },
   /**
-   * no conflict
+   * Check the ArrayBuffer is valid ICO.
+   * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
+   * @returns {Boolean} True if arg is ICO.
+   */
+  isICO: function (buffer) {
+    if (!(buffer instanceof ArrayBuffer)) {
+      return false;
+    }
+    var icoDv = new DataView(buffer);
+    // idReserved = icoDv.getUint16(0, true)
+    // idType = icoDv.getUint16(0, true)
+    return icoDv.getUint16(0, true) === 0 && icoDv.getUint16(2, true) === 1;
+  },
+  /**
+   * No conflict.
+   * @returns {ICO}
    */
   noConflict: function () {
     global.ICO = previousICO;

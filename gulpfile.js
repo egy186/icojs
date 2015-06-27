@@ -5,9 +5,12 @@ var buffer = require('vinyl-buffer');
 var coveralls = require('gulp-coveralls');
 var del = require('del');
 var eslint = require('gulp-eslint');
+var fs = require('fs');
 var gulp = require('gulp');
 var istanbul = require('gulp-istanbul');
+var jsdoc2md = require('gulp-jsdoc-to-markdown');
 var mocha = require('gulp-mocha');
+var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
@@ -52,10 +55,20 @@ gulp.task('test', function (callback) {
     });
 });
 
+gulp.task('docs', function () {
+  return gulp.src('src/ico.js')
+    .pipe(jsdoc2md({
+      template: fs.readFileSync('./README.hbs', 'utf8'),
+      'heading-depth': 3
+    }))
+    .pipe(rename('README.md'))
+    .pipe(gulp.dest('.'));
+});
+
 gulp.task('coveralls', ['test'], function () {
   return gulp.src('test/coverage/lcov.info')
     .pipe(coveralls());
 });
 
-gulp.task('default', ['lint', 'build', 'test']);
+gulp.task('default', ['lint', 'build', 'test', 'docs']);
 gulp.task('ci', ['default', 'coveralls']);
