@@ -1,11 +1,19 @@
 language: node_js
 node_js:
-  - "iojs"
-  - "0.12"
-  - "0.10"
+  - iojs
+  - '0.12'
+  - '0.10'
 before_install:
   - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
 before_script:
   - npm install -g gulp
 script:
   - gulp ci
+deploy:
+  provider: npm
+  email: egy186@yahoo.co.jp
+  api_key:
+    secure: M0T61iBtWO7mxJur2WN6U7ZcBmJKBOMVMHC9x3HVUtLDAcX6MqSai+TccIWw7KtFE8g9DMi/3lP5vB4wGwjT1Hh8ctdTaP6nDzgqi1/Vm4BBXllZgCy9p4lmOGHuNLh1P07p9Pvqe7lpP+V7qxOKXGi+RCY7rjCjZDu1SdrO6Ps=
+  on:
+    tags: true
+    repo: egy186/icojs
