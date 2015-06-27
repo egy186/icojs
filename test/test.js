@@ -1,8 +1,5 @@
-/* jshint node: true */
-/* jshint expr: true */
 /* global describe, it */
-
-'use strict';
+/* eslint no-unused-expressions: 0 */
 
 var expect = require('chai').expect;
 
@@ -25,11 +22,11 @@ describe('util', function () {
   describe('.to1bitArray', function () {
     it('is expected to return 1 bit array', function () {
       expect(util.to1bitArray(new Uint8Array([0]).buffer)).to.be.a('array').with.length(8);
-      expect(util.to1bitArray(new Uint8Array([0]).buffer).join()).to.equal([0,0,0,0,0,0,0,0].join());
-      expect(util.to1bitArray(new Uint8Array([1]).buffer).join()).to.equal([0,0,0,0,0,0,0,1].join());
-      expect(util.to1bitArray(new Uint8Array([2]).buffer).join()).to.equal([0,0,0,0,0,0,1,0].join());
-      expect(util.to1bitArray(new Uint8Array([3]).buffer).join()).to.equal([0,0,0,0,0,0,1,1].join());
-      expect(util.to1bitArray(new Uint8Array([255]).buffer).join()).to.equal([1,1,1,1,1,1,1,1].join());
+      expect(util.to1bitArray(new Uint8Array([0]).buffer).join()).to.equal([0, 0, 0, 0, 0, 0, 0, 0].join());
+      expect(util.to1bitArray(new Uint8Array([1]).buffer).join()).to.equal([0, 0, 0, 0, 0, 0, 0, 1].join());
+      expect(util.to1bitArray(new Uint8Array([2]).buffer).join()).to.equal([0, 0, 0, 0, 0, 0, 1, 0].join());
+      expect(util.to1bitArray(new Uint8Array([3]).buffer).join()).to.equal([0, 0, 0, 0, 0, 0, 1, 1].join());
+      expect(util.to1bitArray(new Uint8Array([255]).buffer).join()).to.equal([1, 1, 1, 1, 1, 1, 1, 1].join());
       expect(util.to1bitArray(new Uint8Array([1, 64, 8, 16, 4, 32, 2, 128]).buffer).join()).to.equal([
         0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0
@@ -39,12 +36,12 @@ describe('util', function () {
   describe('.to4bitArray', function () {
     it('is expected to return 4 bit array', function () {
       expect(util.to4bitArray(new Uint8Array([0]).buffer)).to.be.a('array').with.length(2);
-      expect(util.to4bitArray(new Uint8Array([0]).buffer).join()).to.equal([0,0].join());
-      expect(util.to4bitArray(new Uint8Array([1]).buffer).join()).to.equal([0,1].join());
-      expect(util.to4bitArray(new Uint8Array([15]).buffer).join()).to.equal([0,15].join());
-      expect(util.to4bitArray(new Uint8Array([16]).buffer).join()).to.equal([1,0].join());
-      expect(util.to4bitArray(new Uint8Array([17]).buffer).join()).to.equal([1,1].join());
-      expect(util.to4bitArray(new Uint8Array([255]).buffer).join()).to.equal([15,15].join());
+      expect(util.to4bitArray(new Uint8Array([0]).buffer).join()).to.equal([0, 0].join());
+      expect(util.to4bitArray(new Uint8Array([1]).buffer).join()).to.equal([0, 1].join());
+      expect(util.to4bitArray(new Uint8Array([15]).buffer).join()).to.equal([0, 15].join());
+      expect(util.to4bitArray(new Uint8Array([16]).buffer).join()).to.equal([1, 0].join());
+      expect(util.to4bitArray(new Uint8Array([17]).buffer).join()).to.equal([1, 1].join());
+      expect(util.to4bitArray(new Uint8Array([255]).buffer).join()).to.equal([15, 15].join());
       expect(util.to4bitArray(new Uint8Array([1, 64, 8, 16, 4, 32, 2, 128]).buffer).join()).to.equal([
         0, 1, 4, 0, 0, 8, 1, 0, 0, 4, 2, 0, 0, 2, 8, 0
       ].join());

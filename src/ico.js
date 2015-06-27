@@ -1,6 +1,4 @@
-/* jshint node: true */
-
-'use strict';
+/* global global: false */
 
 var extractOne = require('./extractone');
 var PNG = require('./png');
@@ -126,7 +124,7 @@ var make32bitImageData = function (ico) {
       data[index] = xor[(h * xorLine + w) * 4 + 2];
       data[index + 1] = xor[(h * xorLine + w) * 4 + 1];
       data[index + 2] = xor[(h * xorLine + w) * 4];
-      data[index + 3] = (and[h * andLine + w] === 1 || xor[(h * xorLine + w) * 4 + 3] === 1) ? 0 : (xor[(h * xorLine + w) * 4 + 3] > 1 ? xor[(h * xorLine + w) * 4 + 3] : 255);
+      data[index + 3] = and[h * andLine + w] === 1 || xor[(h * xorLine + w) * 4 + 3] === 1 ? 0 : xor[(h * xorLine + w) * 4 + 3] > 1 ? xor[(h * xorLine + w) * 4 + 3] : 255;
       index += 4;
     }
   }
@@ -204,7 +202,7 @@ var ICO = {
   /**
    * no conflict
    */
-  noConflict: function() {
+  noConflict: function () {
     global.ICO = previousICO;
     return this;
   }

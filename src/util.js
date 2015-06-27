@@ -1,7 +1,3 @@
-/* jshint node: true */
-
-'use strict';
-
 var util = {
   /**
    * convert ArrayBuffer to 1bit Array

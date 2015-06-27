@@ -1,6 +1,4 @@
-/* jshint node: true */
-
-'use strict';
+/* global global: false */
 
 /* istanbul ignore next */
 var createCanvas = global.document ? function (width, height) {
@@ -22,7 +20,7 @@ var atob = global.atob ? global.atob : function (str) {
 };
 
 var dataURLToArrayBuffer = function (dataURL) {
-  var string =  atob(dataURL.replace(/.+,/, ''));
+  var string = atob(dataURL.replace(/.+,/, ''));
   var bytes = new Uint8Array(string.length);
   for (var i = 0; i < string.length; i++) {
     bytes[i] = string.charCodeAt(i);
@@ -50,7 +48,7 @@ var PNG = {
     }
     ctx.putImageData(imageData, 0, 0);
     return dataURLToArrayBuffer(canvas.toDataURL());
-  },
+  }
   /**
    * create imgData.data from png
    * @param {ArrayBuffer} buffer png
