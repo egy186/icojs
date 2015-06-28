@@ -1,6 +1,6 @@
 {
   "name": "icojs",
-  "version": "0.2.0",
+  "version": "0.3.0-alpha.3",
   "authors": [
     "egy186"
   ],
@@ -14,11 +14,14 @@
   "homepage": "https://egy186.github.io/icojs",
   "ignore": [
     "**/.*",
-    "node_modules",
     "bower_components",
-    "gulpfile.js",
-    "package.json",
+    "node_modules",
     "src",
-    "test/coverage"
+    "test",
+    "gulpfile.js",
+    "icojs.njsproj",
+    "icojs.sln",
+    "package.json",
+    "README.hbs"
   ]
 }
