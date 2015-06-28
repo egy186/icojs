@@ -60,7 +60,7 @@ Parse ICO and return some PNGs.
 
 #### Returns
 
-* **Array.<Object>** - Array of parsed ICO.
+* **Array.&lt;Object&gt;** - Array of parsed ICO.
   * `width` **Number** - Image width.
   * `height` **Number** - Image height.
   * `bit` **Number** - Image bit depth.

@@ -51,16 +51,16 @@ Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support thes
 ## Documentation
 
 {{#.}}
-### {{{longname}}}
+### {{longname}}
 
-{{{description}}}
+{{description}}
 
 {{#params}}
 #### Parameters
 
 {{/params}}
 {{#params}}
-* `{{{name}}}` **{{{type}}}** - {{{description}}}
+* `{{name}}` **{{type}}** - {{description}}
 {{/params}}
 
 {{#returns}}
@@ -68,7 +68,7 @@ Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support thes
 
 {{/returns}}
 {{#returns}}
-* **{{{type}}}** - {{{description}}}
+* **{{type}}** - {{description}}
 {{/returns}}
 
 {{/.}}
