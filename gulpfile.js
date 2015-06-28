@@ -4,16 +4,33 @@ var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var coveralls = require('gulp-coveralls');
 var del = require('del');
+var execSync = require('child_process').execSync;
 var eslint = require('gulp-eslint');
-var fs = require('fs');
 var gulp = require('gulp');
 var istanbul = require('gulp-istanbul');
-var jsdoc2md = require('gulp-jsdoc-to-markdown');
 var mocha = require('gulp-mocha');
-var rename = require('gulp-rename');
+var mustache = require('gulp-mustache');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
+
+var icojsDoc = JSON.parse(execSync('"node_modules/.bin/jsdoc" src/ico.js -X')).filter(function (d) {
+  return d.memberof === 'ICO' && (!d.access || d.access === 'public');
+}).map(function (d) {
+  if (d.params) {
+    d.params = d.params.map(function (param) {
+      param.type = param.type.names.join('|');
+      return param;
+    });
+  }
+  if (d.returns) {
+    d.returns = d.returns.map(function (rtn) {
+      rtn.type = rtn.type.names.join('|');
+      return rtn;
+    });
+  }
+  return d;
+});
 
 gulp.task('lint', function () {
   return gulp.src(['gulpfile.js', 'src/**/*.js', 'test/*.js', 'test/data/*.js'])
@@ -56,12 +73,8 @@ gulp.task('test', function (callback) {
 });
 
 gulp.task('docs', function () {
-  return gulp.src('src/ico.js')
-    .pipe(jsdoc2md({
-      template: fs.readFileSync('./README.hbs', 'utf8'),
-      'heading-depth': 3
-    }))
-    .pipe(rename('README.md'))
+  return gulp.src('templates/README.md')
+    .pipe(mustache(icojsDoc))
     .pipe(gulp.dest('.'));
 });
 

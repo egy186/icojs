@@ -146,10 +146,10 @@ var ICO = {
    * Parse ICO and return some PNGs.
    * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
    * @returns {Object[]} Array of parsed ICO.
-   * * .width <code>Number</code> - Image width.
-   * * .height <code>Number</code> - Image height.
-   * * .bit <code>Number</code> - Image bit depth.
-   * * .buffer <code>ArrayBuffer</code> - Image buffer.
+   *   * `width` **Number** - Image width.
+   *   * `height` **Number** - Image height.
+   *   * `bit` **Number** - Image bit depth.
+   *   * `buffer` **ArrayBuffer** - Image buffer.
    */
   parse: function (buffer) {
     var icoDv = new DataView(buffer);
@@ -208,7 +208,7 @@ var ICO = {
   },
   /**
    * No conflict.
-   * @returns {ICO}
+   * @returns {ICO} `ICO` Object.
    */
   noConflict: function () {
     global.ICO = previousICO;

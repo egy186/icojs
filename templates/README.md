@@ -50,8 +50,28 @@ Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support thes
 
 ## Documentation
 
-{{>main}}
+{{#.}}
+### {{{longname}}}
 
+{{{description}}}
+
+{{#params}}
+#### Parameters
+
+{{/params}}
+{{#params}}
+* `{{{name}}}` **{{{type}}}** - {{{description}}}
+{{/params}}
+
+{{#returns}}
+#### Returns
+
+{{/returns}}
+{{#returns}}
+* **{{{type}}}** - {{{description}}}
+{{/returns}}
+
+{{/.}}
 ## License
 
 MIT license
