@@ -24,6 +24,8 @@ var images = ICO.parse(arrayBuffer);
 
 ### Node.js:
 
+__Prerequisite__: icojs relies on node-canvas, and you _must_ have installed __cairo__. Please see [node-canvas wiki](https://github.com/Automattic/node-canvas/wiki/_pages) for installation instructions.
+
 ```sh
 npm install icojs
 ```
