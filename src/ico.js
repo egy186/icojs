@@ -1,8 +1,8 @@
-/* global global: false */
+'use strict';
 
-var extractOne = require('./extractone');
-var PNG = require('./png');
-var util = require('./util');
+const extractOne = require('./extractone');
+const PNG = require('./png');
+const util = require('./util');
 
 /**
  * make 1bit image imageData.data
@@ -10,16 +10,16 @@ var util = require('./util');
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-var make1bitImageData = function (ico) {
-  var color;
-  var xor = util.to1bitArray(ico.xor);
-  var and = util.to1bitArray(ico.and);
-  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  var andLine = util.toDividableBy4(ico.width / 8) * 8;
-  var index = 0;
-  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (var h = ico.height - 1; h >= 0; h--) {
-    for (var w = 0; w < ico.width; w++) {
+const make1bitImageData = function (ico) {
+  let color;
+  const xor = util.to1bitArray(ico.xor);
+  const and = util.to1bitArray(ico.and);
+  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  const andLine = util.toDividableBy4(ico.width / 8) * 8;
+  let index = 0;
+  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (let h = ico.height - 1; h >= 0; h--) {
+    for (let w = 0; w < ico.width; w++) {
       color = ico.colors[xor[h * xorLine + w]];
       data[index] = color[2];
       data[index + 1] = color[1];
@@ -37,16 +37,16 @@ var make1bitImageData = function (ico) {
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-var make4bitImageData = function (ico) {
-  var color;
-  var xor = util.to4bitArray(ico.xor);
-  var and = util.to1bitArray(ico.and);
-  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  var andLine = util.toDividableBy4(ico.width / 8) * 8;
-  var index = 0;
-  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (var h = ico.height - 1; h >= 0; h--) {
-    for (var w = 0; w < ico.width; w++) {
+const make4bitImageData = ico => {
+  let color;
+  const xor = util.to4bitArray(ico.xor);
+  const and = util.to1bitArray(ico.and);
+  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  const andLine = util.toDividableBy4(ico.width / 8) * 8;
+  let index = 0;
+  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (let h = ico.height - 1; h >= 0; h--) {
+    for (let w = 0; w < ico.width; w++) {
       color = ico.colors[xor[h * xorLine + w]];
       data[index] = color[2];
       data[index + 1] = color[1];
@@ -64,17 +64,16 @@ var make4bitImageData = function (ico) {
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-var make8bitImageData = function (ico) {
-  var color;
-  var xor = new Uint8Array(ico.xor);
-  var and = util.to1bitArray(ico.and);
-  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  var andLine = util.toDividableBy4(ico.width / 8) * 8;
-  var index = 0;
-  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  index = 0;
-  for (var h = ico.height - 1; h >= 0; h--) {
-    for (var w = 0; w < ico.width; w++) {
+const make8bitImageData = function (ico) {
+  let color;
+  const xor = new Uint8Array(ico.xor);
+  const and = util.to1bitArray(ico.and);
+  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  const andLine = util.toDividableBy4(ico.width / 8) * 8;
+  let index = 0;
+  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (let h = ico.height - 1; h >= 0; h--) {
+    for (let w = 0; w < ico.width; w++) {
       color = ico.colors[xor[h * xorLine + w]];
       data[index] = color[2];
       data[index + 1] = color[1];
@@ -92,15 +91,15 @@ var make8bitImageData = function (ico) {
  * @param {Object} ico should have width, height, bit, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-var make24bitImageData = function (ico) {
-  var xor = new Uint8Array(ico.xor);
-  var and = util.to1bitArray(ico.and);
-  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  var andLine = util.toDividableBy4(ico.width / 8) * 8;
-  var index = 0;
-  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (var h = ico.height - 1; h >= 0; h--) {
-    for (var w = 0; w < ico.width; w++) {
+const make24bitImageData = function (ico) {
+  const xor = new Uint8Array(ico.xor);
+  const and = util.to1bitArray(ico.and);
+  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  const andLine = util.toDividableBy4(ico.width / 8) * 8;
+  let index = 0;
+  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (let h = ico.height - 1; h >= 0; h--) {
+    for (let w = 0; w < ico.width; w++) {
       data[index] = xor[(h * xorLine + w) * 3 + 2];
       data[index + 1] = xor[(h * xorLine + w) * 3 + 1];
       data[index + 2] = xor[(h * xorLine + w) * 3];
@@ -117,31 +116,31 @@ var make24bitImageData = function (ico) {
  * @param {Object} ico should have width, height, bit, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-var make32bitImageData = function (ico) {
-  var xor = new Uint8Array(ico.xor);
-  var and = util.to1bitArray(ico.and);
-  var xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  var andLine = util.toDividableBy4(ico.width / 8) * 8;
-  var index = 0;
-  var data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (var h = ico.height - 1; h >= 0; h--) {
-    for (var w = 0; w < ico.width; w++) {
+const make32bitImageData = function (ico) {
+  const xor = new Uint8Array(ico.xor);
+  const and = util.to1bitArray(ico.and);
+  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
+  const andLine = util.toDividableBy4(ico.width / 8) * 8;
+  let index = 0;
+  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
+  for (let h = ico.height - 1; h >= 0; h--) {
+    for (let w = 0; w < ico.width; w++) {
       data[index] = xor[(h * xorLine + w) * 4 + 2];
       data[index + 1] = xor[(h * xorLine + w) * 4 + 1];
       data[index + 2] = xor[(h * xorLine + w) * 4];
-      data[index + 3] = and[h * andLine + w] === 1 || xor[(h * xorLine + w) * 4 + 3] === 1 ? 0 : xor[(h * xorLine + w) * 4 + 3] > 1 ? xor[(h * xorLine + w) * 4 + 3] : 255;
+      data[index + 3] = and[h * andLine + w] === 1 || xor[(h * xorLine + w) * 4 + 3] === 1 ? 0 : xor[(h * xorLine + w) * 4 + 3] > 1 ? xor[(h * xorLine + w) * 4 + 3] : 255; // eslint-disable-line no-nested-ternary
       index += 4;
     }
   }
   return data;
 };
 
-var previousICO = global.ICO;
+const previousICO = global.ICO;
 
 /**
  * @class ICO
  */
-var ICO = {
+const ICO = {
   /**
    * Parse ICO and return some PNGs.
    * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
@@ -151,18 +150,18 @@ var ICO = {
    *   * `bit` **Number** - Image bit depth.
    *   * `buffer` **ArrayBuffer** - Image buffer.
    */
-  parse: function (buffer) {
-    var icoDv = new DataView(buffer);
+  parse (buffer) {
+    const icoDv = new DataView(buffer);
     if (icoDv.getUint16(0, true) !== 0 || icoDv.getUint16(2, true) !== 1) {
       throw new Error('buffer is not ico');
     }
     // make single image icon
-    var ico, data;
-    var icos = [];
-    // var idCount = icoDv.getUint16(4, true);
-    for (var i = 0; i < icoDv.getUint16(4, true); i++) {
+    let ico, data;
+    const icos = [];
+    // let idCount = icoDv.getUint16(4, true);
+    for (let i = 0; i < icoDv.getUint16(4, true); i++) {
       ico = extractOne(buffer, i);
-      switch (ico.bit) {
+      switch (ico.bit) { // eslint-disable-line default-case
         case 1:
           data = make1bitImageData(ico);
           break;
@@ -186,7 +185,7 @@ var ICO = {
         buffer: PNG.encode({
           width: ico.width,
           height: ico.height,
-          data: data
+          data
         })
       });
     }
@@ -197,11 +196,11 @@ var ICO = {
    * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
    * @returns {Boolean} True if arg is ICO.
    */
-  isICO: function (buffer) {
+  isICO (buffer) {
     if (!(buffer instanceof ArrayBuffer)) {
       return false;
     }
-    var icoDv = new DataView(buffer);
+    const icoDv = new DataView(buffer);
     // idReserved = icoDv.getUint16(0, true)
     // idType = icoDv.getUint16(0, true)
     return icoDv.getUint16(0, true) === 0 && icoDv.getUint16(2, true) === 1;
@@ -210,7 +209,7 @@ var ICO = {
    * No conflict.
    * @returns {ICO} `ICO` Object.
    */
-  noConflict: function () {
+  noConflict () {
     global.ICO = previousICO;
     return this;
   }

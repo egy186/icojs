@@ -1,43 +1,45 @@
-var util = {
+'use strict';
+
+const util = {
   /**
    * convert ArrayBuffer to 1bit Array
-   * @param {ArrayBuffer} buffer
-   * @returns {Array}
+   * @param {ArrayBuffer} buffer buffer
+   * @returns {Array} bits array
    */
-  to1bitArray: function (buffer) {
-    var buff = new Uint8Array(buffer);
-    var bit = '';
-    for (var i = 0; i < buff.byteLength; i++) {
+  to1bitArray (buffer) {
+    const buff = new Uint8Array(buffer);
+    let bit = '';
+    for (let i = 0; i < buff.byteLength; i++) {
       bit += ('000000000' + buff[i].toString(2)).slice(-8);
     }
-    return bit.split('').map(function (el) {
+    return bit.split('').map(el => {
       return parseInt(el, 2);
     });
   },
   /**
    * convert ArrayBuffer to 4bit Array
-   * @param {ArrayBuffer} buffer
-   * @returns {Array}
+   * @param {ArrayBuffer} buffer buffer
+   * @returns {Array} bits array
    */
-  to4bitArray: function (buffer) {
-    var buff = new Uint8Array(buffer);
-    var bit = '';
-    for (var i = 0; i < buff.byteLength; i++) {
+  to4bitArray (buffer) {
+    const buff = new Uint8Array(buffer);
+    let bit = '';
+    for (let i = 0; i < buff.byteLength; i++) {
       bit += ('00' + buff[i].toString(16)).slice(-2);
     }
-    return bit.split('').map(function (el) {
+    return bit.split('').map(el => {
       return parseInt(el, 16);
     });
   },
   /**
    * convert ArrayBuffer to 8bit Array
-   * @param {ArrayBuffer} buffer
-   * @returns {Array}
+   * @param {ArrayBuffer} buffer buffer
+   * @returns {Array} bits array
    */
-  to8bitArray: function (buffer) {
-    var buff = new Uint8Array(buffer);
-    var bit = [];
-    for (var i = 0; i < buff.byteLength; i++) {
+  to8bitArray (buffer) {
+    const buff = new Uint8Array(buffer);
+    const bit = [];
+    for (let i = 0; i < buff.byteLength; i++) {
       bit.push(buff[i]);
     }
     return bit;
@@ -47,7 +49,7 @@ var util = {
    * @param {Number} num number
    * @returns {Number} number dividable by 4
    */
-  toDividableBy4: function (num) {
+  toDividableBy4 (num) {
     if (num % 4 !== 0) {
       num += 4 - num % 4;
     }

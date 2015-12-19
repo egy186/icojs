@@ -1,21 +1,45 @@
 {
   "ecmaFeatures": {
-    "modules": true
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "classes": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true
   },
   "env": {
     "node": true
   },
+  "extends": "eslint",
   "rules": {
     "no-extra-parens": 2,
+    "no-unexpected-multiline": 2,
+
+    "dot-location": [2, "property"],
+    "no-new": 2,
 
     "strict": [2, "global"],
 
+    "camelcase": 2,
+    "comma-spacing": 2,
+    "comma-style": 2,
     "func-style": [2, "expression"],
-    "indent": [2, 2],
-    "no-multiple-empty-lines": [2, { "max": 2 }],
+    "indent": [2, 2, { "SwitchCase": 1 }],
+    "linebreak-style": 2,
+    "new-cap": [2, {
+      "capIsNewExceptions": ["express.Router"]
+    }],
+    "no-multiple-empty-lines": 2,
     "object-curly-spacing": [2, "always"],
     "quotes": [2, "single", "avoid-escape"],
-    "space-before-blocks": [2, "always"],
-    "space-before-function-paren": [2, "always"]
+    "space-before-function-paren": [2, "always"],
+    "space-in-parens": 2,
+
+    "arrow-parens": [2, "as-needed"],
+    "arrow-spacing": 2,
+    "no-var": 2,
+    "object-shorthand": 2,
+    "prefer-arrow-callback": 2,
+    "prefer-const": 2,
+    "prefer-spread": 2
   }
 }

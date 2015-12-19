@@ -1,26 +1,27 @@
-/* global describe, it */
-/* eslint no-unused-expressions: 0 */
+'use strict';
 
-var expect = require('chai').expect;
+const chai = require('chai');
 
-var util = require('../src/util');
-var extractOne = require('../src/extractone');
-var ICO = require('../src/ico');
-var PNG = require('../src/png');
+const expect = chai.expect;
 
-var data = require('./data/index');
-var bufferToBase64 = data.bufferToBase64;
+const util = require('../src/util');
+const extractOne = require('../src/extractone');
+const ICO = require('../src/ico');
+const PNG = require('../src/png');
 
-describe('util', function () {
-  it('is expected to have 4 functions', function () {
+const data = require('./data/index');
+const bufferToBase64 = data.bufferToBase64;
+
+describe('util', () => {
+  it('is expected to have 4 functions', () => {
     expect(util).to.be.a('object');
     expect(util.to1bitArray).to.be.a('function');
     expect(util.to4bitArray).to.be.a('function');
     expect(util.to8bitArray).to.be.a('function');
     expect(util.toDividableBy4).to.be.a('function');
   });
-  describe('.to1bitArray', function () {
-    it('is expected to return 1 bit array', function () {
+  describe('.to1bitArray', () => {
+    it('is expected to return 1 bit array', () => {
       expect(util.to1bitArray(new Uint8Array([0]).buffer)).to.be.a('array').with.length(8);
       expect(util.to1bitArray(new Uint8Array([0]).buffer).join()).to.equal([0, 0, 0, 0, 0, 0, 0, 0].join());
       expect(util.to1bitArray(new Uint8Array([1]).buffer).join()).to.equal([0, 0, 0, 0, 0, 0, 0, 1].join());
@@ -33,8 +34,8 @@ describe('util', function () {
       ].join());
     });
   });
-  describe('.to4bitArray', function () {
-    it('is expected to return 4 bit array', function () {
+  describe('.to4bitArray', () => {
+    it('is expected to return 4 bit array', () => {
       expect(util.to4bitArray(new Uint8Array([0]).buffer)).to.be.a('array').with.length(2);
       expect(util.to4bitArray(new Uint8Array([0]).buffer).join()).to.equal([0, 0].join());
       expect(util.to4bitArray(new Uint8Array([1]).buffer).join()).to.equal([0, 1].join());
@@ -47,8 +48,8 @@ describe('util', function () {
       ].join());
     });
   });
-  describe('.to8bitArray', function () {
-    it('is expected to return 8 bit array', function () {
+  describe('.to8bitArray', () => {
+    it('is expected to return 8 bit array', () => {
       expect(util.to8bitArray(new Uint8Array([0]).buffer)).to.be.a('array').with.length(1);
       expect(util.to8bitArray(new Uint8Array([0]).buffer).join()).to.equal([0].join());
       expect(util.to8bitArray(new Uint8Array([1]).buffer).join()).to.equal([1].join());
@@ -60,8 +61,8 @@ describe('util', function () {
       ].join());
     });
   });
-  describe('.toDividableBy4', function () {
-    it('is expected to return a number dividable by 4', function () {
+  describe('.toDividableBy4', () => {
+    it('is expected to return a number dividable by 4', () => {
       expect(util.toDividableBy4(0)).to.equal(0);
       expect(util.toDividableBy4(1)).to.equal(4);
       expect(util.toDividableBy4(2)).to.equal(4);
@@ -72,20 +73,20 @@ describe('util', function () {
   });
 });
 
-describe('PNG', function () {
-  it('is expected to have 1 function', function () {
+describe('PNG', () => {
+  it('is expected to have 1 function', () => {
     expect(PNG).to.be.a('object');
     expect(PNG.encode).to.be.a('function');
   });
-  describe('.encode', function () {
-    it('is expected to create png from imageData.data', function () {
-      var pngData = {
+  describe('.encode', () => {
+    it('is expected to create png from imageData.data', () => {
+      const pngData = {
         width: 1,
         height: 1,
         imageData: [0, 0, 0, 0],
         expected: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
       };
-      var pngImage = PNG.encode({
+      const pngImage = PNG.encode({
         width: pngData.width,
         height: pngData.height,
         data: new Uint8ClampedArray(pngData.imageData)
@@ -96,13 +97,13 @@ describe('PNG', function () {
   });
 });
 
-describe('extractOne', function () {
-  it('is expected to be a function', function () {
+describe('extractOne', () => {
+  it('is expected to be a function', () => {
     expect(extractOne).to.be.a('function');
   });
-  it('is expected to return extracted ico', function () {
-    var ico;
-    for (var i = 0; i < data.expected.length; i++) {
+  it('is expected to return extracted ico', () => {
+    let ico;
+    for (let i = 0; i < data.expected.length; i++) {
       ico = extractOne(data.arrayBuffer, i);
       expect(ico).to.be.a('object');
       expect(ico.width).to.equal(data.expected[i].width);
@@ -119,19 +120,19 @@ describe('extractOne', function () {
   });
 });
 
-describe('ICO', function () {
-  it('is expected to have 3 functions', function () {
+describe('ICO', () => {
+  it('is expected to have 3 functions', () => {
     expect(ICO).to.be.a('object');
     expect(ICO.isICO).to.be.a('function');
     expect(ICO.parse).to.be.a('function');
     expect(ICO.noConflict).to.be.a('function');
   });
-  describe('.isICO', function () {
-    it('is expected to return true or false', function () {
+  describe('.isICO', () => {
+    it('is expected to return true or false', () => {
       expect(ICO.isICO('it is not buffer')).to.be.false;
       expect(ICO.isICO(data.arrayBuffer)).to.be.true;
-      var d = new ArrayBuffer(4);
-      var dv = new DataView(d);
+      const d = new ArrayBuffer(4);
+      const dv = new DataView(d);
       expect(ICO.isICO(d)).to.be.false;
       dv.setUint16(2, 1, true);
       expect(ICO.isICO(d)).to.be.true;
@@ -139,16 +140,16 @@ describe('ICO', function () {
       expect(ICO.isICO(d)).to.be.false;
     });
   });
-  describe('.parse', function () {
-    it('is expected to throw error when arg is not ico', function () {
-      expect(function () {
+  describe('.parse', () => {
+    it('is expected to throw error when arg is not ico', () => {
+      expect(() => {
         ICO.parse(new ArrayBuffer(4));
       }).to.throw('buffer is not ico');
     });
-    it('is expected to parse ico', function () {
-      var parsed = ICO.parse(data.arrayBuffer);
+    it('is expected to parse ico', () => {
+      const parsed = ICO.parse(data.arrayBuffer);
       expect(parsed).to.be.a('array').with.length(data.expected.length);
-      for (var i = 0; i < parsed.length; i++) {
+      for (let i = 0; i < parsed.length; i++) {
         expect(parsed[i]).to.be.a('object');
         expect(parsed[i].width).to.equal(data.expected[i].width);
         expect(parsed[i].height).to.equal(data.expected[i].height);
@@ -158,10 +159,10 @@ describe('ICO', function () {
       }
     });
   });
-  describe('.noConflict', function () {
-    it('is expected to return ico', function () {
+  describe('.noConflict', () => {
+    it('is expected to return ico', () => {
       expect(ICO.noConflict).to.be.a('function');
-      var newIco = ICO.noConflict();
+      const newIco = ICO.noConflict();
       expect(newIco).to.be.a('object');
       expect(newIco.parse).to.be.a('function');
       expect(newIco.isICO).to.be.a('function');

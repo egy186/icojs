@@ -1,14 +1,16 @@
-var fs = require('fs');
-var path = require('path');
+'use strict';
 
-var file = 'basic';
-var fileBuffer = fs.readFileSync(path.resolve(__dirname, file + '.ico'));
+const fs = require('fs');
+const path = require('path');
+
+const file = 'basic';
+const fileBuffer = fs.readFileSync(path.resolve(__dirname, file + '.ico'));
 
 module.exports = {
   buffer: fileBuffer,
   arrayBuffer: new Uint8Array(fileBuffer).buffer,
   expected: require('./' + file),
-  bufferToBase64: function (buffer) {
+  bufferToBase64 (buffer) {
     if (buffer instanceof ArrayBuffer) {
       buffer = new Buffer(new Uint8Array(buffer));
     }

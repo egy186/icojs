@@ -13,9 +13,10 @@
     "browserify": "^10.2.4",
     "chai": "^3.0.0",
     "del": "^1.2.0",
+    "eslint": "^1.10.3",
+    "eslint-config-eslint": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^0.14.0",
     "gulp-istanbul": "^0.10.0",
     "gulp-mocha": "^2.1.2",
     "gulp-mustache": "^1.0.2",
@@ -44,6 +45,7 @@
   },
   "scripts": {
     "build": "gulp build",
+    "lint": "eslint src test",
     "test": "gulp test"
   }
 }
