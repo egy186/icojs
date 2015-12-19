@@ -50,30 +50,13 @@ Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support thes
 
 [http://egy186.github.io/icojs/#demo](http://egy186.github.io/icojs/#demo)
 
+<a name="ICO"></a>
 ## Documentation
+{{#class name="ICO"~}}
+{{>member-index~}}
+{{>members~}}
+{{/class}}
 
-{{#.}}
-### {{longname}}
-
-{{description}}
-
-{{#params}}
-#### Parameters
-
-{{/params}}
-{{#params}}
-* `{{name}}` **{{type}}** - {{description}}
-{{/params}}
-
-{{#returns}}
-#### Returns
-
-{{/returns}}
-{{#returns}}
-* **{{type}}** - {{description}}
-{{/returns}}
-
-{{/.}}
 ## License
 
 MIT license

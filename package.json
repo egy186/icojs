@@ -16,10 +16,8 @@
     "chai": "^3.0.0",
     "eslint": "^1.10.3",
     "eslint-config-eslint": "^1.0.1",
-    "gulp": "^3.9.0",
-    "gulp-mustache": "^1.0.2",
     "istanbul": "^0.4.1",
-    "jsdoc": "^3.3.2",
+    "jsdoc-to-markdown": "^1.3.1",
     "minifyify": "^7.1.0",
     "mkdirp": "^0.5.1",
     "mocha": "^2.3.4"
@@ -43,6 +41,7 @@
   },
   "scripts": {
     "build": "mkdirp dist && browserify src/ico.js --debug --plugin [ minifyify --map ico.js.map --output dist/ico.js.map ] --transform babelify --exclude canvas --exclude buffer --outfile dist/ico.js",
+    "doc": "jsdoc2md -f src/ico.js -t templates/README.hbs.md > README.md",
     "lint": "eslint src test",
     "test": "istanbul cover --root src --report lcov --dir coverage node_modules/mocha/bin/_mocha -- test/*.js"
   }

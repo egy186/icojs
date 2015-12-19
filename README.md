@@ -50,44 +50,46 @@ Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support thes
 
 [http://egy186.github.io/icojs/#demo](http://egy186.github.io/icojs/#demo)
 
+<a name="ICO"></a>
 ## Documentation
 
-### ICO.parse
+* [ICO](#ICO)
+    * [.parse(buffer)](#ICO.parse) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
+    * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
 
+<a name="ICO.parse"></a>
+### ICO.parse(buffer) ⇒ <code>Array.&lt;Object&gt;</code>
 Parse ICO and return some PNGs.
 
-#### Parameters
-
-* `buffer` **ArrayBuffer** - The ArrayBuffer object contain the TypedArray of a ICO file.
-
-#### Returns
-
-* **Array.&lt;Object&gt;** - Array of parsed ICO.
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>Array.&lt;Object&gt;</code> - Array of parsed ICO.
   * `width` **Number** - Image width.
   * `height` **Number** - Image height.
   * `bit` **Number** - Image bit depth.
-  * `buffer` **ArrayBuffer** - Image buffer.
+  * `buffer` **ArrayBuffer** - Image buffer.  
 
-### ICO.isICO
+| Param | Type | Description |
+| --- | --- | --- |
+| buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
 
+<a name="ICO.isICO"></a>
+### ICO.isICO(buffer) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
-#### Parameters
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>Boolean</code> - True if arg is ICO.  
 
-* `buffer` **ArrayBuffer** - The ArrayBuffer object contain the TypedArray of a ICO file.
+| Param | Type | Description |
+| --- | --- | --- |
+| buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
 
-#### Returns
-
-* **Boolean** - True if arg is ICO.
-
-### ICO.noConflict
-
+<a name="ICO.noConflict"></a>
+### ICO.noConflict() ⇒ <code>[ICO](#ICO)</code>
 No conflict.
 
-
-#### Returns
-
-* **ICO** - `ICO` Object.
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>[ICO](#ICO)</code> - `ICO` Object.  
 
 ## License
 
