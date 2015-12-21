@@ -24,6 +24,9 @@
     "mocha": "^2.3.4",
     "rimraf": "^2.4.4"
   },
+  "engines": {
+    "node": ">=4.2.3"
+  },
   "files": [
     "src",
     "LICENSE",
