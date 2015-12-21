@@ -17,7 +17,9 @@ var fs = require('fs');
 var ICO = require('icojs');
 
 var arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-var images = ICO.parse(arrayBuffer);
+ICO.parse(arrayBuffer).then(images => {
+  // do something
+});
 ```
 
 ## Install

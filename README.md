@@ -17,7 +17,9 @@ var fs = require('fs');
 var ICO = require('icojs');
 
 var arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-var images = ICO.parse(arrayBuffer);
+ICO.parse(arrayBuffer).then(images => {
+  // do something
+});
 ```
 
 ## Install
@@ -54,16 +56,16 @@ Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support thes
 ## Documentation
 
 * [ICO](#ICO)
-    * [.parse(buffer)](#ICO.parse) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [.parse(buffer)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
     * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
     * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
 
 <a name="ICO.parse"></a>
-### ICO.parse(buffer) ⇒ <code>Array.&lt;Object&gt;</code>
+### ICO.parse(buffer) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some PNGs.
 
 **Kind**: static method of <code>[ICO](#ICO)</code>  
-**Returns**: <code>Array.&lt;Object&gt;</code> - Array of parsed ICO.
+**Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.
   * `width` **Number** - Image width.
   * `height` **Number** - Image height.
   * `bit` **Number** - Image bit depth.

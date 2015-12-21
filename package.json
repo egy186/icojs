@@ -7,13 +7,14 @@
     "url": "https://github.com/egy186/icojs/issues"
   },
   "dependencies": {
-    "canvas": "^1.2.3"
+    "jimp": "^0.2.21"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
     "chai": "^3.0.0",
+    "chai-as-promised": "^5.1.0",
     "eslint": "^1.10.3",
     "eslint-config-eslint": "^1.0.1",
     "istanbul": "^0.4.1",
@@ -35,15 +36,15 @@
     "parse"
   ],
   "license": "MIT",
-  "main": "src/ico.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/egy186/icojs.git"
   },
   "scripts": {
-    "build": "mkdirp dist && browserify src/ico.js --debug --plugin [ minifyify --map ico.js.map --output dist/ico.js.map ] --transform babelify --exclude canvas --exclude buffer --outfile dist/ico.js",
+    "build": "mkdirp dist && browserify src/browser/index.js --debug --plugin [ minifyify --map ico.js.map --output dist/ico.js.map ] --transform babelify --outfile dist/ico.js",
     "clean": "rimraf coverage dist",
-    "doc": "jsdoc2md -f src/ico.js -t templates/README.hbs.md > README.md",
+    "doc": "jsdoc2md -f src/index.js -t templates/README.md > README.md",
     "lint": "eslint src test",
     "test": "istanbul cover --root src --report lcov --dir coverage node_modules/mocha/bin/_mocha -- test/*.js"
   }

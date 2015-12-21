@@ -1,8 +1,10 @@
 'use strict';
 
-const extractOne = require('./extractone');
+const extractOne = require('../extractone');
 const PNG = require('./png');
-const util = require('./util');
+const util = require('../util');
+
+const range = n => new Array(n).fill(0).map((_, i) => i);
 
 /**
  * make 1bit image imageData.data
@@ -10,7 +12,7 @@ const util = require('./util');
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-const make1bitImageData = function (ico) {
+const make1bitImageData = ico => {
   let color;
   const xor = util.to1bitArray(ico.xor);
   const and = util.to1bitArray(ico.and);
@@ -64,7 +66,7 @@ const make4bitImageData = ico => {
  * @param {Object} ico should have width, height, bit, colors, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-const make8bitImageData = function (ico) {
+const make8bitImageData = ico => {
   let color;
   const xor = new Uint8Array(ico.xor);
   const and = util.to1bitArray(ico.and);
@@ -91,7 +93,7 @@ const make8bitImageData = function (ico) {
  * @param {Object} ico should have width, height, bit, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-const make24bitImageData = function (ico) {
+const make24bitImageData = ico => {
   const xor = new Uint8Array(ico.xor);
   const and = util.to1bitArray(ico.and);
   const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
@@ -116,7 +118,7 @@ const make24bitImageData = function (ico) {
  * @param {Object} ico should have width, height, bit, xor, and
  * @returns {Uint8ClampedArray} imageData.data
  */
-const make32bitImageData = function (ico) {
+const make32bitImageData = ico => {
   const xor = new Uint8Array(ico.xor);
   const and = util.to1bitArray(ico.and);
   const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
@@ -144,7 +146,7 @@ const ICO = {
   /**
    * Parse ICO and return some PNGs.
    * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
-   * @returns {Object[]} Array of parsed ICO.
+   * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
    *   * `width` **Number** - Image width.
    *   * `height` **Number** - Image height.
    *   * `bit` **Number** - Image bit depth.
@@ -157,9 +159,8 @@ const ICO = {
     }
     // make single image icon
     let ico, data;
-    const icos = [];
     // let idCount = icoDv.getUint16(4, true);
-    for (let i = 0; i < icoDv.getUint16(4, true); i++) {
+    const icos = Promise.all(range(icoDv.getUint16(4, true)).map(i => {
       ico = extractOne(buffer, i);
       switch (ico.bit) { // eslint-disable-line default-case
         case 1:
@@ -178,17 +179,19 @@ const ICO = {
           data = make32bitImageData(ico);
           break;
       }
-      icos.push({
-        bit: ico.bit,
+      return PNG.encode({
         width: ico.width,
         height: ico.height,
-        buffer: PNG.encode({
+        data
+      }).then(pngBuffer => {
+        return {
+          bit: ico.bit,
           width: ico.width,
           height: ico.height,
-          data
-        })
+          buffer: pngBuffer
+        };
       });
-    }
+    }));
     return icos;
   },
   /**

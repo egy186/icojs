@@ -15,7 +15,7 @@ const util = require('./util');
  * @returns {ArrayBuffer} ico.xor xor image
  * @returns {ArrayBuffer} ico.and xor and
  */
-const extractOne = function (buffer, index) {
+const extractOne = (buffer, index) => {
   const dv = new DataView(buffer);
   const icoWidth = dv.getUint8(6 + index * 16) || 256;
   const icoHeight = dv.getUint8(7 + index * 16) || 256;
