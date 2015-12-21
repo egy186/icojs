@@ -4,8 +4,7 @@
     "blockBindings": true,
     "classes": true,
     "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "spread": true
+    "objectLiteralShorthandProperties": true
   },
   "env": {
     "node": true
@@ -40,7 +39,6 @@
     "no-var": 2,
     "object-shorthand": 2,
     "prefer-arrow-callback": 2,
-    "prefer-const": 2,
-    "prefer-spread": 2
+    "prefer-const": 2
   }
 }

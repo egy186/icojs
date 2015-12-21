@@ -8,7 +8,7 @@ const isSame = (arrayBuffer, fileName) => {
     Jimp.read(new Buffer(arrayBuffer)),
     Jimp.read(path.join(__dirname, 'expected', fileName))
   ]).then(images => {
-    return Jimp.diff(...images, 0).percent === 0;
+    return Jimp.diff(images[0], images[1], 0).percent === 0;
   });
 };
 
