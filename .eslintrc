@@ -4,7 +4,8 @@
     "blockBindings": true,
     "classes": true,
     "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true
+    "objectLiteralShorthandProperties": true,
+    "spread": true
   },
   "env": {
     "node": true

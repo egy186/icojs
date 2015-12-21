@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const file = 'basic';
+const file = 'source/basic';
 const fileBuffer = fs.readFileSync(path.resolve(__dirname, file + '.ico'));
 
 module.exports = {

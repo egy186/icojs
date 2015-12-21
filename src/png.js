@@ -1,27 +1,14 @@
 'use strict';
 
-const createCanvas = global.document ? function (width, height) {
-  const canvas = global.document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  return canvas;
-} : function (width, height) {
-  const Canvas = require('canvas');
-  return new Canvas(width, height);
-};
+const Jimp = require('jimp');
 
-const atob = global.atob ? global.atob : function (str) {
-  const Buffer = require('buffer').Buffer;
-  return new Buffer(str, 'base64').toString('binary');
-};
-
-const dataURLToArrayBuffer = function (dataURL) {
-  const string = atob(dataURL.replace(/.+,/, ''));
-  const bytes = new Uint8Array(string.length);
-  for (let i = 0; i < string.length; i++) {
-    bytes[i] = string.charCodeAt(i);
+const bufferToArrayBuffer = buffer => {
+  const ab = new ArrayBuffer(buffer.length);
+  const view = new Uint8Array(ab);
+  for (let i = 0; i < buffer.length; ++i) {
+    view[i] = buffer[i];
   }
-  return bytes.buffer;
+  return ab;
 };
 
 const PNG = {
@@ -35,15 +22,22 @@ const PNG = {
    */
   encode (image) {
     const data = image.data;
-    const canvas = createCanvas(image.width, image.height);
-    const ctx = canvas.getContext('2d');
-    const imageData = ctx.createImageData(image.width, image.height);
-    const dataData = imageData.data;
-    for (let i = 0; i < dataData.length; i++) {
-      dataData[i] = data[i];
-    }
-    ctx.putImageData(imageData, 0, 0);
-    return dataURLToArrayBuffer(canvas.toDataURL());
+    const jimp = new Jimp(image.width, image.height);
+    jimp.scan(0, 0, jimp.bitmap.width, jimp.bitmap.height, function (x, y, idx) {
+      this.bitmap.data[idx + 0] = data[idx + 0]; // eslint-disable-line no-invalid-this
+      this.bitmap.data[idx + 1] = data[idx + 1]; // eslint-disable-line no-invalid-this
+      this.bitmap.data[idx + 2] = data[idx + 2]; // eslint-disable-line no-invalid-this
+      this.bitmap.data[idx + 3] = data[idx + 3]; // eslint-disable-line no-invalid-this
+    });
+    return new Promise((resolve, reject) => {
+      jimp.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(bufferToArrayBuffer(buffer));
+        }
+      });
+    });
   }
   /**
    * create imgData.data from png

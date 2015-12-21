@@ -1,16 +1,20 @@
 'use strict';
 
 const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+
+chai.use(chaiAsPromised);
 
 const expect = chai.expect;
 
 const util = require('../src/util');
 const extractOne = require('../src/extractone');
-const ICO = require('../src/ico');
+const ICO = require('../src/index');
 const PNG = require('../src/png');
 
-const data = require('./data/index');
+const data = require('./fixtures/index');
 const bufferToBase64 = data.bufferToBase64;
+const isSame = require('./fixtures/is-same');
 
 describe('util', () => {
   it('is expected to have 4 functions', () => {
@@ -86,13 +90,15 @@ describe('PNG', () => {
         imageData: [0, 0, 0, 0],
         expected: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
       };
-      const pngImage = PNG.encode({
+      const promise = PNG.encode({
         width: pngData.width,
         height: pngData.height,
         data: new Uint8ClampedArray(pngData.imageData)
       });
-      expect(pngImage instanceof ArrayBuffer).to.be.true;
-      expect(new Buffer(new Uint8Array(pngImage)).toString('base64')).to.equal(pngData.expected);
+      return expect(promise.then(ab => {
+        expect(ab instanceof ArrayBuffer).to.be.true;
+        return isSame(ab, '1x1-1bit.png');
+      })).to.become(true);
     });
   });
 });
@@ -147,16 +153,15 @@ describe('ICO', () => {
       }).to.throw('buffer is not ico');
     });
     it('is expected to parse ico', () => {
-      const parsed = ICO.parse(data.arrayBuffer);
-      expect(parsed).to.be.a('array').with.length(data.expected.length);
-      for (let i = 0; i < parsed.length; i++) {
-        expect(parsed[i]).to.be.a('object');
-        expect(parsed[i].width).to.equal(data.expected[i].width);
-        expect(parsed[i].height).to.equal(data.expected[i].height);
-        expect(parsed[i].bit).to.equal(data.expected[i].bit);
-        expect(parsed[i].buffer instanceof ArrayBuffer).to.be.true;
-        expect(bufferToBase64(parsed[i].buffer)).to.equal(data.expected[i].buffer);
-      }
+      const promise = ICO.parse(data.arrayBuffer);
+      return expect(promise.then(arr => {
+        expect(arr).to.be.a('array').with.length(data.expected.length);
+        return Promise.all(arr.map(image => {
+          expect(image).to.be.a('object');
+          expect(image.buffer instanceof ArrayBuffer).to.be.true;
+          return isSame(image.buffer, image.width + 'x' + image.height + '-' + image.bit + 'bit.png');
+        })).then(flags => flags.sort()[0]);
+      })).to.become(true);
     });
   });
   describe('.noConflict', () => {
