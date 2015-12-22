@@ -2,18 +2,12 @@
 
 const Jimp = require('jimp');
 
-const bufferToArrayBuffer = buffer => {
-  const ab = new ArrayBuffer(buffer.length);
-  const view = new Uint8Array(ab);
-  for (let i = 0; i < buffer.length; ++i) {
-    view[i] = buffer[i];
-  }
-  return ab;
-};
+const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
 
 const PNG = {
   /**
    * create png from imgData.data
+   * @access private
    * @param {Object} image data
    * @param {Number} image.width img width
    * @param {Number} image.height img height
@@ -31,6 +25,7 @@ const PNG = {
     });
     return new Promise((resolve, reject) => {
       jimp.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+        /* istanbul ignore if */
         if (err) {
           reject(err);
         } else {
@@ -39,16 +34,6 @@ const PNG = {
       });
     });
   }
-  /**
-   * create imgData.data from png
-   * @param {ArrayBuffer} buffer png
-   * @returns {Object} data
-   * @returns {Number} image.width
-   * @returns {Number} image.height
-   * @returns {Uint8ClampedArray} image.data
-   */
-  // decode: function (buffer) {
-  // }
 };
 
 module.exports = PNG;

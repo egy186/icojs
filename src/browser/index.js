@@ -1,141 +1,10 @@
 'use strict';
 
-const extractOne = require('../extractone');
 const PNG = require('./png');
-const util = require('../util');
+const extractOne = require('../extract-one');
+const imageData = require('../image-data');
 
 const range = n => new Array(n).fill(0).map((_, i) => i);
-
-/**
- * make 1bit image imageData.data
- * @private
- * @param {Object} ico should have width, height, bit, colors, xor, and
- * @returns {Uint8ClampedArray} imageData.data
- */
-const make1bitImageData = ico => {
-  let color;
-  const xor = util.to1bitArray(ico.xor);
-  const and = util.to1bitArray(ico.and);
-  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  const andLine = util.toDividableBy4(ico.width / 8) * 8;
-  let index = 0;
-  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (let h = ico.height - 1; h >= 0; h--) {
-    for (let w = 0; w < ico.width; w++) {
-      color = ico.colors[xor[h * xorLine + w]];
-      data[index] = color[2];
-      data[index + 1] = color[1];
-      data[index + 2] = color[0];
-      data[index + 3] = and[h * andLine + w] ? 0 : 255;
-      index += 4;
-    }
-  }
-  return data;
-};
-
-/**
- * make 4bit image imageData.data
- * @private
- * @param {Object} ico should have width, height, bit, colors, xor, and
- * @returns {Uint8ClampedArray} imageData.data
- */
-const make4bitImageData = ico => {
-  let color;
-  const xor = util.to4bitArray(ico.xor);
-  const and = util.to1bitArray(ico.and);
-  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  const andLine = util.toDividableBy4(ico.width / 8) * 8;
-  let index = 0;
-  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (let h = ico.height - 1; h >= 0; h--) {
-    for (let w = 0; w < ico.width; w++) {
-      color = ico.colors[xor[h * xorLine + w]];
-      data[index] = color[2];
-      data[index + 1] = color[1];
-      data[index + 2] = color[0];
-      data[index + 3] = and[h * andLine + w] ? 0 : 255;
-      index += 4;
-    }
-  }
-  return data;
-};
-
-/**
- * make 8bit image imageData.data
- * @private
- * @param {Object} ico should have width, height, bit, colors, xor, and
- * @returns {Uint8ClampedArray} imageData.data
- */
-const make8bitImageData = ico => {
-  let color;
-  const xor = new Uint8Array(ico.xor);
-  const and = util.to1bitArray(ico.and);
-  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  const andLine = util.toDividableBy4(ico.width / 8) * 8;
-  let index = 0;
-  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (let h = ico.height - 1; h >= 0; h--) {
-    for (let w = 0; w < ico.width; w++) {
-      color = ico.colors[xor[h * xorLine + w]];
-      data[index] = color[2];
-      data[index + 1] = color[1];
-      data[index + 2] = color[0];
-      data[index + 3] = and[h * andLine + w] ? 0 : 255;
-      index += 4;
-    }
-  }
-  return data;
-};
-
-/**
- * make 24bit image imageData.data
- * @private
- * @param {Object} ico should have width, height, bit, xor, and
- * @returns {Uint8ClampedArray} imageData.data
- */
-const make24bitImageData = ico => {
-  const xor = new Uint8Array(ico.xor);
-  const and = util.to1bitArray(ico.and);
-  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  const andLine = util.toDividableBy4(ico.width / 8) * 8;
-  let index = 0;
-  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (let h = ico.height - 1; h >= 0; h--) {
-    for (let w = 0; w < ico.width; w++) {
-      data[index] = xor[(h * xorLine + w) * 3 + 2];
-      data[index + 1] = xor[(h * xorLine + w) * 3 + 1];
-      data[index + 2] = xor[(h * xorLine + w) * 3];
-      data[index + 3] = and[h * andLine + w] ? 0 : 255;
-      index += 4;
-    }
-  }
-  return data;
-};
-
-/**
- * make 32bit image imageData.data
- * @private
- * @param {Object} ico should have width, height, bit, xor, and
- * @returns {Uint8ClampedArray} imageData.data
- */
-const make32bitImageData = ico => {
-  const xor = new Uint8Array(ico.xor);
-  const and = util.to1bitArray(ico.and);
-  const xorLine = util.toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
-  const andLine = util.toDividableBy4(ico.width / 8) * 8;
-  let index = 0;
-  const data = new Uint8ClampedArray(ico.width * ico.height * 4);
-  for (let h = ico.height - 1; h >= 0; h--) {
-    for (let w = 0; w < ico.width; w++) {
-      data[index] = xor[(h * xorLine + w) * 4 + 2];
-      data[index + 1] = xor[(h * xorLine + w) * 4 + 1];
-      data[index + 2] = xor[(h * xorLine + w) * 4];
-      data[index + 3] = and[h * andLine + w] === 1 || xor[(h * xorLine + w) * 4 + 3] === 1 ? 0 : xor[(h * xorLine + w) * 4 + 3] > 1 ? xor[(h * xorLine + w) * 4 + 3] : 255; // eslint-disable-line no-nested-ternary
-      index += 4;
-    }
-  }
-  return data;
-};
 
 const previousICO = global.ICO;
 
@@ -158,25 +27,25 @@ const ICO = {
       throw new Error('buffer is not ico');
     }
     // make single image icon
-    let ico, data;
     // let idCount = icoDv.getUint16(4, true);
     const icos = Promise.all(range(icoDv.getUint16(4, true)).map(i => {
-      ico = extractOne(buffer, i);
+      let data;
+      const ico = extractOne(buffer, i);
       switch (ico.bit) { // eslint-disable-line default-case
         case 1:
-          data = make1bitImageData(ico);
+          data = imageData.from1bit(ico);
           break;
         case 4:
-          data = make4bitImageData(ico);
+          data = imageData.from4bit(ico);
           break;
         case 8:
-          data = make8bitImageData(ico);
+          data = imageData.from8bit(ico);
           break;
         case 24:
-          data = make24bitImageData(ico);
+          data = imageData.from24bit(ico);
           break;
         case 32:
-          data = make32bitImageData(ico);
+          data = imageData.from32bit(ico);
           break;
       }
       return PNG.encode({
