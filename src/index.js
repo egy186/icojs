@@ -6,8 +6,6 @@ const imageData = require('./image-data');
 
 const range = n => new Array(n).fill(0).map((_, i) => i);
 
-const previousICO = global.ICO;
-
 /**
  * @class ICO
  */
@@ -76,16 +74,11 @@ const ICO = {
     // idReserved = icoDv.getUint16(0, true)
     // idType = icoDv.getUint16(0, true)
     return icoDv.getUint16(0, true) === 0 && icoDv.getUint16(2, true) === 1;
-  },
+  }
   /**
-   * No conflict.
+   * No conflict. (Browser only)
    * @returns {ICO} `ICO` Object.
    */
-  noConflict () {
-    global.ICO = previousICO;
-    return this;
-  }
 };
 
 module.exports = ICO;
-global.ICO = ICO;

@@ -45,7 +45,7 @@
     "url": "git+https://github.com/egy186/icojs.git"
   },
   "scripts": {
-    "build": "mkdirp dist && browserify src/browser/index.js --debug --plugin [ minifyify --map ico.js.map --output dist/ico.js.map ] --transform babelify --outfile dist/ico.js",
+    "build": "mkdirp dist && browserify src/browser/index.js --debug --plugin [ minifyify --map ico.js.map --output dist/ico.js.map ] --transform babelify --standalone ICO --outfile dist/ico.js",
     "clean": "rimraf coverage dist",
     "doc": "jsdoc2md -f src/index.js -t templates/README.md > README.md",
     "lint": "eslint src test",

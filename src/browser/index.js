@@ -88,4 +88,3 @@ const ICO = {
 };
 
 module.exports = ICO;
-global.ICO = ICO;
