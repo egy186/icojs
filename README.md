@@ -26,8 +26,6 @@ ICO.parse(arrayBuffer).then(images => {
 
 ### Node.js:
 
-__Prerequisite__: icojs relies on node-canvas, and you _must_ have installed __cairo__. Please see [node-canvas wiki](https://github.com/Automattic/node-canvas/wiki/_pages) for installation instructions.
-
 ```sh
 npm install icojs
 ```
@@ -44,9 +42,9 @@ And add to HTML:
 <script type="text/javascript" src="/path/to/ico.js"></script>
 ```
 
-To fully use this library, browsers must support **JavaScript typed arrays** and **Canvas API**.
+To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
 
-Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support these functions.
+Chrome, Edge 12, Firefox and Safari 9 support these functions.
 
 ## Demo
 
