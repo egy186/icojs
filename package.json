@@ -30,8 +30,10 @@
   "files": [
     "src",
     "LICENSE",
-    "package.json",
-    "README.md"
+    "README.md",
+    "browser.js",
+    "index.js",
+    "package.json"
   ],
   "homepage": "https://egy186.github.io/icojs",
   "keywords": [

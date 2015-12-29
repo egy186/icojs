@@ -17,5 +17,6 @@ deploy:
   api_key:
     secure: KKqoz7TDoO2mIVmcV/puyrMHZCTCDbXrsj0Tkled8l+BCp7DthbwPtiohXfnARSIpt7/XxAPoMvSqMD5qB2qlGCRxs9oFeta3kiakhr/ynCZi3f2kccN/pv/RKrkFVgVVixr59lgzDC7VuZDY+nti548nMeY3zkebcfjz9ZbzUA=
   on:
-    tags: true
+    all_branches: true
     repo: egy186/icojs
+    tags: true
