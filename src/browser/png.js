@@ -2,16 +2,17 @@
 
 const dataURLToArrayBuffer = dataURL => {
   const string = global.atob(dataURL.replace(/.+,/, ''));
-  const bytes = new Uint8Array(string.length);
+  const view = new Uint8Array(string.length);
   for (let i = 0; i < string.length; i++) {
-    bytes[i] = string.charCodeAt(i);
+    view[i] = string.charCodeAt(i);
   }
-  return bytes.buffer;
+  return view.buffer;
 };
 
 const PNG = {
   /**
    * create png from imgData.data
+   * @access private
    * @param {Object} image data
    * @param {Number} image.width img width
    * @param {Number} image.height img height
@@ -34,16 +35,6 @@ const PNG = {
       resolve(dataURLToArrayBuffer(canvas.toDataURL()));
     });
   }
-  /**
-   * create imgData.data from png
-   * @param {ArrayBuffer} buffer png
-   * @returns {Object} data
-   * @returns {Number} image.width
-   * @returns {Number} image.height
-   * @returns {Uint8ClampedArray} image.data
-   */
-  // decode: function (buffer) {
-  // }
 };
 
 module.exports = PNG;

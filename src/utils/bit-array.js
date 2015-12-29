@@ -1,12 +1,13 @@
 'use strict';
 
-const util = {
+const bitArray = {
   /**
    * convert ArrayBuffer to 1bit Array
+   * @access private
    * @param {ArrayBuffer} buffer buffer
    * @returns {Array} bits array
    */
-  to1bitArray (buffer) {
+  of1 (buffer) {
     const buff = new Uint8Array(buffer);
     let bit = '';
     for (let i = 0; i < buff.byteLength; i++) {
@@ -18,10 +19,11 @@ const util = {
   },
   /**
    * convert ArrayBuffer to 4bit Array
+   * @access private
    * @param {ArrayBuffer} buffer buffer
    * @returns {Array} bits array
    */
-  to4bitArray (buffer) {
+  of4 (buffer) {
     const buff = new Uint8Array(buffer);
     let bit = '';
     for (let i = 0; i < buff.byteLength; i++) {
@@ -33,28 +35,18 @@ const util = {
   },
   /**
    * convert ArrayBuffer to 8bit Array
+   * @access private
    * @param {ArrayBuffer} buffer buffer
    * @returns {Array} bits array
    */
-  to8bitArray (buffer) {
+  of8 (buffer) {
     const buff = new Uint8Array(buffer);
     const bit = [];
     for (let i = 0; i < buff.byteLength; i++) {
       bit.push(buff[i]);
     }
     return bit;
-  },
-  /**
-   * Make number dividable by 4
-   * @param {Number} num number
-   * @returns {Number} number dividable by 4
-   */
-  toDividableBy4 (num) {
-    if (num % 4 !== 0) {
-      num += 4 - num % 4;
-    }
-    return num;
   }
 };
 
-module.exports = util;
+module.exports = bitArray;

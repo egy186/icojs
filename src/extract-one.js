@@ -1,9 +1,11 @@
 'use strict';
 
-const util = require('./util');
+const bitArray = require('./utils/bit-array');
+const toDividableBy4 = require('./utils/to-dividable-by-4');
 
 /**
  * extract an icon from buffer
+ * @access private
  * @param {ArrayBuffer} buffer ico buffer
  * @param {number} index index of icon
  * @returns {Object} ico parsed ico
@@ -24,7 +26,7 @@ const extractOne = (buffer, index) => {
   const icoColorsOffset = dv.getUint32(18 + index * 16, true) + dv.getUint32(icoOffset, true);
   const icoColorsCount = dv.getUint32(icoOffset + 32, true);
   const icoXorOffset = icoColorsOffset + icoColorsCount * 4;
-  const icoAndOffset = icoXorOffset + util.toDividableBy4(icoWidth * icoBit / 8) * icoHeight;
+  const icoAndOffset = icoXorOffset + toDividableBy4(icoWidth * icoBit / 8) * icoHeight;
 
   const ico = {
     width: icoWidth,
@@ -33,10 +35,10 @@ const extractOne = (buffer, index) => {
     bit: icoBit,
     colors: [],
     xor: buffer.slice(icoXorOffset, icoAndOffset),
-    and: buffer.slice(icoAndOffset, icoAndOffset + util.toDividableBy4(icoWidth / 8) * icoHeight)
+    and: buffer.slice(icoAndOffset, icoAndOffset + toDividableBy4(icoWidth / 8) * icoHeight)
   };
   for (let i = 0; i < icoColorsCount; i++) {
-    ico.colors.push(util.to8bitArray(buffer.slice(icoColorsOffset + i * 4, icoColorsOffset + i * 4 + 4)));
+    ico.colors.push(bitArray.of8(buffer.slice(icoColorsOffset + i * 4, icoColorsOffset + i * 4 + 4)));
   }
 
   return ico;

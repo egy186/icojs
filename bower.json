@@ -14,15 +14,11 @@
   "homepage": "https://egy186.github.io/icojs",
   "ignore": [
     "**/.*",
-    "bower_components",
-    "node_modules",
     "src",
     "templates",
     "test",
-    "gulpfile.js",
-    "icojs.njsproj",
-    "icojs.sln",
-    "package.json",
-    "README.hbs"
+    "browser.js",
+    "index.js",
+    "package.json"
   ]
 }

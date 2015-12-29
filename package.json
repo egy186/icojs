@@ -24,11 +24,16 @@
     "mocha": "^2.3.4",
     "rimraf": "^2.4.4"
   },
+  "engines": {
+    "node": ">=4.2.3"
+  },
   "files": [
     "src",
     "LICENSE",
-    "package.json",
-    "README.md"
+    "README.md",
+    "browser.js",
+    "index.js",
+    "package.json"
   ],
   "homepage": "https://egy186.github.io/icojs",
   "keywords": [
@@ -42,9 +47,9 @@
     "url": "git+https://github.com/egy186/icojs.git"
   },
   "scripts": {
-    "build": "mkdirp dist && browserify src/browser/index.js --debug --plugin [ minifyify --map ico.js.map --output dist/ico.js.map ] --transform babelify --outfile dist/ico.js",
+    "build": "mkdirp dist && browserify src/browser/index.js --debug --plugin [ minifyify --map ico.js.map --output dist/ico.js.map ] --transform babelify --standalone ICO --outfile dist/ico.js",
     "clean": "rimraf coverage dist",
-    "doc": "jsdoc2md -f src/index.js -t templates/README.md > README.md",
+    "doc": "jsdoc2md -f src/ico.js -t templates/README.md > README.md",
     "lint": "eslint src test",
     "test": "istanbul cover --root src --report lcov --dir coverage node_modules/mocha/bin/_mocha -- test/*.js"
   }
