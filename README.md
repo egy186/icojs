@@ -17,14 +17,14 @@ var fs = require('fs');
 var ICO = require('icojs');
 
 var arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-var images = ICO.parse(arrayBuffer);
+ICO.parse(arrayBuffer).then(images => {
+  // do something
+});
 ```
 
 ## Install
 
 ### Node.js:
-
-__Prerequisite__: icojs relies on node-canvas, and you _must_ have installed __cairo__. Please see [node-canvas wiki](https://github.com/Automattic/node-canvas/wiki/_pages) for installation instructions.
 
 ```sh
 npm install icojs
@@ -42,52 +42,54 @@ And add to HTML:
 <script type="text/javascript" src="/path/to/ico.js"></script>
 ```
 
-To fully use this library, browsers must support **JavaScript typed arrays** and **Canvas API**.
+To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
 
-Google Chrome, Internet Explorer 11, Mozilla Firefox and Safari 7.1 support these functions.
+Chrome, Edge 12, Firefox and Safari 9 support these functions.
 
 ## Demo
 
 [http://egy186.github.io/icojs/#demo](http://egy186.github.io/icojs/#demo)
 
+<a name="ICO"></a>
 ## Documentation
 
-### ICO.parse
+* [ICO](#ICO)
+    * [.parse(buffer)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+    * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
+    * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
 
+<a name="ICO.parse"></a>
+### ICO.parse(buffer) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some PNGs.
 
-#### Parameters
-
-* `buffer` **ArrayBuffer** - The ArrayBuffer object contain the TypedArray of a ICO file.
-
-#### Returns
-
-* **Array.&lt;Object&gt;** - Array of parsed ICO.
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.
   * `width` **Number** - Image width.
   * `height` **Number** - Image height.
   * `bit` **Number** - Image bit depth.
-  * `buffer` **ArrayBuffer** - Image buffer.
+  * `buffer` **ArrayBuffer** - Image buffer.  
 
-### ICO.isICO
+| Param | Type | Description |
+| --- | --- | --- |
+| buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
 
+<a name="ICO.isICO"></a>
+### ICO.isICO(buffer) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
-#### Parameters
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>Boolean</code> - True if arg is ICO.  
 
-* `buffer` **ArrayBuffer** - The ArrayBuffer object contain the TypedArray of a ICO file.
+| Param | Type | Description |
+| --- | --- | --- |
+| buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
 
-#### Returns
-
-* **Boolean** - True if arg is ICO.
-
-### ICO.noConflict
-
+<a name="ICO.noConflict"></a>
+### ICO.noConflict() ⇒ <code>[ICO](#ICO)</code>
 No conflict.
 
-
-#### Returns
-
-* **ICO** - `ICO` Object.
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>[ICO](#ICO)</code> - `ICO` Object.  
 
 ## License
 

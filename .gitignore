@@ -1,7 +1,4 @@
-node_modules/
-bin/
-test/coverage/
-
-obj/
-.ntvs_analysis.*
-*.suo
+bin
+coverage
+dist
+node_modules
