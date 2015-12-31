@@ -1,16 +1,10 @@
 {
   "name": "icojs",
+  "description": "parse ico file",
   "version": "0.4.0-alpha",
   "authors": [
     "egy186"
   ],
-  "description": "parse ico file",
-  "main": "dist/ico.js",
-  "keywords": [
-    "ico",
-    "parse"
-  ],
-  "license": "MIT",
   "homepage": "https://egy186.github.io/icojs",
   "ignore": [
     "**/.*",
@@ -20,5 +14,11 @@
     "browser.js",
     "index.js",
     "package.json"
-  ]
+  ],
+  "keywords": [
+    "ico",
+    "parse"
+  ],
+  "license": "MIT",
+  "main": "dist/ico.js"
 }

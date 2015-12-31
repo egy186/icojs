@@ -9,14 +9,13 @@
 [![Dependency Status](https://img.shields.io/david/egy186/icojs.svg)](https://david-dm.org/egy186/icojs)
 
 A JavaScript library to use ICO.
-
 Work on both Node.js and Browser.
 
 ```js
-var fs = require('fs');
-var ICO = require('icojs');
+const fs = require('fs');
+const ICO = require('icojs');
 
-var arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
+const arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
 ICO.parse(arrayBuffer).then(images => {
   // do something
 });
@@ -43,12 +42,11 @@ And add to HTML:
 ```
 
 To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
-
 Chrome, Edge 12, Firefox and Safari 9 support these functions.
 
 ## Demo
 
-[http://egy186.github.io/icojs/#demo](http://egy186.github.io/icojs/#demo)
+[https://egy186.github.io/icojs/#demo](https://egy186.github.io/icojs/#demo)
 
 <a name="ICO"></a>
 ## Documentation
