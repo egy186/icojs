@@ -1,12 +1,6 @@
 {
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "blockBindings": true,
-    "classes": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true
-  },
   "env": {
+    "es6": true,
     "node": true
   },
   "extends": "eslint",
@@ -15,19 +9,14 @@
     "no-unexpected-multiline": 2,
 
     "dot-location": [2, "property"],
-    "no-new": 2,
 
-    "strict": [2, "global"],
+    "strict": [2, "safe"],
 
-    "camelcase": 2,
-    "comma-spacing": 2,
-    "comma-style": 2,
+    "no-catch-shadow": 2,
+
     "func-style": [2, "expression"],
     "indent": [2, 2, { "SwitchCase": 1 }],
     "linebreak-style": 2,
-    "new-cap": [2, {
-      "capIsNewExceptions": ["express.Router"]
-    }],
     "no-multiple-empty-lines": 2,
     "object-curly-spacing": [2, "always"],
     "quotes": [2, "single", "avoid-escape"],
@@ -36,6 +25,7 @@
 
     "arrow-parens": [2, "as-needed"],
     "arrow-spacing": 2,
+    "no-confusing-arrow": 2,
     "no-var": 2,
     "object-shorthand": 2,
     "prefer-arrow-callback": 2,

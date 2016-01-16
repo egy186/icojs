@@ -11,7 +11,6 @@ const imageData = {
    * @returns {Uint8ClampedArray} imageData.data
    */
   from1bit (ico) {
-    let color;
     const xor = bitArray.of1(ico.xor);
     const and = bitArray.of1(ico.and);
     const xorLine = toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
@@ -20,7 +19,7 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        color = ico.colors[xor[h * xorLine + w]];
+        const color = ico.colors[xor[h * xorLine + w]];
         data[index] = color[2];
         data[index + 1] = color[1];
         data[index + 2] = color[0];
@@ -37,7 +36,6 @@ const imageData = {
    * @returns {Uint8ClampedArray} imageData.data
    */
   from4bit (ico) {
-    let color;
     const xor = bitArray.of4(ico.xor);
     const and = bitArray.of1(ico.and);
     const xorLine = toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
@@ -46,7 +44,7 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        color = ico.colors[xor[h * xorLine + w]];
+        const color = ico.colors[xor[h * xorLine + w]];
         data[index] = color[2];
         data[index + 1] = color[1];
         data[index + 2] = color[0];
@@ -63,7 +61,6 @@ const imageData = {
    * @returns {Uint8ClampedArray} imageData.data
    */
   from8bit (ico) {
-    let color;
     const xor = new Uint8Array(ico.xor);
     const and = bitArray.of1(ico.and);
     const xorLine = toDividableBy4(ico.width * ico.bit / 8) * 8 / ico.bit;
@@ -72,7 +69,7 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        color = ico.colors[xor[h * xorLine + w]];
+        const color = ico.colors[xor[h * xorLine + w]];
         data[index] = color[2];
         data[index + 1] = color[1];
         data[index + 2] = color[0];
