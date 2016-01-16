@@ -7,17 +7,17 @@ chai.use(chaiAsPromised);
 
 const expect = chai.expect;
 
-const PNG = require('../src/png');
+const Image = require('../src/image');
 
 const isSame = require('./fixtures/is-same');
 
-describe('PNG', () => {
+describe('Image', () => {
   describe('.encode', () => {
     it('is expected to be a function', () => {
-      expect(PNG.encode).to.be.a('function');
+      expect(Image.encode).to.be.a('function');
     });
     it('is expected to create png from imageData.data', () => {
-      const promise = PNG.encode({
+      const promise = Image.encode({
         width: 1,
         height: 1,
         data: new Uint8ClampedArray([0, 0, 0, 0])

@@ -1,8 +1,8 @@
 'use strict';
 
-const PNG = require('./png');
+const Image = require('./image');
 const ico = require('../ico');
 
-const ICO = ico({ PNG });
+const ICO = ico({ Image });
 
 module.exports = ICO;
