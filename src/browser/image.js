@@ -9,7 +9,7 @@ const dataURLToArrayBuffer = dataURL => {
   return view.buffer;
 };
 
-const PNG = {
+const Image = {
   /**
    * create png from imgData.data
    * @access private
@@ -17,9 +17,10 @@ const PNG = {
    * @param {Number} image.width img width
    * @param {Number} image.height img height
    * @param {Uint8ClampedArray} image.data same as imageData.data
+   * @param {String} mime Mime type
    * @returns {ArrayBuffer} png
    */
-  encode (image) {
+  encode (image, mime) {
     return new Promise(resolve => {
       const data = image.data;
       const canvas = global.document.createElement('canvas');
@@ -32,9 +33,9 @@ const PNG = {
         dataData[i] = data[i];
       }
       ctx.putImageData(imageData, 0, 0);
-      resolve(dataURLToArrayBuffer(canvas.toDataURL()));
+      resolve(dataURLToArrayBuffer(canvas.toDataURL(mime || 'image/png')));
     });
   }
 };
 
-module.exports = PNG;
+module.exports = Image;

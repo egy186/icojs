@@ -52,12 +52,12 @@ Chrome, Edge 12, Firefox and Safari 9 support these functions.
 ## Documentation
 
 * [ICO](#ICO)
-    * [.parse(buffer)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+    * [.parse(buffer, mime)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
     * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
     * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
 
 <a name="ICO.parse"></a>
-### ICO.parse(buffer) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+### ICO.parse(buffer, mime) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some PNGs.
 
 **Kind**: static method of <code>[ICO](#ICO)</code>  
@@ -70,6 +70,7 @@ Parse ICO and return some PNGs.
 | Param | Type | Description |
 | --- | --- | --- |
 | buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
+| mime | <code>String</code> | Mime type for output. |
 
 <a name="ICO.isICO"></a>
 ### ICO.isICO(buffer) ⇒ <code>Boolean</code>
