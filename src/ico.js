@@ -11,18 +11,20 @@ const range = n => new Array(n).fill(0).map((_, i) => i);
 
 const factory = config => {
   const previousICO = global.ICO;
+  const Image = config.Image;
   const ICO = {
     /**
      * Parse ICO and return some PNGs.
      * @memberof ICO
      * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
+     * @param {String} mime Mime type for output.
      * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
      *   * `width` **Number** - Image width.
      *   * `height` **Number** - Image height.
      *   * `bit` **Number** - Image bit depth.
      *   * `buffer` **ArrayBuffer** - Image buffer.
      */
-    parse (buffer) {
+    parse (buffer, mime) {
       const icoDv = new DataView(buffer);
       if (icoDv.getUint16(0, true) !== 0 || icoDv.getUint16(2, true) !== 1) {
         return Promise.reject(new Error('buffer is not ico'));
@@ -49,11 +51,11 @@ const factory = config => {
             data = imageData.from32bit(ico);
             break;
         }
-        return config.PNG.encode({
+        return Image.encode({
           width: ico.width,
           height: ico.height,
           data
-        }).then(pngBuffer => {
+        }, mime).then(pngBuffer => {
           return {
             bit: ico.bit,
             width: ico.width,

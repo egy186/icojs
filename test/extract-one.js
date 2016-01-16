@@ -19,7 +19,7 @@ describe('extractOne', () => {
   it('is expected to be a function', () => {
     expect(extractOne).to.be.a('function');
   });
-  expecteds.map((expected, i) => {
+  expecteds.forEach((expected, i) => {
     it('is expected to return extracted ico (' + i + ')', () => {
       const ico = extractOne(data, i);
       expect(ico).to.be.a('object');

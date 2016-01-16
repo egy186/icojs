@@ -9,14 +9,13 @@
 [![Dependency Status](https://img.shields.io/david/egy186/icojs.svg)](https://david-dm.org/egy186/icojs)
 
 A JavaScript library to use ICO.
-
 Work on both Node.js and Browser.
 
 ```js
-var fs = require('fs');
-var ICO = require('icojs');
+const fs = require('fs');
+const ICO = require('icojs');
 
-var arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
+const arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
 ICO.parse(arrayBuffer).then(images => {
   // do something
 });
@@ -43,23 +42,22 @@ And add to HTML:
 ```
 
 To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
-
 Chrome, Edge 12, Firefox and Safari 9 support these functions.
 
 ## Demo
 
-[http://egy186.github.io/icojs/#demo](http://egy186.github.io/icojs/#demo)
+[https://egy186.github.io/icojs/#demo](https://egy186.github.io/icojs/#demo)
 
 <a name="ICO"></a>
 ## Documentation
 
 * [ICO](#ICO)
-    * [.parse(buffer)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+    * [.parse(buffer, mime)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
     * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
     * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
 
 <a name="ICO.parse"></a>
-### ICO.parse(buffer) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+### ICO.parse(buffer, mime) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some PNGs.
 
 **Kind**: static method of <code>[ICO](#ICO)</code>  
@@ -72,6 +70,7 @@ Parse ICO and return some PNGs.
 | Param | Type | Description |
 | --- | --- | --- |
 | buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
+| mime | <code>String</code> | Mime type for output. |
 
 <a name="ICO.isICO"></a>
 ### ICO.isICO(buffer) ⇒ <code>Boolean</code>

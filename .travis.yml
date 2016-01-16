@@ -3,10 +3,10 @@ node_js:
 - '5'
 - '4'
 sudo: false
-before_script:
-- npm install -g gulp
 script:
 - npm run lint
+- npm run build
+- npm run doc
 - npm test
 after_success:
 - npm install coveralls
