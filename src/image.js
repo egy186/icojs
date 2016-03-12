@@ -18,7 +18,7 @@ const Image = {
   encode (image, mime) {
     const data = image.data;
     const jimp = new Jimp(image.width, image.height);
-    jimp.scan(0, 0, jimp.bitmap.width, jimp.bitmap.height, function (x, y, idx) {
+    jimp.scan(0, 0, jimp.bitmap.width, jimp.bitmap.height, function scan (x, y, idx) {
       this.bitmap.data[idx + 0] = data[idx + 0]; // eslint-disable-line no-invalid-this
       this.bitmap.data[idx + 1] = data[idx + 1]; // eslint-disable-line no-invalid-this
       this.bitmap.data[idx + 2] = data[idx + 2]; // eslint-disable-line no-invalid-this

@@ -20,7 +20,7 @@ describe('extractOne', () => {
     expect(extractOne).to.be.a('function');
   });
   expecteds.forEach((expected, i) => {
-    it('is expected to return extracted ico (' + i + ')', () => {
+    it(`is expected to return extracted ico (${i})`, () => {
       const ico = extractOne(data, i);
       expect(ico).to.be.a('object');
       expect(ico.width).to.deep.equal(expected.width);

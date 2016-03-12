@@ -32,37 +32,34 @@ const factory = config => {
       // make single image icon
       // let idCount = icoDv.getUint16(4, true);
       const icos = Promise.all(range(icoDv.getUint16(4, true)).map(i => {
-        let data;
         const ico = extractOne(buffer, i);
+        const image = {
+          width: ico.width,
+          height: ico.height
+        };
         switch (ico.bit) { // eslint-disable-line default-case
           case 1:
-            data = imageData.from1bit(ico);
+            image.data = imageData.from1bit(ico);
             break;
           case 4:
-            data = imageData.from4bit(ico);
+            image.data = imageData.from4bit(ico);
             break;
           case 8:
-            data = imageData.from8bit(ico);
+            image.data = imageData.from8bit(ico);
             break;
           case 24:
-            data = imageData.from24bit(ico);
+            image.data = imageData.from24bit(ico);
             break;
           case 32:
-            data = imageData.from32bit(ico);
+            image.data = imageData.from32bit(ico);
             break;
         }
-        return Image.encode({
+        return Image.encode(image, mime).then(pngBuffer => ({
+          bit: ico.bit,
           width: ico.width,
           height: ico.height,
-          data
-        }, mime).then(pngBuffer => {
-          return {
-            bit: ico.bit,
-            width: ico.width,
-            height: ico.height,
-            buffer: pngBuffer
-          };
-        });
+          buffer: pngBuffer
+        }));
       }));
       return icos;
     },

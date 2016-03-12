@@ -11,11 +11,9 @@ const bitArray = {
     const buff = new Uint8Array(buffer);
     let bit = '';
     for (let i = 0; i < buff.byteLength; i++) {
-      bit += ('000000000' + buff[i].toString(2)).slice(-8);
+      bit += `000000000${buff[i].toString(2)}`.slice(-8);
     }
-    return bit.split('').map(el => {
-      return parseInt(el, 2);
-    });
+    return bit.split('').map(el => parseInt(el, 2));
   },
   /**
    * convert ArrayBuffer to 4bit Array
@@ -27,11 +25,9 @@ const bitArray = {
     const buff = new Uint8Array(buffer);
     let bit = '';
     for (let i = 0; i < buff.byteLength; i++) {
-      bit += ('00' + buff[i].toString(16)).slice(-2);
+      bit += `00${buff[i].toString(16)}`.slice(-2);
     }
-    return bit.split('').map(el => {
-      return parseInt(el, 16);
-    });
+    return bit.split('').map(el => parseInt(el, 16));
   },
   /**
    * convert ArrayBuffer to 8bit Array

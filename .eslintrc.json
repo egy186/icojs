@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "egy186",
+    "egy186/node"
+  ]
+}
