@@ -19,11 +19,11 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        const color = ico.colors[xor[h * xorLine + w]];
+        const color = ico.colors[xor[(h * xorLine) + w]];
         data[index] = color[2];
         data[index + 1] = color[1];
         data[index + 2] = color[0];
-        data[index + 3] = and[h * andLine + w] ? 0 : 255;
+        data[index + 3] = and[(h * andLine) + w] ? 0 : 255;
         index += 4;
       }
     }
@@ -44,11 +44,11 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        const color = ico.colors[xor[h * xorLine + w]];
+        const color = ico.colors[xor[(h * xorLine) + w]];
         data[index] = color[2];
         data[index + 1] = color[1];
         data[index + 2] = color[0];
-        data[index + 3] = and[h * andLine + w] ? 0 : 255;
+        data[index + 3] = and[(h * andLine) + w] ? 0 : 255;
         index += 4;
       }
     }
@@ -69,11 +69,11 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        const color = ico.colors[xor[h * xorLine + w]];
+        const color = ico.colors[xor[(h * xorLine) + w]];
         data[index] = color[2];
         data[index + 1] = color[1];
         data[index + 2] = color[0];
-        data[index + 3] = and[h * andLine + w] ? 0 : 255;
+        data[index + 3] = and[(h * andLine) + w] ? 0 : 255;
         index += 4;
       }
     }
@@ -94,10 +94,10 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        data[index] = xor[(h * xorLine + w) * 3 + 2];
-        data[index + 1] = xor[(h * xorLine + w) * 3 + 1];
-        data[index + 2] = xor[(h * xorLine + w) * 3];
-        data[index + 3] = and[h * andLine + w] ? 0 : 255;
+        data[index] = xor[(((h * xorLine) + w) * 3) + 2];
+        data[index + 1] = xor[(((h * xorLine) + w) * 3) + 1];
+        data[index + 2] = xor[((h * xorLine) + w) * 3];
+        data[index + 3] = and[(h * andLine) + w] ? 0 : 255;
         index += 4;
       }
     }
@@ -118,10 +118,10 @@ const imageData = {
     const data = new Uint8ClampedArray(ico.width * ico.height * 4);
     for (let h = ico.height - 1; h >= 0; h--) {
       for (let w = 0; w < ico.width; w++) {
-        data[index] = xor[(h * xorLine + w) * 4 + 2];
-        data[index + 1] = xor[(h * xorLine + w) * 4 + 1];
-        data[index + 2] = xor[(h * xorLine + w) * 4];
-        data[index + 3] = and[h * andLine + w] === 1 || xor[(h * xorLine + w) * 4 + 3] === 1 ? 0 : xor[(h * xorLine + w) * 4 + 3] > 1 ? xor[(h * xorLine + w) * 4 + 3] : 255; // eslint-disable-line no-nested-ternary
+        data[index] = xor[(((h * xorLine) + w) * 4) + 2];
+        data[index + 1] = xor[(((h * xorLine) + w) * 4) + 1];
+        data[index + 2] = xor[((h * xorLine) + w) * 4];
+        data[index + 3] = and[(h * andLine) + w] === 1 || xor[(((h * xorLine) + w) * 4) + 3] === 1 ? 0 : xor[(((h * xorLine) + w) * 4) + 3] > 1 ? xor[(((h * xorLine) + w) * 4) + 3] : 255; // eslint-disable-line no-nested-ternary
         index += 4;
       }
     }
