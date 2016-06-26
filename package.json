@@ -7,7 +7,7 @@
     "url": "https://github.com/egy186/icojs/issues"
   },
   "dependencies": {
-    "jimp": "^0.2.21"
+    "jimp": "^0.2.24"
   },
   "devDependencies": {
     "@egy186/eslint-config": "^0.8.0",
