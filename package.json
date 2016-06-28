@@ -29,11 +29,8 @@
   },
   "files": [
     "src",
-    "LICENSE",
-    "README.md",
     "browser.js",
-    "index.js",
-    "package.json"
+    "index.js"
   ],
   "homepage": "https://egy186.github.io/icojs",
   "keywords": [
