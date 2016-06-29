@@ -57,6 +57,7 @@ Chrome, Edge 12, Firefox and Safari 9 support these functions.
     * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
 
 <a name="ICO.parse"></a>
+
 ### ICO.parse(buffer, mime) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some PNGs.
 
@@ -73,6 +74,7 @@ Parse ICO and return some PNGs.
 | mime | <code>String</code> | Mime type for output. |
 
 <a name="ICO.isICO"></a>
+
 ### ICO.isICO(buffer) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
@@ -84,6 +86,7 @@ Check the ArrayBuffer is valid ICO.
 | buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
 
 <a name="ICO.noConflict"></a>
+
 ### ICO.noConflict() ⇒ <code>[ICO](#ICO)</code>
 No conflict.
 
