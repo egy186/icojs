@@ -40,7 +40,8 @@ describe('ICO', () => {
       expect(ICO.parse).to.be.a('function');
     });
     it('is expected to be rejected when arg is not ico', () => {
-      return expect(ICO.parse(new ArrayBuffer(4))).to.be.rejectedWith('buffer is not ico');
+      const promise = ICO.parse(new ArrayBuffer(4));
+      return expect(promise).to.be.rejectedWith('buffer is not ico');
     });
     it('is expected to parse ico', () => {
       const promise = ICO.parse(data).then(images => {
@@ -48,7 +49,7 @@ describe('ICO', () => {
         return Promise.all(images.map(image => {
           expect(image).to.be.a('object');
           expect(image.buffer instanceof ArrayBuffer).to.be.true;
-          return isSame(image.buffer, 'basic/' + image.width + 'x' + image.height + '-' + image.bit + 'bit.png');
+          return isSame(image.buffer, `basic/${image.width}x${image.height}-${image.bit}bit.png`);
         }));
       });
       return expect(promise).to.become(new Array(length).fill(true));

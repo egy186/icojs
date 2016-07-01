@@ -1,7 +1,7 @@
 'use strict';
 
 const dataURLToArrayBuffer = dataURL => {
-  const string = global.atob(dataURL.replace(/.+,/, ''));
+  const string = atob(dataURL.replace(/.+,/, ''));
   const view = new Uint8Array(string.length);
   for (let i = 0; i < string.length; i++) {
     view[i] = string.charCodeAt(i);
@@ -23,7 +23,7 @@ const Image = {
   encode (image, mime) {
     return new Promise(resolve => {
       const data = image.data;
-      const canvas = global.document.createElement('canvas');
+      const canvas = document.createElement('canvas');
       canvas.width = image.width;
       canvas.height = image.height;
       const ctx = canvas.getContext('2d');
