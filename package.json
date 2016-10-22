@@ -47,7 +47,7 @@
     "build": "webpack --config webpack.config.js",
     "clean": "rimraf coverage dist",
     "doc": "jsdoc2md src/ico.js --template templates/README.md > README.md",
-    "lint": "eslint src test",
+    "lint": "eslint .",
     "test": "istanbul cover --root src --report lcov --dir coverage node_modules/mocha/bin/_mocha -- test/*.js"
   }
 }
