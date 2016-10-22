@@ -1,6 +1,5 @@
 # icojs
 
-[![Bower version](https://img.shields.io/bower/v/icojs.svg)](https://github.com/egy186/icojs)
 [![npm version](https://img.shields.io/npm/v/icojs.svg)](https://www.npmjs.com/package/icojs)
 
 [![Build Status](https://img.shields.io/travis/egy186/icojs.svg)](https://travis-ci.org/egy186/icojs)
@@ -23,22 +22,16 @@ ICO.parse(arrayBuffer).then(images => {
 
 ## Install
 
-### Node.js:
-
 ```sh
 npm install icojs
 ```
 
-### Browser:
+### Browser
 
-```sh
-bower install icojs
-```
-
-And add to HTML:
+Include to HTML:
 
 ```html
-<script type="text/javascript" src="/path/to/ico.js"></script>
+<script type="text/javascript" src="node_modules/icojs/dist/ico.js"></script>
 ```
 
 To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.

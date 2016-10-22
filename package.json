@@ -28,6 +28,7 @@
     "node": ">=4.2.3"
   },
   "files": [
+    "dist",
     "src",
     "browser.js",
     "index.js"
