@@ -1,7 +1,6 @@
 # icojs
 
 [![npm version](https://img.shields.io/npm/v/icojs.svg)](https://www.npmjs.com/package/icojs)
-
 [![Build Status](https://img.shields.io/travis/egy186/icojs.svg)](https://travis-ci.org/egy186/icojs)
 [![Coverage Status](https://img.shields.io/coveralls/egy186/icojs.svg)](https://coveralls.io/r/egy186/icojs)
 [![Code Climate](https://img.shields.io/codeclimate/github/egy186/icojs.svg)](https://codeclimate.com/github/egy186/icojs)
@@ -10,44 +9,19 @@
 A JavaScript library to use ICO.
 Work on both Node.js and Browser.
 
-```js
-const fs = require('fs');
-const ICO = require('icojs');
-
-const arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-ICO.parse(arrayBuffer).then(images => {
-  // do something
-});
-```
-
 ## Install
 
-```sh
-npm install icojs
-```
+#include "templates/install.md"
+## Example
 
-### Browser
-
-Include to HTML:
-
-```html
-<script type="text/javascript" src="node_modules/icojs/dist/ico.js"></script>
-```
-
-To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
-Chrome, Edge 12, Firefox and Safari 9 support these functions.
-
+#include "templates/example.md"
 ## Demo
 
 [https://egy186.github.io/icojs/#demo](https://egy186.github.io/icojs/#demo)
 
-<a name="ICO"></a>
 ## Documentation
-{{#class name="ICO"~}}
-{{>member-index~}}
-{{>members~}}
-{{/class}}
 
+#include "templates/documentation.md"
 ## License
 
 MIT license
