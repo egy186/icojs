@@ -2,5 +2,8 @@
   "extends": [
     "@egy186/eslint-config",
     "@egy186/eslint-config/node"
-  ]
+  ],
+  "rules": {
+    "sort-keys": "off"
+  }
 }
