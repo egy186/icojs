@@ -1,8 +1,6 @@
 # icojs
 
-[![Bower version](https://img.shields.io/bower/v/icojs.svg)](https://github.com/egy186/icojs)
 [![npm version](https://img.shields.io/npm/v/icojs.svg)](https://www.npmjs.com/package/icojs)
-
 [![Build Status](https://img.shields.io/travis/egy186/icojs.svg)](https://travis-ci.org/egy186/icojs)
 [![Coverage Status](https://img.shields.io/coveralls/egy186/icojs.svg)](https://coveralls.io/r/egy186/icojs)
 [![Code Climate](https://img.shields.io/codeclimate/github/egy186/icojs.svg)](https://codeclimate.com/github/egy186/icojs)
@@ -10,6 +8,37 @@
 
 A JavaScript library to use ICO.
 Work on both Node.js and Browser.
+
+## Install
+
+```sh
+npm install icojs
+```
+
+### Node.js:
+
+```js
+const ICO = require('icojs');
+```
+
+### Browser:
+
+```js
+const ICO = require('icojs/browser')
+```
+
+or
+
+```html
+<script type="text/javascript" src="node_modules/icojs/dist/ico.js"></script>
+```
+
+To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
+Chrome, Edge 12, Firefox and Safari 9 support these functions.
+
+## Example
+
+### Node.js:
 
 ```js
 const fs = require('fs');
@@ -21,35 +50,32 @@ ICO.parse(arrayBuffer).then(images => {
 });
 ```
 
-## Install
-
-### Node.js:
-
-```sh
-npm install icojs
-```
-
 ### Browser:
 
-```sh
-bower install icojs
-```
-
-And add to HTML:
-
 ```html
-<script type="text/javascript" src="/path/to/ico.js"></script>
+<input type="file" id="input-file" />
+<script>
+  document.getElementById('input-file').addEventListener('change', function (evt) {
+    // use FileReader for converting File object to ArrayBuffer object
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      ICO.parse(e.target.result).then(function (images) {
+        // logs images
+        console.dir(images);
+      })
+    };
+    reader.readAsArrayBuffer(evt.target.files[0]);
+  }, false);
+</script>
 ```
-
-To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
-Chrome, Edge 12, Firefox and Safari 9 support these functions.
 
 ## Demo
 
 [https://egy186.github.io/icojs/#demo](https://egy186.github.io/icojs/#demo)
 
-<a name="ICO"></a>
 ## Documentation
+
+<a name="ICO"></a>
 
 * [ICO](#ICO)
     * [.parse(buffer, mime)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>

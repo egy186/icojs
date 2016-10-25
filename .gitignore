@@ -1,4 +1,4 @@
-bin
 coverage
 dist
 node_modules
+templates/documentation.md

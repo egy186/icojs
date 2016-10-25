@@ -1,13 +1,12 @@
 language: node_js
 node_js:
-- '6'
-- '5'
-- '4'
+- node
+- lts/boron
+- lts/argon
 sudo: false
 script:
 - npm run lint
 - npm run build
-- npm run doc
 - npm test
 after_success:
 - npm install coveralls
