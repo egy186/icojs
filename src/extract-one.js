@@ -24,7 +24,10 @@ const extractOne = (buffer, index) => {
   const icoOffset = dv.getUint32(18 + (index * 16), true);
   const icoBit = dv.getUint16(icoOffset + 14, true);
   const icoColorsOffset = dv.getUint32(18 + (index * 16), true) + dv.getUint32(icoOffset, true);
-  const icoColorsCount = dv.getUint32(icoOffset + 32, true);
+  let icoColorsCount = dv.getUint32(icoOffset + 32, true);
+  if (icoColorsCount === 0 && icoBit <= 8) {
+    icoColorsCount = 1 << icoBit;
+  }
   const icoXorOffset = icoColorsOffset + (icoColorsCount * 4);
   const icoAndOffset = icoXorOffset + (toDividableBy4(icoWidth * icoBit / 8) * icoHeight);
 

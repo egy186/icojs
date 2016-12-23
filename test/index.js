@@ -14,16 +14,14 @@ const bufferToArrayBuffer = require('../src/utils/buffer-to-arraybuffer');
 
 const isSame = require('./fixtures/is-same');
 
-const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/basic.ico'));
-const data = bufferToArrayBuffer(buffer);
-const length = fs.readdirSync(path.join(__dirname, './fixtures/images/basic')).length;
-
 describe('ICO', () => {
   describe('.isICO', () => {
     it('is expected to be a function', () => {
       expect(ICO.isICO).to.be.a('function');
     });
     it('is expected to return true or false', () => {
+      const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/basic.ico'));
+      const data = bufferToArrayBuffer(buffer);
       expect(ICO.isICO('it is not buffer')).to.be.false;
       expect(ICO.isICO(data)).to.be.true;
       const d = new ArrayBuffer(4);
@@ -43,16 +41,21 @@ describe('ICO', () => {
       const promise = ICO.parse(new ArrayBuffer(4));
       return expect(promise).to.be.rejectedWith('buffer is not ico');
     });
-    it('is expected to parse ico', () => {
-      const promise = ICO.parse(data).then(images => {
-        expect(images).to.be.a('array').with.length(length);
-        return Promise.all(images.map(image => {
-          expect(image).to.be.a('object');
-          expect(image.buffer instanceof ArrayBuffer).to.be.true;
-          return isSame(image.buffer, `basic/${image.width}x${image.height}-${image.bit}bit.png`);
-        }));
+    const icons = ['basic', 'palette'];
+    icons.forEach(icon => {
+      it(`is expected to parse ${icon}.ico`, () => {
+        const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images', `${icon}.ico`));
+        const data = bufferToArrayBuffer(buffer);
+        const promise = ICO.parse(data).then(images => {
+          expect(images).to.be.a('array');
+          return Promise.all(images.map(image => {
+            expect(image).to.be.a('object');
+            expect(image.buffer instanceof ArrayBuffer).to.be.true;
+            return isSame(image.buffer, `${icon}/${image.width}x${image.height}-${image.bit}bit.png`);
+          }));
+        });
+        return expect(promise).eventually.not.to.include(false);
       });
-      return expect(promise).to.become(new Array(length).fill(true));
     });
   });
   describe('.noConflict', () => {
