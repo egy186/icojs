@@ -1,7 +1,7 @@
 {
   "name": "icojs",
   "description": "parse ico file",
-  "version": "0.5.0-alpha",
+  "version": "0.5.0",
   "author": "egy186",
   "bugs": {
     "url": "https://github.com/egy186/icojs/issues"
