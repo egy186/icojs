@@ -50,7 +50,7 @@
   "scripts": {
     "build": "npm-run-all jsdoc --parallel build:*",
     "build:dist": "webpack --config webpack.config.js",
-    "build:docs": "pug templates/index.pug --out docs",
+    "build:docs": "pug templates/index.pug --obj package.json --out docs",
     "build:readme": "markdown-include readme.json",
     "clean": "rimraf coverage dist docs/index.html templates/documentation.md README.md",
     "jsdoc": "jsdoc2md src/ico.js --template templates/documentation.hbs > templates/documentation.md",

@@ -8,7 +8,7 @@ html(lang='en')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js', defer='')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', defer='')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js', defer='')
-    script(src='https://unpkg.com/icojs/dist/ico.js', defer='')
+    script(src=`https://unpkg.com/icojs@${version}/dist/ico.js`, defer='')
     script(src='demo.js', defer='')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/github.min.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css')
@@ -24,6 +24,8 @@ html(lang='en')
       header.col-md-12
         h1
           a(href='./') icojs
+          |  
+          small=`v${version}`
         p.lead A JavaScript library to use ICO.
         p
           small
