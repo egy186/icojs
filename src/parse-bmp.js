@@ -22,7 +22,10 @@ const parseBMP = (width, height, arrayBuffer) => {
 
   const headerSize = dataView.getUint32(0, true);
   const bit = dataView.getUint16(14, true);
-  const colorsCount = dataView.getUint32(32, true);
+  let colorsCount = dataView.getUint32(32, true);
+  if (colorsCount === 0 && bit <= 8) {
+    colorsCount = 1 << bit;
+  }
   const xorOffset = headerSize + (colorsCount * 4);
   const andOffset = xorOffset + (toDividableBy4(width * bit / 8) * height);
 
