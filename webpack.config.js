@@ -10,10 +10,10 @@ module.exports = {
   devtool: 'source-map',
   entry: { ico: path.join(src, 'browser/index.js') },
   module: {
-    loaders: [
+    rules: [
       {
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         test: /\.js$/
       }
     ]
@@ -25,8 +25,7 @@ module.exports = {
     path: dest
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
+    new webpack.LoaderOptionsPlugin({ minimize: true }),
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
   ]
 };
