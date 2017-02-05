@@ -7,9 +7,9 @@ var showResult = function (status, message) {
 var icoParse = function (file) {
   var reader = new FileReader();
   reader.onload = function (e) {
-    // convert *.ico to *.png(s)
+    // Convert *.ico to *.png(s)
     ICO.parse(e.target.result).then(function (images) {
-      console.dir(images); // debug
+      console.dir(images); // Debug
       var text = '<p><strong>Success:</strong></p>';
       for (var i = 0; i < images.length; i++) {
         var url = URL.createObjectURL(new Blob([images[i].buffer], { type: images[i].type }));
@@ -24,7 +24,7 @@ var icoParse = function (file) {
 };
 
 jQuery(document).ready(function () {
-  // from drag and drop
+  // From drag and drop
   jQuery(document).on('dragenter', function (evt) {
     evt.stopPropagation();
     evt.preventDefault();
@@ -38,7 +38,7 @@ jQuery(document).ready(function () {
     evt.preventDefault();
     icoParse(evt.originalEvent.dataTransfer.files[0]);
   });
-  // from file
+  // From file
   var inputFile = jQuery('#input-file');
   var inputFilePath = jQuery('#input-file-path');
   var inputEvt = function (evt) {
@@ -52,8 +52,8 @@ jQuery(document).ready(function () {
     icoParse(evt.target.files[0]);
   });
 
-  // highlightjs
+  // Highlightjs
   hljs.initHighlighting();
-  // add class
+  // Add class
   jQuery('table').addClass('table table-striped table-hover');
 });

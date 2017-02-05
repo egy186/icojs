@@ -6,7 +6,7 @@ const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
 
 const Image = {
   /**
-   * create png from imgData.data
+   * Create png from imgData.data
    * @access private
    * @param {Object} image data
    * @param {Number} image.width img width
