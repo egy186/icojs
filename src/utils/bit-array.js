@@ -37,11 +37,7 @@ const bitArray = {
    */
   of8 (buffer) {
     const buff = new Uint8Array(buffer);
-    const bit = [];
-    for (let i = 0; i < buff.byteLength; i++) {
-      bit.push(buff[i]);
-    }
-    return bit;
+    return Array.from(buff);
   }
 };
 

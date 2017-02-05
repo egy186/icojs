@@ -13,7 +13,7 @@ const Image = {
    * @param {Number} image.height img height
    * @param {Uint8ClampedArray} image.data same as imageData.data
    * @param {String} mime Mime type
-   * @returns {ArrayBuffer} png
+   * @returns {ArrayBuffer} image
    */
   encode (image, mime) {
     const data = image.data;
