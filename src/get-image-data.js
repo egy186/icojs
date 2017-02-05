@@ -4,7 +4,7 @@ const bitArray = require('./utils/bit-array');
 const toDividableBy4 = require('./utils/to-dividable-by-4');
 
 /**
- * get imageData of 24bit bitmap
+ * Get imageData of 24bit bitmap
  * @access private
  * @param {Object} bitmap bitmap object
  * @returns {Object} imageData imageData of bitmap
@@ -41,7 +41,7 @@ const getImageData24bit = bitmap => {
 };
 
 /**
- * get imageData of 32bit bitmap
+ * Get imageData of 32bit bitmap
  * @access private
  * @param {Object} bitmap bitmap object
  * @returns {Object} imageData imageData of bitmap
@@ -78,7 +78,7 @@ const getImageData32bit = bitmap => {
 };
 
 /**
- * get imageData of 1, 4, 8bit bitmap
+ * Get imageData of 1, 4, 8bit bitmap
  * @access private
  * @param {Object} bitmap bitmap object
  * @returns {Object} imageData imageData of bitmap
@@ -116,7 +116,7 @@ const getImageDataPalette = bitmap => {
 };
 
 /**
- * get imageData
+ * Get imageData
  * @access private
  * @param {Object} bitmap bitmap object
  * @returns {Object} imageData imageData of bitmap

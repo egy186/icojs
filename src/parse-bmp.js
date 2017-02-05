@@ -6,7 +6,7 @@ const toDividableBy4 = require('./utils/to-dividable-by-4');
 const getImageData = require('./get-image-data');
 
 /**
- * parse bitmap
+ * Parse bitmap
  * @access private
  * @param {Number} width bitmap width
  * @param {Number} height bitmap height

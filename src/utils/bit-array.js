@@ -2,7 +2,7 @@
 
 const bitArray = {
   /**
-   * convert ArrayBuffer to 1bit Array
+   * Convert ArrayBuffer to 1bit Array
    * @access private
    * @param {ArrayBuffer} buffer buffer
    * @returns {Array} bits array
@@ -16,7 +16,7 @@ const bitArray = {
     return bit.split('').map(el => parseInt(el, 2));
   },
   /**
-   * convert ArrayBuffer to 4bit Array
+   * Convert ArrayBuffer to 4bit Array
    * @access private
    * @param {ArrayBuffer} buffer buffer
    * @returns {Array} bits array
@@ -30,7 +30,7 @@ const bitArray = {
     return bit.split('').map(el => parseInt(el, 16));
   },
   /**
-   * convert ArrayBuffer to 8bit Array
+   * Convert ArrayBuffer to 8bit Array
    * @access private
    * @param {ArrayBuffer} buffer buffer
    * @returns {Array} bits array
