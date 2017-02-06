@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const { version } = require('./package.json');
+const pkg = require('./package.json');
 
 const dest = path.join(__dirname, 'dist');
 const src = path.join(__dirname, 'src');
@@ -26,7 +26,7 @@ module.exports = {
     path: dest
   },
   plugins: [
-    new webpack.BannerPlugin(`icojs v${version}\n(c) egy186\nhttps://github.com/egy186/icojs/blob/master/LICENSE`),
+    new webpack.BannerPlugin(`icojs v${pkg.version}\n(c) egy186\nhttps://github.com/egy186/icojs/blob/master/LICENSE`),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
   ]
