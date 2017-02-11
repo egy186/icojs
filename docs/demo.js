@@ -7,12 +7,13 @@ var showResult = function (status, message) {
 var icoParse = function (file) {
   var reader = new FileReader();
   reader.onload = function (e) {
+    var mime = 'image/png';
     // Convert *.ico to *.png(s)
-    ICO.parse(e.target.result).then(function (images) {
+    ICO.parse(e.target.result, mime).then(function (images) {
       console.dir(images); // Debug
       var text = '<p><strong>Success:</strong></p>';
       for (var i = 0; i < images.length; i++) {
-        var url = URL.createObjectURL(new Blob([images[i].buffer], { type: images[i].type }));
+        var url = URL.createObjectURL(new Blob([images[i].buffer], { type: mime }));
         text += '<p><a href="' + url + '" target="_blank"><img src="' + url + '" /> ' + images[i].width + 'x' + images[i].height + ', ' + images[i].bit + 'bit</a></p>';
       }
       showResult('success', text);
