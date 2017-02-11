@@ -1,3 +1,5 @@
+## Example
+
 ### Node.js:
 
 ```js
@@ -28,3 +30,4 @@ ICO.parse(arrayBuffer).then(images => {
   }, false);
 </script>
 ```
+

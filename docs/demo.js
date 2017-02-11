@@ -55,5 +55,6 @@ jQuery(document).ready(function () {
   // Highlightjs
   hljs.initHighlighting();
   // Add class
+  jQuery('h2').addClass('page-header');
   jQuery('table').addClass('table table-striped table-hover');
 });
