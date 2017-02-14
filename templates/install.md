@@ -1,3 +1,5 @@
+## Install
+
 ```sh
 npm install icojs
 ```
@@ -22,3 +24,4 @@ or
 
 To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
 Chrome, Edge 12, Firefox and Safari 9 support these functions.
+

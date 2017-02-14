@@ -10,19 +10,3 @@
 A JavaScript library to use ICO.
 Work on both Node.js and Browser.
 
-## Install
-
-#include "templates/install.md"
-## Example
-
-#include "templates/example.md"
-## Demo
-
-[https://egy186.github.io/icojs/#demo](https://egy186.github.io/icojs/#demo)
-
-## Documentation
-
-#include "templates/documentation.md"
-## License
-
-MIT license

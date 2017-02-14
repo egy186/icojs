@@ -50,13 +50,11 @@ html(lang='en')
             a(href='#documentation') Documentation
       main.col-md-10
         section#install
-          h2.page-header Install
           include:markdown-it(html) install.md
         section#example
-          h2.page-header Example
           include:markdown-it(html) example.md
         section#demo
-          h2.page-header Demo
+          h2 Demo
           p Please input ico file.
           form.tab-content.form-horizontal(action='#')
             label(for='input-file', style='display: none;') File:
@@ -69,7 +67,6 @@ html(lang='en')
               span#input-file-path.form-control
           section#demos-parse-results
         section#documentation
-          h2.page-header Documentation
           include:markdown-it(html) documentation.md
       footer.col-md-12.text-center
         p
