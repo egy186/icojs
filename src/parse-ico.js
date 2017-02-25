@@ -1,5 +1,6 @@
 'use strict';
 
+const isCUR = require('./is-cur');
 const isICO = require('./is-ico');
 const parseBMP = require('./parse-bmp');
 const range = require('./utils/range');
@@ -15,7 +16,7 @@ const range = require('./utils/range');
  *   * `data` **Uint8ClampedArray** - imageData.data.
  */
 const parseICO = arrayBuffer => {
-  if (!isICO(arrayBuffer)) {
+  if (!isCUR(arrayBuffer) && !isICO(arrayBuffer)) {
     throw new Error('buffer is not ico');
   }
   const dataView = new DataView(arrayBuffer);
