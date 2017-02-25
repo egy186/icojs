@@ -48,15 +48,15 @@ ICO.parse(arrayBuffer).then(images =&gt; {
 <ul>
 <li><a href="#ICO">ICO</a>
 <ul>
-<li><a href="#ICO.parse">.parse(buffer, mime)</a> ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></li>
+<li><a href="#ICO.parse">.parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></li>
 <li><a href="#ICO.isICO">.isICO(buffer)</a> ⇒ <code>Boolean</code></li>
 <li><a href="#ICO.noConflict">.noConflict()</a> ⇒ <code><a href="#ICO">ICO</a></code></li>
 </ul>
 </li>
 </ul>
 <p><a name="ICO.parse"></a></p>
-<h3>ICO.parse(buffer, mime) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></h3>
-<p>Parse ICO and return some PNGs.</p>
+<h3>ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></h3>
+<p>Parse ICO and return some images.</p>
 <p><strong>Kind</strong>: static method of <code><a href="#ICO">ICO</a></code><br>
 <strong>Returns</strong>: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.</p>
 <ul>
@@ -70,6 +70,7 @@ ICO.parse(arrayBuffer).then(images =&gt; {
 <tr>
 <th>Param</th>
 <th>Type</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -77,12 +78,14 @@ ICO.parse(arrayBuffer).then(images =&gt; {
 <tr>
 <td>buffer</td>
 <td><code>ArrayBuffer</code></td>
+<td></td>
 <td>The ArrayBuffer object contain the TypedArray of a ICO file.</td>
 </tr>
 <tr>
-<td>mime</td>
+<td>[mime]</td>
 <td><code>String</code></td>
-<td>Mime type for output.</td>
+<td><code>image/png</code></td>
+<td>MIME type for output.</td>
 </tr>
 </tbody>
 </table>

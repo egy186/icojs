@@ -12,10 +12,10 @@ const factory = config => {
   const Image = config.Image;
   const ICO = {
     /**
-     * Parse ICO and return some PNGs.
+     * Parse ICO and return some images.
      * @memberof ICO
      * @param {ArrayBuffer} buffer The ArrayBuffer object contain the TypedArray of a ICO file.
-     * @param {String} mime Mime type for output.
+     * @param {String} [mime=image/png] MIME type for output.
      * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
      *   * `width` **Number** - Image width.
      *   * `height` **Number** - Image height.

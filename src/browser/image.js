@@ -11,14 +11,14 @@ const dataURLToArrayBuffer = dataURL => {
 
 const Image = {
   /**
-   * Create png from imgData.data
+   * Create image from imgData.data
    * @access private
    * @param {Object} image data
    * @param {Number} image.width img width
    * @param {Number} image.height img height
    * @param {Uint8ClampedArray} image.data same as imageData.data
-   * @param {String} mime Mime type
-   * @returns {ArrayBuffer} png
+   * @param {String} [mime=image/png] MIME type
+   * @returns {ArrayBuffer} image
    */
   encode (image, mime) {
     return new Promise(resolve => {

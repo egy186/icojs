@@ -79,14 +79,14 @@ ICO.parse(arrayBuffer).then(images => {
 <a name="ICO"></a>
 
 * [ICO](#ICO)
-    * [.parse(buffer, mime)](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+    * [.parse(buffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
     * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
     * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
 
 <a name="ICO.parse"></a>
 
-### ICO.parse(buffer, mime) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
-Parse ICO and return some PNGs.
+### ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+Parse ICO and return some images.
 
 **Kind**: static method of <code>[ICO](#ICO)</code>  
 **Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.
@@ -95,10 +95,10 @@ Parse ICO and return some PNGs.
   * `bit` **Number** - Image bit depth.
   * `buffer` **ArrayBuffer** - Image buffer.  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
-| mime | <code>String</code> | Mime type for output. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| buffer | <code>ArrayBuffer</code> |  | The ArrayBuffer object contain the TypedArray of a ICO file. |
+| [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
 
 <a name="ICO.isICO"></a>
 

@@ -5,7 +5,7 @@ const parseBMP = require('./parse-bmp');
 const range = require('./utils/range');
 
 /**
- * Parse ICO and return some PNGs.
+ * Parse ICO and return some image object.
  * @memberof ICO
  * @param {ArrayBuffer} arrayBuffer The ArrayBuffer object contain the TypedArray of a ICO file.
  * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
