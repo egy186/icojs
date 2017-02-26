@@ -23,8 +23,13 @@ Chrome, Edge 12, Firefox and Safari 9 support these functions.</p>
 const ICO = require('icojs');
 
 const arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-ICO.parse(arrayBuffer).then(images =&gt; {
-  // do something
+ICO.parse(arrayBuffer, 'image/png').then(images =&gt; {
+  // save as png files
+  images.forEach(image =&gt; {
+    const file = `${image.width}x${image.height}-${image.bit}bit.png`;
+    const data = Buffer.from(image.buffer);
+    fs.writeFileSync(file, data);
+  });
 });
 </code></pre>
 <h3>Browser:</h3>

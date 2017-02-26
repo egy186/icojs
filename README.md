@@ -46,8 +46,13 @@ const fs = require('fs');
 const ICO = require('icojs');
 
 const arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-ICO.parse(arrayBuffer).then(images => {
-  // do something
+ICO.parse(arrayBuffer, 'image/png').then(images => {
+  // save as png files
+  images.forEach(image => {
+    const file = `${image.width}x${image.height}-${image.bit}bit.png`;
+    const data = Buffer.from(image.buffer);
+    fs.writeFileSync(file, data);
+  });
 });
 ```
 
