@@ -42,7 +42,19 @@ const parseICO = arrayBuffer => {
       const height = infoHeader.getUint8(1) || 256;
       return parseBMP(width, height, bitmaps[index]);
     });
-  return icos;
+  if (isICO(arrayBuffer)) {
+    return icos;
+  }
+  const hotspots = range(count)
+    .map(index => {
+      const infoHeader = new DataView(infoHeaders[index]);
+      return {
+        x: infoHeader.getUint16(4, true),
+        y: infoHeader.getUint16(6, true)
+      };
+    });
+  return range(count)
+    .map(index => Object.assign(icos[index], { hotspot: hotspots[index] }));
 };
 
 module.exports = parseICO;

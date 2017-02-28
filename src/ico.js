@@ -26,12 +26,18 @@ const factory = config => {
       try {
         const icos = parseICO(buffer)
           .map(ico => Image.encode(ico, mime)
-            .then(imageBuffer => ({
-              bit: ico.bit,
-              width: ico.width,
-              height: ico.height,
-              buffer: imageBuffer
-            }))
+            .then(imageBuffer => {
+              const image = {
+                bit: ico.bit,
+                width: ico.width,
+                height: ico.height,
+                buffer: imageBuffer
+              };
+              if (ico.hotspot) {
+                image.hotspot = ico.hotspot;
+              }
+              return image;
+            })
           );
         return Promise.all(icos);
       } catch (err) {
