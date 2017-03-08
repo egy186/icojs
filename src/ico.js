@@ -23,26 +23,7 @@ const factory = config => {
      *   * `buffer` **ArrayBuffer** - Image buffer.
      */
     parse (buffer, mime) {
-      try {
-        const icos = parseICO(buffer)
-          .map(ico => Image.encode(ico, mime)
-            .then(imageBuffer => {
-              const image = {
-                bit: ico.bit,
-                width: ico.width,
-                height: ico.height,
-                buffer: imageBuffer
-              };
-              if (ico.hotspot) {
-                image.hotspot = ico.hotspot;
-              }
-              return image;
-            })
-          );
-        return Promise.all(icos);
-      } catch (err) {
-        return Promise.reject(err);
-      }
+      return parseICO(buffer, mime, Image);
     },
     /**
      * Check the ArrayBuffer is valid ICO.

@@ -8,17 +8,19 @@ const range = require('./utils/range');
 
 /**
  * Parse ICO and return some image object.
- * @memberof ICO
+ * @access private
  * @param {ArrayBuffer} arrayBuffer The ArrayBuffer object contain the TypedArray of a ICO file.
+ * @param {String} mime MIME type for output.
+ * @param {Object} Image Image encoder/decoder
  * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
  *   * `width` **Number** - Image width.
  *   * `height` **Number** - Image height.
  *   * `bit` **Number** - Image bit depth.
- *   * `data` **Uint8ClampedArray** - imageData.data.
+ *   * `buffer` **ArrayBuffer** - Image buffer.
  */
-const parseICO = arrayBuffer => {
+const parseICO = (arrayBuffer, mime, Image) => {
   if (!isCUR(arrayBuffer) && !isICO(arrayBuffer)) {
-    throw new Error('buffer is not ico');
+    return Promise.reject(new Error('buffer is not ico'));
   }
   const dataView = new DataView(arrayBuffer);
 
@@ -36,31 +38,31 @@ const parseICO = arrayBuffer => {
       const offset = infoHeader.getUint32(12, true);
       return arrayBuffer.slice(offset, offset + length);
     });
-  bitmaps.forEach(bitmap => {
-    if (isPNG(bitmap)) {
-      throw new Error('PNG-compressed icon is not supported');
-    }
-  });
+  const png = bitmaps.find(bitmap => isPNG(bitmap));
+  if (png) {
+    return Promise.reject(new Error('PNG-compressed icon is not supported'));
+  }
   const icos = range(count)
     .map(index => {
       const infoHeader = new DataView(infoHeaders[index]);
       const width = infoHeader.getUint8(0) || 256;
       const height = infoHeader.getUint8(1) || 256;
-      return parseBMP(width, height, bitmaps[index]);
+      const ico = parseBMP(width, height, bitmaps[index]);
+      if (isCUR(arrayBuffer)) {
+        ico.hotspot = {
+          x: infoHeader.getUint16(4, true),
+          y: infoHeader.getUint16(6, true)
+        };
+      }
+      return ico;
     });
-  if (isICO(arrayBuffer)) {
-    return icos;
-  }
-  const hotspots = range(count)
-    .map(index => {
-      const infoHeader = new DataView(infoHeaders[index]);
-      return {
-        x: infoHeader.getUint16(4, true),
-        y: infoHeader.getUint16(6, true)
-      };
-    });
-  return range(count)
-    .map(index => Object.assign(icos[index], { hotspot: hotspots[index] }));
+  return Promise.all(icos.map(ico => Image.encode(ico, mime)
+    .then(imageBuffer => {
+      const image = Object.assign({ buffer: imageBuffer }, ico);
+      delete image.data;
+      return image;
+    }))
+  );
 };
 
 module.exports = parseICO;
