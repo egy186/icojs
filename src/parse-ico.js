@@ -2,6 +2,7 @@
 
 const isCUR = require('./is-cur');
 const isICO = require('./is-ico');
+const isPNG = require('./is-png');
 const parseBMP = require('./parse-bmp');
 const range = require('./utils/range');
 
@@ -35,6 +36,11 @@ const parseICO = arrayBuffer => {
       const offset = infoHeader.getUint32(12, true);
       return arrayBuffer.slice(offset, offset + length);
     });
+  bitmaps.forEach(bitmap => {
+    if (isPNG(bitmap)) {
+      throw new Error('PNG-compressed icon is not supported');
+    }
+  });
   const icos = range(count)
     .map(index => {
       const infoHeader = new DataView(infoHeaders[index]);
