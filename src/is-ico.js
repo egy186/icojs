@@ -2,9 +2,9 @@
 
 /**
  * Check the ArrayBuffer is valid ICO.
- * @access private
- * @param {ArrayBuffer} arrayBuffer ArrayBuffer object
- * @returns {Boolean} arg is ICO or not
+ * @memberof ICO
+ * @param {ArrayBuffer} arrayBuffer The ArrayBuffer object contain the TypedArray of a ICO file.
+ * @returns {Boolean} True if arg is ICO.
  */
 const isICO = arrayBuffer => {
   if (!(arrayBuffer instanceof ArrayBuffer)) {

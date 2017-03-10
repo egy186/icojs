@@ -58,15 +58,4 @@ describe('ICO', () => {
       });
     });
   });
-  describe('.noConflict', () => {
-    it('is expected to be a function', () => {
-      expect(ICO.noConflict).to.be.a('function');
-    });
-    it('is expected to return ico', () => {
-      expect(ICO.noConflict).to.be.a('function');
-      const newIco = ICO.noConflict();
-      expect(newIco.parse).to.be.a('function');
-      expect(newIco.isICO).to.be.a('function');
-    });
-  });
 });

@@ -1,8 +1,14 @@
 'use strict';
 
-const Image = require('./image');
-const ico = require('./ico');
+const isICO = require('./is-ico');
+const parse = require('./parse');
 
-const ICO = ico({ Image });
+/**
+ * @class ICO
+ */
+const ICO = {
+  isICO,
+  parse
+};
 
 module.exports = ICO;
