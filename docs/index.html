@@ -53,14 +53,40 @@ ICO.parse(arrayBuffer, 'image/png').then(images =&gt; {
 <ul>
 <li><a href="#ICO">ICO</a>
 <ul>
-<li><a href="#ICO.parse">.parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></li>
-<li><a href="#ICO.isICO">.isICO(buffer)</a> ⇒ <code>Boolean</code></li>
 <li><a href="#ICO.noConflict">.noConflict()</a> ⇒ <code><a href="#ICO">ICO</a></code></li>
+<li><a href="#ICO.isICO">.isICO(arrayBuffer)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#ICO.parse">.parse(arrayBuffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></li>
 </ul>
 </li>
 </ul>
+<p><a name="ICO.noConflict"></a></p>
+<h3>ICO.noConflict() ⇒ <code><a href="#ICO">ICO</a></code></h3>
+<p>No conflict.</p>
+<p><strong>Kind</strong>: static method of <code><a href="#ICO">ICO</a></code><br>
+<strong>Returns</strong>: <code><a href="#ICO">ICO</a></code> - <code>ICO</code> Object.<br>
+<a name="ICO.isICO"></a></p>
+<h3>ICO.isICO(arrayBuffer) ⇒ <code>Boolean</code></h3>
+<p>Check the ArrayBuffer is valid ICO.</p>
+<p><strong>Kind</strong>: static method of <code><a href="#ICO">ICO</a></code><br>
+<strong>Returns</strong>: <code>Boolean</code> - True if arg is ICO.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arrayBuffer</td>
+<td><code>ArrayBuffer</code></td>
+<td>The ArrayBuffer object contain the TypedArray of a ICO file.</td>
+</tr>
+</tbody>
+</table>
 <p><a name="ICO.parse"></a></p>
-<h3>ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></h3>
+<h3>ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></h3>
 <p>Parse ICO and return some images.</p>
 <p><strong>Kind</strong>: static method of <code><a href="#ICO">ICO</a></code><br>
 <strong>Returns</strong>: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.</p>
@@ -81,7 +107,7 @@ ICO.parse(arrayBuffer, 'image/png').then(images =&gt; {
 </thead>
 <tbody>
 <tr>
-<td>buffer</td>
+<td>arrayBuffer</td>
 <td><code>ArrayBuffer</code></td>
 <td></td>
 <td>The ArrayBuffer object contain the TypedArray of a ICO file.</td>
@@ -94,30 +120,4 @@ ICO.parse(arrayBuffer, 'image/png').then(images =&gt; {
 </tr>
 </tbody>
 </table>
-<p><a name="ICO.isICO"></a></p>
-<h3>ICO.isICO(buffer) ⇒ <code>Boolean</code></h3>
-<p>Check the ArrayBuffer is valid ICO.</p>
-<p><strong>Kind</strong>: static method of <code><a href="#ICO">ICO</a></code><br>
-<strong>Returns</strong>: <code>Boolean</code> - True if arg is ICO.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>buffer</td>
-<td><code>ArrayBuffer</code></td>
-<td>The ArrayBuffer object contain the TypedArray of a ICO file.</td>
-</tr>
-</tbody>
-</table>
-<p><a name="ICO.noConflict"></a></p>
-<h3>ICO.noConflict() ⇒ <code><a href="#ICO">ICO</a></code></h3>
-<p>No conflict.</p>
-<p><strong>Kind</strong>: static method of <code><a href="#ICO">ICO</a></code><br>
-<strong>Returns</strong>: <code><a href="#ICO">ICO</a></code> - <code>ICO</code> Object.</p>
 </section></main><footer class="col-md-12 text-center"><p>Source code on GitHub: <a class="lead" href="https://github.com/egy186/icojs">egy186/icojs</a></p></footer></div></body></html>

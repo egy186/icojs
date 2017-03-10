@@ -84,13 +84,32 @@ ICO.parse(arrayBuffer, 'image/png').then(images => {
 <a name="ICO"></a>
 
 * [ICO](#ICO)
-    * [.parse(buffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
-    * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
     * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
+    * [.isICO(arrayBuffer)](#ICO.isICO) ⇒ <code>Boolean</code>
+    * [.parse(arrayBuffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+
+<a name="ICO.noConflict"></a>
+
+### ICO.noConflict() ⇒ <code>[ICO](#ICO)</code>
+No conflict.
+
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>[ICO](#ICO)</code> - `ICO` Object.  
+<a name="ICO.isICO"></a>
+
+### ICO.isICO(arrayBuffer) ⇒ <code>Boolean</code>
+Check the ArrayBuffer is valid ICO.
+
+**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Returns**: <code>Boolean</code> - True if arg is ICO.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| arrayBuffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
 
 <a name="ICO.parse"></a>
 
-### ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+### ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some images.
 
 **Kind**: static method of <code>[ICO](#ICO)</code>  
@@ -102,28 +121,9 @@ Parse ICO and return some images.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> |  | The ArrayBuffer object contain the TypedArray of a ICO file. |
+| arrayBuffer | <code>ArrayBuffer</code> |  | The ArrayBuffer object contain the TypedArray of a ICO file. |
 | [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
 
-<a name="ICO.isICO"></a>
-
-### ICO.isICO(buffer) ⇒ <code>Boolean</code>
-Check the ArrayBuffer is valid ICO.
-
-**Kind**: static method of <code>[ICO](#ICO)</code>  
-**Returns**: <code>Boolean</code> - True if arg is ICO.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
-
-<a name="ICO.noConflict"></a>
-
-### ICO.noConflict() ⇒ <code>[ICO](#ICO)</code>
-No conflict.
-
-**Kind**: static method of <code>[ICO](#ICO)</code>  
-**Returns**: <code>[ICO](#ICO)</code> - `ICO` Object.  
 
 ## License
 
