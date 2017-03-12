@@ -45,8 +45,8 @@ Chrome, Edge 12, Firefox and Safari 9 support these functions.
 const fs = require('fs');
 const ICO = require('icojs');
 
-const arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-ICO.parse(arrayBuffer, 'image/png').then(images => {
+const buffer = fs.readFileSync('favicon.ico');
+ICO.parse(buffer, 'image/png').then(images => {
   // save as png files
   images.forEach(image => {
     const file = `${image.width}x${image.height}-${image.bit}bit.png`;
@@ -85,8 +85,8 @@ ICO.parse(arrayBuffer, 'image/png').then(images => {
 
 * [ICO](#ICO)
     * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
-    * [.isICO(arrayBuffer)](#ICO.isICO) ⇒ <code>Boolean</code>
-    * [.parse(arrayBuffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+    * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
+    * [.parse(buffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 
 <a name="ICO.noConflict"></a>
 
@@ -97,7 +97,7 @@ No conflict.
 **Returns**: <code>[ICO](#ICO)</code> - `ICO` Object.  
 <a name="ICO.isICO"></a>
 
-### ICO.isICO(arrayBuffer) ⇒ <code>Boolean</code>
+### ICO.isICO(buffer) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
 **Kind**: static method of <code>[ICO](#ICO)</code>  
@@ -105,11 +105,11 @@ Check the ArrayBuffer is valid ICO.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| arrayBuffer | <code>ArrayBuffer</code> | The ArrayBuffer object contain the TypedArray of a ICO file. |
+| buffer | <code>ArrayBuffer</code> &#124; <code>Buffer</code> | ICO file data. |
 
 <a name="ICO.parse"></a>
 
-### ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+### ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some images.
 
 **Kind**: static method of <code>[ICO](#ICO)</code>  
@@ -121,7 +121,7 @@ Parse ICO and return some images.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| arrayBuffer | <code>ArrayBuffer</code> |  | The ArrayBuffer object contain the TypedArray of a ICO file. |
+| buffer | <code>ArrayBuffer</code> &#124; <code>Buffer</code> |  | ICO file data. |
 | [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
 
 

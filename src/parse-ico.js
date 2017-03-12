@@ -1,5 +1,6 @@
 'use strict';
 
+const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
 const isCUR = require('./is-cur');
 const isICO = require('./is-ico');
 const isPNG = require('./is-png');
@@ -9,7 +10,7 @@ const range = require('./utils/range');
 /**
  * Parse ICO and return some image object.
  * @access private
- * @param {ArrayBuffer} arrayBuffer The ArrayBuffer object contain the TypedArray of a ICO file.
+ * @param {ArrayBuffer|Buffer} buffer ICO file data.
  * @param {String} mime MIME type for output.
  * @param {Object} Image Image encoder/decoder
  * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
@@ -18,7 +19,11 @@ const range = require('./utils/range');
  *   * `bit` **Number** - Image bit depth.
  *   * `buffer` **ArrayBuffer** - Image buffer.
  */
-const parseICO = (arrayBuffer, mime, Image) => {
+const parseICO = (buffer, mime, Image) => {
+  const arrayBuffer = bufferToArrayBuffer(buffer);
+  if (!arrayBuffer) {
+    return Promise.reject(new TypeError('"buffer" argument must be a Buffer or ArrayBuffer'));
+  }
   if (!isCUR(arrayBuffer) && !isICO(arrayBuffer)) {
     return Promise.reject(new Error('buffer is not ico'));
   }
