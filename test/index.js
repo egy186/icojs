@@ -37,6 +37,10 @@ describe('ICO', () => {
     it('is expected to be a function', () => {
       expect(ICO.parse).to.be.a('function');
     });
+    it('is expected to be rejected when arg is not buffer', () => {
+      const promise = ICO.parse([]);
+      return expect(promise).to.be.rejectedWith(TypeError);
+    });
     it('is expected to be rejected when arg is not ico', () => {
       const promise = ICO.parse(new ArrayBuffer(4));
       return expect(promise).to.be.rejectedWith('buffer is not ico');

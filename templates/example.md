@@ -6,8 +6,8 @@
 const fs = require('fs');
 const ICO = require('icojs');
 
-const arrayBuffer = new Uint8Array(fs.readFileSync('favicon.ico')).buffer;
-ICO.parse(arrayBuffer, 'image/png').then(images => {
+const buffer = fs.readFileSync('favicon.ico');
+ICO.parse(buffer, 'image/png').then(images => {
   // save as png files
   images.forEach(image => {
     const file = `${image.width}x${image.height}-${image.bit}bit.png`;
