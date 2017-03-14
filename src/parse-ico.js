@@ -1,6 +1,7 @@
 'use strict';
 
 const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
+const bitDepthOfPNG = require('./bit-depth-of-png');
 const isCUR = require('./is-cur');
 const isICO = require('./is-ico');
 const isPNG = require('./is-png');
@@ -36,38 +37,42 @@ const parseICO = (buffer, mime, Image) => {
       const offset = 6 + (index * length);
       return arrayBuffer.slice(offset, offset + length);
     });
-  const bitmaps = range(count)
+  const iconImages = range(count)
     .map(index => {
       const infoHeader = new DataView(infoHeaders[index]);
       const length = infoHeader.getUint32(8, true);
       const offset = infoHeader.getUint32(12, true);
       return arrayBuffer.slice(offset, offset + length);
     });
-  const png = bitmaps.find(bitmap => isPNG(bitmap));
-  if (png) {
-    return Promise.reject(new Error('PNG-compressed icon is not supported'));
-  }
+  const parseIconImage = (width, height, iconImage) => {
+    if (isPNG(iconImage)) {
+      const bit = bitDepthOfPNG(iconImage);
+      return Image.decode(iconImage).then(imageData => Object.assign(imageData, { bit }));
+    }
+    return Promise.resolve(parseBMP(width, height, iconImage));
+  };
   const icos = range(count)
     .map(index => {
       const infoHeader = new DataView(infoHeaders[index]);
       const width = infoHeader.getUint8(0) || 256;
       const height = infoHeader.getUint8(1) || 256;
-      const ico = parseBMP(width, height, bitmaps[index]);
-      if (isCUR(arrayBuffer)) {
-        ico.hotspot = {
-          x: infoHeader.getUint16(4, true),
-          y: infoHeader.getUint16(6, true)
-        };
-      }
-      return ico;
+      return parseIconImage(width, height, iconImages[index])
+        .then(imageData => {
+          if (isCUR(arrayBuffer)) {
+            imageData.hotspot = {
+              x: infoHeader.getUint16(4, true),
+              y: infoHeader.getUint16(6, true)
+            };
+          }
+          return Image.encode(imageData, mime)
+            .then(imageBuffer => {
+              const image = Object.assign({ buffer: imageBuffer }, imageData);
+              delete image.data;
+              return image;
+            });
+        });
     });
-  return Promise.all(icos.map(ico => Image.encode(ico, mime)
-    .then(imageBuffer => {
-      const image = Object.assign({ buffer: imageBuffer }, ico);
-      delete image.data;
-      return image;
-    }))
-  );
+  return Promise.all(icos);
 };
 
 module.exports = parseICO;
