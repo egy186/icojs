@@ -11,6 +11,34 @@ const dataURLToArrayBuffer = dataURL => {
 
 const Image = {
   /**
+   * Create imageData from image
+   * @access private
+   * @param {ArrayBuffer} arrayBuffer image buffer
+   * @returns {ImageData} imageData
+   */
+  decode (arrayBuffer) {
+    return new Promise(resolve => {
+      const url = URL.createObjectURL(new Blob([arrayBuffer]));
+      const img = document.createElement('img');
+      img.src = url;
+      img.onload = () => {
+        const width = img.naturalWidth;
+        const height = img.naturalHeight;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const imageData = ctx.getImageData(0, 0, width, height);
+        resolve({
+          width: imageData.width,
+          height: imageData.height,
+          data: imageData.data
+        });
+      };
+    });
+  },
+  /**
    * Create image from imgData.data
    * @access private
    * @param {Object} image data

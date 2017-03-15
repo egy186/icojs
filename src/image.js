@@ -6,6 +6,19 @@ const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
 
 const Image = {
   /**
+   * Create imageData from image
+   * @access private
+   * @param {ArrayBuffer} arrayBuffer image buffer
+   * @returns {ImageData} imageData
+   */
+  decode (arrayBuffer) {
+    return Jimp.read(Buffer.from(arrayBuffer)).then(image => ({
+      width: image.bitmap.width,
+      height: image.bitmap.height,
+      data: new Uint8ClampedArray(image.bitmap.data)
+    }));
+  },
+  /**
    * Create image from imgData.data
    * @access private
    * @param {Object} image data
