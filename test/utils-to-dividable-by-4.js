@@ -1,15 +1,11 @@
 'use strict';
 
 const chai = require('chai');
+const toDividableBy4 = require('../src/utils/to-dividable-by-4');
 
 const expect = chai.expect;
 
-const toDividableBy4 = require('../src/utils/to-dividable-by-4');
-
-describe('toDividableBy4', () => {
-  it('is expected to be a function', () => {
-    expect(toDividableBy4).to.be.a('function');
-  });
+describe('utils/toDividableBy4', () => {
   it('is expected to return a number dividable by 4', () => {
     expect(toDividableBy4(0)).to.deep.equal(0);
     expect(toDividableBy4(1)).to.deep.equal(4);

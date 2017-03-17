@@ -1,16 +1,12 @@
 'use strict';
 
+const bitArray = require('../src/utils/bit-array');
 const chai = require('chai');
 
 const expect = chai.expect;
 
-const bitArray = require('../src/utils/bit-array');
-
-describe('bitArray', () => {
+describe('utils/bitArray', () => {
   describe('.of1', () => {
-    it('is expected be a function', () => {
-      expect(bitArray.of1).to.be.a('function');
-    });
     it('is expected to return 1 bit array', () => {
       expect(bitArray.of1(new Uint8Array([0]).buffer)).to.deep.equal([0, 0, 0, 0, 0, 0, 0, 0]);
       expect(bitArray.of1(new Uint8Array([1]).buffer)).to.deep.equal([0, 0, 0, 0, 0, 0, 0, 1]);
@@ -23,9 +19,6 @@ describe('bitArray', () => {
     });
   });
   describe('.of4', () => {
-    it('is expected be a function', () => {
-      expect(bitArray.of4).to.be.a('function');
-    });
     it('is expected to return 4 bit array', () => {
       expect(bitArray.of4(new Uint8Array([0]).buffer)).to.deep.equal([0, 0]);
       expect(bitArray.of4(new Uint8Array([1]).buffer)).to.deep.equal([0, 1]);
@@ -39,11 +32,7 @@ describe('bitArray', () => {
     });
   });
   describe('.of8', () => {
-    it('is expected be a function', () => {
-      expect(bitArray.of8).to.be.a('function');
-    });
     it('is expected to return 8 bit array', () => {
-      expect(bitArray.of8(new Uint8Array([0]).buffer)).to.be.a('array').with.length(1);
       expect(bitArray.of8(new Uint8Array([0]).buffer)).to.deep.equal([0]);
       expect(bitArray.of8(new Uint8Array([1]).buffer)).to.deep.equal([1]);
       expect(bitArray.of8(new Uint8Array([2]).buffer)).to.deep.equal([2]);
