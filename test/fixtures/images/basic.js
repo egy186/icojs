@@ -1,5 +1,7 @@
 'use strict';
 
+const bufferFrom = require('../buffer-from');
+
 const split = colors => colors.split('|').map(color => color.split(',').map(s => parseInt(s, 10)));
 
 const basic = [
@@ -69,7 +71,7 @@ const basic = [
 ];
 
 module.exports = basic.map(bmpObject => Object.assign(bmpObject, {
-  and: Buffer.from(bmpObject.and, 'base64'),
+  and: bufferFrom(bmpObject.and, 'base64'),
   colors: Array.isArray(bmpObject.colors) ? bmpObject.colors : split(bmpObject.colors),
-  xor: Buffer.from(bmpObject.xor, 'base64')
+  xor: bufferFrom(bmpObject.xor, 'base64')
 }));
