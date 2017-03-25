@@ -12,7 +12,8 @@ const Image = {
    * @returns {ImageData} imageData
    */
   decode (arrayBuffer) {
-    return Jimp.read(Buffer.from(arrayBuffer)).then(image => ({
+    const buffer = Buffer.from !== Uint8Array.from ? Buffer.from(arrayBuffer) : new Buffer(arrayBuffer);
+    return Jimp.read(buffer).then(image => ({
       width: image.bitmap.width,
       height: image.bitmap.height,
       data: new Uint8ClampedArray(image.bitmap.data)

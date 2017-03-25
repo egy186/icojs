@@ -8,7 +8,8 @@ const expect = chai.expect;
 describe('utils/bufferToArrayBuffer', () => {
   it('is expected to create ArrayBuffer from Buffer', () => {
     const length = 100;
-    const ab = bufferToArrayBuffer(Buffer.alloc(length));
+    const buf = Buffer.alloc ? Buffer.alloc(length) : new Buffer(length);
+    const ab = bufferToArrayBuffer(buf);
     expect(ab instanceof ArrayBuffer).to.be.true;
     expect(ab.byteLength).to.deep.equal(length);
   });
