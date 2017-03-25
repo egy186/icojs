@@ -56,6 +56,13 @@ const getImageData32bit = bitmap => {
   const data = new Uint8ClampedArray(width * height * 4);
 
   const xor = new Uint8Array(bitmap.xor);
+  const hasAlpha = !bitArray.of8(xor)
+    .every((n, index) => {
+      if ((index + 1) % 4 === 0) {
+        return n === 0; // A
+      }
+      return true; // RGB
+    });
   const and = bitArray.of1(bitmap.and);
   const bytepp = bitmap.bit / 8;
   const xorLine = toDividableBy4(width * bytepp);
@@ -68,7 +75,7 @@ const getImageData32bit = bitmap => {
         xor[index + 2],
         xor[index + 1],
         xor[index],
-        and[(h * andLine) + w] === 1 || xor[index + 3] === 1 ? 0 : xor[index + 3] > 1 ? xor[index + 3] : 255 // eslint-disable-line no-nested-ternary
+        hasAlpha ? xor[index + 3] : and[(h * andLine) + w] ? 0 : 255 // eslint-disable-line no-nested-ternary
       ], dataOffset(w, h));
     }
   }
