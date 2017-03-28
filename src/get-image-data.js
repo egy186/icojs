@@ -19,12 +19,13 @@ const getImageData24bit = bitmap => {
 
   const xor = new Uint8Array(bitmap.xor);
   const and = bitArray.of1(bitmap.and);
-  const xorLine = toDividableBy4(width * bitmap.bit / 8) * 8 / bitmap.bit;
+  const bytepp = bitmap.bit / 8;
+  const xorLine = toDividableBy4(width * bytepp);
   const andLine = toDividableBy4(width / 8) * 8;
   const dataOffset = (w, h) => (((height - h - 1) * width) + w) * 4;
   for (let h = 0; h < height; h++) {
     for (let w = 0; w < width; w++) {
-      const index = ((h * xorLine) + w) * 3;
+      const index = (h * xorLine) + (w * bytepp);
       data.set([
         xor[index + 2],
         xor[index + 1],
@@ -55,18 +56,26 @@ const getImageData32bit = bitmap => {
   const data = new Uint8ClampedArray(width * height * 4);
 
   const xor = new Uint8Array(bitmap.xor);
+  const hasAlpha = !bitArray.of8(xor)
+    .every((n, index) => {
+      if ((index + 1) % 4 === 0) {
+        return n === 0; // A
+      }
+      return true; // RGB
+    });
   const and = bitArray.of1(bitmap.and);
-  const xorLine = toDividableBy4(width * bitmap.bit / 8) * 8 / bitmap.bit;
+  const bytepp = bitmap.bit / 8;
+  const xorLine = toDividableBy4(width * bytepp);
   const andLine = toDividableBy4(width / 8) * 8;
   const dataOffset = (w, h) => (((height - h - 1) * width) + w) * 4;
   for (let h = 0; h < height; h++) {
     for (let w = 0; w < width; w++) {
-      const index = ((h * xorLine) + w) * 4;
+      const index = (h * xorLine) + (w * bytepp);
       data.set([
         xor[index + 2],
         xor[index + 1],
         xor[index],
-        and[(h * andLine) + w] === 1 || xor[index + 3] === 1 ? 0 : xor[index + 3] > 1 ? xor[index + 3] : 255 // eslint-disable-line no-nested-ternary
+        hasAlpha ? xor[index + 3] : and[(h * andLine) + w] ? 0 : 255 // eslint-disable-line no-nested-ternary
       ], dataOffset(w, h));
     }
   }
