@@ -1,61 +1,72 @@
-var showResult = function (status, message) {
-  jQuery('<div class="alert alert-' + status + ' alert-dismissable fade in">')
-    .html('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + message)
-    .prependTo(jQuery('#demos-parse-results'));
-};
+$(function () {
+  // Mime type of output files
+  var mime = 'image/png';
 
-var icoParse = function (file) {
-  var reader = new FileReader();
-  reader.onload = function (e) {
-    var mime = 'image/png';
-    // Convert *.ico to *.png(s)
-    ICO.parse(e.target.result, mime).then(function (images) {
-      console.dir(images); // Debug
-      var text = '<p><strong>Success:</strong></p>';
-      for (var i = 0; i < images.length; i++) {
-        var url = URL.createObjectURL(new Blob([images[i].buffer], { type: mime }));
-        text += '<p><a href="' + url + '" target="_blank"><img src="' + url + '" /> ' + images[i].width + 'x' + images[i].height + ', ' + images[i].bit + 'bit</a></p>';
-      }
-      showResult('success', text);
-    }).catch(function (err) {
-      showResult('danger', '<p><strong>Error:</strong> ' + err.message + '</p>');
-    });
+  // Handler
+  var parseComplete = function (err, images) {
+    var alert = $('<div class="alert alert-dismissable fade in">');
+    alert.append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>');
+    if (err) {
+      alert.addClass('alert-danger');
+      alert.append('<p><strong>Error:</strong> ' + err.message + '</p>');
+    } else {
+      alert.addClass('alert-success');
+      alert.append('<p><strong>Success:</strong></p>');
+      images.forEach(function (image) {
+        var text = image.width + 'x' + image.height + ', ' + image.bit + 'bit';
+        var url = URL.createObjectURL(new Blob([image.buffer], { type: mime }));
+        alert.append('<p><a href="' + url + '" target="_blank"><img src="' + url + '" /> ' + text + '</a></p>');
+      });
+    }
+    alert.prependTo('#demos-parse-results');
   };
-  reader.readAsArrayBuffer(file);
-};
 
-jQuery(document).ready(function () {
-  // From drag and drop
-  jQuery(document).on('dragenter', function (evt) {
+  var icoParse = function (file) {
+    // Use FileReader for converting File object to ArrayBuffer object
+    var reader = new FileReader();
+    reader.onload = function (evt) {
+      // Convert *.ico to *.png(s)
+      ICO.parse(evt.target.result, mime).then(function (images) {
+        console.dir(images); // Debug
+        parseComplete(null, images);
+      }).catch(function (err) {
+        parseComplete(err);
+      });
+    };
+    reader.readAsArrayBuffer(file);
+  };
+
+  // Input from drag and drop
+  $(document).on('dragenter', function (evt) {
     evt.stopPropagation();
     evt.preventDefault();
   });
-  jQuery(document).on('dragover', function (evt) {
+  $(document).on('dragover', function (evt) {
     evt.stopPropagation();
     evt.preventDefault();
   });
-  jQuery(document).on('drop', function (evt) {
+  $(document).on('drop', function (evt) {
     evt.stopPropagation();
     evt.preventDefault();
     icoParse(evt.originalEvent.dataTransfer.files[0]);
   });
-  // From file
-  var inputFile = jQuery('#input-file');
-  var inputFilePath = jQuery('#input-file-path');
+  // Input from file
+  var inputFile = $('#input-file');
+  var inputFilePath = $('#input-file-path');
   var inputEvt = function (evt) {
     evt.preventDefault();
     inputFile.click();
   };
   inputFilePath.on('click', inputEvt);
-  jQuery('#input-file-emu').on('click', inputEvt);
+  $('#input-file-emu').on('click', inputEvt);
   inputFile.on('change', function (evt) {
-    inputFilePath.text(evt.target.value.replace('C:\\fakepath\\', ''));
+    inputFilePath.text(evt.target.files[0].name);
     icoParse(evt.target.files[0]);
   });
 
   // Highlightjs
   hljs.initHighlighting();
   // Add class
-  jQuery('h2').addClass('page-header');
-  jQuery('table').addClass('table table-striped table-hover');
+  $('h2').addClass('page-header');
+  $('table').addClass('table table-striped table-hover');
 });

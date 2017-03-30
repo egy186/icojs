@@ -4,9 +4,9 @@
     "es6": false
   },
   "globals": {
+    "$": true,
     "ICO": true,
-    "hljs": true,
-    "jQuery": true
+    "hljs": true
   },
   "rules": {
     "func-names": "off",
