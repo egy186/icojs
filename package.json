@@ -53,7 +53,7 @@
     "build:docs": "pug templates/index.pug --obj package.json --out docs",
     "build:readme": "cd templates && catw head.md install.md example.md demo.md documentation.md foot.md > ../README.md",
     "clean": "rimraf coverage dist docs/index.html templates/documentation.md README.md",
-    "jsdoc": "jsdoc2md src/**/*.js --template templates/documentation.hbs > templates/documentation.md",
+    "jsdoc": "jsdoc2md --files src/**/*.js --template templates/documentation.hbs > templates/documentation.md",
     "lint": "eslint .",
     "test": "istanbul cover --root src --report lcov --dir coverage node_modules/mocha/bin/_mocha -- test/*.js"
   }
