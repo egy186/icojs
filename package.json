@@ -16,7 +16,7 @@
     "babel-preset-es2015": "^6.9.0",
     "catw": "^1.0.1",
     "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
+    "chai-as-promised": "^7.0.0",
     "eslint": "~3.19.0",
     "istanbul": "^0.4.4",
     "jsdoc-to-markdown": "^3.0.0",
