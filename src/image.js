@@ -12,6 +12,7 @@ const Image = {
    * @returns {ImageData} imageData
    */
   decode (arrayBuffer) {
+    // eslint-disable-next-line no-buffer-constructor, node/no-deprecated-api
     const buffer = Buffer.from !== Uint8Array.from ? Buffer.from(arrayBuffer) : new Buffer(arrayBuffer);
     return Jimp.read(buffer).then(image => ({
       width: image.bitmap.width,

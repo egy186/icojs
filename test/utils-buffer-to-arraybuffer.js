@@ -8,6 +8,7 @@ const expect = chai.expect;
 describe('utils/bufferToArrayBuffer', () => {
   it('is expected to create ArrayBuffer from Buffer', () => {
     const length = 100;
+    // eslint-disable-next-line no-buffer-constructor, node/no-deprecated-api
     const buf = Buffer.alloc ? Buffer.alloc(length) : new Buffer(length);
     const ab = bufferToArrayBuffer(buf);
     expect(ab instanceof ArrayBuffer).to.be.true;
