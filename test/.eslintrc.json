@@ -3,6 +3,7 @@
     "mocha": true
   },
   "rules": {
-    "no-unused-expressions": 0
+    "array-element-newline": "off",
+    "no-unused-expressions": "off"
   }
 }
