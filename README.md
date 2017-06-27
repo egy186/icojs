@@ -83,23 +83,23 @@ ICO.parse(buffer, 'image/png').then(images => {
 <a name="ICO"></a>
 
 * [ICO](#ICO)
-    * [.noConflict()](#ICO.noConflict) ⇒ <code>[ICO](#ICO)</code>
+    * [.noConflict()](#ICO.noConflict) ⇒ [<code>ICO</code>](#ICO)
     * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
     * [.parse(buffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 
 <a name="ICO.noConflict"></a>
 
-### ICO.noConflict() ⇒ <code>[ICO](#ICO)</code>
+### ICO.noConflict() ⇒ [<code>ICO</code>](#ICO)
 No conflict.
 
-**Kind**: static method of <code>[ICO](#ICO)</code>  
-**Returns**: <code>[ICO](#ICO)</code> - `ICO` Object.  
+**Kind**: static method of [<code>ICO</code>](#ICO)  
+**Returns**: [<code>ICO</code>](#ICO) - `ICO` Object.  
 <a name="ICO.isICO"></a>
 
 ### ICO.isICO(buffer) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
-**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Kind**: static method of [<code>ICO</code>](#ICO)  
 **Returns**: <code>Boolean</code> - True if arg is ICO.  
 
 | Param | Type | Description |
@@ -111,7 +111,7 @@ Check the ArrayBuffer is valid ICO.
 ### ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
 Parse ICO and return some images.
 
-**Kind**: static method of <code>[ICO](#ICO)</code>  
+**Kind**: static method of [<code>ICO</code>](#ICO)  
 **Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.
   * `width` **Number** - Image width.
   * `height` **Number** - Image height.
