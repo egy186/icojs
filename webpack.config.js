@@ -28,6 +28,7 @@ module.exports = {
   plugins: [
     new webpack.BannerPlugin(`icojs v${pkg.version}\n(c) egy186\nhttps://github.com/egy186/icojs/blob/master/LICENSE`),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
   ]
 };
