@@ -8,4 +8,3 @@
 
 A JavaScript library to use ICO.
 Work on both Node.js and Browser.
-

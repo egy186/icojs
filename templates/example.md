@@ -35,4 +35,3 @@ ICO.parse(buffer, 'image/png').then(images => {
   }, false);
 </script>
 ```
-
