@@ -4,6 +4,7 @@
     "@egy186/eslint-config/node"
   ],
   "rules": {
+    "prefer-destructuring": "off",
     "sort-keys": "off"
   }
 }
