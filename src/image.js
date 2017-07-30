@@ -1,5 +1,6 @@
 'use strict';
 
+const Buffer = require('safe-buffer').Buffer;
 const Jimp = require('jimp');
 
 const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
@@ -12,8 +13,7 @@ const Image = {
    * @returns {ImageData} imageData
    */
   decode (arrayBuffer) {
-    // eslint-disable-next-line no-buffer-constructor, node/no-deprecated-api
-    const buffer = Buffer.from !== Uint8Array.from ? Buffer.from(arrayBuffer) : new Buffer(arrayBuffer);
+    const buffer = Buffer.from(arrayBuffer);
     return Jimp.read(buffer).then(image => ({
       width: image.bitmap.width,
       height: image.bitmap.height,
