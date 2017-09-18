@@ -19,11 +19,11 @@
     "chai-as-promised": "^7.0.0",
     "concat": "^1.0.3",
     "eslint": "~4.7.0",
-    "istanbul": "^0.4.4",
     "jsdoc-to-markdown": "^3.0.0",
     "jstransformer-markdown-it": "^2.0.0",
     "mocha": "^3.1.2",
     "npm-run-all": "^4.0.1",
+    "nyc": "^11.1.0",
     "pug-cli": "^1.0.0-alpha6",
     "rimraf": "^2.5.2",
     "webpack": "^3.0.0"
@@ -56,6 +56,6 @@
     "clean": "rimraf coverage dist docs/index.html templates/documentation.md README.md",
     "jsdoc": "jsdoc2md --files \"src/**/*.js\" --template templates/documentation.hbs > templates/documentation.md",
     "lint": "eslint .",
-    "test": "istanbul cover --root src --report lcov --dir coverage node_modules/mocha/bin/_mocha -- test/*.js"
+    "test": "nyc --reporter lcov --reporter text-summary --report-dir coverage mocha test/*.js"
   }
 }
