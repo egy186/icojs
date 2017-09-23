@@ -1,6 +1,6 @@
 'use strict';
 
-const Image = require('../src/image');
+const Image = require('../src/node/image');
 const basic = require('./fixtures/images/basic');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');

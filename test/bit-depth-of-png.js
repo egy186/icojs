@@ -1,7 +1,7 @@
 'use strict';
 
 const bitDepthOfPNG = require('../src/bit-depth-of-png');
-const bufferToArrayBuffer = require('../src/utils/buffer-to-arraybuffer');
+const bufferToArrayBuffer = require('../src/node/buffer-to-arraybuffer');
 const chai = require('chai');
 const fs = require('fs');
 const path = require('path');

@@ -1,10 +1,13 @@
 'use strict';
 
 
-const isICO = require('./is-ico');
-const parse = require('./parse');
+const Image = require('./image');
+const isICO = require('../is-ico');
+const parseICO = require('../parse-ico');
 
 const globalICO = global.ICO;
+
+const parse = (arrayBuffer, mime) => parseICO(arrayBuffer, mime, Image);
 
 const ICO = {
   isICO,
