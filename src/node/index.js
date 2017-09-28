@@ -7,7 +7,7 @@ const parseICO = require('../parse-ico');
 
 /**
  * Check the ArrayBuffer is valid ICO.
- * @memberof ICO
+ * @alias module:ICO
  * @param {ArrayBuffer|Buffer} buffer ICO file data.
  * @returns {Boolean} True if arg is ICO.
  */
@@ -21,14 +21,10 @@ const isICO = buffer => {
 
 /**
  * Parse ICO and return some images.
- * @memberof ICO
+ * @alias module:ICO
  * @param {ArrayBuffer|Buffer} buffer ICO file data.
  * @param {String} [mime=image/png] MIME type for output.
- * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
- *   * `width` **Number** - Image width.
- *   * `height` **Number** - Image height.
- *   * `bit` **Number** - Image bit depth.
- *   * `buffer` **ArrayBuffer** - Image buffer.
+ * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
 const parse = (buffer, mime) => {
   const arrayBuffer = bufferToArrayBuffer(buffer);
@@ -39,7 +35,7 @@ const parse = (buffer, mime) => {
 };
 
 /**
- * @class ICO
+ * @module ICO
  */
 const ICO = {
   isICO,

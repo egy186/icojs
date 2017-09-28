@@ -52,9 +52,9 @@
     "build": "npm-run-all jsdoc --parallel build:*",
     "build:dist": "webpack --config webpack.config.js",
     "build:docs": "pug templates/index.pug --obj package.json --out docs",
-    "build:readme": "cd templates && concat --output ../README.md head.md install.md example.md demo.md documentation.md foot.md",
-    "clean": "rimraf coverage dist docs/index.html templates/documentation.md README.md",
-    "jsdoc": "jsdoc2md --files \"src/**/*.js\" --template templates/documentation.hbs > templates/documentation.md",
+    "build:readme": "cd templates && concat --output ../README.md head.md install.md example.md demo.md api.md foot.md",
+    "clean": "rimraf coverage dist docs/index.html templates/api.md README.md",
+    "jsdoc": "jsdoc2md --files \"src/**/*.js\" --heading-depth 3 --template templates/api.hbs > templates/api.md",
     "lint": "eslint .",
     "test": "nyc --reporter lcov --reporter text-summary --report-dir coverage mocha test/*.js"
   }

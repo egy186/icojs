@@ -2,7 +2,7 @@
 
 /**
  * Check the ArrayBuffer is valid ICO.
- * @access private
+ * @memberof ICO
  * @param {ArrayBuffer} arrayBuffer ICO file data.
  * @returns {Boolean} True if arg is ICO.
  */

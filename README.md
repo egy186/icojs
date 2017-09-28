@@ -7,7 +7,7 @@
 [![codebeat badge](https://codebeat.co/badges/85bd457f-39b6-43d8-bf8e-c80ace07a8d7)](https://codebeat.co/projects/github-com-egy186-icojs)
 
 A JavaScript library to use ICO.
-Work on both Node.js and Browser.
+Work on both Node.js and the browser.
 
 ## Install
 
@@ -78,25 +78,77 @@ ICO.parse(buffer, 'image/png').then(images => {
 
 [https://egy186.github.io/icojs/#demo](https://egy186.github.io/icojs/#demo)
 
-## Documentation
+## API (Node.js)
+
+<a name="module_ICO"></a>
+
+### ICO
+
+* [ICO](#module_ICO)
+    * [isICO(buffer)](#exp_module_ICO--isICO) ⇒ <code>Boolean</code> ⏏
+    * [parse(buffer, [mime])](#exp_module_ICO--parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
+
+<a name="exp_module_ICO--isICO"></a>
+
+#### isICO(buffer) ⇒ <code>Boolean</code> ⏏
+Check the ArrayBuffer is valid ICO.
+
+**Kind**: global method of [<code>ICO</code>](#module_ICO)  
+**Returns**: <code>Boolean</code> - True if arg is ICO.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
+
+<a name="exp_module_ICO--parse"></a>
+
+#### parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
+Parse ICO and return some images.
+
+**Kind**: global method of [<code>ICO</code>](#module_ICO)  
+**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
+| [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
+
+
+## API (browser)
 
 <a name="ICO"></a>
 
+### ICO
+**Kind**: global class  
+
 * [ICO](#ICO)
+    * [.parse(arrayBuffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code>
     * [.noConflict()](#ICO.noConflict) ⇒ [<code>ICO</code>](#ICO)
-    * [.isICO(buffer)](#ICO.isICO) ⇒ <code>Boolean</code>
-    * [.parse(buffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
+    * [.isICO(arrayBuffer)](#ICO.isICO) ⇒ <code>Boolean</code>
+
+<a name="ICO.parse"></a>
+
+#### ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code>
+Parse ICO and return some images.
+
+**Kind**: static method of [<code>ICO</code>](#ICO)  
+**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| arrayBuffer | <code>ArrayBuffer</code> |  | ICO file data. |
+| [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
 
 <a name="ICO.noConflict"></a>
 
-### ICO.noConflict() ⇒ [<code>ICO</code>](#ICO)
+#### ICO.noConflict() ⇒ [<code>ICO</code>](#ICO)
 No conflict.
 
 **Kind**: static method of [<code>ICO</code>](#ICO)  
 **Returns**: [<code>ICO</code>](#ICO) - `ICO` Object.  
 <a name="ICO.isICO"></a>
 
-### ICO.isICO(buffer) ⇒ <code>Boolean</code>
+#### ICO.isICO(arrayBuffer) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
 **Kind**: static method of [<code>ICO</code>](#ICO)  
@@ -104,24 +156,23 @@ Check the ArrayBuffer is valid ICO.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
+| arrayBuffer | <code>ArrayBuffer</code> | ICO file data. |
 
-<a name="ICO.parse"></a>
 
-### ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code>
-Parse ICO and return some images.
+## Typedefs
 
-**Kind**: static method of [<code>ICO</code>](#ICO)  
-**Returns**: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.
-  * `width` **Number** - Image width.
-  * `height` **Number** - Image height.
-  * `bit` **Number** - Image bit depth.
-  * `buffer` **ArrayBuffer** - Image buffer.  
+<a name="ParsedImage"></a>
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
-| [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
+### ParsedImage : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| width | <code>Number</code> | Image width. |
+| height | <code>Number</code> | Image height. |
+| bit | <code>Number</code> | Image bit depth. |
+| buffer | <code>ArrayBuffer</code> | Image buffer. |
 
 
 ## License
