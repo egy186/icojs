@@ -7,7 +7,7 @@
 [![codebeat badge](https://codebeat.co/badges/85bd457f-39b6-43d8-bf8e-c80ace07a8d7)](https://codebeat.co/projects/github-com-egy186-icojs)
 
 A JavaScript library to use ICO.
-Work on both Node.js and the browser.
+Works on both Node.js and the browser.
 
 ## Install
 
