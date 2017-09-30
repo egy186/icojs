@@ -1,11 +1,24 @@
 'use strict';
 
 
-const isICO = require('./is-ico');
-const parse = require('./parse');
+const Image = require('./image');
+const isICO = require('../is-ico');
+const parseICO = require('../parse-ico');
 
 const globalICO = global.ICO;
 
+/**
+ * Parse ICO and return some images.
+ * @memberof ICO
+ * @param {ArrayBuffer} arrayBuffer ICO file data.
+ * @param {String} [mime=image/png] MIME type for output.
+ * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
+ */
+const parse = (arrayBuffer, mime) => parseICO(arrayBuffer, mime, Image);
+
+/**
+ * @class ICO
+ */
 const ICO = {
   isICO,
   /**

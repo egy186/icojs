@@ -1,7 +1,7 @@
 'use strict';
 
-const Image = require('../src/image');
-const bufferToArrayBuffer = require('../src/utils/buffer-to-arraybuffer');
+const Image = require('../src/node/image');
+const bufferToArrayBuffer = require('../src/node/buffer-to-arraybuffer');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const fs = require('fs');

@@ -3,7 +3,7 @@
 const Buffer = require('safe-buffer').Buffer;
 const Jimp = require('jimp');
 
-const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
+const bufferToArrayBuffer = require('./buffer-to-arraybuffer');
 
 const Image = {
   /**

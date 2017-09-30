@@ -3,7 +3,7 @@ header h1 a { font-size: 72px; color: inherit; text-decoration: none; }
 header h1 a:hover { text-decoration: none; }
 nav { margin-top: 20px; }
 footer { border-top: 1px solid #eee; margin: 40px 0; }
-footer :first-child { margin-top: 20px; }</style></head><body class="container"><div class="row"><header class="col-md-12"><h1><a href="./">icojs</a> <small>v0.7.2</small></h1><p class="lead">A JavaScript library to use ICO.</p><p><small><a href="https://www.npmjs.com/package/icojs" title="npm"><img src="https://img.shields.io/npm/v/icojs.svg" alt="npm"></a> <a href="https://travis-ci.org/egy186/icojs" title="Build Status"><img src="https://travis-ci.org/egy186/icojs.svg?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/egy186/icojs" title="dependencies status"><img src="https://david-dm.org/egy186/icojs/status.svg" alt="dependencies status"></a></small></p></header><nav class="col-md-2"><h2 class="sr-only">Table of Contents</h2><ul class="nav nav-pills nav-stacked"><li><a href="#install">Install</a></li><li><a href="#example">Example</a></li><li><a href="#demo">Demo</a></li><li><a href="#documentation">Documentation</a></li></ul></nav><main class="col-md-10"><section id="install"><h2>Install</h2>
+footer :first-child { margin-top: 20px; }</style></head><body class="container"><div class="row"><header class="col-md-12"><h1><a href="./">icojs</a> <small>v0.7.2</small></h1><p class="lead">A JavaScript library to use ICO.</p><p><small><a href="https://www.npmjs.com/package/icojs" title="npm"><img src="https://img.shields.io/npm/v/icojs.svg" alt="npm"></a> <a href="https://travis-ci.org/egy186/icojs" title="Build Status"><img src="https://travis-ci.org/egy186/icojs.svg?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/egy186/icojs" title="dependencies status"><img src="https://david-dm.org/egy186/icojs/status.svg" alt="dependencies status"></a></small></p></header><nav class="col-md-2"><h2 class="sr-only">Table of Contents</h2><ul class="nav nav-pills nav-stacked"><li><a href="#install">Install</a></li><li><a href="#example">Example</a></li><li><a href="#demo">Demo</a></li><li><a href="#api">API</a></li></ul></nav><main class="col-md-10"><section id="install"><h2>Install</h2>
 <pre><code class="language-sh">npm install icojs
 </code></pre>
 <h3>Node.js:</h3>
@@ -48,26 +48,21 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
   }, false);
 &lt;/script&gt;
 </code></pre>
-</section><section id="demo"><h2>Demo</h2><p>Please input ico file.</p><form class="tab-content form-horizontal" action="#"><label for="input-file" style="display: none;">File:</label><input id="input-file" style="display: none;" type="file"><p class="input-group input-group-lg"><span class="input-group-btn"><button class="btn btn-primary" id="input-file-emu"><span class="glyphicon glyphicon-folder-open"></span> Browse...</button></span><span class="form-control" id="input-file-path"></span></p></form><section id="demos-parse-results"></section></section><section id="documentation"><h2>Documentation</h2>
-<p><a name="ICO"></a></p>
+</section><section id="demo"><h2>Demo</h2><p>Please input ico file.</p><form class="tab-content form-horizontal" action="#"><label for="input-file" style="display: none;">File:</label><input id="input-file" style="display: none;" type="file"><p class="input-group input-group-lg"><span class="input-group-btn"><button class="btn btn-primary" id="input-file-emu"><span class="glyphicon glyphicon-folder-open"></span> Browse...</button></span><span class="form-control" id="input-file-path"></span></p></form><section id="demos-parse-results"></section></section><section id="api"><h2>API (Node.js)</h2>
+<p><a name="module_ICO"></a></p>
+<h3>ICO</h3>
 <ul>
-<li><a href="#ICO">ICO</a>
+<li><a href="#module_ICO">ICO</a>
 <ul>
-<li><a href="#ICO.noConflict">.noConflict()</a> ⇒ <a href="#ICO"><code>ICO</code></a></li>
-<li><a href="#ICO.isICO">.isICO(buffer)</a> ⇒ <code>Boolean</code></li>
-<li><a href="#ICO.parse">.parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></li>
+<li><a href="#exp_module_ICO--isICO">isICO(buffer)</a> ⇒ <code>Boolean</code> ⏏</li>
+<li><a href="#exp_module_ICO--parse">parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</li>
 </ul>
 </li>
 </ul>
-<p><a name="ICO.noConflict"></a></p>
-<h3>ICO.noConflict() ⇒ <a href="#ICO"><code>ICO</code></a></h3>
-<p>No conflict.</p>
-<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
-<strong>Returns</strong>: <a href="#ICO"><code>ICO</code></a> - <code>ICO</code> Object.<br>
-<a name="ICO.isICO"></a></p>
-<h3>ICO.isICO(buffer) ⇒ <code>Boolean</code></h3>
+<p><a name="exp_module_ICO--isICO"></a></p>
+<h4>isICO(buffer) ⇒ <code>Boolean</code> ⏏</h4>
 <p>Check the ArrayBuffer is valid ICO.</p>
-<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
+<p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
 <strong>Returns</strong>: <code>Boolean</code> - True if arg is ICO.</p>
 <table>
 <thead>
@@ -85,17 +80,11 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 </tr>
 </tbody>
 </table>
-<p><a name="ICO.parse"></a></p>
-<h3>ICO.parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code></h3>
+<p><a name="exp_module_ICO--parse"></a></p>
+<h4>parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</h4>
 <p>Parse ICO and return some images.</p>
-<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
-<strong>Returns</strong>: <code>Promise.&lt;Array.&lt;Object&gt;&gt;</code> - Resolves to array of parsed ICO.</p>
-<ul>
-<li><code>width</code> <strong>Number</strong> - Image width.</li>
-<li><code>height</code> <strong>Number</strong> - Image height.</li>
-<li><code>bit</code> <strong>Number</strong> - Image bit depth.</li>
-<li><code>buffer</code> <strong>ArrayBuffer</strong> - Image buffer.</li>
-</ul>
+<p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
+<strong>Returns</strong>: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of <a href="#ParsedImage">ParsedImage</a>.</p>
 <table>
 <thead>
 <tr>
@@ -117,6 +106,110 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <td><code>String</code></td>
 <td><code>image/png</code></td>
 <td>MIME type for output.</td>
+</tr>
+</tbody>
+</table>
+<h2>API (browser)</h2>
+<p><a name="ICO"></a></p>
+<h3>ICO</h3>
+<p><strong>Kind</strong>: global class</p>
+<ul>
+<li><a href="#ICO">ICO</a>
+<ul>
+<li><a href="#ICO.parse">.parse(arrayBuffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code></li>
+<li><a href="#ICO.noConflict">.noConflict()</a> ⇒ <a href="#ICO"><code>ICO</code></a></li>
+<li><a href="#ICO.isICO">.isICO(arrayBuffer)</a> ⇒ <code>Boolean</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="ICO.parse"></a></p>
+<h4>ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code></h4>
+<p>Parse ICO and return some images.</p>
+<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
+<strong>Returns</strong>: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of <a href="#ParsedImage">ParsedImage</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arrayBuffer</td>
+<td><code>ArrayBuffer</code></td>
+<td></td>
+<td>ICO file data.</td>
+</tr>
+<tr>
+<td>[mime]</td>
+<td><code>String</code></td>
+<td><code>image/png</code></td>
+<td>MIME type for output.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="ICO.noConflict"></a></p>
+<h4>ICO.noConflict() ⇒ <a href="#ICO"><code>ICO</code></a></h4>
+<p>No conflict.</p>
+<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
+<strong>Returns</strong>: <a href="#ICO"><code>ICO</code></a> - <code>ICO</code> Object.<br>
+<a name="ICO.isICO"></a></p>
+<h4>ICO.isICO(arrayBuffer) ⇒ <code>Boolean</code></h4>
+<p>Check the ArrayBuffer is valid ICO.</p>
+<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
+<strong>Returns</strong>: <code>Boolean</code> - True if arg is ICO.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arrayBuffer</td>
+<td><code>ArrayBuffer</code></td>
+<td>ICO file data.</td>
+</tr>
+</tbody>
+</table>
+<h2>Typedefs</h2>
+<p><a name="ParsedImage"></a></p>
+<h3>ParsedImage : <code>Object</code></h3>
+<p><strong>Kind</strong>: global typedef<br>
+<strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td><code>Number</code></td>
+<td>Image width.</td>
+</tr>
+<tr>
+<td>height</td>
+<td><code>Number</code></td>
+<td>Image height.</td>
+</tr>
+<tr>
+<td>bit</td>
+<td><code>Number</code></td>
+<td>Image bit depth.</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td><code>ArrayBuffer</code></td>
+<td>Image buffer.</td>
 </tr>
 </tbody>
 </table>

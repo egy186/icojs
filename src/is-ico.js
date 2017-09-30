@@ -1,16 +1,13 @@
 'use strict';
 
-const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
-
 /**
  * Check the ArrayBuffer is valid ICO.
  * @memberof ICO
- * @param {ArrayBuffer|Buffer} buffer ICO file data.
+ * @param {ArrayBuffer} arrayBuffer ICO file data.
  * @returns {Boolean} True if arg is ICO.
  */
-const isICO = buffer => {
-  const arrayBuffer = bufferToArrayBuffer(buffer);
-  if (!arrayBuffer) {
+const isICO = arrayBuffer => {
+  if (!(arrayBuffer instanceof ArrayBuffer)) {
     return false;
   }
   const dataView = new DataView(arrayBuffer);

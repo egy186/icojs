@@ -1,6 +1,5 @@
 'use strict';
 
-const bufferToArrayBuffer = require('./utils/buffer-to-arraybuffer');
 const bitDepthOfPNG = require('./bit-depth-of-png');
 const isCUR = require('./is-cur');
 const isICO = require('./is-ico');
@@ -9,21 +8,24 @@ const parseBMP = require('./parse-bmp');
 const range = require('./utils/range');
 
 /**
+ * @typedef {Object} ParsedImage
+ * @property {Number} width Image width.
+ * @property {Number} height Image height.
+ * @property {Number} bit Image bit depth.
+ * @property {ArrayBuffer} buffer Image buffer.
+ */
+
+/**
  * Parse ICO and return some image object.
  * @access private
- * @param {ArrayBuffer|Buffer} buffer ICO file data.
+ * @param {ArrayBuffer} arrayBuffer ICO file data.
  * @param {String} mime MIME type for output.
  * @param {Object} Image Image encoder/decoder
- * @returns {Promise<Object[]>} Resolves to array of parsed ICO.
- *   * `width` **Number** - Image width.
- *   * `height` **Number** - Image height.
- *   * `bit` **Number** - Image bit depth.
- *   * `buffer` **ArrayBuffer** - Image buffer.
+ * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
-const parseICO = (buffer, mime, Image) => {
-  const arrayBuffer = bufferToArrayBuffer(buffer);
-  if (!arrayBuffer) {
-    return Promise.reject(new TypeError('"buffer" argument must be a Buffer or ArrayBuffer'));
+const parseICO = (arrayBuffer, mime, Image) => {
+  if (!(arrayBuffer instanceof ArrayBuffer)) {
+    return Promise.reject(new TypeError('"buffer" argument must be an ArrayBuffer'));
   }
   if (!isCUR(arrayBuffer) && !isICO(arrayBuffer)) {
     return Promise.reject(new Error('buffer is not ico'));
