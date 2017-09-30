@@ -13,8 +13,12 @@ script:
 after_success:
 - npm install coveralls
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+before_deploy:
+- npm run clean
+- npm run build
 deploy:
   provider: npm
+  skip_cleanup: true
   email: egy186@yahoo.co.jp
   api_key:
     secure: KKqoz7TDoO2mIVmcV/puyrMHZCTCDbXrsj0Tkled8l+BCp7DthbwPtiohXfnARSIpt7/XxAPoMvSqMD5qB2qlGCRxs9oFeta3kiakhr/ynCZi3f2kccN/pv/RKrkFVgVVixr59lgzDC7VuZDY+nti548nMeY3zkebcfjz9ZbzUA=
