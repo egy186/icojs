@@ -9,7 +9,7 @@ env:
   global:
     secure: OIN8IWAmpeo7Gp/MF0zizjhWYUag1tJek0yt8DGmq99nI1vIvy6pxj+uey4iSGLwulAE/p59OC9MNt0K+Er+R4Zkb3D7ACSYTQztltB2X7tYTvFptV4tbzQkiwgJIiBeCVD7vJoTDoFmJpkX4bv5qjquCwiDcVYoSiQEWZkP5kQ=
 before_install:
-- npm install -g npm
+- if [[ `npm -v` != 5* ]]; then npm install -g npm; fi
 - npm install -g greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
 script:
