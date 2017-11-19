@@ -48,14 +48,14 @@ describe('ICO', () => {
         const arrayBuffer = bufferToArrayBuffer(buffer);
         const promise = ICO.parse(arrayBuffer).then(images => {
           expect(images).to.be.a('array');
-          return Promise.all(images.map(image => {
+          return images.map(image => {
             expect(image.bit).to.be.a('number');
             expect(image.buffer).to.be.instanceof(ArrayBuffer);
             expect(image.height).to.be.a('number');
             expect(image.width).to.be.a('number');
             const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bit}bit.png`;
             return isSame(image.buffer, expected);
-          }));
+          });
         });
         return expect(promise).to.eventually.not.include(false);
       });

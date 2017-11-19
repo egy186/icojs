@@ -38,7 +38,7 @@ describe('Image', () => {
       });
       expect(imageArrayBuffer).to.be.an.instanceof(ArrayBuffer);
       expect(fileType(imageArrayBuffer).mime).to.deep.equal('image/png');
-      return expect(isSame(imageArrayBuffer, '1x1/1x1-1bit.png')).to.become(true);
+      expect(isSame(imageArrayBuffer, '1x1/1x1-1bit.png')).to.be.true;
     });
     const mimeTypes = [
       'image/bmp',
