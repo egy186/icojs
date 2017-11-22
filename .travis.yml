@@ -21,6 +21,7 @@ after_success:
 - npm install coveralls
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
+- git checkout -- .
 - npm run clean
 - npm run build
 deploy:
