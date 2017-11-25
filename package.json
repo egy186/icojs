@@ -7,7 +7,10 @@
     "url": "https://github.com/egy186/icojs/issues"
   },
   "dependencies": {
-    "jimp": "^0.2.24",
+    "bmp-js": "0.0.3",
+    "file-type": "^7.2.0",
+    "jpeg-js": "^0.3.3",
+    "pngjs": "^3.3.0",
     "safe-buffer": "^5.1.1"
   },
   "devDependencies": {
@@ -25,6 +28,7 @@
     "mocha": "^4.0.0",
     "npm-run-all": "^4.0.1",
     "nyc": "^11.1.0",
+    "pixelmatch": "^4.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "rimraf": "^2.5.2",
     "rollup": "^0.51.3",
