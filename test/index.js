@@ -47,7 +47,7 @@ describe('ICO', () => {
         const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images', `${icon}`));
         const arrayBuffer = bufferToArrayBuffer(buffer);
         const promise = ICO.parse(arrayBuffer).then(images => {
-          expect(images).to.be.a('array');
+          expect(images).to.be.an('array');
           return images.map(image => {
             expect(image.bit).to.be.a('number');
             expect(image.buffer).to.be.instanceof(ArrayBuffer);
@@ -67,6 +67,42 @@ describe('ICO', () => {
         expect(promise.then(images => images[0].hotspot)).to.become(cursorCur[0].hotspot),
         expect(promise.then(images => images[1].hotspot)).to.become(cursorCur[1].hotspot)
       ]);
+    });
+  });
+  describe('.parseSync', () => {
+    it('is expected to be rejected when arg is not buffer', () => {
+      expect(() => ICO.parseSync([])).to.throw(TypeError);
+    });
+    it('is expected to be rejected when arg is not ico', () => {
+      expect(() => ICO.parseSync(new ArrayBuffer(4))).to.throw('buffer is not ico');
+    });
+    const icons = [
+      'basic.ico',
+      'cursor.cur',
+      'palette.ico',
+      'png.ico'
+    ];
+    icons.forEach(icon => {
+      it(`is expected to parse ${icon}`, () => {
+        const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images', `${icon}`));
+        const arrayBuffer = bufferToArrayBuffer(buffer);
+        const images = ICO.parseSync(arrayBuffer);
+        expect(images).to.be.an('array');
+        images.forEach(image => {
+          expect(image.bit).to.be.a('number');
+          expect(image.buffer).to.be.instanceof(ArrayBuffer);
+          expect(image.height).to.be.a('number');
+          expect(image.width).to.be.a('number');
+          const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bit}bit.png`;
+          expect(isSame(image.buffer, expected)).to.be.true;
+        });
+      });
+    });
+    it('is expected to parse hotspot of CUR', () => {
+      const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/cursor.cur'));
+      const images = ICO.parseSync(buffer);
+      expect(images[0].hotspot).to.deep.equal(cursorCur[0].hotspot);
+      expect(images[1].hotspot).to.deep.equal(cursorCur[1].hotspot);
     });
   });
 });

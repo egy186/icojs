@@ -56,6 +56,7 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <ul>
 <li><a href="#exp_module_ICO--isICO">isICO(buffer)</a> ⇒ <code>Boolean</code> ⏏</li>
 <li><a href="#exp_module_ICO--parse">parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</li>
+<li><a href="#exp_module_ICO--parseSync">parseSync(buffer, [mime])</a> ⇒ <a href="#ParsedImage"><code>Array.&lt;ParsedImage&gt;</code></a> ⏏</li>
 </ul>
 </li>
 </ul>
@@ -85,6 +86,35 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <p>Parse ICO and return some images.</p>
 <p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
 <strong>Returns</strong>: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of <a href="#ParsedImage">ParsedImage</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buffer</td>
+<td><code>ArrayBuffer</code> | <code>Buffer</code></td>
+<td></td>
+<td>ICO file data.</td>
+</tr>
+<tr>
+<td>[mime]</td>
+<td><code>String</code></td>
+<td><code>image/png</code></td>
+<td>MIME type for output.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="exp_module_ICO--parseSync"></a></p>
+<h4>parseSync(buffer, [mime]) ⇒ <a href="#ParsedImage"><code>Array.&lt;ParsedImage&gt;</code></a> ⏏</h4>
+<p>Parse ICO and return some images synchronously.</p>
+<p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
+<strong>Returns</strong>: <a href="#ParsedImage"><code>Array.&lt;ParsedImage&gt;</code></a> - Returns an array of <a href="#ParsedImage">ParsedImage</a>.</p>
 <table>
 <thead>
 <tr>

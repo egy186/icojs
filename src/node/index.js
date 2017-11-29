@@ -3,7 +3,8 @@
 const Image = require('./image');
 const arrayBufferIsICO = require('../is-ico');
 const bufferToArrayBuffer = require('./buffer-to-arraybuffer');
-const parseICO = require('../parse-ico');
+const parseICO = require('../parse');
+const parseICOSync = require('../parse/sync');
 
 /**
  * Check the ArrayBuffer is valid ICO.
@@ -35,11 +36,27 @@ const parse = (buffer, mime) => {
 };
 
 /**
+ * Parse ICO and return some images synchronously.
+ * @alias module:ICO
+ * @param {ArrayBuffer|Buffer} buffer ICO file data.
+ * @param {String} [mime=image/png] MIME type for output.
+ * @returns {ParsedImage[]} Returns an array of {@link ParsedImage}.
+ */
+const parseSync = (buffer, mime) => {
+  const arrayBuffer = bufferToArrayBuffer(buffer);
+  if (!arrayBuffer) {
+    throw new TypeError('"buffer" argument must be a Buffer or ArrayBuffer');
+  }
+  return parseICOSync(arrayBuffer, mime, Image);
+};
+
+/**
  * @module ICO
  */
 const ICO = {
   isICO,
-  parse
+  parse,
+  parseSync
 };
 
 module.exports = ICO;
