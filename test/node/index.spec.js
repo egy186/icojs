@@ -1,19 +1,22 @@
 'use strict';
 
-const ICO = require('../src/node');
-const bufferToArrayBuffer = require('../src/node/buffer-to-arraybuffer');
+const ICO = require('../../src/node');
+const bufferToArrayBuffer = require('../../src/node/buffer-to-arraybuffer');
 const chai = require('chai');
-const cursorCur = require('./fixtures/images/cursor');
+const chaiAsPromised = require('chai-as-promised');
+const cursorCur = require('../fixtures/images/cursor');
 const fs = require('fs');
-const isSame = require('./fixtures/is-same');
+const isSame = require('../fixtures/is-same');
 const path = require('path');
+
+chai.use(chaiAsPromised);
 
 const expect = chai.expect;
 
 describe('ICO', () => {
   describe('.isICO', () => {
     it('is expected to return true or false', () => {
-      const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/basic.ico'));
+      const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/basic.ico'));
       const arrayBuffer = bufferToArrayBuffer(buffer);
       expect(ICO.isICO('it is not buffer')).to.be.false;
       expect(ICO.isICO(buffer)).to.be.true;
@@ -44,7 +47,7 @@ describe('ICO', () => {
     ];
     icons.forEach(icon => {
       it(`is expected to parse ${icon}`, () => {
-        const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images', `${icon}`));
+        const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
         const arrayBuffer = bufferToArrayBuffer(buffer);
         const promise = ICO.parse(arrayBuffer).then(images => {
           expect(images).to.be.an('array');
@@ -61,7 +64,7 @@ describe('ICO', () => {
       });
     });
     it('is expected to parse hotspot of CUR', () => {
-      const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/cursor.cur'));
+      const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
       const promise = ICO.parse(buffer);
       return Promise.all([
         expect(promise.then(images => images[0].hotspot)).to.become(cursorCur[0].hotspot),
@@ -84,7 +87,7 @@ describe('ICO', () => {
     ];
     icons.forEach(icon => {
       it(`is expected to parse ${icon}`, () => {
-        const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images', `${icon}`));
+        const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
         const arrayBuffer = bufferToArrayBuffer(buffer);
         const images = ICO.parseSync(arrayBuffer);
         expect(images).to.be.an('array');
@@ -99,7 +102,7 @@ describe('ICO', () => {
       });
     });
     it('is expected to parse hotspot of CUR', () => {
-      const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/cursor.cur'));
+      const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
       const images = ICO.parseSync(buffer);
       expect(images[0].hotspot).to.deep.equal(cursorCur[0].hotspot);
       expect(images[1].hotspot).to.deep.equal(cursorCur[1].hotspot);

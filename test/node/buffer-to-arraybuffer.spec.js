@@ -1,7 +1,7 @@
 'use strict';
 
 const Buffer = require('safe-buffer').Buffer;
-const bufferToArrayBuffer = require('../src/node/buffer-to-arraybuffer');
+const bufferToArrayBuffer = require('../../src/node/buffer-to-arraybuffer');
 const chai = require('chai');
 
 const expect = chai.expect;

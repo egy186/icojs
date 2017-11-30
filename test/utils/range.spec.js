@@ -1,7 +1,7 @@
 'use strict';
 
 const chai = require('chai');
-const range = require('../src/utils/range');
+const range = require('../../src/utils/range');
 
 const expect = chai.expect;
 

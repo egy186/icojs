@@ -3,11 +3,8 @@
 const Image = require('../src/node/image');
 const basic = require('./fixtures/images/basic');
 const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
 const getImageData = require('../src/get-image-data');
 const isSame = require('./fixtures/is-same');
-
-chai.use(chaiAsPromised);
 
 const expect = chai.expect;
 
