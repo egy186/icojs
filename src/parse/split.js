@@ -12,12 +12,12 @@ const range = require('../utils/range');
  */
 
 /**
- * Parse ICO and return some image object.
+ * Parse ICO and return an array of IconImageData.
  * @access private
  * @param {ArrayBuffer} arrayBuffer ICO file data.
  * @returns {IconImageData[]} An array of {@link IconImageData}.
  */
-const parseICO = arrayBuffer => {
+const split = arrayBuffer => {
   if (!(arrayBuffer instanceof ArrayBuffer)) {
     throw new TypeError('"buffer" argument must be an ArrayBuffer');
   }
@@ -55,4 +55,4 @@ const parseICO = arrayBuffer => {
   return icons;
 };
 
-module.exports = parseICO;
+module.exports = split;

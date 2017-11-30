@@ -14,7 +14,7 @@ const split = require('./split');
  * @param {Object} Image Image encoder/decoder
  * @returns {ParsedImage[]} Resolves to an array of {@link ParsedImage}.
  */
-const parse = (arrayBuffer, mime, Image) => {
+const parseSync = (arrayBuffer, mime, Image) => {
   const icons = split(arrayBuffer);
 
   const parseIconImage = (width, height, iconImage) => {
@@ -34,4 +34,4 @@ const parse = (arrayBuffer, mime, Image) => {
   return parsedImages;
 };
 
-module.exports = parse;
+module.exports = parseSync;
