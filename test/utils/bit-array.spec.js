@@ -1,6 +1,6 @@
 'use strict';
 
-const bitArray = require('../src/utils/bit-array');
+const bitArray = require('../../src/utils/bit-array');
 const chai = require('chai');
 
 const expect = chai.expect;

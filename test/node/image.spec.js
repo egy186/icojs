@@ -1,27 +1,23 @@
 'use strict';
 
-const Image = require('../src/node/image');
-const bufferToArrayBuffer = require('../src/node/buffer-to-arraybuffer');
+const Image = require('../../src/node/image');
+const bufferToArrayBuffer = require('../../src/node/buffer-to-arraybuffer');
 const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
 const fileType = require('file-type');
 const fs = require('fs');
-const isSame = require('./fixtures/is-same');
+const isSame = require('../fixtures/is-same');
 const path = require('path');
-
-chai.use(chaiAsPromised);
 
 const expect = chai.expect;
 
 describe('Image', () => {
   describe('.decodeSync', () => {
     it('is expected to throw error when mime is not supported', () => {
-      const buffer = Buffer.from([]);
-      const arrayBuffer = bufferToArrayBuffer(buffer);
+      const arrayBuffer = new ArrayBuffer(100);
       expect(() => Image.decodeSync(arrayBuffer)).to.throw(TypeError);
     });
     it('is expected to create ImageData from PNG', () => {
-      const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/1x1/1x1-1bit.png'));
+      const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/1x1/1x1-1bit.png'));
       const arrayBuffer = bufferToArrayBuffer(buffer);
       const imageData = Image.decodeSync(arrayBuffer);
       expect(imageData.data).to.deep.equal(new Uint8ClampedArray([0, 0, 0, 0]));

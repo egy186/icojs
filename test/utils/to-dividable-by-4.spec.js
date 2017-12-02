@@ -1,7 +1,7 @@
 'use strict';
 
 const chai = require('chai');
-const toDividableBy4 = require('../src/utils/to-dividable-by-4');
+const toDividableBy4 = require('../../src/utils/to-dividable-by-4');
 
 const expect = chai.expect;
 
