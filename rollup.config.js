@@ -13,19 +13,19 @@ const banner = `/*!
  */`;
 
 const config = {
-  banner,
   input: 'src/browser/index.js',
   output: {
+    banner,
     file: 'dist/ico.js',
     format: 'umd',
-    name: 'ICO'
+    name: 'ICO',
+    sourcemap: true
   },
   plugins: [
     babel(),
     commonjs(),
     uglify({ output: { comments: /^!/ } })
-  ],
-  sourcemap: true
+  ]
 };
 
 module.exports = config;
