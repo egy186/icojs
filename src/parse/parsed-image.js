@@ -10,20 +10,21 @@
 
 /**
  * Create ParsedImage
- * @param {IconImageData} iconImageData {@link IconImageData}
+ * @access private
+ * @param {ImageData} imageData ImageData object.
  * @param {ArrayBufer} imageBuffer Image buffer.
- * @param {Number} bit Image bit depth.
+ * @param {Object} hotspot Hotspot of CUR file.
  * @returns {ParsedImage} ImageData like object.
  */
-const parsedImage = (iconImageData, imageBuffer, bit) => {
+const parsedImage = (imageData, imageBuffer, hotspot) => {
   const image = {
-    bit,
+    bit: imageData.bit,
     buffer: imageBuffer,
-    height: iconImageData.height,
-    width: iconImageData.width
+    height: imageData.height,
+    width: imageData.width
   };
-  if (iconImageData.hotspot) {
-    image.hotspot = iconImageData.hotspot;
+  if (hotspot) {
+    image.hotspot = hotspot;
   }
   return image;
 };

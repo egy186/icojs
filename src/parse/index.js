@@ -32,7 +32,7 @@ const parse = (arrayBuffer, mime, Image) => {
   const parsedImages = icons
     .map(iconImageData => parseIconImage(iconImageData.width, iconImageData.height, iconImageData.iconImage)
       .then(imageData => Image.encode(imageData, mime)
-        .then(imageBuffer => parsedImage(iconImageData, imageBuffer, imageData.bit))));
+        .then(imageBuffer => parsedImage(imageData, imageBuffer, iconImageData.hotspot))));
   return Promise.all(parsedImages);
 };
 

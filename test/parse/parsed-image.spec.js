@@ -7,19 +7,19 @@ const expect = chai.expect;
 
 describe('parsedImage', () => {
   it('is expected to return ParsedImage', () => {
-    const iconImageData = {
+    const imageData = {
+      bit: Symbol('BIT_DEPTH'),
+      data: Symbol('IMAGE_DATA_DATA'),
       height: Symbol('ICON_HEIGHT'),
-      hotspot: Symbol('ICON_HOTSPOT'),
-      iconImage: Symbol('ICON_IMAGE'),
       width: Symbol('ICON_WIDTH')
     };
     const imageBuffer = Symbol('IMAGE_BUFFER');
-    const bit = Symbol('BIT_DEPTH');
-    const image = parsedImage(iconImageData, imageBuffer, bit);
-    expect(image.bit).to.deep.equal(bit);
+    const hotspot = Symbol('ICON_HOTSPOT');
+    const image = parsedImage(imageData, imageBuffer, hotspot);
+    expect(image.bit).to.deep.equal(imageData.bit);
     expect(image.buffer).to.deep.equal(imageBuffer);
-    expect(image.height).to.deep.equal(iconImageData.height);
-    expect(image.hotspot).to.deep.equal(iconImageData.hotspot);
-    expect(image.width).to.deep.equal(iconImageData.width);
+    expect(image.height).to.deep.equal(imageData.height);
+    expect(image.hotspot).to.deep.equal(hotspot);
+    expect(image.width).to.deep.equal(imageData.width);
   });
 });
