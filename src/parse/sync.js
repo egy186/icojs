@@ -29,7 +29,7 @@ const parseSync = (arrayBuffer, mime, Image) => {
     .map(iconImageData => {
       const imageData = parseIconImage(iconImageData.width, iconImageData.height, iconImageData.iconImage);
       const imageBuffer = Image.encodeSync(imageData, mime);
-      return parsedImage(iconImageData, imageBuffer, imageData.bit);
+      return parsedImage(imageData, imageBuffer, iconImageData.hotspot);
     });
   return parsedImages;
 };

@@ -8,8 +8,8 @@ const getImageData = require('./get-image-data');
 /**
  * Parse bitmap
  * @access private
- * @param {Number} width bitmap width
- * @param {Number} height bitmap height
+ * @param {Number} iconWidth bitmap width
+ * @param {Number} iconHeight bitmap height
  * @param {ArrayBuffer} arrayBuffer bitmap buffer
  * @returns {Object} imageData imageData of bitmap
  * @returns {Number} imageData.width image width
@@ -17,8 +17,12 @@ const getImageData = require('./get-image-data');
  * @returns {Number} imageData.bit image bit depth
  * @returns {Uint8ClampedArray} imageData.data xor image
  */
-const parseBMP = (width, height, arrayBuffer) => {
+const parseBMP = (iconWidth, iconHeight, arrayBuffer) => {
   const dataView = new DataView(arrayBuffer);
+  const bitmapWidth = dataView.getUint32(4, true);
+  const bitmapHeight = dataView.getUint32(8, true) / 2;
+  const width = bitmapWidth === 0 ? iconWidth : bitmapWidth;
+  const height = bitmapHeight === 0 ? iconHeight : bitmapHeight;
 
   const headerSize = dataView.getUint32(0, true);
   const bit = dataView.getUint16(14, true);
