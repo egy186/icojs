@@ -4,28 +4,24 @@ html(lang='en')
     meta(charset='utf-8')
     title icojs - egy186.github.io
     meta(name='author', content='egy186')
-    meta(name='viewport', content='width=device-width,user-scalable=no,initial-scale=1')
+    meta(name='viewport', content='width=device-width,initial-scale=1,shrink-to-fit=no')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js', defer='')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', defer='')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js', defer='')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js', defer='')
     script(src=`https://unpkg.com/icojs@${version}/dist/ico.js`, defer='')
     script(src='demo.js', defer='')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/github.min.css')
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css')
     style.
-      .hljs { background: transparent; padding: 0; }
       header h1 a { font-size: 72px; color: inherit; text-decoration: none; }
       header h1 a:hover { text-decoration: none; }
-      nav { margin-top: 20px; }
-      footer { border-top: 1px solid #eee; margin: 40px 0; }
-      footer :first-child { margin-top: 20px; }
-  body.container
+  body.container(data-spy='scroll', data-target='#nav')
     div.row
       header.col-md-12
         h1
           a(href='./') icojs
           |  
-          small=`v${version}`
+          small.text-muted=`v${version}`
         p.lead A JavaScript library to use ICO.
         p
           small
@@ -37,18 +33,18 @@ html(lang='en')
             |  
             a(href='https://david-dm.org/egy186/icojs', title='dependencies status')
               img(src='https://david-dm.org/egy186/icojs/status.svg', alt='dependencies status')
-      nav.col-md-2
+      nav#nav.col-md-3
         h2.sr-only Table of Contents
-        ul.nav.nav-pills.nav-stacked
-          li
-            a(href='#install') Install
-          li
-            a(href='#example') Example
-          li
-            a(href='#demo') Demo
-          li
-            a(href='#api') API
-      main.col-md-10
+        ul.nav.nav-pills.flex-column.pt-3.sticky-top
+          li.nav-item
+            a.nav-link(href='#install') Install
+          li.nav-item
+            a.nav-link(href='#example') Example
+          li.nav-item
+            a.nav-link(href='#demo') Demo
+          li.nav-item
+            a.nav-link(href='#api') API
+      main.col-md-9
         section#install
           include:markdown-it(html) install.md
         section#example
@@ -56,19 +52,17 @@ html(lang='en')
         section#demo
           h2 Demo
           p Please input ico file.
-          form.tab-content.form-horizontal(action='#')
-            label(for='input-file', style='display: none;') File:
-            input#input-file(style='display: none;', type='file')
-            p.input-group.input-group-lg
-              span.input-group-btn
-                button#input-file-emu.btn.btn-primary
-                  span.glyphicon.glyphicon-folder-open
-                  |  Browse...
-              span#input-file-path.form-control
+          form(action='#')
+            p.input-group
+              span.input-group-prepend
+                button#input-file-emu.btn.btn-outline-primary Choose file
+              span.custom-file
+                input#input-file.custom-file-input(type='file')
+                label#input-file-path.custom-file-label(for='input-file')
           section#demos-parse-results
         section#api
           include:markdown-it(html) api.md
-      footer.col-md-12.text-center
+      footer.col-md-12.text-center.border-top.mb-4.pt-3
         p
           | Source code on GitHub: 
-          a.lead(href='https://github.com/egy186/icojs') egy186/icojs
+          a(href='https://github.com/egy186/icojs') egy186/icojs
