@@ -13,7 +13,7 @@ const globalICO = global.ICO;
  * @param {String} [mime=image/png] MIME type for output.
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
-const parse = (arrayBuffer, mime) => parseICO(arrayBuffer, mime, Image);
+const parse = (arrayBuffer, mime) => parseICO(arrayBuffer, mime || 'image/png', Image);
 
 /**
  * @class ICO

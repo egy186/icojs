@@ -48,8 +48,8 @@ const buffer = fs.readFileSync('favicon.ico');
 ICO.parse(buffer, 'image/png').then(images => {
   // save as png files
   images.forEach(image => {
-    const file = `${image.width}x${image.height}-${image.bit}bit.png`;
-    const data = Buffer.from(image.buffer);
+    const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
+    const data = Buffer.from(image.data);
     fs.writeFileSync(file, data);
   });
 });
@@ -94,8 +94,8 @@ ICO.parse(buffer, 'image/png').then(images => {
 #### isICO(buffer) ⇒ <code>Boolean</code> ⏏
 Check the ArrayBuffer is valid ICO.
 
-**Kind**: global method of [<code>ICO</code>](#module_ICO)  
-**Returns**: <code>Boolean</code> - True if arg is ICO.  
+**Kind**: global method of [<code>ICO</code>](#module_ICO)
+**Returns**: <code>Boolean</code> - True if arg is ICO.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -106,8 +106,8 @@ Check the ArrayBuffer is valid ICO.
 #### parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
 Parse ICO and return some images.
 
-**Kind**: global method of [<code>ICO</code>](#module_ICO)  
-**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).  
+**Kind**: global method of [<code>ICO</code>](#module_ICO)
+**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -119,8 +119,8 @@ Parse ICO and return some images.
 #### parseSync(buffer, [mime]) ⇒ [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) ⏏
 Parse ICO and return some images synchronously.
 
-**Kind**: global method of [<code>ICO</code>](#module_ICO)  
-**Returns**: [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) - Returns an array of [ParsedImage](#ParsedImage).  
+**Kind**: global method of [<code>ICO</code>](#module_ICO)
+**Returns**: [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) - Returns an array of [ParsedImage](#ParsedImage).
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -133,7 +133,7 @@ Parse ICO and return some images synchronously.
 <a name="ICO"></a>
 
 ### ICO
-**Kind**: global class  
+**Kind**: global class
 
 * [ICO](#ICO)
     * [.parse(arrayBuffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code>
@@ -145,12 +145,12 @@ Parse ICO and return some images synchronously.
 #### ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code>
 Parse ICO and return some images.
 
-**Kind**: static method of [<code>ICO</code>](#ICO)  
-**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).  
+**Kind**: static method of [<code>ICO</code>](#ICO)
+**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| arrayBuffer | <code>ArrayBuffer</code> |  | ICO file data. |
+| arrayBuffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
 | [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
 
 <a name="ICO.noConflict"></a>
@@ -158,19 +158,19 @@ Parse ICO and return some images.
 #### ICO.noConflict() ⇒ [<code>ICO</code>](#ICO)
 No conflict.
 
-**Kind**: static method of [<code>ICO</code>](#ICO)  
-**Returns**: [<code>ICO</code>](#ICO) - `ICO` Object.  
+**Kind**: static method of [<code>ICO</code>](#ICO)
+**Returns**: [<code>ICO</code>](#ICO) - `ICO` Object.
 <a name="ICO.isICO"></a>
 
 #### ICO.isICO(arrayBuffer) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
-**Kind**: static method of [<code>ICO</code>](#ICO)  
-**Returns**: <code>Boolean</code> - True if arg is ICO.  
+**Kind**: static method of [<code>ICO</code>](#ICO)
+**Returns**: <code>Boolean</code> - True if arg is ICO.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| arrayBuffer | <code>ArrayBuffer</code> | ICO file data. |
+| arrayBuffer | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
 
 
 ## Typedefs
@@ -178,15 +178,15 @@ Check the ArrayBuffer is valid ICO.
 <a name="ParsedImage"></a>
 
 ### ParsedImage : <code>Object</code>
-**Kind**: global typedef  
+**Kind**: global typedef
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | width | <code>Number</code> | Image width. |
 | height | <code>Number</code> | Image height. |
-| bit | <code>Number</code> | Image bit depth. |
-| buffer | <code>ArrayBuffer</code> | Image buffer. |
+| bpp | <code>Number</code> | Image color depth as bits per pixel. |
+| data | <code>Uint8Array</code> | Image buffer. |
 
 
 ## License

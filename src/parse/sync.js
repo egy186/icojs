@@ -1,37 +1,40 @@
 'use strict';
 
-const bitDepthOfPNG = require('../bit-depth-of-png');
-const parsedImage = require('./parsed-image');
-const isPNG = require('../is-png');
-const parseBMP = require('../parse-bmp');
-const split = require('./split');
+const decodeIco = require('decode-ico');
 
 /**
  * Parse ICO and return some image object.
  * @access private
- * @param {ArrayBuffer} arrayBuffer ICO file data.
+ * @param {ArrayBuffer|Buffer} data ICO file data.
  * @param {String} mime MIME type for output.
  * @param {Object} Image Image encoder/decoder
  * @returns {ParsedImage[]} Resolves to an array of {@link ParsedImage}.
  */
-const parseSync = (arrayBuffer, mime, Image) => {
-  const icons = split(arrayBuffer);
+const parseSync = (data, mime, Image) => {
+  const icons = decodeIco(data);
 
-  const parseIconImage = (width, height, iconImage) => {
-    if (isPNG(iconImage)) {
-      const bit = bitDepthOfPNG(iconImage);
-      const imageData = Image.decodeSync(iconImage);
-      return Object.assign(imageData, { bit });
+  const transcodeImage = icon => {
+    if (mime === 'image/png' && icon.type === 'png') {
+      return icon;
     }
-    return parseBMP(width, height, iconImage);
-  };
-  const parsedImages = icons
-    .map(iconImageData => {
-      const imageData = parseIconImage(iconImageData.width, iconImageData.height, iconImageData.iconImage);
-      const imageBuffer = Image.encodeSync(imageData, mime);
-      return parsedImage(imageData, imageBuffer, iconImageData.hotspot);
+
+    if (icon.type === 'png') {
+      const decoded = Image.decodeSync(icon.data);
+      Object.assign(icon, {
+        type: 'bmp',
+        data: decoded.data
+      });
+    }
+
+    const encoded = Image.encodeSync(icon, mime);
+
+    return Object.assign(icon, {
+      type: mime.replace('image/', ''),
+      data: new Uint8Array(encoded)
     });
-  return parsedImages;
+  };
+
+  return icons.map(transcodeImage);
 };
 
 module.exports = parseSync;

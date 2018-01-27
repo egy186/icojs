@@ -26,8 +26,8 @@ const buffer = fs.readFileSync('favicon.ico');
 ICO.parse(buffer, 'image/png').then(images =&gt; {
   // save as png files
   images.forEach(image =&gt; {
-    const file = `${image.width}x${image.height}-${image.bit}bit.png`;
-    const data = Buffer.from(image.buffer);
+    const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
+    const data = Buffer.from(image.data);
     fs.writeFileSync(file, data);
   });
 });

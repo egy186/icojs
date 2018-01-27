@@ -1,39 +1,48 @@
 'use strict';
 
-const bitDepthOfPNG = require('../bit-depth-of-png');
-const parsedImage = require('./parsed-image');
-const isPNG = require('../is-png');
-const parseBMP = require('../parse-bmp');
-const split = require('./split');
+const decodeIco = require('decode-ico');
 
 /**
  * Parse ICO and return some image object.
  * @access private
- * @param {ArrayBuffer} arrayBuffer ICO file data.
+ * @param {ArrayBuffer|Buffer} data ICO file data.
  * @param {String} mime MIME type for output.
  * @param {Object} Image Image encoder/decoder
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
-const parse = (arrayBuffer, mime, Image) => {
-  let icons = [];
+const parse = (data, mime, Image) => {
+  let icons = null;
+
   try {
-    icons = split(arrayBuffer);
+    icons = decodeIco(data);
   } catch (err) {
     return Promise.reject(err);
   }
 
-  const parseIconImage = (width, height, iconImage) => {
-    if (isPNG(iconImage)) {
-      const bit = bitDepthOfPNG(iconImage);
-      return Image.decode(iconImage).then(imageData => Object.assign(imageData, { bit }));
+  const decodePng = icon => {
+    if (icon.type !== 'png') {
+      return Promise.resolve(icon);
     }
-    return Promise.resolve(parseBMP(width, height, iconImage));
+
+    return Image.decode(icon.data).then(decoded => Object.assign(icon, {
+      type: 'bmp',
+      data: decoded.data
+    }));
   };
-  const parsedImages = icons
-    .map(iconImageData => parseIconImage(iconImageData.width, iconImageData.height, iconImageData.iconImage)
-      .then(imageData => Image.encode(imageData, mime)
-        .then(imageBuffer => parsedImage(imageData, imageBuffer, iconImageData.hotspot))));
-  return Promise.all(parsedImages);
+
+  const encodeImage = icon => Image.encode(icon, mime).then(encoded => Object.assign(icon, {
+    type: mime.replace('image/', ''),
+    data: new Uint8Array(encoded)
+  }));
+
+  const transcodeImage = icon => {
+    if (mime === 'image/png' && icon.type === 'png') {
+      return Promise.resolve(icon);
+    }
+    return decodePng(icon).then(encodeImage);
+  };
+
+  return Promise.all(icons.map(transcodeImage));
 };
 
 module.exports = parse;

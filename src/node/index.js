@@ -32,7 +32,7 @@ const parse = (buffer, mime) => {
   if (!arrayBuffer) {
     return Promise.reject(new TypeError('"buffer" argument must be a Buffer or ArrayBuffer'));
   }
-  return parseICO(arrayBuffer, mime, Image);
+  return parseICO(arrayBuffer, mime || 'image/png', Image);
 };
 
 /**
@@ -47,7 +47,7 @@ const parseSync = (buffer, mime) => {
   if (!arrayBuffer) {
     throw new TypeError('"buffer" argument must be a Buffer or ArrayBuffer');
   }
-  return parseICOSync(arrayBuffer, mime, Image);
+  return parseICOSync(arrayBuffer, mime || 'image/png', Image);
 };
 
 /**

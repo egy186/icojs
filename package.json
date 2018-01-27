@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bmp-js": "0.0.3",
+    "decode-ico": "^0.2.0",
     "file-type": "^7.2.0",
     "jpeg-js": "^0.3.3",
     "pngjs": "^3.3.0",

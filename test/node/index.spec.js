@@ -37,32 +37,38 @@ describe('ICO', () => {
     });
     it('is expected to be rejected when arg is not ico', () => {
       const promise = ICO.parse(new ArrayBuffer(4));
-      return expect(promise).to.be.rejectedWith('buffer is not ico');
+      return expect(promise).to.be.rejectedWith('Truncated header');
     });
+    const formats = [
+      'image/bmp',
+      'image/jpeg',
+      'image/png',
+      undefined
+    ];
     const icons = [
       'basic.ico',
       'cursor.cur',
       'palette.ico',
       'png.ico'
     ];
-    icons.forEach(icon => {
-      it(`is expected to parse ${icon}`, () => {
+    formats.forEach(format => icons.forEach(icon => {
+      it(`is expected to parse ${icon} (${format || 'default'})`, () => {
         const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
         const arrayBuffer = bufferToArrayBuffer(buffer);
-        const promise = ICO.parse(arrayBuffer).then(images => {
+        const promise = ICO.parse(arrayBuffer, format).then(images => {
           expect(images).to.be.an('array');
           return images.map(image => {
-            expect(image.bit).to.be.a('number');
-            expect(image.buffer).to.be.instanceof(ArrayBuffer);
+            expect(image.bpp).to.be.a('number');
+            expect(image.data).to.be.instanceof(Uint8Array);
             expect(image.height).to.be.a('number');
             expect(image.width).to.be.a('number');
-            const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bit}bit.png`;
-            return isSame(image.buffer, expected);
+            const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
+            return format === 'image/png' ? isSame(image.data, expected) : true;
           });
         });
         return expect(promise).to.eventually.not.include(false);
       });
-    });
+    }));
     it('is expected to parse hotspot of CUR', () => {
       const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
       const promise = ICO.parse(buffer);
@@ -77,30 +83,38 @@ describe('ICO', () => {
       expect(() => ICO.parseSync([])).to.throw(TypeError);
     });
     it('is expected to be rejected when arg is not ico', () => {
-      expect(() => ICO.parseSync(new ArrayBuffer(4))).to.throw('buffer is not ico');
+      expect(() => ICO.parseSync(new ArrayBuffer(4))).to.throw('Truncated header');
     });
+    const formats = [
+      'image/bmp',
+      'image/jpeg',
+      'image/png',
+      undefined
+    ];
     const icons = [
       'basic.ico',
       'cursor.cur',
       'palette.ico',
       'png.ico'
     ];
-    icons.forEach(icon => {
-      it(`is expected to parse ${icon}`, () => {
+    formats.forEach(format => icons.forEach(icon => {
+      it(`is expected to parse ${icon} (${format || 'default'})`, () => {
         const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
         const arrayBuffer = bufferToArrayBuffer(buffer);
-        const images = ICO.parseSync(arrayBuffer);
+        const images = ICO.parseSync(arrayBuffer, format);
         expect(images).to.be.an('array');
         images.forEach(image => {
-          expect(image.bit).to.be.a('number');
-          expect(image.buffer).to.be.instanceof(ArrayBuffer);
+          expect(image.bpp).to.be.a('number');
+          expect(image.data).to.be.instanceof(Uint8Array);
           expect(image.height).to.be.a('number');
           expect(image.width).to.be.a('number');
-          const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bit}bit.png`;
-          expect(isSame(image.buffer, expected)).to.be.true;
+          const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
+          if (format === 'image/png') {
+            expect(isSame(image.data, expected)).to.be.true;
+          }
         });
       });
-    });
+    }));
     it('is expected to parse hotspot of CUR', () => {
       const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
       const images = ICO.parseSync(buffer);
