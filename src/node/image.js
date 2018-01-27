@@ -3,7 +3,6 @@
 const Buffer = require('safe-buffer').Buffer;
 const PNG = require('pngjs').PNG;
 const bmp = require('bmp-js');
-const bufferToArrayBuffer = require('./buffer-to-arraybuffer');
 const fileType = require('file-type');
 const jpeg = require('jpeg-js');
 
@@ -42,7 +41,7 @@ const Image = {
   /**
    * Create imageData from image
    * @access private
-   * @param {ArrayBuffer} arrayBuffer image buffer
+   * @param {ArrayBuffer|Buffer} arrayBuffer image buffer
    * @returns {ImageData} imageData
    */
   decodeSync (arrayBuffer) {
@@ -68,7 +67,7 @@ const Image = {
    * @param {Number} image.height img height
    * @param {Uint8ClampedArray} image.data same as imageData.data
    * @param {String} [mime=image/png] MIME type
-   * @returns {Promise<ArrayBuffer>} Resolves to image
+   * @returns {Promise<Uint8Array>} Resolves to image
    */
   encode (image, mime) {
     try {
@@ -87,7 +86,7 @@ const Image = {
    * @param {Number} image.height img height
    * @param {Uint8ClampedArray} image.data same as imageData.data
    * @param {String} [mime=image/png] MIME type
-   * @returns {ArrayBuffer} image
+   * @returns {Uint8Array} image
    */
   encodeSync (image, mime) {
     const imageData = {
@@ -97,7 +96,7 @@ const Image = {
     };
     const encoder = mime in encoders ? encoders[mime] : encoders[MIME_PNG];
     const imageBuffer = encoder(imageData);
-    return bufferToArrayBuffer(imageBuffer);
+    return new Uint8Array(imageBuffer.buffer, imageBuffer.byteOffset, imageBuffer.byteLength);
   }
 };
 

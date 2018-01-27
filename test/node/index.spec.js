@@ -1,7 +1,6 @@
 'use strict';
 
 const ICO = require('../../src/node');
-const bufferToArrayBuffer = require('../../src/node/buffer-to-arraybuffer');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const cursorCur = require('../fixtures/images/cursor');
@@ -17,10 +16,8 @@ describe('ICO', () => {
   describe('.isICO', () => {
     it('is expected to return true or false', () => {
       const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/basic.ico'));
-      const arrayBuffer = bufferToArrayBuffer(buffer);
-      expect(ICO.isICO('it is not buffer')).to.be.false;
+      expect(() => ICO.isICO('it is not buffer')).to.throw(TypeError);
       expect(ICO.isICO(buffer)).to.be.true;
-      expect(ICO.isICO(arrayBuffer)).to.be.true;
       const d = new ArrayBuffer(4);
       const dv = new DataView(d);
       expect(ICO.isICO(d)).to.be.false;
@@ -54,8 +51,7 @@ describe('ICO', () => {
     formats.forEach(format => icons.forEach(icon => {
       it(`is expected to parse ${icon} (${format || 'default'})`, () => {
         const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
-        const arrayBuffer = bufferToArrayBuffer(buffer);
-        const promise = ICO.parse(arrayBuffer, format).then(images => {
+        const promise = ICO.parse(buffer, format).then(images => {
           expect(images).to.be.an('array');
           return images.map(image => {
             expect(image.bpp).to.be.a('number');
@@ -100,8 +96,7 @@ describe('ICO', () => {
     formats.forEach(format => icons.forEach(icon => {
       it(`is expected to parse ${icon} (${format || 'default'})`, () => {
         const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
-        const arrayBuffer = bufferToArrayBuffer(buffer);
-        const images = ICO.parseSync(arrayBuffer, format);
+        const images = ICO.parseSync(buffer, format);
         expect(images).to.be.an('array');
         images.forEach(image => {
           expect(image.bpp).to.be.a('number');

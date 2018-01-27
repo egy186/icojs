@@ -26,11 +26,9 @@ const parseSync = (data, mime, Image) => {
       });
     }
 
-    const encoded = Image.encodeSync(icon, mime);
-
     return Object.assign(icon, {
       type: mime.replace('image/', ''),
-      data: new Uint8Array(encoded)
+      data: Image.encodeSync(icon, mime)
     });
   };
 
