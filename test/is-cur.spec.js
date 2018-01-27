@@ -12,7 +12,8 @@ describe('isCUR', () => {
   it('is expected to return true or false', () => {
     const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/cursor.cur'));
     const arrayBuffer = bufferToArrayBuffer(buffer);
-    expect(isCUR('it is not buffer')).to.be.false;
+    expect(() => isCUR('it is not buffer')).to.throw;
+    expect(isCUR(buffer)).to.be.true;
     expect(isCUR(arrayBuffer)).to.be.true;
     const d = new ArrayBuffer(4);
     const dv = new DataView(d);
