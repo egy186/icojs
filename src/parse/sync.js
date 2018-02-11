@@ -15,7 +15,7 @@ const parseSync = (data, mime, Image) => {
 
   const transcodeImage = icon => {
     if (mime === 'image/png' && icon.type === 'png') {
-      return icon;
+      return Object.assign({ buffer: icon.data.buffer.slice(icon.data.byteOffset, icon.data.byteOffset + icon.data.byteLength) }, icon);
     }
 
     if (icon.type === 'png') {
@@ -28,7 +28,7 @@ const parseSync = (data, mime, Image) => {
 
     return Object.assign(icon, {
       type: mime.replace('image/', ''),
-      data: Image.encodeSync(icon, mime)
+      buffer: Image.encodeSync(icon, mime)
     });
   };
 

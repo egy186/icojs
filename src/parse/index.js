@@ -3,6 +3,14 @@
 const decodeIco = require('decode-ico');
 
 /**
+ * @typedef {Object} ParsedImage
+ * @property {Number} width Image width.
+ * @property {Number} height Image height.
+ * @property {Number} bpp Image color depth as bits per pixel.
+ * @property {ArrayBuffer} buffer Image buffer.
+ */
+
+/**
  * Parse ICO and return some image object.
  * @access private
  * @param {ArrayBuffer|Buffer} data ICO file data.
@@ -32,12 +40,12 @@ const parse = (data, mime, Image) => {
 
   const encodeImage = icon => Image.encode(icon, mime).then(encoded => Object.assign(icon, {
     type: mime.replace('image/', ''),
-    data: new Uint8Array(encoded)
+    buffer: encoded
   }));
 
   const transcodeImage = icon => {
     if (mime === 'image/png' && icon.type === 'png') {
-      return Promise.resolve(icon);
+      return Promise.resolve(Object.assign({ buffer: icon.data.buffer.slice(icon.data.byteOffset, icon.data.byteOffset + icon.data.byteLength) }, icon));
     }
     return decodePng(icon).then(encodeImage);
   };

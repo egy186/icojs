@@ -14,7 +14,7 @@ $(function () {
       alert.append('<p><strong>Success:</strong></p>');
       images.forEach(function (image) {
         var text = image.width + 'x' + image.height + ', ' + image.bpp + 'bit';
-        var url = URL.createObjectURL(new Blob([image.data], { type: mime }));
+        var url = URL.createObjectURL(new Blob([image.buffer], { type: mime }));
         alert.append('<p><a href="' + url + '" target="_blank"><img src="' + url + '" /> ' + text + '</a></p>');
       });
     }

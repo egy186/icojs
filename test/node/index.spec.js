@@ -55,11 +55,11 @@ describe('ICO', () => {
           expect(images).to.be.an('array');
           return images.map(image => {
             expect(image.bpp).to.be.a('number');
-            expect(image.data).to.be.instanceof(Uint8Array);
+            expect(image.buffer).to.be.instanceof(ArrayBuffer);
             expect(image.height).to.be.a('number');
             expect(image.width).to.be.a('number');
             const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
-            return format === 'image/png' ? isSame(image.data, expected) : true;
+            return format === 'image/png' ? isSame(image.buffer, expected) : true;
           });
         });
         return expect(promise).to.eventually.not.include(false);
@@ -100,12 +100,12 @@ describe('ICO', () => {
         expect(images).to.be.an('array');
         images.forEach(image => {
           expect(image.bpp).to.be.a('number');
-          expect(image.data).to.be.instanceof(Uint8Array);
+          expect(image.buffer).to.be.instanceof(ArrayBuffer);
           expect(image.height).to.be.a('number');
           expect(image.width).to.be.a('number');
           const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
           if (format === 'image/png') {
-            expect(isSame(image.data, expected)).to.be.true;
+            expect(isSame(image.buffer, expected)).to.be.true;
           }
         });
       });

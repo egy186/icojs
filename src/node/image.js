@@ -67,7 +67,7 @@ const Image = {
    * @param {Number} image.height img height
    * @param {Uint8ClampedArray} image.data same as imageData.data
    * @param {String} [mime=image/png] MIME type
-   * @returns {Promise<Uint8Array>} Resolves to image
+   * @returns {Promise<ArrayBuffer>} Resolves to image
    */
   encode (image, mime) {
     try {
@@ -86,7 +86,7 @@ const Image = {
    * @param {Number} image.height img height
    * @param {Uint8ClampedArray} image.data same as imageData.data
    * @param {String} [mime=image/png] MIME type
-   * @returns {Uint8Array} image
+   * @returns {ArrayBuffer} image
    */
   encodeSync (image, mime) {
     const imageData = {
@@ -96,7 +96,7 @@ const Image = {
     };
     const encoder = mime in encoders ? encoders[mime] : encoders[MIME_PNG];
     const imageBuffer = encoder(imageData);
-    return new Uint8Array(imageBuffer.buffer, imageBuffer.byteOffset, imageBuffer.byteLength);
+    return imageBuffer.buffer.slice(imageBuffer.byteOffset, imageBuffer.byteOffset + imageBuffer.byteLength);
   }
 };
 
