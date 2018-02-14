@@ -1,7 +1,6 @@
 'use strict';
 
 const Image = require('../../src/node/image');
-const bufferToArrayBuffer = require('../../src/node/buffer-to-arraybuffer');
 const chai = require('chai');
 const fileType = require('file-type');
 const fs = require('fs');
@@ -18,8 +17,7 @@ describe('Image', () => {
     });
     it('is expected to create ImageData from PNG', () => {
       const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/1x1/1x1-1bit.png'));
-      const arrayBuffer = bufferToArrayBuffer(buffer);
-      const imageData = Image.decodeSync(arrayBuffer);
+      const imageData = Image.decodeSync(buffer);
       expect(imageData.data).to.deep.equal(new Uint8ClampedArray([0, 0, 0, 0]));
       expect(imageData.height).to.deep.equal(1);
       expect(imageData.width).to.deep.equal(1);

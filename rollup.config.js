@@ -3,6 +3,7 @@
 const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const jsonfile = require('jsonfile');
+const resolve = require('rollup-plugin-node-resolve');
 const uglify = require('rollup-plugin-uglify');
 
 const pkg = jsonfile.readFileSync('./package.json');
@@ -22,8 +23,9 @@ const config = {
     sourcemap: true
   },
   plugins: [
-    babel(),
+    resolve(),
     commonjs(),
+    babel(),
     uglify({ output: { comments: /^!/ } })
   ]
 };

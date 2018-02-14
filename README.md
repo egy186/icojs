@@ -48,7 +48,7 @@ const buffer = fs.readFileSync('favicon.ico');
 ICO.parse(buffer, 'image/png').then(images => {
   // save as png files
   images.forEach(image => {
-    const file = `${image.width}x${image.height}-${image.bit}bit.png`;
+    const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
     const data = Buffer.from(image.buffer);
     fs.writeFileSync(file, data);
   });
@@ -138,7 +138,7 @@ Parse ICO and return some images synchronously.
 * [ICO](#ICO)
     * [.parse(arrayBuffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code>
     * [.noConflict()](#ICO.noConflict) ⇒ [<code>ICO</code>](#ICO)
-    * [.isICO(arrayBuffer)](#ICO.isICO) ⇒ <code>Boolean</code>
+    * [.isICO(source)](#ICO.isICO) ⇒ <code>Boolean</code>
 
 <a name="ICO.parse"></a>
 
@@ -162,7 +162,7 @@ No conflict.
 **Returns**: [<code>ICO</code>](#ICO) - `ICO` Object.  
 <a name="ICO.isICO"></a>
 
-#### ICO.isICO(arrayBuffer) ⇒ <code>Boolean</code>
+#### ICO.isICO(source) ⇒ <code>Boolean</code>
 Check the ArrayBuffer is valid ICO.
 
 **Kind**: static method of [<code>ICO</code>](#ICO)  
@@ -170,7 +170,7 @@ Check the ArrayBuffer is valid ICO.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| arrayBuffer | <code>ArrayBuffer</code> | ICO file data. |
+| source | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
 
 
 ## Typedefs
@@ -185,7 +185,7 @@ Check the ArrayBuffer is valid ICO.
 | --- | --- | --- |
 | width | <code>Number</code> | Image width. |
 | height | <code>Number</code> | Image height. |
-| bit | <code>Number</code> | Image bit depth. |
+| bpp | <code>Number</code> | Image color depth as bits per pixel. |
 | buffer | <code>ArrayBuffer</code> | Image buffer. |
 
 

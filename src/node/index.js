@@ -2,7 +2,6 @@
 
 const Image = require('./image');
 const arrayBufferIsICO = require('../is-ico');
-const bufferToArrayBuffer = require('./buffer-to-arraybuffer');
 const parseICO = require('../parse');
 const parseICOSync = require('../parse/sync');
 
@@ -12,13 +11,7 @@ const parseICOSync = require('../parse/sync');
  * @param {ArrayBuffer|Buffer} buffer ICO file data.
  * @returns {Boolean} True if arg is ICO.
  */
-const isICO = buffer => {
-  const arrayBuffer = bufferToArrayBuffer(buffer);
-  if (!arrayBuffer) {
-    return false;
-  }
-  return arrayBufferIsICO(arrayBuffer);
-};
+const isICO = buffer => arrayBufferIsICO(buffer);
 
 /**
  * Parse ICO and return some images.
@@ -27,13 +20,7 @@ const isICO = buffer => {
  * @param {String} [mime=image/png] MIME type for output.
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
-const parse = (buffer, mime) => {
-  const arrayBuffer = bufferToArrayBuffer(buffer);
-  if (!arrayBuffer) {
-    return Promise.reject(new TypeError('"buffer" argument must be a Buffer or ArrayBuffer'));
-  }
-  return parseICO(arrayBuffer, mime, Image);
-};
+const parse = (buffer, mime) => parseICO(buffer, mime || 'image/png', Image);
 
 /**
  * Parse ICO and return some images synchronously.
@@ -42,13 +29,7 @@ const parse = (buffer, mime) => {
  * @param {String} [mime=image/png] MIME type for output.
  * @returns {ParsedImage[]} Returns an array of {@link ParsedImage}.
  */
-const parseSync = (buffer, mime) => {
-  const arrayBuffer = bufferToArrayBuffer(buffer);
-  if (!arrayBuffer) {
-    throw new TypeError('"buffer" argument must be a Buffer or ArrayBuffer');
-  }
-  return parseICOSync(arrayBuffer, mime, Image);
-};
+const parseSync = (buffer, mime) => parseICOSync(buffer, mime || 'image/png', Image);
 
 /**
  * @module ICO

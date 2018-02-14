@@ -3,7 +3,6 @@
 const Buffer = require('safe-buffer').Buffer;
 const PNG = require('pngjs').PNG;
 const bmp = require('bmp-js');
-const bufferToArrayBuffer = require('./buffer-to-arraybuffer');
 const fileType = require('file-type');
 const jpeg = require('jpeg-js');
 
@@ -42,7 +41,7 @@ const Image = {
   /**
    * Create imageData from image
    * @access private
-   * @param {ArrayBuffer} arrayBuffer image buffer
+   * @param {ArrayBuffer|Buffer} arrayBuffer image buffer
    * @returns {ImageData} imageData
    */
   decodeSync (arrayBuffer) {
@@ -97,7 +96,7 @@ const Image = {
     };
     const encoder = mime in encoders ? encoders[mime] : encoders[MIME_PNG];
     const imageBuffer = encoder(imageData);
-    return bufferToArrayBuffer(imageBuffer);
+    return imageBuffer.buffer.slice(imageBuffer.byteOffset, imageBuffer.byteOffset + imageBuffer.byteLength);
   }
 };
 

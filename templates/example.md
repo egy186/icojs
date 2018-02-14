@@ -10,7 +10,7 @@ const buffer = fs.readFileSync('favicon.ico');
 ICO.parse(buffer, 'image/png').then(images => {
   // save as png files
   images.forEach(image => {
-    const file = `${image.width}x${image.height}-${image.bit}bit.png`;
+    const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
     const data = Buffer.from(image.buffer);
     fs.writeFileSync(file, data);
   });
