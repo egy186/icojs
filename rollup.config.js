@@ -15,6 +15,9 @@ const banner = `/*!
 
 const config = {
   input: 'src/browser/index.js',
+  onwarn (warning) {
+    throw new Error(warning.message);
+  },
   output: {
     banner,
     file: 'dist/ico.js',
