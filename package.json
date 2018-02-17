@@ -16,7 +16,7 @@
     "to-data-view": "^1.0.0"
   },
   "devDependencies": {
-    "@egy186/eslint-config": "~0.30.0",
+    "@egy186/eslint-config": "~0.31.0",
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
