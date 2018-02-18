@@ -4,18 +4,18 @@ $(function () {
 
   // Handler
   var parseComplete = function (err, images) {
-    var alert = $('<div class="alert alert-dismissable fade in">');
-    alert.append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>');
+    var alert = $('<div class="alert alert-dismissable fade show">');
+    alert.append('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
     if (err) {
       alert.addClass('alert-danger');
-      alert.append('<p><strong>Error:</strong> ' + err.message + '</p>');
+      alert.append('<p class="mb-0"><strong>Error:</strong> ' + err.message + '</p>');
     } else {
       alert.addClass('alert-success');
       alert.append('<p><strong>Success:</strong></p>');
-      images.forEach(function (image) {
+      images.forEach(function (image, index) {
         var text = image.width + 'x' + image.height + ', ' + image.bpp + 'bit';
         var url = URL.createObjectURL(new Blob([image.buffer], { type: mime }));
-        alert.append('<p><a href="' + url + '" target="_blank"><img src="' + url + '" /> ' + text + '</a></p>');
+        alert.append('<p class="mb-' + (index === images.length - 1 ? 0 : 3) + '"><a href="' + url + '" target="_blank"><img src="' + url + '" /> ' + text + '</a></p>');
       });
     }
     alert.prependTo('#demos-parse-results');
@@ -57,7 +57,6 @@ $(function () {
     evt.preventDefault();
     inputFile.click();
   };
-  inputFilePath.on('click', inputEvt);
   $('#input-file-emu').on('click', inputEvt);
   inputFile.on('change', function (evt) {
     inputFilePath.text(evt.target.files[0].name);
@@ -67,6 +66,6 @@ $(function () {
   // Highlightjs
   hljs.initHighlighting();
   // Add class
-  $('h2').addClass('page-header');
+  $('h2').addClass('border-bottom mt-4 mb-3 pb-2');
   $('table').addClass('table table-striped table-hover');
 });
