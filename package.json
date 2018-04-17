@@ -40,7 +40,7 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "engines": {
-    "node": ">=4.2.3"
+    "node": ">=6.14.0"
   },
   "files": [
     "dist",
