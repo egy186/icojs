@@ -1,7 +1,5 @@
 'use strict';
 
-const Buffer = require('safe-buffer').Buffer;
-
 const split = colors => colors.split('|').map(color => color.split(',').map(s => parseInt(s, 10)));
 
 const basic = [

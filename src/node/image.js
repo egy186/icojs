@@ -1,6 +1,5 @@
 'use strict';
 
-const Buffer = require('safe-buffer').Buffer;
 const PNG = require('pngjs').PNG;
 const bmp = require('bmp-js');
 const fileType = require('file-type');

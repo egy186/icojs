@@ -12,7 +12,6 @@
     "file-type": "^7.2.0",
     "jpeg-js": "^0.3.3",
     "pngjs": "^3.3.0",
-    "safe-buffer": "^5.1.1",
     "to-data-view": "^1.0.0"
   },
   "devDependencies": {
