@@ -1,13 +1,10 @@
 'use strict';
 
-const PNG = require('pngjs').PNG;
 const bmp = require('bmp-js');
 const fileType = require('file-type');
 const jpeg = require('jpeg-js');
-
-const MIME_BMP = 'image/bmp';
-const MIME_JPEG = 'image/jpeg';
-const MIME_PNG = 'image/png';
+const { MIME_BMP, MIME_JPEG, MIME_PNG } = require('../mime');
+const { PNG } = require('pngjs');
 
 const decoders = {
   [MIME_BMP]: bmp.decode,
@@ -45,17 +42,16 @@ const Image = {
    */
   decodeSync (arrayBuffer) {
     const buffer = Buffer.from(arrayBuffer);
-    const type = fileType(buffer);
-    const mime = type ? type.mime : null;
+    const { mime } = fileType(buffer) || {};
     if (!(mime in decoders)) {
       throw new TypeError(`${mime} is not supported`);
     }
     const decoder = decoders[mime];
-    const imageData = decoder(buffer);
+    const { data, height, width } = decoder(buffer);
     return {
-      data: new Uint8ClampedArray(imageData.data),
-      height: imageData.height,
-      width: imageData.width
+      data: new Uint8ClampedArray(data),
+      height,
+      width
     };
   },
   /**
@@ -87,7 +83,7 @@ const Image = {
    * @param {String} [mime=image/png] MIME type
    * @returns {ArrayBuffer} image
    */
-  encodeSync (image, mime) {
+  encodeSync (image, mime = MIME_PNG) {
     const imageData = {
       data: Buffer.from(image.data),
       height: image.height,

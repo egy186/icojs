@@ -1,6 +1,7 @@
 'use strict';
 
 const decodeIco = require('decode-ico');
+const { MIME_PNG } = require('../mime');
 
 /**
  * @typedef {Object} ParsedImage
@@ -44,7 +45,7 @@ const parse = (data, mime, Image) => {
   }));
 
   const transcodeImage = icon => {
-    if (mime === 'image/png' && icon.type === 'png') {
+    if (mime === MIME_PNG && icon.type === 'png') {
       return Promise.resolve(Object.assign({ buffer: icon.data.buffer.slice(icon.data.byteOffset, icon.data.byteOffset + icon.data.byteLength) }, icon));
     }
     return decodePng(icon).then(encodeImage);

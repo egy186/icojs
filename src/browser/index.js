@@ -3,6 +3,7 @@
 const Image = require('./image');
 const isICO = require('../is-ico');
 const parseICO = require('../parse');
+const { MIME_PNG } = require('../mime');
 
 const globalICO = global.ICO;
 
@@ -13,7 +14,7 @@ const globalICO = global.ICO;
  * @param {String} [mime=image/png] MIME type for output.
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
-const parse = (arrayBuffer, mime) => parseICO(arrayBuffer, mime || 'image/png', Image);
+const parse = (arrayBuffer, mime = MIME_PNG) => parseICO(arrayBuffer, mime, Image);
 
 /**
  * @class ICO

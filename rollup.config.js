@@ -6,9 +6,9 @@ const jsonfile = require('jsonfile');
 const resolve = require('rollup-plugin-node-resolve');
 const uglify = require('rollup-plugin-uglify');
 
-const pkg = jsonfile.readFileSync('./package.json');
+const { version } = jsonfile.readFileSync('./package.json');
 const banner = `/*!
- * icojs v${pkg.version}
+ * icojs v${version}
  * (c) egy186
  * https://github.com/egy186/icojs/blob/master/LICENSE
  */`;
