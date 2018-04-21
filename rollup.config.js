@@ -23,6 +23,7 @@ const config = {
     file: 'dist/ico.js',
     format: 'umd',
     name: 'ICO',
+    noConflict: true,
     sourcemap: true
   },
   plugins: [

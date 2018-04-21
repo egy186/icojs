@@ -4,7 +4,7 @@ const toDataView = require('to-data-view');
 
 /**
  * Check the ArrayBuffer is valid ICO.
- * @memberof ICO
+ * @alias module:ICO
  * @param {ArrayBuffer|Buffer} source ICO file data.
  * @returns {Boolean} True if arg is ICO.
  */

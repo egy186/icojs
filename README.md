@@ -78,20 +78,20 @@ ICO.parse(buffer, 'image/png').then(images => {
 
 [https://egy186.github.io/icojs/#demo](https://egy186.github.io/icojs/#demo)
 
-## API (Node.js)
+## API
 
 <a name="module_ICO"></a>
 
 ### ICO
 
 * [ICO](#module_ICO)
-    * [isICO(buffer)](#exp_module_ICO--isICO) ⇒ <code>Boolean</code> ⏏
+    * [isICO(source)](#exp_module_ICO--isICO) ⇒ <code>Boolean</code> ⏏
     * [parse(buffer, [mime])](#exp_module_ICO--parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
     * [parseSync(buffer, [mime])](#exp_module_ICO--parseSync) ⇒ [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) ⏏
 
 <a name="exp_module_ICO--isICO"></a>
 
-#### isICO(buffer) ⇒ <code>Boolean</code> ⏏
+#### isICO(source) ⇒ <code>Boolean</code> ⏏
 Check the ArrayBuffer is valid ICO.
 
 **Kind**: global method of [<code>ICO</code>](#module_ICO)  
@@ -99,7 +99,7 @@ Check the ArrayBuffer is valid ICO.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
+| source | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
 
 <a name="exp_module_ICO--parse"></a>
 
@@ -117,7 +117,7 @@ Parse ICO and return some images.
 <a name="exp_module_ICO--parseSync"></a>
 
 #### parseSync(buffer, [mime]) ⇒ [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) ⏏
-Parse ICO and return some images synchronously.
+Parse ICO and return some images synchronously **(Node.js only)**.
 
 **Kind**: global method of [<code>ICO</code>](#module_ICO)  
 **Returns**: [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) - Returns an array of [ParsedImage](#ParsedImage).  
@@ -126,51 +126,6 @@ Parse ICO and return some images synchronously.
 | --- | --- | --- | --- |
 | buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
 | [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
-
-
-## API (browser)
-
-<a name="ICO"></a>
-
-### ICO
-**Kind**: global class  
-
-* [ICO](#ICO)
-    * [.parse(arrayBuffer, [mime])](#ICO.parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code>
-    * [.noConflict()](#ICO.noConflict) ⇒ [<code>ICO</code>](#ICO)
-    * [.isICO(source)](#ICO.isICO) ⇒ <code>Boolean</code>
-
-<a name="ICO.parse"></a>
-
-#### ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code>
-Parse ICO and return some images.
-
-**Kind**: static method of [<code>ICO</code>](#ICO)  
-**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| arrayBuffer | <code>ArrayBuffer</code> |  | ICO file data. |
-| [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
-
-<a name="ICO.noConflict"></a>
-
-#### ICO.noConflict() ⇒ [<code>ICO</code>](#ICO)
-No conflict.
-
-**Kind**: static method of [<code>ICO</code>](#ICO)  
-**Returns**: [<code>ICO</code>](#ICO) - `ICO` Object.  
-<a name="ICO.isICO"></a>
-
-#### ICO.isICO(source) ⇒ <code>Boolean</code>
-Check the ArrayBuffer is valid ICO.
-
-**Kind**: static method of [<code>ICO</code>](#ICO)  
-**Returns**: <code>Boolean</code> - True if arg is ICO.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| source | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
 
 
 ## Typedefs

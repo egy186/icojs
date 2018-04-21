@@ -44,20 +44,20 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
   }, false);
 &lt;/script&gt;
 </code></pre>
-</section><section id="demo"><h2>Demo</h2><p>Please input ico file.</p><form action="#"><p class="input-group"><span class="input-group-prepend"><button class="btn btn-outline-primary" id="input-file-emu">Choose file</button></span><span class="custom-file"><input class="custom-file-input" id="input-file" type="file"><label class="custom-file-label" id="input-file-path" for="input-file"></label></span></p></form><section id="demos-parse-results"></section></section><section id="api"><h2>API (Node.js)</h2>
+</section><section id="demo"><h2>Demo</h2><p>Please input ico file.</p><form action="#"><p class="input-group"><span class="input-group-prepend"><button class="btn btn-outline-primary" id="input-file-emu">Choose file</button></span><span class="custom-file"><input class="custom-file-input" id="input-file" type="file"><label class="custom-file-label" id="input-file-path" for="input-file"></label></span></p></form><section id="demos-parse-results"></section></section><section id="api"><h2>API</h2>
 <p><a name="module_ICO"></a></p>
 <h3>ICO</h3>
 <ul>
 <li><a href="#module_ICO">ICO</a>
 <ul>
-<li><a href="#exp_module_ICO--isICO">isICO(buffer)</a> ⇒ <code>Boolean</code> ⏏</li>
+<li><a href="#exp_module_ICO--isICO">isICO(source)</a> ⇒ <code>Boolean</code> ⏏</li>
 <li><a href="#exp_module_ICO--parse">parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</li>
 <li><a href="#exp_module_ICO--parseSync">parseSync(buffer, [mime])</a> ⇒ <a href="#ParsedImage"><code>Array.&lt;ParsedImage&gt;</code></a> ⏏</li>
 </ul>
 </li>
 </ul>
 <p><a name="exp_module_ICO--isICO"></a></p>
-<h4>isICO(buffer) ⇒ <code>Boolean</code> ⏏</h4>
+<h4>isICO(source) ⇒ <code>Boolean</code> ⏏</h4>
 <p>Check the ArrayBuffer is valid ICO.</p>
 <p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
 <strong>Returns</strong>: <code>Boolean</code> - True if arg is ICO.</p>
@@ -71,7 +71,7 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 </thead>
 <tbody>
 <tr>
-<td>buffer</td>
+<td>source</td>
 <td><code>ArrayBuffer</code> | <code>Buffer</code></td>
 <td>ICO file data.</td>
 </tr>
@@ -108,7 +108,7 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 </table>
 <p><a name="exp_module_ICO--parseSync"></a></p>
 <h4>parseSync(buffer, [mime]) ⇒ <a href="#ParsedImage"><code>Array.&lt;ParsedImage&gt;</code></a> ⏏</h4>
-<p>Parse ICO and return some images synchronously.</p>
+<p>Parse ICO and return some images synchronously <strong>(Node.js only)</strong>.</p>
 <p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
 <strong>Returns</strong>: <a href="#ParsedImage"><code>Array.&lt;ParsedImage&gt;</code></a> - Returns an array of <a href="#ParsedImage">ParsedImage</a>.</p>
 <table>
@@ -132,74 +132,6 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <td><code>String</code></td>
 <td><code>image/png</code></td>
 <td>MIME type for output.</td>
-</tr>
-</tbody>
-</table>
-<h2>API (browser)</h2>
-<p><a name="ICO"></a></p>
-<h3>ICO</h3>
-<p><strong>Kind</strong>: global class</p>
-<ul>
-<li><a href="#ICO">ICO</a>
-<ul>
-<li><a href="#ICO.parse">.parse(arrayBuffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code></li>
-<li><a href="#ICO.noConflict">.noConflict()</a> ⇒ <a href="#ICO"><code>ICO</code></a></li>
-<li><a href="#ICO.isICO">.isICO(source)</a> ⇒ <code>Boolean</code></li>
-</ul>
-</li>
-</ul>
-<p><a name="ICO.parse"></a></p>
-<h4>ICO.parse(arrayBuffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code></h4>
-<p>Parse ICO and return some images.</p>
-<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
-<strong>Returns</strong>: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of <a href="#ParsedImage">ParsedImage</a>.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>arrayBuffer</td>
-<td><code>ArrayBuffer</code></td>
-<td></td>
-<td>ICO file data.</td>
-</tr>
-<tr>
-<td>[mime]</td>
-<td><code>String</code></td>
-<td><code>image/png</code></td>
-<td>MIME type for output.</td>
-</tr>
-</tbody>
-</table>
-<p><a name="ICO.noConflict"></a></p>
-<h4>ICO.noConflict() ⇒ <a href="#ICO"><code>ICO</code></a></h4>
-<p>No conflict.</p>
-<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
-<strong>Returns</strong>: <a href="#ICO"><code>ICO</code></a> - <code>ICO</code> Object.<br>
-<a name="ICO.isICO"></a></p>
-<h4>ICO.isICO(source) ⇒ <code>Boolean</code></h4>
-<p>Check the ArrayBuffer is valid ICO.</p>
-<p><strong>Kind</strong>: static method of <a href="#ICO"><code>ICO</code></a><br>
-<strong>Returns</strong>: <code>Boolean</code> - True if arg is ICO.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>source</td>
-<td><code>ArrayBuffer</code> | <code>Buffer</code></td>
-<td>ICO file data.</td>
 </tr>
 </tbody>
 </table>
