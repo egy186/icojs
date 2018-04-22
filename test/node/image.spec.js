@@ -1,13 +1,11 @@
 'use strict';
 
 const Image = require('../../src/node/image');
-const chai = require('chai');
+const { expect } = require('chai');
 const fileType = require('file-type');
 const fs = require('fs');
 const isSame = require('../fixtures/is-same');
 const path = require('path');
-
-const expect = chai.expect;
 
 describe('Image', () => {
   describe('.decodeSync', () => {
