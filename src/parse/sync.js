@@ -1,6 +1,7 @@
 'use strict';
 
 const decodeIco = require('decode-ico');
+const { MIME_PNG } = require('../mime');
 
 /**
  * Parse ICO and return some image object.
@@ -14,7 +15,7 @@ const parseSync = (data, mime, Image) => {
   const icons = decodeIco(data);
 
   const transcodeImage = icon => {
-    if (mime === 'image/png' && icon.type === 'png') {
+    if (mime === MIME_PNG && icon.type === 'png') {
       return Object.assign({ buffer: icon.data.buffer.slice(icon.data.byteOffset, icon.data.byteOffset + icon.data.byteLength) }, icon);
     }
 

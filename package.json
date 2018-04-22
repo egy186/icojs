@@ -12,7 +12,6 @@
     "file-type": "^7.2.0",
     "jpeg-js": "^0.3.3",
     "pngjs": "^3.3.3",
-    "safe-buffer": "^5.1.1",
     "to-data-view": "^1.0.0"
   },
   "devDependencies": {
@@ -40,7 +39,7 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "engines": {
-    "node": ">=4.2.3"
+    "node": ">=6.14.0"
   },
   "files": [
     "dist",

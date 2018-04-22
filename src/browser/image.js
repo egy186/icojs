@@ -1,5 +1,7 @@
 'use strict';
 
+const { MIME_PNG } = require('../mime');
+
 const dataURLToArrayBuffer = dataURL => {
   const string = atob(dataURL.replace(/.+,/, ''));
   const view = new Uint8Array(string.length);
@@ -22,18 +24,17 @@ const Image = {
       const img = document.createElement('img');
       img.src = url;
       img.onload = () => {
-        const width = img.naturalWidth;
-        const height = img.naturalHeight;
+        const { naturalHeight: height, naturalWidth: width } = img;
         const canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        const imageData = ctx.getImageData(0, 0, width, height);
+        const { data } = ctx.getImageData(0, 0, width, height);
         resolve({
-          width: imageData.width,
-          height: imageData.height,
-          data: imageData.data
+          data,
+          height,
+          width
         });
       };
     });
@@ -48,20 +49,20 @@ const Image = {
    * @param {String} [mime=image/png] MIME type
    * @returns {ArrayBuffer} image
    */
-  encode (image, mime) {
+  encode (image, mime = MIME_PNG) {
     return new Promise(resolve => {
-      const data = image.data;
+      const { data, height, width } = image;
       const canvas = document.createElement('canvas');
-      canvas.width = image.width;
-      canvas.height = image.height;
+      canvas.width = width;
+      canvas.height = height;
       const ctx = canvas.getContext('2d');
-      const imageData = ctx.createImageData(image.width, image.height);
+      const imageData = ctx.createImageData(width, height);
       const dataData = imageData.data;
       for (let i = 0; i < dataData.length; i++) {
         dataData[i] = data[i];
       }
       ctx.putImageData(imageData, 0, 0);
-      resolve(dataURLToArrayBuffer(canvas.toDataURL(mime || 'image/png')));
+      resolve(dataURLToArrayBuffer(canvas.toDataURL(mime)));
     });
   }
 };

@@ -3,7 +3,6 @@ node_js:
 - node
 - lts/carbon
 - lts/boron
-- lts/argon
 sudo: false
 env:
   global:

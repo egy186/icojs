@@ -1,11 +1,9 @@
 'use strict';
 
-const chai = require('chai');
+const { expect } = require('chai');
 const fs = require('fs');
 const isPNG = require('../src/is-png');
 const path = require('path');
-
-const expect = chai.expect;
 
 describe('isPNG', () => {
   it('is expected to return true or false', () => {

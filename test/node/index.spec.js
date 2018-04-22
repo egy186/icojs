@@ -1,16 +1,14 @@
 'use strict';
 
 const ICO = require('../../src/node');
-const chai = require('chai');
+const { expect, use } = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const cursorCur = require('../fixtures/images/cursor');
 const fs = require('fs');
 const isSame = require('../fixtures/is-same');
 const path = require('path');
 
-chai.use(chaiAsPromised);
-
-const expect = chai.expect;
+use(chaiAsPromised);
 
 describe('ICO', () => {
   describe('.isICO', () => {
