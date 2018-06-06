@@ -11,7 +11,7 @@ before_install:
 - if [[ `npm -v` != 6* ]]; then npm install -g npm; fi
 - npm install -g greenkeeper-lockfile@1
 install:
-- if [[ $TRAVIS_BRANCH == greenkeeper/* ]]; then npm install; else npm ci; fi
+- if [[ $TRAVIS_BRANCH == greenkeeper/* ]] && [[ -v TRAVIS_COMMIT_RANGE ]]; then npm install; else npm ci; fi
 before_script: greenkeeper-lockfile-update
 script:
 - npm run lint
