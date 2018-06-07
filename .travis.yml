@@ -10,6 +10,7 @@ env:
 before_install:
 - if [[ `npm -v` != 6* ]]; then npm install -g npm; fi
 - npm install -g greenkeeper-lockfile@1
+install: npm install
 before_script: greenkeeper-lockfile-update
 script:
 - npm run lint
