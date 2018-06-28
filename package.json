@@ -22,7 +22,7 @@
     "chai": "^4.0.1",
     "chai-as-promised": "^7.0.0",
     "concat": "^1.0.3",
-    "eslint": "~4.19.1",
+    "eslint": "~5.0.1",
     "jsdoc-to-markdown": "^4.0.1",
     "jsonfile": "^4.0.0",
     "jstransformer-markdown-it": "^2.0.0",
