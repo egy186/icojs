@@ -34,14 +34,14 @@ const parse = (data, mime, Image) => {
     }
 
     return Image.decode(icon.data).then(decoded => Object.assign(icon, {
-      type: 'bmp',
-      data: decoded.data
+      data: decoded.data,
+      type: 'bmp'
     }));
   };
 
   const encodeImage = icon => Image.encode(icon, mime).then(encoded => Object.assign(icon, {
-    type: mime.replace('image/', ''),
-    buffer: encoded
+    buffer: encoded,
+    type: mime.replace('image/', '')
   }));
 
   const transcodeImage = icon => {
