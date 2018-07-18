@@ -22,14 +22,14 @@ const parseSync = (data, mime, Image) => {
     if (icon.type === 'png') {
       const decoded = Image.decodeSync(icon.data);
       Object.assign(icon, {
-        type: 'bmp',
-        data: decoded.data
+        data: decoded.data,
+        type: 'bmp'
       });
     }
 
     return Object.assign(icon, {
-      type: mime.replace('image/', ''),
-      buffer: Image.encodeSync(icon, mime)
+      buffer: Image.encodeSync(icon, mime),
+      type: mime.replace('image/', '')
     });
   };
 

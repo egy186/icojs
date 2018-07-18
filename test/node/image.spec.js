@@ -24,9 +24,9 @@ describe('Image', () => {
   describe('.encodeSync', () => {
     it('is expected to create 1x1 PNG from ImageData', () => {
       const imageArrayBuffer = Image.encodeSync({
-        width: 1,
+        data: new Uint8ClampedArray([0, 0, 0, 0]),
         height: 1,
-        data: new Uint8ClampedArray([0, 0, 0, 0])
+        width: 1
       });
       expect(imageArrayBuffer).to.be.an.instanceof(ArrayBuffer);
       expect(fileType(imageArrayBuffer).mime).to.deep.equal('image/png');
@@ -40,9 +40,9 @@ describe('Image', () => {
     mimeTypes.forEach(mime => {
       it(`is expected to create ${mime} from ImageData`, () => {
         const imageArrayBuffer = Image.encodeSync({
-          width: 1,
+          data: new Uint8ClampedArray([0, 0, 0, 0]),
           height: 1,
-          data: new Uint8ClampedArray([0, 0, 0, 0])
+          width: 1
         }, mime);
         expect(fileType(imageArrayBuffer).mime).to.deep.equal(mime);
       });

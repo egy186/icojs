@@ -10,8 +10,8 @@ const isSame = (arrayBuffer, fileName) => {
   const arrayBuffer2 = fs.readFileSync(path.join(__dirname, 'images', fileName));
   const img2 = Image.decodeSync(arrayBuffer2);
   const diff = pixelmatch(img1.data, img2.data, null, img1.width, img1.height, {
-    threshold: 0,
-    includeAA: true
+    includeAA: true,
+    threshold: 0
   });
   return diff === 0;
 };
