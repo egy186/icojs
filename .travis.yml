@@ -7,24 +7,27 @@ sudo: false
 env:
   global:
     secure: OIN8IWAmpeo7Gp/MF0zizjhWYUag1tJek0yt8DGmq99nI1vIvy6pxj+uey4iSGLwulAE/p59OC9MNt0K+Er+R4Zkb3D7ACSYTQztltB2X7tYTvFptV4tbzQkiwgJIiBeCVD7vJoTDoFmJpkX4bv5qjquCwiDcVYoSiQEWZkP5kQ=
+before_install:
+- if [[ `npm -v` != 6* ]]; then npm install -g npm; fi
+- npm install -g greenkeeper-lockfile@1
+install: npm install
+before_script: greenkeeper-lockfile-update
+script:
+- npm run lint
+- npm test
+after_script: greenkeeper-lockfile-upload
+after_success:
+- npm install coveralls
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 jobs:
   include:
-  - stage: test
-    before_install:
-    - if [[ `npm -v` != 6* ]]; then npm install -g npm; fi
-    - npm install -g greenkeeper-lockfile@1
-    install: npm install
-    before_script: greenkeeper-lockfile-update
-    script:
-    - npm run lint
-    - npm test
-    after_script: greenkeeper-lockfile-upload
-    after_success:
-    - npm install coveralls
-    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - stage: npm release
     node_js: lts/carbon
+    before_install: npm install -g npm
+    install: npm ci
+    before_script: skip
     script: npm run build
+    after_script: skip
     deploy:
       provider: npm
       skip_cleanup: true
@@ -35,3 +38,4 @@ jobs:
         all_branches: true
         repo: egy186/icojs
         tags: true
+    after_success: skip
