@@ -1,0 +1,13 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "node/no-unsupported-features": [
+      "error",
+      {
+        "version": 10
+      }
+    ]
+  }
+}
