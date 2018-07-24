@@ -9,7 +9,7 @@ const { inlineSource } = require('inline-source');
 
 const parseInBrowser = async iconFilePath => {
   const content = await inlineSource(path.join(__dirname, 'index.html'), { compress: false });
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.setContent(content);
   const inputElement = await page.$('#ico-parse-input');
