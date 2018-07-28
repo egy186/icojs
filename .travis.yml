@@ -21,6 +21,14 @@ after_success:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 jobs:
   include:
+  - stage: test browser
+    node_js: node
+    before_install: skip
+    install: npm ci
+    before_script: skip
+    script: npm run test:browser
+    after_script: skip
+    after_success: skip
   - stage: npm release
     node_js: lts/carbon
     before_install: npm install -g npm

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Test icojs in the browser</title>
+</head>
+<body>
+  <h1>Test icojs in the browser</h1>
+  <h2>ICO.parse</h2>
+  <input id="ico-parse-input" type="file" />
+  <p id="ico-parse-result"></p>
+  <script inline src="../../dist/ico.js"></script>
+  <script>
+    const toDataURI = (buffer, mime) => {
+      const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+      return `data:${mime};base64,${base64}`;
+    };
+
+    const readAsArrayBuffer = file => new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = loaded => resolve(loaded.target.result);
+      reader.readAsArrayBuffer(file);
+    });
+
+    document.querySelector('#ico-parse-input').addEventListener('change', async changed => {
+      const arrayBuffer = await readAsArrayBuffer(changed.target.files[0]);
+      const mime = 'image/png';
+      const images = await ICO.parse(arrayBuffer, mime);
+      const result = document.querySelector('#ico-parse-result');
+      while (result.firstChild) {
+        result.firstChild.remove();
+      }
+      images.forEach(image => {
+        const img = document.createElement('img');
+        img.src = toDataURI(image.buffer, mime);
+        img.title = `${image.width}x${image.height}-${image.bpp}bit`;
+        result.appendChild(img);
+      });
+    }, false);
+  </script>
+</body>
+</html>
