@@ -29,7 +29,7 @@ describe('Image', () => {
         width: 1
       });
       expect(imageArrayBuffer).to.be.an.instanceof(ArrayBuffer);
-      expect(fileType(imageArrayBuffer).mime).to.deep.equal('image/png');
+      expect(fileType(Buffer.from(imageArrayBuffer)).mime).to.deep.equal('image/png');
       expect(isSame(imageArrayBuffer, '1x1/1x1-1bit.png')).to.be.true;
     });
     const mimeTypes = [
@@ -44,7 +44,7 @@ describe('Image', () => {
           height: 1,
           width: 1
         }, mime);
-        expect(fileType(imageArrayBuffer).mime).to.deep.equal(mime);
+        expect(fileType(Buffer.from(imageArrayBuffer)).mime).to.deep.equal(mime);
       });
     });
   });
