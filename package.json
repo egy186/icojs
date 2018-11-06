@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "bmp-js": "0.1.0",
-    "decode-ico": "^0.2.1",
+    "decode-ico": "^0.3.0",
     "file-type": "^10.4.0",
     "jpeg-js": "^0.3.3",
     "pngjs": "^3.3.3",
