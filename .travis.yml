@@ -4,7 +4,6 @@ node_js:
 - lts/dubnium
 - lts/carbon
 - lts/boron
-sudo: false
 env:
   global:
     secure: OIN8IWAmpeo7Gp/MF0zizjhWYUag1tJek0yt8DGmq99nI1vIvy6pxj+uey4iSGLwulAE/p59OC9MNt0K+Er+R4Zkb3D7ACSYTQztltB2X7tYTvFptV4tbzQkiwgJIiBeCVD7vJoTDoFmJpkX4bv5qjquCwiDcVYoSiQEWZkP5kQ=
@@ -25,7 +24,7 @@ jobs:
   - stage: test browser
     node_js: node
     before_install: skip
-    install: npm ci
+    install: npm install
     before_script: skip
     script: npm run test:browser
     after_script: skip
@@ -33,7 +32,7 @@ jobs:
   - stage: npm release
     node_js: lts/dubnium
     before_install: npm install -g npm
-    install: npm ci
+    install: npm install
     before_script: skip
     script: npm run build
     after_script: skip
