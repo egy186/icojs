@@ -1,8 +1,5 @@
 {
-  "env": {
-    "browser": true,
-    "es6": false
-  },
+  "extends": "@egy186/eslint-config/browser",
   "globals": {
     "$": true,
     "ICO": true,

@@ -3,7 +3,7 @@
 const { MIME_PNG } = require('../mime');
 
 const dataURLToArrayBuffer = dataURL => {
-  const string = atob(dataURL.replace(/.+,/, ''));
+  const string = atob(dataURL.replace(/.+,/u, ''));
   const view = new Uint8Array(string.length);
   for (let i = 0; i < string.length; i++) {
     view[i] = string.charCodeAt(i);
@@ -13,13 +13,15 @@ const dataURLToArrayBuffer = dataURL => {
 
 const Image = {
   /**
-   * Create imageData from image
+   * Create imageData from image.
+   *
    * @access private
-   * @param {ArrayBuffer} arrayBuffer image buffer
-   * @returns {ImageData} imageData
+   * @param {ArrayBuffer} arrayBuffer - Image buffer.
+   * @returns {ImageData} ImageData.
    */
   decode (arrayBuffer) {
     return new Promise(resolve => {
+      // eslint-disable-next-line node/no-unsupported-features/node-builtins
       const url = URL.createObjectURL(new Blob([arrayBuffer]));
       const img = document.createElement('img');
       img.src = url;
@@ -40,14 +42,15 @@ const Image = {
     });
   },
   /**
-   * Create image from imgData.data
+   * Create image from imgData.data.
+   *
    * @access private
-   * @param {Object} image data
-   * @param {Number} image.width img width
-   * @param {Number} image.height img height
-   * @param {Uint8ClampedArray} image.data same as imageData.data
-   * @param {String} [mime=image/png] MIME type
-   * @returns {ArrayBuffer} image
+   * @param {Object} image - Data.
+   * @param {number} image.width - Image width.
+   * @param {number} image.height - Image height.
+   * @param {Uint8ClampedArray} image.data - Same as imageData.data.
+   * @param {string} [mime=image/png] - MIME type.
+   * @returns {ArrayBuffer} Image.
    */
   encode (image, mime = MIME_PNG) {
     return new Promise(resolve => {
