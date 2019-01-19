@@ -4,9 +4,10 @@ const toDataView = require('to-data-view');
 
 /**
  * Check the ArrayBuffer is valid CUR.
+ *
  * @access private
- * @param {ArrayBuffer|Buffer} source ArrayBuffer or Buffer object
- * @returns {Boolean} arg is CUR or not
+ * @param {ArrayBuffer|Buffer} source - ArrayBuffer or Buffer object.
+ * @returns {boolean} Arg is CUR or not.
  */
 const isCUR = source => {
   const dataView = toDataView(source);

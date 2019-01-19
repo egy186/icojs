@@ -30,7 +30,7 @@ const config = {
     resolve(),
     commonjs(),
     babel(),
-    uglify({ output: { comments: /^!/ } })
+    uglify({ output: { comments: /^!/u } })
   ]
 };
 
