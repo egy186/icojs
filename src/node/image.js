@@ -20,10 +20,11 @@ const encoders = {
 
 const Image = {
   /**
-   * Asynchronously create imageData from image
+   * Asynchronously create imageData from image.
+   *
    * @access private
-   * @param {ArrayBuffer} arrayBuffer image buffer
-   * @returns {Promise<ImageData>} Resolves to imageData
+   * @param {ArrayBuffer} arrayBuffer - Image buffer.
+   * @returns {Promise<ImageData>} Resolves to imageData.
    */
   decode (arrayBuffer) {
     try {
@@ -35,10 +36,11 @@ const Image = {
     }
   },
   /**
-   * Create imageData from image
+   * Create imageData from image.
+   *
    * @access private
-   * @param {ArrayBuffer|Buffer} arrayBuffer image buffer
-   * @returns {ImageData} imageData
+   * @param {ArrayBuffer|Buffer} arrayBuffer - Image buffer.
+   * @returns {ImageData} ImageData.
    */
   decodeSync (arrayBuffer) {
     const buffer = Buffer.from(arrayBuffer);
@@ -55,14 +57,15 @@ const Image = {
     };
   },
   /**
-   * Asynchronously create image from imgData.data
+   * Asynchronously create image from imgData.data.
+   *
    * @access private
-   * @param {Object} image data
-   * @param {Number} image.width img width
-   * @param {Number} image.height img height
-   * @param {Uint8ClampedArray} image.data same as imageData.data
-   * @param {String} [mime=image/png] MIME type
-   * @returns {Promise<ArrayBuffer>} Resolves to image
+   * @param {Object} image - Data.
+   * @param {number} image.width - Image width.
+   * @param {number} image.height - Image height.
+   * @param {Uint8ClampedArray} image.data - Same as imageData.data.
+   * @param {string} [mime=image/png] - MIME type.
+   * @returns {Promise<ArrayBuffer>} Resolves to image.
    */
   encode (image, mime) {
     try {
@@ -74,14 +77,15 @@ const Image = {
     }
   },
   /**
-   * Create image from imgData.data
+   * Create image from imgData.data.
+   *
    * @access private
-   * @param {Object} image data
-   * @param {Number} image.width img width
-   * @param {Number} image.height img height
-   * @param {Uint8ClampedArray} image.data same as imageData.data
-   * @param {String} [mime=image/png] MIME type
-   * @returns {ArrayBuffer} image
+   * @param {Object} image - Data.
+   * @param {number} image.width - Image width.
+   * @param {number} image.height - Image height.
+   * @param {Uint8ClampedArray} image.data - Same as imageData.data.
+   * @param {string} [mime=image/png] - MIME type.
+   * @returns {ArrayBuffer} Image.
    */
   encodeSync (image, mime = MIME_PNG) {
     const imageData = {

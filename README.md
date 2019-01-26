@@ -85,17 +85,17 @@ ICO.parse(buffer, 'image/png').then(images => {
 ### ICO
 
 * [ICO](#module_ICO)
-    * [isICO(source)](#exp_module_ICO--isICO) ⇒ <code>Boolean</code> ⏏
+    * [isICO(source)](#exp_module_ICO--isICO) ⇒ <code>boolean</code> ⏏
     * [parse(buffer, [mime])](#exp_module_ICO--parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
     * [parseSync(buffer, [mime])](#exp_module_ICO--parseSync) ⇒ [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) ⏏
 
 <a name="exp_module_ICO--isICO"></a>
 
-#### isICO(source) ⇒ <code>Boolean</code> ⏏
+#### isICO(source) ⇒ <code>boolean</code> ⏏
 Check the ArrayBuffer is valid ICO.
 
 **Kind**: global method of [<code>ICO</code>](#module_ICO)  
-**Returns**: <code>Boolean</code> - True if arg is ICO.  
+**Returns**: <code>boolean</code> - True if arg is ICO.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -112,7 +112,7 @@ Parse ICO and return some images.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
-| [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
+| [mime] | <code>string</code> | <code>&quot;image/png&quot;</code> | MIME type for output. |
 
 <a name="exp_module_ICO--parseSync"></a>
 
@@ -125,7 +125,7 @@ Parse ICO and return some images synchronously **(Node.js only)**.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
-| [mime] | <code>String</code> | <code>image/png</code> | MIME type for output. |
+| [mime] | <code>string</code> | <code>&quot;image/png&quot;</code> | MIME type for output. |
 
 
 ## Typedefs
