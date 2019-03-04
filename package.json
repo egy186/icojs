@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
-    "@egy186/eslint-config": "~0.35.1",
+    "@egy186/eslint-config": "~0.36.0",
     "chai": "^4.0.1",
     "chai-as-promised": "^7.0.0",
     "concat": "^1.0.3",
