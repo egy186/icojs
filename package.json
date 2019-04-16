@@ -30,7 +30,7 @@
     "jstransformer-markdown-it": "^2.0.0",
     "mocha": "^6.0.1",
     "npm-run-all": "^4.0.1",
-    "nyc": "^13.3.0",
+    "nyc": "^14.0.0",
     "pixelmatch": "^4.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "puppeteer": "^1.6.0",
