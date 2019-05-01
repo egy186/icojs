@@ -42,7 +42,7 @@
     "rollup-plugin-uglify": "^6.0.2"
   },
   "engines": {
-    "node": ">=6.14.0"
+    "node": ">=8.16.0"
   },
   "files": [
     "dist",
