@@ -25,7 +25,7 @@
     "data-uri-to-buffer": "^2.0.0",
     "eslint": "~5.16.0",
     "inline-source": "^6.1.9",
-    "jsdoc-to-markdown": "^4.0.1",
+    "jsdoc-to-markdown": "^5.0.0",
     "jsonfile": "^5.0.0",
     "jstransformer-markdown-it": "^2.0.0",
     "mocha": "^6.1.4",
