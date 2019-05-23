@@ -15,11 +15,6 @@ after_success:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 jobs:
   include:
-  - stage: test browser
-    node_js: node
-    install: npm install
-    script: npm run test:browser
-    after_success: skip
   - stage: npm release
     node_js: lts/dubnium
     install: npm install

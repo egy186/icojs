@@ -70,9 +70,8 @@
     "clean": "rimraf coverage dist docs/index.html templates/api.md README.md",
     "jsdoc": "jsdoc2md --files \"src/**/*.js\" --heading-depth 3 --template templates/api.hbs > templates/api.md",
     "lint": "eslint .",
-    "pretest:browser": "npm run build:dist",
+    "pretest": "npm run build:dist",
     "test": "nyc --reporter lcov --reporter text-summary --report-dir coverage mocha \"test/**/*.spec.js\"",
-    "test:browser": "mocha test/browser/test.js",
     "version": "npm run build && git add docs/index.html README.md"
   }
 }
