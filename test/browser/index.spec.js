@@ -44,6 +44,6 @@ describe('ICO.parse in the browser', () => {
         }
         expect(isSame(image.buffer, expected)).to.be.true;
       });
-    });
+    }).timeout(5000);
   });
 });
