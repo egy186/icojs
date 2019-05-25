@@ -34,7 +34,8 @@ const parseSync = (data, mime, Image) => {
     });
   };
 
-  return icons.map(transcodeImage);
+  const parsedImages = icons.map(transcodeImage);
+  return parsedImages;
 };
 
 module.exports = parseSync;
