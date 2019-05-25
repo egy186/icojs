@@ -63,13 +63,13 @@ describe('ICO', () => {
         });
       });
     }));
-    it('is expected to parse hotspot of CUR', () => {
+    it('is expected to parse hotspot of CUR', async () => {
       const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
-      const promise = ICO.parse(buffer);
-      return Promise.all([
-        expect(promise.then(images => images[0].hotspot)).to.become(cursorCur[0].hotspot),
-        expect(promise.then(images => images[1].hotspot)).to.become(cursorCur[1].hotspot)
-      ]);
+      const images = await ICO.parse(buffer);
+      images.forEach((image, index) => {
+        expect(image.hotspot.x).to.deep.equal(cursorCur[index].hotspot.x);
+        expect(image.hotspot.y).to.deep.equal(cursorCur[index].hotspot.y);
+      });
     });
   });
   describe('.parseSync', () => {
