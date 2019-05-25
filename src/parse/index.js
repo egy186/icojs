@@ -20,39 +20,30 @@ const { MIME_PNG } = require('../mime');
  * @param {Object} Image - Image encoder/decoder.
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
-const parse = (data, mime, Image) => {
-  let icons = null;
+const parse = async (data, mime, Image) => {
+  const icons = decodeIco(data);
 
-  try {
-    icons = decodeIco(data);
-  } catch (err) {
-    return Promise.reject(err);
-  }
-
-  const decodePng = icon => {
-    if (icon.type !== 'png') {
-      return Promise.resolve(icon);
-    }
-
-    return Image.decode(icon.data).then(decoded => Object.assign(icon, {
-      data: decoded.data,
-      type: 'bmp'
-    }));
-  };
-
-  const encodeImage = icon => Image.encode(icon, mime).then(encoded => Object.assign(icon, {
-    buffer: encoded,
-    type: mime.replace('image/', '')
-  }));
-
-  const transcodeImage = icon => {
+  const transcodeImage = async icon => {
     if (mime === MIME_PNG && icon.type === 'png') {
-      return Promise.resolve(Object.assign({ buffer: icon.data.buffer.slice(icon.data.byteOffset, icon.data.byteOffset + icon.data.byteLength) }, icon));
+      return Object.assign({ buffer: icon.data.buffer.slice(icon.data.byteOffset, icon.data.byteOffset + icon.data.byteLength) }, icon);
     }
-    return decodePng(icon).then(encodeImage);
+
+    if (icon.type === 'png') {
+      const decoded = await Image.decode(icon.data);
+      Object.assign(icon, {
+        data: decoded.data,
+        type: 'bmp'
+      });
+    }
+
+    return Object.assign(icon, {
+      buffer: await Image.encode(icon, mime),
+      type: mime.replace('image/', '')
+    });
   };
 
-  return Promise.all(icons.map(transcodeImage));
+  const parsedImages = await Promise.all(icons.map(transcodeImage));
+  return parsedImages;
 };
 
 module.exports = parse;
