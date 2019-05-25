@@ -3,12 +3,9 @@ node_js:
 - node
 - lts/dubnium
 - lts/carbon
-- lts/boron
 env:
   global:
     secure: OIN8IWAmpeo7Gp/MF0zizjhWYUag1tJek0yt8DGmq99nI1vIvy6pxj+uey4iSGLwulAE/p59OC9MNt0K+Er+R4Zkb3D7ACSYTQztltB2X7tYTvFptV4tbzQkiwgJIiBeCVD7vJoTDoFmJpkX4bv5qjquCwiDcVYoSiQEWZkP5kQ=
-before_install:
-- if [[ `npm -v` != 6* ]]; then npm install -g npm; fi
 install: npm install
 script:
 - npm run lint
@@ -18,15 +15,8 @@ after_success:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 jobs:
   include:
-  - stage: test browser
-    node_js: node
-    before_install: skip
-    install: npm install
-    script: npm run test:browser
-    after_success: skip
   - stage: npm release
     node_js: lts/dubnium
-    before_install: npm install -g npm
     install: npm install
     script: npm run build
     deploy:
