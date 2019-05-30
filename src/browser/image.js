@@ -45,7 +45,7 @@ const Image = {
    * Create image from imgData.data.
    *
    * @access private
-   * @param {Object} image - Data.
+   * @param {object} image - Data.
    * @param {number} image.width - Image width.
    * @param {number} image.height - Image height.
    * @param {Uint8ClampedArray} image.data - Same as imageData.data.
