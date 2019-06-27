@@ -49,7 +49,8 @@
     "dist",
     "src",
     "browser.js",
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "homepage": "https://egy186.github.io/icojs",
   "keywords": [
