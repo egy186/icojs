@@ -4,10 +4,10 @@ const decodeIco = require('decode-ico');
 const { MIME_PNG } = require('../mime');
 
 /**
- * @typedef {Object} ParsedImage
- * @property {Number} width Image width.
- * @property {Number} height Image height.
- * @property {Number} bpp Image color depth as bits per pixel.
+ * @typedef {object} ParsedImage
+ * @property {number} width Image width.
+ * @property {number} height Image height.
+ * @property {number} bpp Image color depth as bits per pixel.
  * @property {ArrayBuffer} buffer Image buffer.
  */
 
