@@ -16,10 +16,10 @@
     "to-data-view": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "@egy186/eslint-config": "~0.38.0",
-    "babel-plugin-transform-async-to-promises": "^0.8.10",
+    "babel-plugin-transform-async-to-promises": "^0.8.12",
     "chai": "^4.0.1",
     "chai-as-promised": "^7.0.0",
     "concat": "^1.0.3",
@@ -36,11 +36,11 @@
     "pug-cli": "^1.0.0-alpha6",
     "puppeteer": "^1.18.1",
     "rimraf": "^2.5.2",
-    "rollup": "^1.12.3",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^10.0.0",
-    "rollup-plugin-node-resolve": "^5.0.0",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup": "^1.16.7",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.1"
   },
   "engines": {
     "node": ">=8.16.0"

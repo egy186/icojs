@@ -4,7 +4,7 @@ const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const jsonfile = require('jsonfile');
 const resolve = require('rollup-plugin-node-resolve');
-const { uglify } = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 
 const { version } = jsonfile.readFileSync('./package.json');
 const banner = `/*!
@@ -30,7 +30,7 @@ const config = {
     resolve(),
     commonjs(),
     babel(),
-    uglify({ output: { comments: /^!/u } })
+    terser({ output: { comments: /^!/u } })
   ]
 };
 
