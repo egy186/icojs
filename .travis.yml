@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 - node
+- lts/erbium
 - lts/dubnium
 - lts/carbon
 env:
@@ -16,7 +17,7 @@ after_success:
 jobs:
   include:
   - stage: npm release
-    node_js: lts/dubnium
+    node_js: lts/erbium
     install: npm install
     script: npm run build
     deploy:
