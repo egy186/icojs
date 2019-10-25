@@ -132,15 +132,15 @@ Parse ICO and return some images synchronously **(Node.js only)**.
 
 <a name="ParsedImage"></a>
 
-### ParsedImage : <code>Object</code>
+### ParsedImage : <code>object</code>
 **Kind**: global typedef  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| width | <code>Number</code> | Image width. |
-| height | <code>Number</code> | Image height. |
-| bpp | <code>Number</code> | Image color depth as bits per pixel. |
+| width | <code>number</code> | Image width. |
+| height | <code>number</code> | Image height. |
+| bpp | <code>number</code> | Image color depth as bits per pixel. |
 | buffer | <code>ArrayBuffer</code> | Image buffer. |
 
 
