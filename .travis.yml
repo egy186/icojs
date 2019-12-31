@@ -3,7 +3,6 @@ node_js:
 - node
 - lts/erbium
 - lts/dubnium
-- lts/carbon
 env:
   global:
     secure: OIN8IWAmpeo7Gp/MF0zizjhWYUag1tJek0yt8DGmq99nI1vIvy6pxj+uey4iSGLwulAE/p59OC9MNt0K+Er+R4Zkb3D7ACSYTQztltB2X7tYTvFptV4tbzQkiwgJIiBeCVD7vJoTDoFmJpkX4bv5qjquCwiDcVYoSiQEWZkP5kQ=

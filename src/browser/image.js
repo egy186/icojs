@@ -21,7 +21,6 @@ const Image = {
    */
   decode (arrayBuffer) {
     return new Promise(resolve => {
-      // eslint-disable-next-line node/no-unsupported-features/node-builtins
       const url = URL.createObjectURL(new Blob([arrayBuffer]));
       const img = document.createElement('img');
       img.src = url;
