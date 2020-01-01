@@ -1,9 +1,9 @@
 'use strict';
 
 const babel = require('rollup-plugin-babel');
-const commonjs = require('rollup-plugin-commonjs');
+const commonjs = require('@rollup/plugin-commonjs');
 const jsonfile = require('jsonfile');
-const resolve = require('rollup-plugin-node-resolve');
+const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 
 const { version } = jsonfile.readFileSync('./package.json');
@@ -30,7 +30,7 @@ const config = {
     resolve(),
     commonjs(),
     babel(),
-    terser({ output: { comments: /^!/u } })
+    terser()
   ]
 };
 

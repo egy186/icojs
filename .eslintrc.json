@@ -1,11 +1,9 @@
 {
   "extends": [
     "@egy186/eslint-config",
+    "@egy186/eslint-config/es2018",
     "@egy186/eslint-config/node"
   ],
-  "parserOptions": {
-    "ecmaVersion": 2017
-  },
   "rules": {
     "jsdoc/no-undefined-types": "off"
   }
