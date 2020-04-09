@@ -12,7 +12,7 @@
     "decode-ico": "^0.4.0",
     "file-type": "^12.4.2",
     "jpeg-js": "^0.3.6",
-    "pngjs": "^3.4.0",
+    "pngjs": "^4.0.0",
     "to-data-view": "^1.1.0"
   },
   "devDependencies": {
