@@ -11,7 +11,7 @@
     "bmp-js": "0.1.0",
     "decode-ico": "^0.4.0",
     "file-type": "^12.4.2",
-    "jpeg-js": "^0.3.6",
+    "jpeg-js": "^0.4.0",
     "pngjs": "^5.0.0",
     "to-data-view": "^1.1.0"
   },
