@@ -1,9 +1,0 @@
-{
-  "env": {
-    "mocha": true
-  },
-  "rules": {
-    "array-element-newline": "off",
-    "no-unused-expressions": "off"
-  }
-}

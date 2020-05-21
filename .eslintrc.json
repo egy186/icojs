@@ -4,6 +4,52 @@
     "@egy186/eslint-config/es2018",
     "@egy186/eslint-config/node"
   ],
+  "ignorePatterns": [
+    "coverage",
+    "dist"
+  ],
+  "overrides": [
+    {
+      "extends": "@egy186/eslint-config/browser",
+      "files": [
+        "docs/**/*.js"
+      ],
+      "globals": {
+        "$": true,
+        "ICO": true,
+        "hljs": true
+      },
+      "rules": {
+        "func-names": "off",
+        "no-console": "off",
+        "no-var": "off",
+        "prefer-arrow-callback": "off",
+        "prefer-template": "off",
+        "strict": "off",
+        "vars-on-top": "off"
+      }
+    },
+    {
+      "env": {
+        "browser": true
+      },
+      "files": [
+        "src/browser/**/*.js"
+      ]
+    },
+    {
+      "env": {
+        "mocha": true
+      },
+      "files": [
+        "test/**/*.js"
+      ],
+      "rules": {
+        "array-element-newline": "off",
+        "no-unused-expressions": "off"
+      }
+    }
+  ],
   "rules": {
     "jsdoc/no-undefined-types": "off"
   }
