@@ -1,7 +1,15 @@
 'use strict';
 
 const decodeIco = require('decode-ico');
-const { MIME_PNG } = require('../mime');
+const { MIME_PNG } = require('./mime');
+
+/**
+ * @typedef {object} ParsedImage
+ * @property {number} width Image width.
+ * @property {number} height Image height.
+ * @property {number} bpp Image color depth as bits per pixel.
+ * @property {ArrayBuffer} buffer Image buffer.
+ */
 
 /**
  * Parse ICO and return some image object.
@@ -10,12 +18,12 @@ const { MIME_PNG } = require('../mime');
  * @param {ArrayBuffer|Buffer} data - ICO file data.
  * @param {string} mime - MIME type for output.
  * @param {object} Image - Image encoder/decoder.
- * @returns {ParsedImage[]} Resolves to an array of {@link ParsedImage}.
+ * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */
-const parseSync = (data, mime, Image) => {
+const parse = async (data, mime, Image) => {
   const icons = decodeIco(data);
 
-  const transcodeImage = icon => {
+  const transcodeImage = async icon => {
     if (mime === MIME_PNG && icon.type === 'png') {
       return {
         ...icon,
@@ -24,7 +32,7 @@ const parseSync = (data, mime, Image) => {
     }
 
     if (icon.type === 'png') {
-      const decoded = Image.decodeSync(icon.data);
+      const decoded = await Image.decode(icon.data);
       Object.assign(icon, {
         data: decoded.data,
         type: 'bmp'
@@ -32,13 +40,13 @@ const parseSync = (data, mime, Image) => {
     }
 
     return Object.assign(icon, {
-      buffer: Image.encodeSync(icon, mime),
+      buffer: await Image.encode(icon, mime),
       type: mime.replace('image/', '')
     });
   };
 
-  const parsedImages = icons.map(transcodeImage);
+  const parsedImages = await Promise.all(icons.map(transcodeImage));
   return parsedImages;
 };
 
-module.exports = parseSync;
+module.exports = parse;

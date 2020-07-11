@@ -1,7 +1,7 @@
 'use strict';
 
+const FileType = require('file-type');
 const bmp = require('bmp-js');
-const fileType = require('file-type');
 const jpeg = require('jpeg-js');
 const { MIME_BMP, MIME_JPEG, MIME_PNG } = require('../mime');
 const { PNG } = require('pngjs');
@@ -20,31 +20,15 @@ const encoders = {
 
 const Image = {
   /**
-   * Asynchronously create imageData from image.
+   * Create ImageData from image.
    *
    * @access private
    * @param {ArrayBuffer} arrayBuffer - Image buffer.
-   * @returns {Promise<ImageData>} Resolves to imageData.
+   * @returns {Promise<ImageData>} Resolves to ImageData.
    */
-  decode (arrayBuffer) {
-    try {
-      const imageData = this.decodeSync(arrayBuffer);
-      return Promise.resolve(imageData);
-    } catch (err) {
-      /* istanbul ignore next */
-      return Promise.reject(err);
-    }
-  },
-  /**
-   * Create imageData from image.
-   *
-   * @access private
-   * @param {ArrayBuffer|Buffer} arrayBuffer - Image buffer.
-   * @returns {ImageData} ImageData.
-   */
-  decodeSync (arrayBuffer) {
+  async decode (arrayBuffer) {
     const buffer = Buffer.from(arrayBuffer);
-    const { mime } = fileType(buffer) || {};
+    const { mime } = await FileType.fromBuffer(buffer) || {};
     if (!(mime in decoders)) {
       throw new TypeError(`${mime} is not supported`);
     }
@@ -57,7 +41,7 @@ const Image = {
     };
   },
   /**
-   * Asynchronously create image from imgData.data.
+   * Create image from ImageData.
    *
    * @access private
    * @param {object} image - Data.
@@ -67,27 +51,8 @@ const Image = {
    * @param {string} [mime=image/png] - MIME type.
    * @returns {Promise<ArrayBuffer>} Resolves to image.
    */
-  encode (image, mime) {
-    try {
-      const imageArrayBuffer = this.encodeSync(image, mime);
-      return Promise.resolve(imageArrayBuffer);
-    } catch (err) {
-      /* istanbul ignore next */
-      return Promise.reject(err);
-    }
-  },
-  /**
-   * Create image from imgData.data.
-   *
-   * @access private
-   * @param {object} image - Data.
-   * @param {number} image.width - Image width.
-   * @param {number} image.height - Image height.
-   * @param {Uint8ClampedArray} image.data - Same as imageData.data.
-   * @param {string} [mime=image/png] - MIME type.
-   * @returns {ArrayBuffer} Image.
-   */
-  encodeSync (image, mime = MIME_PNG) {
+  // eslint-disable-next-line require-await
+  async encode (image, mime = MIME_PNG) {
     const imageData = {
       data: Buffer.from(image.data),
       height: image.height,

@@ -36,14 +36,14 @@ describe('ICO.parse in the browser', () => {
   icons.forEach(icon => {
     it(`is expected to parse ${icon}`, async () => {
       const images = await parseInBrowser(path.join(__dirname, `../fixtures/images/${icon}`));
-      images.forEach((image, index) => {
+      await Promise.all(images.map(async (image, index) => {
         const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.name}.png`;
         // Skip basic.ico[6], ref: https://github.com/egy186/icojs/pull/106
         if (icon === 'basic.ico' && index === 6) {
           return;
         }
-        expect(isSame(image.buffer, expected)).to.be.true;
-      });
+        expect(await isSame(image.buffer, expected)).to.be.true;
+      }));
     }).timeout(5000);
   });
 });

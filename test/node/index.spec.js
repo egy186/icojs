@@ -51,16 +51,16 @@ describe('ICO', () => {
         const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
         const images = await ICO.parse(buffer, format);
         expect(images).to.be.an('array');
-        images.forEach(image => {
+        await Promise.all(images.map(async image => {
           expect(image.bpp).to.be.a('number');
           expect(image.buffer).to.be.instanceof(ArrayBuffer);
           expect(image.height).to.be.a('number');
           expect(image.width).to.be.a('number');
           const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
           if (format === 'image/png') {
-            expect(isSame(image.buffer, expected)).to.be.true;
+            expect(await isSame(image.buffer, expected)).to.be.true;
           }
-        });
+        }));
       });
     }));
     it('is expected to parse hotspot of CUR', async () => {
@@ -70,49 +70,6 @@ describe('ICO', () => {
         expect(image.hotspot.x).to.deep.equal(cursorCur[index].hotspot.x);
         expect(image.hotspot.y).to.deep.equal(cursorCur[index].hotspot.y);
       });
-    });
-  });
-  describe('.parseSync', () => {
-    it('is expected to be rejected when arg is not buffer', () => {
-      expect(() => ICO.parseSync([])).to.throw(TypeError);
-    });
-    it('is expected to be rejected when arg is not ico', () => {
-      expect(() => ICO.parseSync(new ArrayBuffer(4))).to.throw('Truncated header');
-    });
-    const formats = [
-      'image/bmp',
-      'image/jpeg',
-      'image/png',
-      undefined
-    ];
-    const icons = [
-      'basic.ico',
-      'cursor.cur',
-      'palette.ico',
-      'png.ico'
-    ];
-    formats.forEach(format => icons.forEach(icon => {
-      it(`is expected to parse ${icon} (${format || 'default'})`, () => {
-        const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
-        const images = ICO.parseSync(buffer, format);
-        expect(images).to.be.an('array');
-        images.forEach(image => {
-          expect(image.bpp).to.be.a('number');
-          expect(image.buffer).to.be.instanceof(ArrayBuffer);
-          expect(image.height).to.be.a('number');
-          expect(image.width).to.be.a('number');
-          const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
-          if (format === 'image/png') {
-            expect(isSame(image.buffer, expected)).to.be.true;
-          }
-        });
-      });
-    }));
-    it('is expected to parse hotspot of CUR', () => {
-      const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
-      const images = ICO.parseSync(buffer);
-      expect(images[0].hotspot).to.deep.equal(cursorCur[0].hotspot);
-      expect(images[1].hotspot).to.deep.equal(cursorCur[1].hotspot);
     });
   });
 });
