@@ -38,6 +38,7 @@ const Image = {
   /**
    * Create imageData from image.
    *
+   * @deprecated
    * @access private
    * @param {ArrayBuffer|Buffer} arrayBuffer - Image buffer.
    * @returns {ImageData} ImageData.
@@ -79,6 +80,7 @@ const Image = {
   /**
    * Create image from imgData.data.
    *
+   * @deprecated
    * @access private
    * @param {object} image - Data.
    * @param {number} image.width - Image width.

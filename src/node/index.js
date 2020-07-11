@@ -19,6 +19,7 @@ const parse = (buffer, mime = MIME_PNG) => parseICO(buffer, mime, Image);
 /**
  * Parse ICO and return some images synchronously **(Node.js only)**.
  *
+ * @deprecated
  * @alias module:ICO
  * @param {ArrayBuffer|Buffer} buffer - ICO file data.
  * @param {string} [mime=image/png] - MIME type for output.
