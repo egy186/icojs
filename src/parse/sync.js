@@ -7,6 +7,7 @@ const { MIME_PNG } = require('../mime');
  * Parse ICO and return some image object.
  *
  * @access private
+ * @deprecated
  * @param {ArrayBuffer|Buffer} data - ICO file data.
  * @param {string} mime - MIME type for output.
  * @param {object} Image - Image encoder/decoder.
