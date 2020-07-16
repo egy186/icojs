@@ -87,7 +87,6 @@ ICO.parse(buffer, 'image/png').then(images => {
 * [ICO](#module_ICO)
     * [isICO(source)](#exp_module_ICO--isICO) ⇒ <code>boolean</code> ⏏
     * [parse(buffer, [mime])](#exp_module_ICO--parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
-    * ~~[parseSync(buffer, [mime])](#exp_module_ICO--parseSync) ⇒ [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) ⏏~~
 
 <a name="exp_module_ICO--isICO"></a>
 
@@ -108,21 +107,6 @@ Parse ICO and return some images.
 
 **Kind**: global method of [<code>ICO</code>](#module_ICO)  
 **Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
-| [mime] | <code>string</code> | <code>&quot;image/png&quot;</code> | MIME type for output. |
-
-<a name="exp_module_ICO--parseSync"></a>
-
-#### ~~parseSync(buffer, [mime]) ⇒ [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) ⏏~~
-***Deprecated***
-
-Parse ICO and return some images synchronously **(Node.js only)**.
-
-**Kind**: global method of [<code>ICO</code>](#module_ICO)  
-**Returns**: [<code>Array.&lt;ParsedImage&gt;</code>](#ParsedImage) - Returns an array of [ParsedImage](#ParsedImage).  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

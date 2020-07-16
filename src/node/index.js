@@ -3,7 +3,6 @@
 const Image = require('./image');
 const isICO = require('../is-ico');
 const parseICO = require('../parse');
-const parseICOSync = require('../parse/sync');
 const { MIME_PNG } = require('../mime');
 
 /**
@@ -17,23 +16,11 @@ const { MIME_PNG } = require('../mime');
 const parse = (buffer, mime = MIME_PNG) => parseICO(buffer, mime, Image);
 
 /**
- * Parse ICO and return some images synchronously **(Node.js only)**.
- *
- * @deprecated
- * @alias module:ICO
- * @param {ArrayBuffer|Buffer} buffer - ICO file data.
- * @param {string} [mime=image/png] - MIME type for output.
- * @returns {ParsedImage[]} Returns an array of {@link ParsedImage}.
- */
-const parseSync = (buffer, mime = MIME_PNG) => parseICOSync(buffer, mime, Image);
-
-/**
  * @module ICO
  */
 const ICO = {
   isICO,
-  parse,
-  parseSync
+  parse
 };
 
 module.exports = ICO;
