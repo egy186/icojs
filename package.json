@@ -50,7 +50,8 @@
     "src",
     "browser.js",
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "browser.d.ts"
   ],
   "homepage": "https://egy186.github.io/icojs",
   "keywords": [
