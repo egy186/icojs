@@ -22,7 +22,7 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
-    "chai": "^4.2.0",
+    "chai": "^4.3.0",
     "chai-as-promised": "^7.0.0",
     "concat": "^1.0.3",
     "data-uri-to-buffer": "^3.0.0",
