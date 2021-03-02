@@ -16,11 +16,11 @@
     "to-data-view": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
     "@egy186/eslint-config": "~0.43.0",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.1",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.0.0",
