@@ -1,0 +1,72 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint
+      uses: actions/setup-node@v1
+    - run: npm ci
+    - run: npm run lint
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm test
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        flag-name: run-${{ matrix.test_number }}
+        parallel: true
+
+  test-finish:
+
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    steps:
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel-finished: true
+
+  publish:
+
+    runs-on: ubuntu-latest
+
+    needs: [lint, test]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+        registry-url: https://registry.npmjs.org/
+    - run: npm ci
+    - run: npm run build
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      if: contains(github.ref, 'tags/v')
+
