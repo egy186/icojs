@@ -10,7 +10,7 @@
   "dependencies": {
     "bmp-js": "0.1.0",
     "decode-ico": "^0.4.0",
-    "file-type": "^16.1.0",
+    "file-type": "^16.2.0",
     "jpeg-js": "^0.4.3",
     "pngjs": "^5.0.0",
     "to-data-view": "^1.1.0"
@@ -22,7 +22,7 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
-    "chai": "^4.3.1",
+    "chai": "^4.3.3",
     "chai-as-promised": "^7.0.0",
     "concat": "^1.0.3",
     "data-uri-to-buffer": "^3.0.0",
