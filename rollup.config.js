@@ -6,12 +6,14 @@ const jsonfile = require('jsonfile');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 
-const { version } = jsonfile.readFileSync('./package.json');
-const banner = `/*!
+const banner = async () => {
+  const { version } = await jsonfile.readFile('./package.json');
+  return `/*!
  * icojs v${version}
  * (c) egy186
  * https://github.com/egy186/icojs/blob/master/LICENSE
  */`;
+};
 
 const config = {
   input: 'src/browser/index.js',

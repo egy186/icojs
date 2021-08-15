@@ -68,7 +68,8 @@ const basic = [
   }
 ];
 
-module.exports = basic.map(bmpObject => Object.assign(bmpObject, {
+module.exports = basic.map(bmpObject => ({
+  ...bmpObject,
   and: Buffer.from(bmpObject.and, 'base64'),
   colors: Array.isArray(bmpObject.colors) ? bmpObject.colors : split(bmpObject.colors),
   xor: Buffer.from(bmpObject.xor, 'base64')

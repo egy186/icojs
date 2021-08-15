@@ -46,23 +46,25 @@ describe('ICO', () => {
       'palette.ico',
       'png.ico'
     ];
-    formats.forEach(format => icons.forEach(icon => {
-      it(`is expected to parse ${icon} (${format || 'default'})`, async () => {
-        const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
-        const images = await ICO.parse(buffer, format);
-        expect(images).to.be.an('array');
-        await Promise.all(images.map(async image => {
-          expect(image.bpp).to.be.a('number');
-          expect(image.buffer).to.be.instanceof(ArrayBuffer);
-          expect(image.height).to.be.a('number');
-          expect(image.width).to.be.a('number');
-          const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
-          if (format === 'image/png') {
-            expect(await isSame(image.buffer, expected)).to.be.true;
-          }
-        }));
+    formats.forEach(format => {
+      icons.forEach(icon => {
+        it(`is expected to parse ${icon} (${format || 'default'})`, async () => {
+          const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images', `${icon}`));
+          const images = await ICO.parse(buffer, format);
+          expect(images).to.be.an('array');
+          await Promise.all(images.map(async image => {
+            expect(image.bpp).to.be.a('number');
+            expect(image.buffer).to.be.instanceof(ArrayBuffer);
+            expect(image.height).to.be.a('number');
+            expect(image.width).to.be.a('number');
+            const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
+            if (format === 'image/png') {
+              expect(await isSame(image.buffer, expected)).to.be.true;
+            }
+          }));
+        });
       });
-    }));
+    });
     it('is expected to parse hotspot of CUR', async () => {
       const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
       const images = await ICO.parse(buffer);
