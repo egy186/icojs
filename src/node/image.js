@@ -25,6 +25,7 @@ const Image = {
    * @access private
    * @param {ArrayBuffer} arrayBuffer - Image buffer.
    * @returns {Promise<ImageData>} Resolves to ImageData.
+   * @throws {Error}
    */
   async decode (arrayBuffer) {
     const buffer = Buffer.from(arrayBuffer);

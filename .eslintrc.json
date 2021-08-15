@@ -1,7 +1,6 @@
 {
   "extends": [
     "@egy186/eslint-config",
-    "@egy186/eslint-config/es2018",
     "@egy186/eslint-config/node"
   ],
   "ignorePatterns": [
@@ -46,11 +45,13 @@
       ],
       "rules": {
         "array-element-newline": "off",
-        "no-unused-expressions": "off"
+        "no-unused-expressions": "off",
+        "node/no-sync": "off"
       }
     }
   ],
   "rules": {
+    "jsdoc/no-defaults": "off",
     "jsdoc/no-undefined-types": "off"
   }
 }
