@@ -27,6 +27,7 @@
     "concat": "^1.0.3",
     "data-uri-to-buffer": "^3.0.0",
     "eslint": "~7.32.0",
+    "eslint-plugin-jsdoc": "^36.0.7",
     "eslint-plugin-node": "~11.1.0",
     "inline-source": "^7.1.0",
     "jsdoc-to-markdown": "^6.0.1",
