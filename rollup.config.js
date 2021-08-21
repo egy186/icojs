@@ -1,6 +1,6 @@
 'use strict';
 
-const babel = require('rollup-plugin-babel');
+const { babel } = require('@rollup/plugin-babel');
 const commonjs = require('@rollup/plugin-commonjs');
 const jsonfile = require('jsonfile');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
@@ -15,6 +15,8 @@ const banner = async () => {
  */`;
 };
 
+// eslint-disable-line jsdoc/valid-types
+/** @type {import('rollup').RollupOptions} */
 const config = {
   input: 'src/browser/index.js',
   onwarn (warning) {
@@ -31,7 +33,7 @@ const config = {
   plugins: [
     nodeResolve(),
     commonjs(),
-    babel(),
+    babel({ babelHelpers: 'bundled' }),
     terser()
   ]
 };
