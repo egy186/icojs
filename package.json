@@ -41,7 +41,7 @@
     "pug-cli": "^1.0.0-alpha6",
     "puppeteer": "^10.2.0",
     "rimraf": "^3.0.0",
-    "rollup": "^2.66.0",
+    "rollup": "^2.68.0",
     "rollup-plugin-terser": "^7.0.2"
   },
   "engines": {
