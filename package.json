@@ -39,7 +39,7 @@
     "nyc": "^15.0.0",
     "pixelmatch": "^5.2.1",
     "pug-cli": "^1.0.0-alpha6",
-    "puppeteer": "^10.2.0",
+    "puppeteer": "^13.5.2",
     "rimraf": "^3.0.0",
     "rollup": "^2.66.0",
     "rollup-plugin-terser": "^7.0.2"
