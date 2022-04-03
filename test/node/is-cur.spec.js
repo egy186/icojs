@@ -2,12 +2,12 @@
 
 const { expect } = require('chai');
 const fs = require('fs');
-const isCUR = require('../src/is-cur');
+const isCUR = require('../../src/is-cur');
 const path = require('path');
 
 describe('isCUR', () => {
   it('is expected to return true or false', () => {
-    const buffer = fs.readFileSync(path.join(__dirname, './fixtures/images/cursor.cur'));
+    const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
     expect(() => isCUR('it is not buffer')).to.throw(TypeError);
     expect(isCUR(buffer)).to.be.true;
     const d = new ArrayBuffer(4);
