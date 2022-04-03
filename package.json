@@ -72,7 +72,7 @@
     "jsdoc": "jsdoc2md --files \"src/**/*.js\" --heading-depth 3 --template templates/api.hbs > templates/api.md",
     "lint": "eslint .",
     "predocs": "npm run jsdoc",
-    "pretest": "npm run build:dist",
+    "pretest": "npm run build",
     "test": "npm run test:node && npm run test:browser",
     "test:browser": "playwright test",
     "test:node": "nyc --reporter lcov --reporter text-summary --report-dir coverage mocha \"test/node/*.spec.js\"",
