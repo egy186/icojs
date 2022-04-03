@@ -30,12 +30,14 @@
       while (result.firstChild) {
         result.firstChild.remove();
       }
+      const fragment = document.createDocumentFragment()
       images.forEach(image => {
         const img = document.createElement('img');
         img.src = toDataURI(image.buffer, mime);
         img.title = `${image.width}x${image.height}-${image.bpp}bit`;
-        result.appendChild(img);
+        fragment.appendChild(img);
       });
+      result.appendChild(fragment);
     }, false);
   </script>
 </body>
