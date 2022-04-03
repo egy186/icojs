@@ -1,25 +1,73 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>icojs - egy186.github.io</title><meta name="author" content="egy186"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js" defer=""></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer=""></script><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js" defer=""></script><script src="https://unpkg.com/icojs@0.16.1/dist/ico.js" defer=""></script><script src="demo.js" defer=""></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/github.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"><style>header h1 a { font-size: 72px; color: inherit; text-decoration: none; }
-header h1 a:hover { text-decoration: none; }</style></head><body class="container" data-spy="scroll" data-target="#nav"><div class="row"><header class="col-md-12"><h1><a href="./">icojs</a> <small class="text-muted">v0.16.1</small></h1><p class="lead">A JavaScript library to use ICO.</p><p><small><a href="https://www.npmjs.com/package/icojs" title="npm"><img src="https://img.shields.io/npm/v/icojs.svg" alt="npm"></a> <a href="https://github.com/egy186/icojs/actions/workflows/ci.yml" title="CI"><img src="https://github.com/egy186/icojs/actions/workflows/ci.yml/badge.svg" alt="CI"></a> <a href="https://david-dm.org/egy186/icojs" title="dependencies status"><img src="https://david-dm.org/egy186/icojs/status.svg" alt="dependencies status"></a></small></p></header><nav class="col-md-3" id="nav"><h2 class="sr-only">Table of Contents</h2><ul class="nav nav-pills flex-column pt-3 sticky-top"><li class="nav-item"><a class="nav-link" href="#install">Install</a></li><li class="nav-item"><a class="nav-link" href="#example">Example</a></li><li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li><li class="nav-item"><a class="nav-link" href="#api">API</a></li></ul></nav><main class="col-md-9"><section id="install"><h2>Install</h2>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>icojs - egy186.github.io</title>
+  <meta name="author" content="egy186">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js" defer></script>
+  <script src="https://unpkg.com/icojs@0.16.1/dist/ico.js" defer></script>
+  <script src="demo.js" defer=""></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    header h1 a {
+      font-size: 72px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header h1 a:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body class="container" data-spy="scroll" data-target="#nav">
+  <div class="row">
+    <header class="col-md-12">
+      <h1><a href="./">icojs</a> <small class="text-muted">v0.16.1</small></h1>
+      <p class="lead">A JavaScript library to use ICO.</p>
+      <p><small><a href="https://www.npmjs.com/package/icojs" title="npm"><img src="https://img.shields.io/npm/v/icojs.svg" alt="npm"></a> <a href="https://github.com/egy186/icojs/actions/workflows/ci.yml" title="CI"><img src="https://github.com/egy186/icojs/actions/workflows/ci.yml/badge.svg" alt="CI"></a> <a href="https://david-dm.org/egy186/icojs" title="dependencies status"><img src="https://david-dm.org/egy186/icojs/status.svg" alt="dependencies status"></a></small></p>
+    </header>
+    <nav class="col-md-3" id="nav">
+      <h2 class="sr-only">Table of Contents</h2>
+      <ul class="nav nav-pills flex-column pt-3 sticky-top">
+        <li class="nav-item"><a class="nav-link" href="#install">Install</a></li>
+        <li class="nav-item"><a class="nav-link" href="#example">Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
+        <li class="nav-item"><a class="nav-link" href="#api">API</a></li>
+      </ul>
+    </nav>
+    <main class="col-md-9">
+      <section id="install">
+        <h2>Install</h2>
 <pre><code class="language-sh">npm install icojs
 </code></pre>
 <h3>Node.js:</h3>
-<pre><code class="language-js">const ICO = require('icojs');
+<pre><code class="language-js">const ICO = require(&#39;icojs&#39;);
 </code></pre>
 <h3>Browser:</h3>
-<pre><code class="language-js">const ICO = require('icojs/browser')
+<pre><code class="language-js">const ICO = require(&#39;icojs/browser&#39;)
 </code></pre>
 <p>or</p>
 <pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/icojs/dist/ico.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>To fully use this library, browsers must support <strong>JavaScript typed arrays</strong>, <strong>Canvas API</strong> and <strong>Promise</strong>.
 Chrome, Edge 12, Firefox and Safari 9 support these functions.</p>
-</section><section id="example"><h2>Example</h2>
-<h3>Node.js:</h3>
-<pre><code class="language-js">const fs = require('fs');
-const ICO = require('icojs');
 
-const buffer = fs.readFileSync('favicon.ico');
-ICO.parse(buffer, 'image/png').then(images =&gt; {
+      </section>
+      <section id="example">
+        <h2>Example</h2>
+<h3>Node.js:</h3>
+<pre><code class="language-js">const fs = require(&#39;fs&#39;);
+const ICO = require(&#39;icojs&#39;);
+
+const buffer = fs.readFileSync(&#39;favicon.ico&#39;);
+ICO.parse(buffer, &#39;image/png&#39;).then(images =&gt; {
   // save as png files
   images.forEach(image =&gt; {
     const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
@@ -31,7 +79,7 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <h3>Browser:</h3>
 <pre><code class="language-html">&lt;input type=&quot;file&quot; id=&quot;input-file&quot; /&gt;
 &lt;script&gt;
-  document.getElementById('input-file').addEventListener('change', function (evt) {
+  document.getElementById(&#39;input-file&#39;).addEventListener(&#39;change&#39;, function (evt) {
     // use FileReader for converting File object to ArrayBuffer object
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -44,12 +92,22 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
   }, false);
 &lt;/script&gt;
 </code></pre>
-</section><section id="demo"><h2>Demo</h2><p>Please input ico file.</p><form action="#"><p class="input-group"><span class="input-group-prepend"><button class="btn btn-outline-primary" id="input-file-emu">Choose file</button></span><span class="custom-file"><input class="custom-file-input" id="input-file" type="file"><label class="custom-file-label" id="input-file-path" for="input-file"></label></span></p></form><section id="demos-parse-results"></section></section><section id="api"><h2>API</h2>
+
+      </section>
+      <section id="demo">
+        <h2>Demo</h2>
+        <p>Please input ico file.</p>
+        <form action="#">
+          <p class="input-group"><span class="input-group-prepend"><button class="btn btn-outline-primary" id="input-file-emu">Choose file</button></span><span class="custom-file"><input class="custom-file-input" id="input-file" type="file"><label class="custom-file-label" id="input-file-path" for="input-file"></label></span></p>
+        </form>
+        <section id="demos-parse-results"></section>
+      </section>
+      <section id="api">
+        <h2>API</h2>
 <p><a name="module_ICO"></a></p>
 <h3>ICO</h3>
 <ul>
-<li><a href="#module_ICO">ICO</a>
-<ul>
+<li><a href="#module_ICO">ICO</a><ul>
 <li><a href="#exp_module_ICO--isICO">isICO(source)</a> ⇒ <code>boolean</code> ⏏</li>
 <li><a href="#exp_module_ICO--parse">parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</li>
 </ul>
@@ -58,8 +116,7 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <p><a name="exp_module_ICO--isICO"></a></p>
 <h4>isICO(source) ⇒ <code>boolean</code> ⏏</h4>
 <p>Check the ArrayBuffer is valid ICO.</p>
-<p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
-<strong>Returns</strong>: <code>boolean</code> - True if arg is ICO.</p>
+<p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br><strong>Returns</strong>: <code>boolean</code> - True if arg is ICO.  </p>
 <table>
 <thead>
 <tr>
@@ -68,19 +125,16 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <th>Description</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>source</td>
 <td><code>ArrayBuffer</code> | <code>Buffer</code></td>
 <td>ICO file data.</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><a name="exp_module_ICO--parse"></a></p>
 <h4>parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</h4>
 <p>Parse ICO and return some images.</p>
-<p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br>
-<strong>Returns</strong>: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of <a href="#ParsedImage">ParsedImage</a>.</p>
+<p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br><strong>Returns</strong>: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of <a href="#ParsedImage">ParsedImage</a>.  </p>
 <table>
 <thead>
 <tr>
@@ -90,8 +144,7 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <th>Description</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>buffer</td>
 <td><code>ArrayBuffer</code> | <code>Buffer</code></td>
 <td></td>
@@ -103,13 +156,11 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <td><code>&quot;image/png&quot;</code></td>
 <td>MIME type for output.</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2>Typedefs</h2>
 <p><a name="ParsedImage"></a></p>
 <h3>ParsedImage : <code>object</code></h3>
-<p><strong>Kind</strong>: global typedef<br>
-<strong>Properties</strong></p>
+<p><strong>Kind</strong>: global typedef<br><strong>Properties</strong></p>
 <table>
 <thead>
 <tr>
@@ -118,8 +169,7 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <th>Description</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>width</td>
 <td><code>number</code></td>
 <td>Image width.</td>
@@ -139,6 +189,14 @@ ICO.parse(buffer, 'image/png').then(images =&gt; {
 <td><code>ArrayBuffer</code></td>
 <td>Image buffer.</td>
 </tr>
-</tbody>
-</table>
-</section></main><footer class="col-md-12 text-center border-top mb-4 pt-3"><p>Source code on GitHub: <a href="https://github.com/egy186/icojs">egy186/icojs</a></p></footer></div></body></html>
+</tbody></table>
+
+      </section>
+    </main>
+    <footer class="col-md-12 text-center border-top mb-4 pt-3">
+      <p>Source code on GitHub: <a href="https://github.com/egy186/icojs">egy186/icojs</a></p>
+    </footer>
+  </div>
+</body>
+
+</html>
