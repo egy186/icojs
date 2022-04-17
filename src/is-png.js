@@ -5,9 +5,9 @@ const toDataView = require('to-data-view');
 /**
  * Check the ArrayBuffer is valid PNG.
  *
- * @access private
  * @param {ArrayBuffer|Buffer} source - ArrayBuffer or Buffer object.
  * @returns {boolean} Arg is PNG or not.
+ * @access private
  */
 const isPNG = source => {
   const dataView = toDataView(source);

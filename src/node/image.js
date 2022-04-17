@@ -22,10 +22,10 @@ const Image = {
   /**
    * Create ImageData from image.
    *
-   * @access private
    * @param {ArrayBuffer} arrayBuffer - Image buffer.
    * @returns {Promise<ImageData>} Resolves to ImageData.
    * @throws {Error}
+   * @access private
    */
   async decode (arrayBuffer) {
     const buffer = Buffer.from(arrayBuffer);
@@ -44,13 +44,13 @@ const Image = {
   /**
    * Create image from ImageData.
    *
-   * @access private
    * @param {object} image - Data.
    * @param {number} image.width - Image width.
    * @param {number} image.height - Image height.
    * @param {Uint8ClampedArray} image.data - Same as imageData.data.
    * @param {string} [mime=image/png] - MIME type.
    * @returns {Promise<ArrayBuffer>} Resolves to image.
+   * @access private
    */
   // eslint-disable-next-line require-await
   async encode (image, mime = MIME_PNG) {
