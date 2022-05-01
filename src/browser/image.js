@@ -15,9 +15,9 @@ const Image = {
   /**
    * Create imageData from image.
    *
-   * @access private
    * @param {ArrayBuffer} arrayBuffer - Image buffer.
    * @returns {ImageData} ImageData.
+   * @access private
    */
   decode (arrayBuffer) {
     return new Promise(resolve => {
@@ -43,13 +43,13 @@ const Image = {
   /**
    * Create image from imgData.data.
    *
-   * @access private
    * @param {object} image - Data.
    * @param {number} image.width - Image width.
    * @param {number} image.height - Image height.
    * @param {Uint8ClampedArray} image.data - Same as imageData.data.
    * @param {string} [mime=image/png] - MIME type.
    * @returns {ArrayBuffer} Image.
+   * @access private
    */
   encode (image, mime = MIME_PNG) {
     return new Promise(resolve => {

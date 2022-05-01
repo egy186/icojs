@@ -14,11 +14,11 @@ const { MIME_PNG } = require('./mime');
 /**
  * Parse ICO and return some image object.
  *
- * @access private
  * @param {ArrayBuffer|Buffer} data - ICO file data.
  * @param {string} mime - MIME type for output.
  * @param {object} Image - Image encoder/decoder.
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
+ * @access private
  */
 const parse = async (data, mime, Image) => {
   const icons = decodeIco(data);
