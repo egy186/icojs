@@ -15,7 +15,7 @@ const banner = async () => {
  */`;
 };
 
-// eslint-disable-line jsdoc/valid-types
+// eslint-disable-next-line jsdoc/valid-types
 /** @type {import('rollup').RollupOptions} */
 const config = {
   input: 'src/browser/index.js',
