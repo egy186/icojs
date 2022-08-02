@@ -16,7 +16,7 @@
     "to-data-view": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.0",
+    "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.16.11",
     "@egy186/eslint-config": "^0.74.0",
     "@playwright/test": "^1.23.0",
