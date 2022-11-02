@@ -35,7 +35,8 @@ const config = {
     commonjs(),
     babel({ babelHelpers: 'bundled' }),
     terser()
-  ]
+  ],
+  strictDeprecations: true
 };
 
 module.exports = config;
