@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
-    "@egy186/eslint-config": "^0.79.0",
+    "@egy186/eslint-config": "^0.81.0",
     "@playwright/test": "^1.26.0",
     "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-commonjs": "^23.0.2",
@@ -30,7 +30,7 @@
     "data-uri-to-buffer": "^3.0.0",
     "ejs": "^3.1.7",
     "eslint": "^8.26.0",
-    "eslint-plugin-jsdoc": "^39.4.0",
+    "eslint-plugin-jsdoc": "^39.6.2",
     "eslint-plugin-node": "~11.1.0",
     "file-url": "^3.0.0",
     "jsdoc-to-markdown": "^7.1.1",
