@@ -41,7 +41,7 @@
     "pixelmatch": "^5.3.0",
     "playwright": "^1.27.1",
     "rimraf": "^3.0.0",
-    "rollup": "^3.2.5"
+    "rollup": "^3.3.0"
   },
   "engines": {
     "node": ">=14.19.1"
