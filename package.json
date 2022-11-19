@@ -39,7 +39,7 @@
     "mocha": "^10.1.0",
     "nyc": "^15.0.0",
     "pixelmatch": "^5.3.0",
-    "playwright": "^1.27.1",
+    "playwright": "^1.28.0",
     "rimraf": "^3.0.0",
     "rollup": "^3.3.0"
   },
