@@ -35,7 +35,7 @@
     "file-url": "^3.0.0",
     "jsdoc-to-markdown": "^7.1.1",
     "jsonfile": "^6.1.0",
-    "marked": "^4.2.2",
+    "marked": "^4.2.4",
     "mocha": "^10.1.0",
     "nyc": "^15.0.0",
     "pixelmatch": "^5.3.0",
