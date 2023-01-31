@@ -33,7 +33,7 @@
     "eslint-plugin-jsdoc": "^39.7.4",
     "eslint-plugin-node": "~11.1.0",
     "file-url": "^3.0.0",
-    "jsdoc-to-markdown": "^7.1.1",
+    "jsdoc-to-markdown": "^8.0.0",
     "jsonfile": "^6.1.0",
     "marked": "^4.2.2",
     "mocha": "^10.2.0",
