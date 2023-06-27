@@ -11,7 +11,7 @@ const banner = async () => {
   return `/*!
  * icojs v${version}
  * (c) egy186
- * https://github.com/egy186/icojs/blob/master/LICENSE
+ * https://github.com/egy186/icojs/blob/main/LICENSE
  */`;
 };
 
