@@ -46,7 +46,7 @@
       "rules": {
         "array-element-newline": "off",
         "no-unused-expressions": "off",
-        "node/no-sync": "off"
+        "n/no-sync": "off"
       }
     }
   ],
