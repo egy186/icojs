@@ -44,8 +44,8 @@ const Image = {
    * Create image from imgData.data.
    *
    * @param {object} image - Data.
-   * @param {number} image.width - Image width.
-   * @param {number} image.height - Image height.
+   * @param {number} image.width - Image width in pixels.
+   * @param {number} image.height - Image height in pixels.
    * @param {Uint8ClampedArray} image.data - Same as imageData.data.
    * @param {string} [mime=image/png] - MIME type.
    * @returns {ArrayBuffer} Image.
