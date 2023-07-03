@@ -29,7 +29,7 @@
     "chai-as-promised": "^7.0.0",
     "data-uri-to-buffer": "^3.0.0",
     "ejs": "^3.1.7",
-    "eslint": "^8.43.0",
+    "eslint": "^8.44.0",
     "eslint-plugin-jsdoc": "^46.4.1",
     "eslint-plugin-n": "^16.0.1",
     "file-url": "^3.0.0",
