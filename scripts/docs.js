@@ -32,18 +32,9 @@ const generateDocs = async () => {
   const { version } = await jsonfile.readFile(path.resolve(__dirname, '../package.json'));
   const html = render(template, {
     docs: {
-      api: marked.parse(markdown.api, {
-        headerIds: false,
-        mangle: false
-      }),
-      example: marked.parse(markdown.example, {
-        headerIds: false,
-        mangle: false
-      }),
-      install: marked.parse(markdown.install, {
-        headerIds: false,
-        mangle: false
-      })
+      api: marked.parse(markdown.api),
+      example: marked.parse(markdown.example),
+      install: marked.parse(markdown.install)
     },
     version
   });
