@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
-    "@egy186/eslint-config": "^0.92.0",
+    "@egy186/eslint-config": "^0.95.0",
     "@playwright/test": "^1.35.1",
     "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-commonjs": "^25.0.2",
