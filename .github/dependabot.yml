@@ -4,4 +4,27 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      babel:
+        patterns:
+          - "@babel/*"
+          - "@rollup/plugin-babel"
+          - "babel-plugin-*"
+      chai:
+        patterns:
+          - "chai"
+          - "chai-as-promised"
+      eslint:
+        patterns:
+          - "@egy186/eslint-config"
+          - "eslint"
+          - "eslint-plugin-*"
+      playwright:
+        patterns:
+          - "@playwright/test"
+          - "playwright"
+      rollup:
+        patterns:
+          - "@rollup/plugin-*"
+          - "rollup"
     versioning-strategy: increase
