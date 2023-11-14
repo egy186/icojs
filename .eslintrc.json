@@ -44,7 +44,7 @@
         "test/**/*.js"
       ],
       "rules": {
-        "array-element-newline": "off",
+        "@stylistic/array-element-newline": "off",
         "no-unused-expressions": "off",
         "n/no-sync": "off"
       }
