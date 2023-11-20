@@ -17,6 +17,7 @@ updates:
       eslint:
         patterns:
           - "@egy186/eslint-config"
+          - "@stylistic/eslint-plugin"
           - "eslint"
           - "eslint-plugin-*"
       playwright:
