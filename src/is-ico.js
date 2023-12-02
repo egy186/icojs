@@ -1,6 +1,4 @@
-'use strict';
-
-const toDataView = require('to-data-view');
+import toDataView from 'to-data-view';
 
 /**
  * Check the ArrayBuffer is valid ICO.
@@ -14,4 +12,6 @@ const isICO = source => {
   return dataView.getUint16(0, true) === 0 && dataView.getUint16(2, true) === 1;
 };
 
-module.exports = isICO;
+export { isICO };
+
+export default isICO;

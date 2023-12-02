@@ -48,10 +48,10 @@
 <pre><code class="language-sh">npm install icojs
 </code></pre>
 <h3>Node.js:</h3>
-<pre><code class="language-js">const ICO = require(&#39;icojs&#39;);
+<pre><code class="language-js">import ICO from &#39;icojs&#39;;
 </code></pre>
 <h3>Browser:</h3>
-<pre><code class="language-js">const ICO = require(&#39;icojs/browser&#39;)
+<pre><code class="language-js">import ICO from &#39;icojs/browser&#39;;
 </code></pre>
 <p>or</p>
 <pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/icojs/dist/ico.js&quot;&gt;&lt;/script&gt;
@@ -63,17 +63,16 @@ Chrome, Edge 12, Firefox and Safari 9 support these functions.</p>
       <section id="example">
         <h2>Example</h2>
 <h3>Node.js:</h3>
-<pre><code class="language-js">const fs = require(&#39;fs&#39;);
-const ICO = require(&#39;icojs&#39;);
+<pre><code class="language-js">import { parse } from &#39;icojs&#39;;
+import { readFile, writeFile } from &#39;node:fs&#39;;
 
-const buffer = fs.readFileSync(&#39;favicon.ico&#39;);
-ICO.parse(buffer, &#39;image/png&#39;).then(images =&gt; {
-  // save as png files
-  images.forEach(image =&gt; {
-    const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
-    const data = Buffer.from(image.buffer);
-    fs.writeFileSync(file, data);
-  });
+const buffer = await readFile(&#39;favicon.ico&#39;);
+const images = await parse(buffer, &#39;image/png&#39;)
+// save as png files
+images.forEach(image =&gt; {
+  const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
+  const data = Buffer.from(image.buffer);
+  writeFile(file, data);
 });
 </code></pre>
 <h3>Browser:</h3>

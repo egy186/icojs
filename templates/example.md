@@ -3,17 +3,16 @@
 ### Node.js:
 
 ```js
-const fs = require('fs');
-const ICO = require('icojs');
+import { parse } from 'icojs';
+import { readFile, writeFile } from 'node:fs';
 
-const buffer = fs.readFileSync('favicon.ico');
-ICO.parse(buffer, 'image/png').then(images => {
-  // save as png files
-  images.forEach(image => {
-    const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
-    const data = Buffer.from(image.buffer);
-    fs.writeFileSync(file, data);
-  });
+const buffer = await readFile('favicon.ico');
+const images = await parse(buffer, 'image/png')
+// save as png files
+images.forEach(image => {
+  const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
+  const data = Buffer.from(image.buffer);
+  writeFile(file, data);
 });
 ```
 

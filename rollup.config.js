@@ -1,10 +1,8 @@
-'use strict';
-
-const { babel } = require('@rollup/plugin-babel');
-const commonjs = require('@rollup/plugin-commonjs');
-const jsonfile = require('jsonfile');
-const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const terser = require('@rollup/plugin-terser');
+import { babel } from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import jsonfile from 'jsonfile';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 
 const banner = async () => {
   const { version } = await jsonfile.readFile('./package.json');
@@ -23,6 +21,7 @@ const config = {
   },
   output: {
     banner,
+    exports: 'named',
     file: 'dist/ico.js',
     format: 'umd',
     name: 'ICO',
@@ -38,4 +37,4 @@ const config = {
   strictDeprecations: true
 };
 
-module.exports = config;
+export default config;

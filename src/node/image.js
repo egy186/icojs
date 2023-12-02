@@ -1,10 +1,8 @@
-'use strict';
-
-const FileType = require('file-type');
-const bmp = require('bmp-js');
-const jpeg = require('jpeg-js');
-const { MIME_BMP, MIME_JPEG, MIME_PNG } = require('../mime');
-const { PNG } = require('pngjs');
+import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../mime.js';
+import FileType from 'file-type';
+import { PNG } from 'pngjs';
+import bmp from 'bmp-js';
+import jpeg from 'jpeg-js';
 
 const decoders = {
   [MIME_BMP]: bmp.decode,
@@ -64,4 +62,4 @@ const Image = {
   }
 };
 
-module.exports = Image;
+export default Image;

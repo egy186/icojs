@@ -1,9 +1,7 @@
-'use strict';
-
-const Image = require('./image');
-const isICO = require('../is-ico');
-const parseICO = require('../parse');
-const { MIME_PNG } = require('../mime');
+import Image from './image.js';
+import { MIME_PNG } from '../mime.js';
+import { isICO } from '../is-ico.js';
+import parseICO from '../parse.js';
 
 const parse = (arrayBuffer, mime = MIME_PNG) => parseICO(arrayBuffer, mime, Image);
 
@@ -12,4 +10,6 @@ const ICO = {
   parse
 };
 
-module.exports = ICO;
+export { isICO, parse };
+
+export default ICO;

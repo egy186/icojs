@@ -1,12 +1,9 @@
-'use strict';
-
-const FileType = require('file-type');
-const Image = require('../../src/node/image');
-const chaiAsPromised = require('chai-as-promised');
-const { expect, use } = require('chai');
-const fs = require('fs');
-const isSame = require('../fixtures/is-same');
-const path = require('path');
+import { expect, use } from 'chai';
+import FileType from 'file-type';
+import Image from '../../src/node/image.js';
+import chaiAsPromised from 'chai-as-promised';
+import { isSame } from '../fixtures/is-same.js';
+import { readFile } from 'node:fs/promises';
 
 use(chaiAsPromised);
 
@@ -17,7 +14,7 @@ describe('Image', () => {
       expect(Image.decode(arrayBuffer)).to.be.rejectedWith(TypeError);
     });
     it('is expected to create ImageData from PNG', async () => {
-      const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/1x1/1x1-1bit.png'));
+      const buffer = await readFile(new URL('../fixtures/images/1x1/1x1-1bit.png', import.meta.url));
       const imageData = await Image.decode(buffer);
       expect(imageData.data).to.deep.equal(new Uint8ClampedArray([0, 0, 0, 0]));
       expect(imageData.height).to.deep.equal(1);

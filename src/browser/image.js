@@ -1,6 +1,4 @@
-'use strict';
-
-const { MIME_PNG } = require('../mime');
+import { MIME_PNG } from '../mime.js';
 
 const dataURLToArrayBuffer = dataURL => {
   const string = atob(dataURL.replace(/.+,/u, ''));
@@ -69,4 +67,4 @@ const Image = {
   }
 };
 
-module.exports = Image;
+export default Image;
