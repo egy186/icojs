@@ -18,13 +18,13 @@ npm install icojs
 ### Node.js:
 
 ```js
-import ICO from 'icojs';
+import { isICO, parseICO } from 'icojs';
 ```
 
 ### Browser:
 
 ```js
-import ICO from 'icojs/browser';
+import { isICO, parseICO } from 'icojs/browser';
 ```
 
 or
@@ -41,11 +41,11 @@ Chrome, Edge 12, Firefox and Safari 9 support these functions.
 ### Node.js:
 
 ```js
-import { parse } from 'icojs';
-import { readFile, writeFile } from 'node:fs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { parseICO } from 'icojs';
 
 const buffer = await readFile('favicon.ico');
-const images = await parse(buffer, 'image/png')
+const images = await parseICO(buffer, 'image/png');
 // save as png files
 images.forEach(image => {
   const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
@@ -59,14 +59,13 @@ images.forEach(image => {
 ```html
 <input type="file" id="input-file" />
 <script>
-  document.getElementById('input-file').addEventListener('change', function (evt) {
+  document.getElementById('input-file').addEventListener('change', evt => {
     // use FileReader for converting File object to ArrayBuffer object
     var reader = new FileReader();
-    reader.onload = function (e) {
-      ICO.parse(e.target.result).then(function (images) {
-        // logs images
-        console.dir(images);
-      })
+    reader.onload = async e => {
+      const images = await ICO.parseICO(e.target.result);
+      // logs images
+      console.dir(images);
     };
     reader.readAsArrayBuffer(evt.target.files[0]);
   }, false);
@@ -85,7 +84,7 @@ images.forEach(image => {
 
 * [ICO](#module_ICO)
     * [isICO(source)](#exp_module_ICO--isICO) ⇒ <code>boolean</code> ⏏
-    * [parse(buffer, [mime])](#exp_module_ICO--parse) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
+    * [parseICO(buffer, [mime])](#exp_module_ICO--parseICO) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
 
 <a name="exp_module_ICO--isICO"></a>
 
@@ -99,9 +98,9 @@ Check the ArrayBuffer is valid ICO.
 | --- | --- | --- |
 | source | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
 
-<a name="exp_module_ICO--parse"></a>
+<a name="exp_module_ICO--parseICO"></a>
 
-#### parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
+#### parseICO(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
 Parse ICO and return some images.
 
 **Kind**: global method of [<code>ICO</code>](#module_ICO)  

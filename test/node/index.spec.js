@@ -1,5 +1,5 @@
 import { expect, use } from 'chai';
-import { isICO, parse } from '../../src/node/index.js';
+import { isICO, parseICO } from '../../src/node/index.js';
 import chaiAsPromised from 'chai-as-promised';
 import cursorCur from '../fixtures/images/cursor.js';
 import { isSame } from '../fixtures/is-same.js';
@@ -24,11 +24,11 @@ describe('ICO', () => {
   });
   describe('.parse', () => {
     it('is expected to be rejected when arg is not buffer', () => {
-      const promise = parse([]);
+      const promise = parseICO([]);
       return expect(promise).to.be.rejectedWith(TypeError);
     });
     it('is expected to be rejected when arg is not ico', () => {
-      const promise = parse(new ArrayBuffer(4));
+      const promise = parseICO(new ArrayBuffer(4));
       return expect(promise).to.be.rejectedWith('Truncated header');
     });
     const formats = [
@@ -47,7 +47,7 @@ describe('ICO', () => {
       icons.forEach(icon => {
         it(`is expected to parse ${icon} (${format || 'default'})`, async () => {
           const buffer = await readFile(new URL(`../fixtures/images/${icon}`, import.meta.url));
-          const images = await parse(buffer, format);
+          const images = await parseICO(buffer, format);
           expect(images).to.be.an('array');
           await Promise.all(images.map(async image => {
             expect(image.bpp).to.be.a('number');
@@ -64,7 +64,7 @@ describe('ICO', () => {
     });
     it('is expected to parse hotspot of CUR', async () => {
       const buffer = await readFile(new URL('../fixtures/images/cursor.cur', import.meta.url));
-      const images = await parse(buffer);
+      const images = await parseICO(buffer);
       images.forEach((image, index) => {
         expect(image.hotspot.x).to.deep.equal(cursorCur[index].hotspot.x);
         expect(image.hotspot.y).to.deep.equal(cursorCur[index].hotspot.y);

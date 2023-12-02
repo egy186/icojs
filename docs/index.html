@@ -48,10 +48,10 @@
 <pre><code class="language-sh">npm install icojs
 </code></pre>
 <h3>Node.js:</h3>
-<pre><code class="language-js">import ICO from &#39;icojs&#39;;
+<pre><code class="language-js">import { isICO, parseICO } from &#39;icojs&#39;;
 </code></pre>
 <h3>Browser:</h3>
-<pre><code class="language-js">import ICO from &#39;icojs/browser&#39;;
+<pre><code class="language-js">import { isICO, parseICO } from &#39;icojs/browser&#39;;
 </code></pre>
 <p>or</p>
 <pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/icojs/dist/ico.js&quot;&gt;&lt;/script&gt;
@@ -63,11 +63,11 @@ Chrome, Edge 12, Firefox and Safari 9 support these functions.</p>
       <section id="example">
         <h2>Example</h2>
 <h3>Node.js:</h3>
-<pre><code class="language-js">import { parse } from &#39;icojs&#39;;
-import { readFile, writeFile } from &#39;node:fs&#39;;
+<pre><code class="language-js">import { readFile, writeFile } from &#39;node:fs/promises&#39;;
+import { parseICO } from &#39;icojs&#39;;
 
 const buffer = await readFile(&#39;favicon.ico&#39;);
-const images = await parse(buffer, &#39;image/png&#39;)
+const images = await parseICO(buffer, &#39;image/png&#39;);
 // save as png files
 images.forEach(image =&gt; {
   const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
@@ -78,14 +78,13 @@ images.forEach(image =&gt; {
 <h3>Browser:</h3>
 <pre><code class="language-html">&lt;input type=&quot;file&quot; id=&quot;input-file&quot; /&gt;
 &lt;script&gt;
-  document.getElementById(&#39;input-file&#39;).addEventListener(&#39;change&#39;, function (evt) {
+  document.getElementById(&#39;input-file&#39;).addEventListener(&#39;change&#39;, evt =&gt; {
     // use FileReader for converting File object to ArrayBuffer object
     var reader = new FileReader();
-    reader.onload = function (e) {
-      ICO.parse(e.target.result).then(function (images) {
-        // logs images
-        console.dir(images);
-      })
+    reader.onload = async e =&gt; {
+      const images = await ICO.parseICO(e.target.result);
+      // logs images
+      console.dir(images);
     };
     reader.readAsArrayBuffer(evt.target.files[0]);
   }, false);
@@ -108,7 +107,7 @@ images.forEach(image =&gt; {
 <ul>
 <li><a href="#module_ICO">ICO</a><ul>
 <li><a href="#exp_module_ICO--isICO">isICO(source)</a> ⇒ <code>boolean</code> ⏏</li>
-<li><a href="#exp_module_ICO--parse">parse(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</li>
+<li><a href="#exp_module_ICO--parseICO">parseICO(buffer, [mime])</a> ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</li>
 </ul>
 </li>
 </ul>
@@ -130,8 +129,8 @@ images.forEach(image =&gt; {
 <td>ICO file data.</td>
 </tr>
 </tbody></table>
-<p><a name="exp_module_ICO--parse"></a></p>
-<h4>parse(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</h4>
+<p><a name="exp_module_ICO--parseICO"></a></p>
+<h4>parseICO(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏</h4>
 <p>Parse ICO and return some images.</p>
 <p><strong>Kind</strong>: global method of <a href="#module_ICO"><code>ICO</code></a><br><strong>Returns</strong>: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of <a href="#ParsedImage">ParsedImage</a>.  </p>
 <table>

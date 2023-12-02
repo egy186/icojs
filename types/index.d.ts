@@ -7,15 +7,15 @@ interface ParsedImage {
 
 declare const isICO: (source: ArrayBuffer | Buffer) => Boolean;
 
-declare const parse: (
+declare const parseICO: (
   buffer: ArrayBuffer | Buffer,
   mime?: string
 ) => Promise<Array<ParsedImage>>;
 
-declare const ICO: { isICO, parse };
+declare const ICO: { isICO, parseICO };
 
 export type { ParsedImage };
 
-export { isICO, parse };
+export { isICO, parseICO };
 
 export default ICO;

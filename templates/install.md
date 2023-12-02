@@ -7,13 +7,13 @@ npm install icojs
 ### Node.js:
 
 ```js
-import ICO from 'icojs';
+import { isICO, parseICO } from 'icojs';
 ```
 
 ### Browser:
 
 ```js
-import ICO from 'icojs/browser';
+import { isICO, parseICO } from 'icojs/browser';
 ```
 
 or

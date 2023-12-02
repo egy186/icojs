@@ -20,13 +20,8 @@
         "hljs": true
       },
       "rules": {
-        "func-names": "off",
         "import/unambiguous": "off",
-        "no-console": "off",
-        "no-var": "off",
-        "prefer-arrow-callback": "off",
-        "prefer-template": "off",
-        "vars-on-top": "off"
+        "no-console": "off"
       }
     },
     {

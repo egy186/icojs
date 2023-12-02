@@ -16,7 +16,7 @@ const parseInBrowser = async (page, iconFileUrl) => {
   }));
 };
 
-test.describe('ICO.parse in the browser', () => {
+test.describe('ICO.parseICO in the browser', () => {
   const icons = [
     'basic.ico',
     'cursor.cur',
@@ -26,6 +26,7 @@ test.describe('ICO.parse in the browser', () => {
   icons.forEach(icon => {
     test(`parse ${icon}`, async ({ page }) => {
       const images = await parseInBrowser(page, new URL(`../fixtures/images/${icon}`, import.meta.url));
+      expect(images.length).toBeGreaterThan(0);
 
       await Promise.all(images.map(async (image, index) => {
         const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.name}.png`;
