@@ -1,6 +1,6 @@
+import { readFile, writeFile } from 'node:fs/promises';
 import jsonfile from 'jsonfile';
 import { marked } from 'marked';
-import { readFile, writeFile } from 'node:fs/promises';
 import { render } from 'ejs';
 
 const generateDocs = async () => {

@@ -1,7 +1,7 @@
 import Image from './image.js';
 import { MIME_PNG } from '../mime.js';
 import { isICO } from '../is-ico.js';
-import parseICO from '../parse.js';
+import { parse as parseICO } from '../parse.js';
 
 const parse = (arrayBuffer, mime = MIME_PNG) => parseICO(arrayBuffer, mime, Image);
 

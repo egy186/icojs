@@ -1,5 +1,3 @@
-const config = {
-  presets: ['@babel/preset-env']
-};
+const config = { presets: ['@babel/preset-env'] };
 
 export default config;
