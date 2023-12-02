@@ -1,10 +1,8 @@
-'use strict';
-
-const FileType = require('file-type');
-const bmp = require('bmp-js');
-const jpeg = require('jpeg-js');
-const { MIME_BMP, MIME_JPEG, MIME_PNG } = require('../mime');
-const { PNG } = require('pngjs');
+import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../mime.js';
+import { PNG } from 'pngjs';
+import bmp from 'bmp-js';
+import { fileTypeFromBuffer } from 'file-type';
+import jpeg from 'jpeg-js';
 
 const decoders = {
   [MIME_BMP]: bmp.decode,
@@ -28,7 +26,7 @@ const Image = {
    */
   async decode (arrayBuffer) {
     const buffer = Buffer.from(arrayBuffer);
-    const { mime } = await FileType.fromBuffer(buffer) || {};
+    const { mime } = await fileTypeFromBuffer(buffer) || {};
     if (!(mime in decoders)) {
       throw new TypeError(`${mime} is not supported`);
     }
@@ -64,4 +62,4 @@ const Image = {
   }
 };
 
-module.exports = Image;
+export default Image;

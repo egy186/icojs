@@ -3,17 +3,16 @@
 ### Node.js:
 
 ```js
-const fs = require('fs');
-const ICO = require('icojs');
+import { readFile, writeFile } from 'node:fs/promises';
+import { parseICO } from 'icojs';
 
-const buffer = fs.readFileSync('favicon.ico');
-ICO.parse(buffer, 'image/png').then(images => {
-  // save as png files
-  images.forEach(image => {
-    const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
-    const data = Buffer.from(image.buffer);
-    fs.writeFileSync(file, data);
-  });
+const buffer = await readFile('favicon.ico');
+const images = await parseICO(buffer, 'image/png');
+// save as png files
+images.forEach(image => {
+  const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
+  const data = Buffer.from(image.buffer);
+  writeFile(file, data);
 });
 ```
 
@@ -22,14 +21,13 @@ ICO.parse(buffer, 'image/png').then(images => {
 ```html
 <input type="file" id="input-file" />
 <script>
-  document.getElementById('input-file').addEventListener('change', function (evt) {
+  document.getElementById('input-file').addEventListener('change', evt => {
     // use FileReader for converting File object to ArrayBuffer object
     var reader = new FileReader();
-    reader.onload = function (e) {
-      ICO.parse(e.target.result).then(function (images) {
-        // logs images
-        console.dir(images);
-      })
+    reader.onload = async e => {
+      const images = await ICO.parseICO(e.target.result);
+      // logs images
+      console.dir(images);
     };
     reader.readAsArrayBuffer(evt.target.files[0]);
   }, false);

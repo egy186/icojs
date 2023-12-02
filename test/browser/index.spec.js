@@ -1,25 +1,23 @@
-'use strict';
+import { expect, test } from '@playwright/test';
+import { dataUriToBuffer } from 'data-uri-to-buffer';
+import { fileURLToPath } from 'node:url';
+import { isSame } from '../fixtures/is-same.js';
 
-const dataUriToBuffer = require('data-uri-to-buffer');
-const fileUrl = require('file-url');
-const isSame = require('../fixtures/is-same');
-const path = require('path');
-const { test, expect } = require('@playwright/test');
-
-const parseInBrowser = async (page, iconFilePath) => {
-  await page.goto(fileUrl(path.join(__dirname, 'index.html')));
-  await page.setInputFiles('#ico-parse-input', iconFilePath);
+const parseInBrowser = async (page, iconFileUrl) => {
+  await page.goto(new URL('index.html', import.meta.url).toString());
+  await page.setInputFiles('#ico-parse-input', fileURLToPath(iconFileUrl));
+  await page.waitForSelector('#ico-parse-result img');
   const imgs = await page.$$eval('#ico-parse-result img', results => results.map(result => ({
     src: result.getAttribute('src'),
     title: result.getAttribute('title')
   })));
   return imgs.map(img => ({
-    buffer: dataUriToBuffer(img.src),
+    buffer: Buffer.from(dataUriToBuffer(img.src).buffer),
     name: img.title
   }));
 };
 
-test.describe('ICO.parse in the browser', () => {
+test.describe('ICO.parseICO in the browser', () => {
   const icons = [
     'basic.ico',
     'cursor.cur',
@@ -28,7 +26,8 @@ test.describe('ICO.parse in the browser', () => {
   ];
   icons.forEach(icon => {
     test(`parse ${icon}`, async ({ page }) => {
-      const images = await parseInBrowser(page, path.join(__dirname, `../fixtures/images/${icon}`));
+      const images = await parseInBrowser(page, new URL(`../fixtures/images/${icon}`, import.meta.url));
+      expect(images.length).toBeGreaterThan(0);
 
       await Promise.all(images.map(async (image, index) => {
         const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.name}.png`;

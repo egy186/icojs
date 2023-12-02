@@ -6,7 +6,7 @@
 </head>
 <body>
   <h1>Test icojs in the browser</h1>
-  <h2>ICO.parse</h2>
+  <h2>ICO.parseICO</h2>
   <input id="ico-parse-input" type="file" />
   <p id="ico-parse-result"></p>
   <script inline src="../../dist/ico.js"></script>
@@ -25,7 +25,7 @@
     document.querySelector('#ico-parse-input').addEventListener('change', async changed => {
       const arrayBuffer = await readAsArrayBuffer(changed.target.files[0]);
       const mime = 'image/png';
-      const images = await ICO.parse(arrayBuffer, mime);
+      const images = await ICO.parseICO(arrayBuffer, mime);
       const result = document.querySelector('#ico-parse-result');
       while (result.firstChild) {
         result.firstChild.remove();

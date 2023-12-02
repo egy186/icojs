@@ -1,13 +1,10 @@
-'use strict';
-
-const { expect } = require('chai');
-const fs = require('fs');
-const isCUR = require('../../src/is-cur');
-const path = require('path');
+import { expect } from 'chai';
+import { isCUR } from '../../src/is-cur.js';
+import { readFile } from 'node:fs/promises';
 
 describe('isCUR', () => {
-  it('is expected to return true or false', () => {
-    const buffer = fs.readFileSync(path.join(__dirname, '../fixtures/images/cursor.cur'));
+  it('is expected to return true or false', async () => {
+    const buffer = await readFile(new URL('../fixtures/images/cursor.cur', import.meta.url));
     expect(() => isCUR('it is not buffer')).to.throw(TypeError);
     expect(isCUR(buffer)).to.be.true;
     const d = new ArrayBuffer(4);
