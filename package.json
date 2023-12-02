@@ -85,5 +85,6 @@
     "test:node": "c8 --reporter lcov --reporter text-summary --report-dir coverage mocha \"test/node/*.spec.js\"",
     "version": "npm run docs && git add docs/index.html README.md"
   },
-  "type": "module"
+  "type": "module",
+  "types": "./types/index.d.ts"
 }
