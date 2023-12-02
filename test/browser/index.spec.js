@@ -6,6 +6,7 @@ import { isSame } from '../fixtures/is-same.js';
 const parseInBrowser = async (page, iconFileUrl) => {
   await page.goto(new URL('index.html', import.meta.url).toString());
   await page.setInputFiles('#ico-parse-input', fileURLToPath(iconFileUrl));
+  await page.waitForSelector('#ico-parse-result img');
   const imgs = await page.$$eval('#ico-parse-result img', results => results.map(result => ({
     src: result.getAttribute('src'),
     title: result.getAttribute('title')
