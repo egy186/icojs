@@ -10,10 +10,10 @@
   "dependencies": {
     "bmp-js": "0.1.0",
     "decode-ico": "^0.4.1",
-    "file-type": "^16.5.4",
+    "file-type": "^18.7.0",
     "jpeg-js": "^0.4.4",
     "pngjs": "^7.0.0",
-    "to-data-view": "^1.1.0"
+    "to-data-view": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -28,7 +28,7 @@
     "c8": "^8.0.1",
     "chai": "^4.3.10",
     "chai-as-promised": "^7.0.0",
-    "data-uri-to-buffer": "^3.0.0",
+    "data-uri-to-buffer": "^6.0.1",
     "ejs": "^3.1.7",
     "eslint": "^8.54.0",
     "eslint-plugin-import": "^2.29.0",

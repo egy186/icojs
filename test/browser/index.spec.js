@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import dataUriToBuffer from 'data-uri-to-buffer';
+import { dataUriToBuffer } from 'data-uri-to-buffer';
 import { fileURLToPath } from 'node:url';
 import { isSame } from '../fixtures/is-same.js';
 
@@ -11,7 +11,7 @@ const parseInBrowser = async (page, iconFileUrl) => {
     title: result.getAttribute('title')
   })));
   return imgs.map(img => ({
-    buffer: dataUriToBuffer(img.src),
+    buffer: Buffer.from(dataUriToBuffer(img.src).buffer),
     name: img.title
   }));
 };

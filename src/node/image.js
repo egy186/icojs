@@ -1,7 +1,7 @@
 import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../mime.js';
-import FileType from 'file-type';
 import { PNG } from 'pngjs';
 import bmp from 'bmp-js';
+import { fileTypeFromBuffer } from 'file-type';
 import jpeg from 'jpeg-js';
 
 const decoders = {
@@ -26,7 +26,7 @@ const Image = {
    */
   async decode (arrayBuffer) {
     const buffer = Buffer.from(arrayBuffer);
-    const { mime } = await FileType.fromBuffer(buffer) || {};
+    const { mime } = await fileTypeFromBuffer(buffer) || {};
     if (!(mime in decoders)) {
       throw new TypeError(`${mime} is not supported`);
     }

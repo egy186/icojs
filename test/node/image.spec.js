@@ -1,7 +1,7 @@
 import { expect, use } from 'chai';
-import FileType from 'file-type';
 import Image from '../../src/node/image.js';
 import chaiAsPromised from 'chai-as-promised';
+import { fileTypeFromBuffer } from 'file-type';
 import { isSame } from '../fixtures/is-same.js';
 import { readFile } from 'node:fs/promises';
 
@@ -29,7 +29,7 @@ describe('Image', () => {
         width: 1
       });
       expect(imageArrayBuffer).to.be.an.instanceof(ArrayBuffer);
-      expect((await FileType.fromBuffer(Buffer.from(imageArrayBuffer))).mime).to.deep.equal('image/png');
+      expect((await fileTypeFromBuffer(Buffer.from(imageArrayBuffer))).mime).to.deep.equal('image/png');
       expect(await isSame(imageArrayBuffer, '1x1/1x1-1bit.png')).to.be.true;
     });
     const mimeTypes = [
@@ -44,7 +44,7 @@ describe('Image', () => {
           height: 1,
           width: 1
         }, mime);
-        expect((await FileType.fromBuffer(Buffer.from(imageArrayBuffer))).mime).to.deep.equal(mime);
+        expect((await fileTypeFromBuffer(Buffer.from(imageArrayBuffer))).mime).to.deep.equal(mime);
       });
     });
   });
