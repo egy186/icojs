@@ -65,8 +65,17 @@ $(() => {
   });
 
   // Highlightjs
-  hljs.initHighlighting();
+  hljs.highlightAll();
+
   // Add class
   $('h2').addClass('border-bottom mt-4 mb-3 pb-2');
   $('table').addClass('table table-striped table-hover');
+
+  // Set theme
+  const theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-bs-theme', theme);
+  $('head').append($('<link />', {
+    href: `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/${theme === 'dark' ? 'github-dark' : 'github'}.min.css`,
+    rel: 'stylesheet'
+  }));
 });
