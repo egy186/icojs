@@ -1,5 +1,6 @@
 import { expect, use } from 'chai';
 import Image from '../../src/node/image.js';
+import { imageData as bmpImageData } from '../fixtures/images/bmp.js';
 import chaiAsPromised from 'chai-as-promised';
 import { fileTypeFromBuffer } from 'file-type';
 import { isSame } from '../fixtures/is-same.js';
@@ -29,7 +30,7 @@ describe('Image', () => {
         width: 1
       });
       expect(imageArrayBuffer).to.be.an.instanceof(ArrayBuffer);
-      expect((await fileTypeFromBuffer(Buffer.from(imageArrayBuffer))).mime).to.deep.equal('image/png');
+      expect((await fileTypeFromBuffer(Buffer.from(imageArrayBuffer)))?.mime).to.deep.equal('image/png');
       expect(await isSame(imageArrayBuffer, '1x1/1x1-1bit.png')).to.be.true;
     });
     const mimeTypes = [
@@ -44,8 +45,13 @@ describe('Image', () => {
           height: 1,
           width: 1
         }, mime);
-        expect((await fileTypeFromBuffer(Buffer.from(imageArrayBuffer))).mime).to.deep.equal(mime);
+        expect((await fileTypeFromBuffer(Buffer.from(imageArrayBuffer)))?.mime).to.deep.equal(mime);
       });
+    });
+
+    it('is expected to create bmp from ImageData', async () => {
+      const imageArrayBuffer = await Image.encode(bmpImageData, 'image/bmp');
+      expect(await isSame(imageArrayBuffer, 'bmp.bmp')).to.be.true;
     });
   });
 });
