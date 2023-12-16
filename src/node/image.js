@@ -1,19 +1,21 @@
 import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../mime.js';
 import { PNG } from 'pngjs';
-import bmp from 'bmp-js';
+import bmp from '@jimp/bmp';
 import { fileTypeFromBuffer } from 'file-type';
 import jpeg from 'jpeg-js';
 
+const Jimp = bmp();
+
 const decoders = {
-  [MIME_BMP]: bmp.decode,
-  [MIME_JPEG]: jpeg.decode,
-  [MIME_PNG]: PNG.sync.read
+  [MIME_BMP]: buffer => Jimp.decoders[MIME_BMP](buffer),
+  [MIME_JPEG]: buffer => jpeg.decode(buffer),
+  [MIME_PNG]: buffer => PNG.sync.read(buffer)
 };
 
 const encoders = {
-  [MIME_BMP]: imageData => bmp.encode(imageData).data,
+  [MIME_BMP]: imageData => Jimp.encoders[MIME_BMP]({ bitmap: imageData }),
   [MIME_JPEG]: imageData => jpeg.encode(imageData).data,
-  [MIME_PNG]: PNG.sync.write
+  [MIME_PNG]: imageData => PNG.sync.write(imageData)
 };
 
 const Image = {
