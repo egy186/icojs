@@ -1,7 +1,7 @@
 {
   "name": "icojs",
   "description": "parse ico file",
-  "version": "0.19.2",
+  "version": "0.19.3",
   "author": "egy186",
   "browser": "browser.js",
   "bugs": {
