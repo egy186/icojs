@@ -33,7 +33,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^46.9.1",
-    "eslint-plugin-n": "^16.4.0",
+    "eslint-plugin-n": "^16.5.0",
     "jsdoc-to-markdown": "^8.0.0",
     "jsonfile": "^6.1.0",
     "marked": "^11.1.0",
