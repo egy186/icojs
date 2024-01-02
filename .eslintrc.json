@@ -1,8 +1,6 @@
 {
   "extends": [
-    "@egy186/eslint-config",
-    "@egy186/eslint-config/modules",
-    "@egy186/eslint-config/node"
+    "@egy186/eslint-config"
   ],
   "ignorePatterns": [
     "coverage",
@@ -46,16 +44,7 @@
     }
   ],
   "rules": {
-    "import/extensions": [
-      "error",
-      "always"
-    ],
     "jsdoc/no-defaults": "off",
     "jsdoc/no-undefined-types": "off"
-  },
-  "settings": {
-    "import/ignore": [
-      "marked"
-    ]
   }
 }
