@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
-    "@egy186/eslint-config": "^0.110.0",
+    "@egy186/eslint-config": "^0.117.0",
     "@playwright/test": "^1.43.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
@@ -29,7 +29,7 @@
     "chai-as-promised": "^8.0.0",
     "data-uri-to-buffer": "^6.0.1",
     "ejs": "^3.1.7",
-    "eslint": "^8.57.0",
+    "eslint": "^9.7.0",
     "jsdoc-to-markdown": "^8.0.0",
     "jsonfile": "^6.1.0",
     "marked": "^13.0.0",
