@@ -30,7 +30,7 @@
     "data-uri-to-buffer": "^6.0.1",
     "ejs": "^3.1.7",
     "eslint": "^8.57.0",
-    "jsdoc-to-markdown": "^8.0.0",
+    "jsdoc-to-markdown": "^8.0.3",
     "jsonfile": "^6.1.0",
     "marked": "^13.0.0",
     "mocha": "^10.3.0",
