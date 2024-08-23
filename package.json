@@ -44,12 +44,12 @@
   },
   "exports": {
     ".": {
-      "default": "./src/node/index.js",
-      "types": "./types/index.d.ts"
+      "types": "./types/index.d.ts",
+      "default": "./src/node/index.js"
     },
     "./browser": {
-      "default": "./src/browser/index.js",
-      "types": "./types/index.d.ts"
+      "types": "./types/index.d.ts",
+      "default": "./src/browser/index.js"
     }
   },
   "files": [
