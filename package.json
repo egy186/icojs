@@ -34,7 +34,7 @@
     "jsonfile": "^6.1.0",
     "marked": "^14.1.0",
     "mocha": "^10.7.3",
-    "pixelmatch": "^5.3.0",
+    "pixelmatch": "^6.0.0",
     "playwright": "^1.42.0",
     "rimraf": "^5.0.1",
     "rollup": "^4.22.4"
