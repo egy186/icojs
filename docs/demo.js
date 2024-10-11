@@ -28,7 +28,8 @@ $(() => {
       try {
         // Convert *.ico to *.png(s)
         const images = await ICO.parseICO(evt.target.result, mime);
-        console.dir(images); // Debug
+        // Debug
+        console.dir(images);
         parseComplete(null, images);
       } catch (err) {
         parseComplete(err);
