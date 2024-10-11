@@ -19,6 +19,7 @@ const encoders = {
 };
 
 const Image = {
+
   /**
    * Create ImageData from image.
    *
@@ -40,6 +41,7 @@ const Image = {
       width
     };
   },
+
   /**
    * Create image from ImageData.
    *

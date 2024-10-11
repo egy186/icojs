@@ -10,6 +10,7 @@ const dataURLToArrayBuffer = dataURL => {
 };
 
 const Image = {
+
   /**
    * Create imageData from image.
    *
@@ -38,6 +39,7 @@ const Image = {
       };
     });
   },
+
   /**
    * Create image from imgData.data.
    *
