@@ -3,7 +3,7 @@
   "description": "parse ico file",
   "version": "0.19.4",
   "author": "egy186",
-  "browser": "browser.js",
+  "browser": "./src/browser/index.js",
   "bugs": {
     "url": "https://github.com/egy186/icojs/issues"
   },
