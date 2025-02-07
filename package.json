@@ -1,11 +1,52 @@
 {
   "name": "icojs",
-  "description": "parse ico file",
   "version": "0.19.4",
-  "author": "egy186",
-  "browser": "./src/browser/index.js",
+  "description": "parse ico file",
+  "keywords": [
+    "ico",
+    "parse"
+  ],
+  "homepage": "https://egy186.github.io/icojs",
   "bugs": {
     "url": "https://github.com/egy186/icojs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egy186/icojs.git"
+  },
+  "license": "MIT",
+  "author": "egy186",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/node/index.js"
+    },
+    "./browser": {
+      "types": "./types/index.d.ts",
+      "default": "./src/browser/index.js"
+    }
+  },
+  "browser": "./src/browser/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "types"
+  ],
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "clean": "rimraf coverage dist docs/index.html templates/api.md README.md",
+    "predocs": "npm run jsdoc",
+    "docs": "node scripts/docs.js",
+    "jsdoc": "jsdoc2md --files \"src/**/*.js\" --heading-depth 3 --template templates/api.hbs > templates/api.md",
+    "lint": "eslint",
+    "pretest": "npm run build",
+    "pretest:browser": "playwright install",
+    "test": "npm run test:node && npm run test:browser",
+    "test:browser": "playwright test",
+    "test:node": "c8 --reporter lcov --reporter text-summary --report-dir coverage mocha \"test/node/*.spec.js\"",
+    "version": "npm run docs && git add docs/index.html README.md"
   },
   "dependencies": {
     "@jimp/bmp": "^0.22.12",
@@ -42,46 +83,5 @@
   },
   "engines": {
     "node": ">=18.17.1"
-  },
-  "exports": {
-    ".": {
-      "types": "./types/index.d.ts",
-      "default": "./src/node/index.js"
-    },
-    "./browser": {
-      "types": "./types/index.d.ts",
-      "default": "./src/browser/index.js"
-    }
-  },
-  "files": [
-    "dist",
-    "src",
-    "types"
-  ],
-  "homepage": "https://egy186.github.io/icojs",
-  "keywords": [
-    "ico",
-    "parse"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/egy186/icojs.git"
-  },
-  "scripts": {
-    "build": "rollup --config rollup.config.js",
-    "clean": "rimraf coverage dist docs/index.html templates/api.md README.md",
-    "docs": "node scripts/docs.js",
-    "jsdoc": "jsdoc2md --files \"src/**/*.js\" --heading-depth 3 --template templates/api.hbs > templates/api.md",
-    "lint": "eslint",
-    "predocs": "npm run jsdoc",
-    "pretest": "npm run build",
-    "pretest:browser": "playwright install",
-    "test": "npm run test:node && npm run test:browser",
-    "test:browser": "playwright test",
-    "test:node": "c8 --reporter lcov --reporter text-summary --report-dir coverage mocha \"test/node/*.spec.js\"",
-    "version": "npm run docs && git add docs/index.html README.md"
-  },
-  "type": "module",
-  "types": "./types/index.d.ts"
+  }
 }
