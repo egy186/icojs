@@ -20,6 +20,7 @@ updates:
           - "@stylistic/eslint-plugin"
           - "eslint"
           - "eslint-plugin-*"
+          - "globals"
       playwright:
         patterns:
           - "@playwright/test"
