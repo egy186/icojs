@@ -78,7 +78,7 @@
     "mocha": "^10.8.2",
     "pixelmatch": "^6.0.0",
     "playwright": "^1.42.0",
-    "rimraf": "^5.0.1",
+    "rimraf": "^6.0.1",
     "rollup": "^4.36.0"
   },
   "engines": {
