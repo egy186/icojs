@@ -1,15 +1,14 @@
 import { base, browser } from '@egy186/eslint-config';
+// eslint-disable-next-line import/no-unresolved
+import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 
-/** @satisfies {import('eslint').Linter.Config[]} */
-const config = [
-  {
-    ignores: [
-      'coverage',
-      'dist',
-      'types'
-    ]
-  },
+const config = defineConfig([
+  globalIgnores([
+    'coverage',
+    'dist',
+    'types'
+  ]),
   {
     ...base,
     rules: {
@@ -48,6 +47,6 @@ const config = [
       'no-unused-expressions': 'off'
     }
   }
-];
+]);
 
 export default config;
