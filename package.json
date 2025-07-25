@@ -70,7 +70,7 @@
     "chai-as-promised": "^8.0.1",
     "data-uri-to-buffer": "^6.0.2",
     "ejs": "^3.1.10",
-    "eslint": "^9.22.0",
+    "eslint": "^9.32.0",
     "globals": "^16.3.0",
     "jsdoc-to-markdown": "^9.1.0",
     "jsonfile": "^6.1.0",
