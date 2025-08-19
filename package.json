@@ -66,7 +66,7 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "c8": "^10.1.2",
-    "chai": "^5.2.0",
+    "chai": "^5.3.1",
     "chai-as-promised": "^8.0.1",
     "data-uri-to-buffer": "^6.0.2",
     "ejs": "^3.1.10",
