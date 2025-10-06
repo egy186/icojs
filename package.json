@@ -60,7 +60,7 @@
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
     "@egy186/eslint-config": "^3.2.2",
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.56.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.2",
