@@ -73,7 +73,7 @@
     "eslint": "^9.37.0",
     "globals": "^16.4.0",
     "jsdoc-to-markdown": "^9.1.0",
-    "jsonfile": "^6.1.0",
+    "jsonfile": "^6.2.0",
     "marked": "^16.3.0",
     "mocha": "^11.7.1",
     "pixelmatch": "^7.1.0",
