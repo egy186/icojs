@@ -3,7 +3,7 @@ import toDataView from 'to-data-view';
 /**
  * Check the ArrayBuffer is valid PNG.
  *
- * @param {ArrayBuffer|Buffer} source - ArrayBuffer or Buffer object.
+ * @param {ArrayBuffer | Buffer} source - ArrayBuffer or Buffer object.
  * @returns {boolean} Arg is PNG or not.
  * @access private
  */

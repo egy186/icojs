@@ -7,7 +7,7 @@ import { parse } from '../parse.js';
  * Parse ICO and return some images.
  *
  * @alias module:ICO
- * @param {ArrayBuffer|Buffer} buffer - ICO file data.
+ * @param {ArrayBuffer | Buffer} buffer - ICO file data.
  * @param {string} [mime=image/png] - MIME type for output.
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
  */

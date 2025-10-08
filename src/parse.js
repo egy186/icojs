@@ -12,7 +12,7 @@ import decodeIco from 'decode-ico';
 /**
  * Parse ICO and return some image object.
  *
- * @param {ArrayBuffer|Buffer} data - ICO file data.
+ * @param {ArrayBuffer | Buffer} data - ICO file data.
  * @param {string} mime - MIME type for output.
  * @param {object} Image - Image encoder/decoder.
  * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
