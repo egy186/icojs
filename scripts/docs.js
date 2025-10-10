@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
-import { jsonfile } from 'jsonfile';
+import jsonfile from 'jsonfile';
 import { marked } from 'marked';
 import { render } from 'ejs';
 
