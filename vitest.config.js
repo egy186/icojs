@@ -8,7 +8,6 @@ export default defineConfig({
       reportsDirectory: 'coverage'
     },
     environment: 'node',
-    globals: true,
-    include: ['src/node/*.spec.js']
+    include: ['src/node/*.test.js']
   }
 });

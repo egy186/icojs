@@ -1,35 +1,33 @@
-import { expect, use } from 'chai';
+import { describe, expect, it } from 'vitest';
 import { isICO, parseICO } from './index.js';
-import chaiAsPromised from 'chai-as-promised';
 import cursorCur from '../test-fixtures/images/cursor.js';
 import { isSame } from '../test-fixtures/is-same.js';
 import { readFile } from 'node:fs/promises';
 
-use(chaiAsPromised);
-
+// eslint-disable-next-line max-lines-per-function
 describe('ICO', () => {
   describe('.isICO', () => {
     it('is expected to return true or false', async () => {
       const buffer = await readFile(new URL('../test-fixtures/images/basic.ico', import.meta.url));
-      expect(() => isICO('it is not buffer')).to.throw(TypeError);
-      expect(isICO(buffer)).to.be.true;
+      expect(() => isICO('it is not buffer')).toThrow(TypeError);
+      expect(isICO(buffer)).toStrictEqual(true);
       const d = new ArrayBuffer(4);
       const dv = new DataView(d);
-      expect(isICO(d)).to.be.false;
+      expect(isICO(d)).toStrictEqual(false);
       dv.setUint16(2, 1, true);
-      expect(isICO(d)).to.be.true;
+      expect(isICO(d)).toStrictEqual(true);
       dv.setUint16(0, 1, true);
-      expect(isICO(d)).to.be.false;
+      expect(isICO(d)).toStrictEqual(false);
     });
   });
   describe('.parse', () => {
-    it('is expected to be rejected when arg is not buffer', () => {
+    it('is expected to be rejected when arg is not buffer', async () => {
       const promise = parseICO([]);
-      return expect(promise).to.be.rejectedWith(TypeError);
+      await expect(promise).rejects.toThrow(TypeError);
     });
-    it('is expected to be rejected when arg is not ico', () => {
+    it('is expected to be rejected when arg is not ico', async () => {
       const promise = parseICO(new ArrayBuffer(4));
-      return expect(promise).to.be.rejectedWith('Truncated header');
+      await expect(promise).rejects.toThrow('Truncated header');
     });
     const formats = [
       'image/bmp',
@@ -48,15 +46,15 @@ describe('ICO', () => {
         it(`is expected to parse ${icon} (${format || 'default'})`, async () => {
           const buffer = await readFile(new URL(`../test-fixtures/images/${icon}`, import.meta.url));
           const images = await parseICO(buffer, format);
-          expect(images).to.be.an('array');
+          expect(Array.isArray(images)).toStrictEqual(true);
           await Promise.all(images.map(async image => {
-            expect(image.bpp).to.be.a('number');
-            expect(image.buffer).to.be.instanceof(ArrayBuffer);
-            expect(image.height).to.be.a('number');
-            expect(image.width).to.be.a('number');
+            expect(typeof image.bpp).toStrictEqual('number');
+            expect(image.buffer).toBeInstanceOf(ArrayBuffer);
+            expect(typeof image.height).toStrictEqual('number');
+            expect(typeof image.width).toStrictEqual('number');
             const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${image.width}x${image.height}-${image.bpp}bit.png`;
             if (format === 'image/png') {
-              expect(await isSame(image.buffer, expected)).to.be.true;
+              expect(await isSame(image.buffer, expected)).toStrictEqual(true);
             }
           }));
         });
@@ -66,8 +64,8 @@ describe('ICO', () => {
       const buffer = await readFile(new URL('../test-fixtures/images/cursor.cur', import.meta.url));
       const images = await parseICO(buffer);
       images.forEach((image, index) => {
-        expect(image.hotspot.x).to.deep.equal(cursorCur[index].hotspot.x);
-        expect(image.hotspot.y).to.deep.equal(cursorCur[index].hotspot.y);
+        expect(image.hotspot.x).toStrictEqual(cursorCur[index].hotspot.x);
+        expect(image.hotspot.y).toStrictEqual(cursorCur[index].hotspot.y);
       });
     });
   });

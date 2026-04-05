@@ -1,7 +1,6 @@
 import { base, browser } from '@egy186/eslint-config';
 // eslint-disable-next-line import/no-unresolved
 import { defineConfig, globalIgnores } from 'eslint/config';
-import globals from 'globals';
 
 const config = defineConfig([
   globalIgnores([
@@ -40,11 +39,10 @@ const config = defineConfig([
     }
   },
   {
-    files: ['src/**/*.spec.js'],
-    languageOptions: { globals: globals.mocha },
+    files: ['src/**/*.test.js'],
     rules: {
       '@stylistic/array-element-newline': 'off',
-      'no-unused-expressions': 'off'
+      'n/no-unpublished-import': 'off'
     }
   }
 ]);
