@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+// eslint-disable-next-line import/no-unresolved
 import { dataUriToBuffer } from 'data-uri-to-buffer';
 import { fileURLToPath } from 'node:url';
 import { isSame } from '../fixtures/is-same.js';
