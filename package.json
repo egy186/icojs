@@ -57,14 +57,14 @@
     "to-data-view": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.4",
-    "@babel/preset-env": "^7.28.3",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
     "@egy186/eslint-config": "^4.4.3",
     "@playwright/test": "^1.56.0",
-    "@rollup/plugin-babel": "^6.1.0",
-    "@rollup/plugin-commonjs": "^28.0.6",
-    "@rollup/plugin-node-resolve": "^16.0.2",
-    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-babel": "^7.0.0",
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
     "c8": "^10.1.2",
     "chai": "^6.2.0",
     "chai-as-promised": "^8.0.2",
@@ -79,7 +79,7 @@
     "pixelmatch": "^7.1.0",
     "playwright": "^1.42.0",
     "rimraf": "^6.0.1",
-    "rollup": "^4.52.4"
+    "rollup": "^4.60.1"
   },
   "engines": {
     "node": ">=20.19.4"
