@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import ejs from 'ejs';
 import jsonfile from 'jsonfile';
 import { marked } from 'marked';
-import { render } from 'ejs';
 
 const generateDocs = async () => {
   const markdown = {
@@ -27,7 +27,7 @@ const generateDocs = async () => {
   // Generate docs/index.html
   const template = await readFile(new URL('../templates/index.ejs', import.meta.url), 'utf-8');
   const { version } = await jsonfile.readFile(new URL('../package.json', import.meta.url));
-  const html = render(template, {
+  const html = ejs.render(template, {
     docs: {
       api: marked.parse(markdown.api),
       example: marked.parse(markdown.example),
