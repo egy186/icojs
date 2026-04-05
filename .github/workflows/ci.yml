@@ -43,9 +43,6 @@ jobs:
     - name: Install
       run: npm ci
 
-    - name: Install playwright dependencies
-      run: npx playwright install-deps
-
     - name: Test
       run: npm test
 

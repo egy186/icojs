@@ -10,6 +10,11 @@ const config = defineConfig([
   ]),
   {
     ...base,
+    files: [
+      '**/*.js',
+      '!src/browser/**/*.js',
+      '!src/test-fixtures/is-same-browser.js'
+    ],
     rules: {
       ...base.rules,
       'jsdoc/no-defaults': 'off',
@@ -18,7 +23,11 @@ const config = defineConfig([
   },
   {
     ...browser,
-    files: ['docs/**/*.js', 'src/browser/**/*.js'],
+    files: [
+      'docs/**/*.js',
+      'src/browser/**/*.js',
+      'src/test-fixtures/is-same-browser.js'
+    ],
     rules: {
       ...browser.rules,
       'jsdoc/no-defaults': 'off'
@@ -41,8 +50,7 @@ const config = defineConfig([
   {
     files: ['src/**/*.test.js'],
     rules: {
-      '@stylistic/array-element-newline': 'off',
-      'n/no-unpublished-import': 'off'
+      '@stylistic/array-element-newline': 'off'
     }
   }
 ]);

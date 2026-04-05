@@ -1,6 +1,10 @@
-import Image from '../node/image.js';
+import Image from '../browser/image.js';
 import pixelmatch from 'pixelmatch';
-import { readFile } from 'node:fs/promises';
+
+const readFile = async url => {
+  const res = await fetch(url);
+  return await res.arrayBuffer();
+};
 
 const isSame = async (arrayBuffer, fileName) => {
   const img1 = await Image.decode(arrayBuffer);

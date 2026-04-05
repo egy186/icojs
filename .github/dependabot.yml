@@ -13,10 +13,10 @@ updates:
         patterns:
           - '@egy186/eslint-config'
           - eslint
-      playwright:
+      vitest:
         patterns:
-          - '@playwright/test'
-          - playwright
+          - '@vitest/*'
+          - vitest
     cooldown:
       default-days: 3
       exclude:
