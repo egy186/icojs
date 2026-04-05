@@ -1,9 +1,9 @@
 import { expect, use } from 'chai';
-import Image from '../../src/node/image.js';
-import { imageData as bmpImageData } from '../fixtures/images/bmp.js';
+import Image from './image.js';
+import { imageData as bmpImageData } from '../test-fixtures/images/bmp.js';
 import chaiAsPromised from 'chai-as-promised';
 import { fileTypeFromBuffer } from 'file-type';
-import { isSame } from '../fixtures/is-same.js';
+import { isSame } from '../test-fixtures/is-same.js';
 import { readFile } from 'node:fs/promises';
 
 use(chaiAsPromised);
@@ -15,14 +15,14 @@ describe('Image', () => {
       expect(Image.decode(arrayBuffer)).to.be.rejectedWith(TypeError);
     });
     it('is expected to create ImageData from PNG', async () => {
-      const buffer = await readFile(new URL('../fixtures/images/1x1/1x1-1bit.png', import.meta.url));
+      const buffer = await readFile(new URL('../test-fixtures/images/1x1/1x1-1bit.png', import.meta.url));
       const imageData = await Image.decode(buffer);
       expect(imageData.data).to.deep.equal(new Uint8ClampedArray([0, 0, 0, 0]));
       expect(imageData.height).to.deep.equal(1);
       expect(imageData.width).to.deep.equal(1);
     });
     it('is expeted to create ImageData from BMP', async () => {
-      const buffer = await readFile(new URL('../fixtures/images/bmp.bmp', import.meta.url));
+      const buffer = await readFile(new URL('../test-fixtures/images/bmp.bmp', import.meta.url));
       const imageData = await Image.decode(buffer);
       expect(imageData.data).to.deep.equal(bmpImageData.data);
       expect(imageData.height).to.deep.equal(bmpImageData.height);

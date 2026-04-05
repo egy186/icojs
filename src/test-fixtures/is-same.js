@@ -1,4 +1,4 @@
-import Image from '../../src/node/image.js';
+import Image from '../node/image.js';
 import pixelmatch from 'pixelmatch';
 import { readFile } from 'node:fs/promises';
 

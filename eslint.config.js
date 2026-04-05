@@ -40,7 +40,7 @@ const config = defineConfig([
     }
   },
   {
-    files: ['test/**/*.js'],
+    files: ['src/**/*.spec.js'],
     languageOptions: { globals: globals.mocha },
     rules: {
       '@stylistic/array-element-newline': 'off',

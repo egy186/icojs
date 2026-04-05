@@ -17,7 +17,7 @@ const config = {
       use: { ...devices['Desktop Safari'] }
     }
   ],
-  testDir: 'test/browser'
+  testDir: 'src/browser'
 };
 
 export default config;

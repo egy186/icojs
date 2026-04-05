@@ -1,11 +1,12 @@
 import { expect, test } from '@playwright/test';
 // eslint-disable-next-line import/no-unresolved
 import { dataUriToBuffer } from 'data-uri-to-buffer';
+// eslint-disable-next-line import/no-nodejs-modules
 import { fileURLToPath } from 'node:url';
-import { isSame } from '../fixtures/is-same.js';
+import { isSame } from '../test-fixtures/is-same.js';
 
 const parseInBrowser = async (page, iconFileUrl) => {
-  await page.goto(new URL('index.html', import.meta.url).toString());
+  await page.goto(new URL('../test-fixtures/index.html', import.meta.url).toString());
   await page.setInputFiles('#ico-parse-input', fileURLToPath(iconFileUrl));
   await page.waitForSelector('#ico-parse-result img');
   const imgs = await page.$$eval('#ico-parse-result img', results => results.map(result => ({
@@ -27,7 +28,7 @@ test.describe('ICO.parseICO in the browser', () => {
   ];
   icons.forEach(icon => {
     test(`parse ${icon}`, async ({ page }) => {
-      const images = await parseInBrowser(page, new URL(`../fixtures/images/${icon}`, import.meta.url));
+      const images = await parseInBrowser(page, new URL(`../test-fixtures/images/${icon}`, import.meta.url));
       expect(images.length).toBeGreaterThan(0);
 
       await Promise.all(images.map(async (image, index) => {
