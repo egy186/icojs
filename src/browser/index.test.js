@@ -14,8 +14,7 @@ describe('ICO.parseICO in the browser', () => {
   ];
   icons.forEach(icon => {
     it(`parse ${icon}`, async () => {
-      const url = new URL(`../test-fixtures/images/${icon}`, new URL(import.meta.url));
-      const res = await fetch(url);
+      const res = await fetch(`/src/test-fixtures/images/${icon}`);
       const arrayBuffer = await res.arrayBuffer();
 
       const images = await parseICO(arrayBuffer);
