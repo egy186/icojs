@@ -9,7 +9,7 @@ import { parse } from '../parse.js';
  * @alias module:ICO
  * @param {ArrayBuffer | Buffer} buffer - ICO file data.
  * @param {string} [mime=image/png] - MIME type for output.
- * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
+ * @returns {Promise<Array<ParsedImage>>} Resolves to an array of {@link ParsedImage}.
  */
 const parseICO = (buffer, mime = MIME_PNG) => parse(buffer, mime, Image);
 
