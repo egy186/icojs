@@ -68,7 +68,7 @@
     "c8": "^11.0.0",
     "chai": "^6.2.2",
     "chai-as-promised": "^8.0.2",
-    "data-uri-to-buffer": "^6.0.2",
+    "data-uri-to-buffer": "^8.0.0",
     "ejs": "^5.0.1",
     "eslint": "^9.39.4",
     "globals": "^16.4.0",
