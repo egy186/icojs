@@ -5,9 +5,6 @@ updates:
     schedule:
       interval: daily
     groups:
-      babel:
-        patterns:
-          - '@babel/*'
       chai:
         patterns:
           - chai
@@ -20,10 +17,6 @@ updates:
         patterns:
           - '@playwright/test'
           - playwright
-      rollup:
-        patterns:
-          - '@rollup/plugin-'
-          - rollup
     cooldown:
       default-days: 3
       exclude:
