@@ -15,7 +15,7 @@ import decodeIco from 'decode-ico';
  * @param {ArrayBuffer | Buffer} data - ICO file data.
  * @param {string} mime - MIME type for output.
  * @param {object} Image - Image encoder/decoder.
- * @returns {Promise<ParsedImage[]>} Resolves to an array of {@link ParsedImage}.
+ * @returns {Promise<Array<ParsedImage>>} Resolves to an array of {@link ParsedImage}.
  * @access private
  */
 const parse = async (data, mime, Image) => {
