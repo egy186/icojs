@@ -1,6 +1,8 @@
 import { base, browser } from '@egy186/eslint-config';
 // eslint-disable-next-line import/no-unresolved
 import { defineConfig, globalIgnores } from 'eslint/config';
+// eslint-disable-next-line import/no-unresolved
+import { vitest } from '@egy186/eslint-config/vitest';
 
 const config = defineConfig([
   globalIgnores([
@@ -48,7 +50,7 @@ const config = defineConfig([
     }
   },
   {
-    files: ['src/**/*.test.js'],
+    ...vitest,
     rules: {
       '@stylistic/array-element-newline': 'off'
     }

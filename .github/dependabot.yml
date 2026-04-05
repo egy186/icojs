@@ -12,6 +12,7 @@ updates:
       eslint:
         patterns:
           - '@egy186/eslint-config'
+          - '@vitest/eslint-plugin'
           - eslint
       vitest:
         patterns:
