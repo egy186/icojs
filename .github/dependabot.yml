@@ -1,32 +1,36 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: "daily"
+      interval: daily
     groups:
       babel:
         patterns:
-          - "@babel/*"
-          - "@rollup/plugin-babel"
-          - "babel-plugin-*"
+          - '@babel/*'
       chai:
         patterns:
-          - "chai"
-          - "chai-as-promised"
+          - chai
+          - chai-as-promised
       eslint:
         patterns:
-          - "@egy186/eslint-config"
-          - "@stylistic/eslint-plugin"
-          - "eslint"
-          - "eslint-plugin-*"
-          - "globals"
+          - '@egy186/eslint-config'
+          - eslint
       playwright:
         patterns:
-          - "@playwright/test"
-          - "playwright"
+          - '@playwright/test'
+          - playwright
       rollup:
         patterns:
-          - "@rollup/plugin-*"
-          - "rollup"
-    versioning-strategy: increase
+          - '@rollup/plugin-'
+          - rollup
+    cooldown:
+      default-days: 3
+      exclude:
+        - '@egy186/*'
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 3
