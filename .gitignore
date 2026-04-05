@@ -1,6 +1,6 @@
-.nyc_output
+.vitest-attachments
+__screenshots__
 coverage
 dist
 node_modules
 templates/api.md
-test-results

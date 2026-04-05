@@ -1,7 +1,8 @@
 import { base, browser } from '@egy186/eslint-config';
 // eslint-disable-next-line import/no-unresolved
 import { defineConfig, globalIgnores } from 'eslint/config';
-import globals from 'globals';
+// eslint-disable-next-line import/no-unresolved
+import { vitest } from '@egy186/eslint-config/vitest';
 
 const config = defineConfig([
   globalIgnores([
@@ -11,6 +12,11 @@ const config = defineConfig([
   ]),
   {
     ...base,
+    files: [
+      '**/*.js',
+      '!src/browser/**/*.js',
+      '!src/test-fixtures/is-same-browser.js'
+    ],
     rules: {
       ...base.rules,
       'jsdoc/no-defaults': 'off',
@@ -19,7 +25,11 @@ const config = defineConfig([
   },
   {
     ...browser,
-    files: ['docs/**/*.js', 'src/browser/**/*.js'],
+    files: [
+      'docs/**/*.js',
+      'src/browser/**/*.js',
+      'src/test-fixtures/is-same-browser.js'
+    ],
     rules: {
       ...browser.rules,
       'jsdoc/no-defaults': 'off'
@@ -40,11 +50,9 @@ const config = defineConfig([
     }
   },
   {
-    files: ['test/**/*.js'],
-    languageOptions: { globals: globals.mocha },
+    ...vitest,
     rules: {
-      '@stylistic/array-element-newline': 'off',
-      'no-unused-expressions': 'off'
+      '@stylistic/array-element-newline': 'off'
     }
   }
 ]);
