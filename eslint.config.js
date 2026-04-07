@@ -1,8 +1,9 @@
 import { base, browser } from '@egy186/eslint-config';
-// eslint-disable-next-line import/no-unresolved
+/* eslint-disable import/no-unresolved */
 import { defineConfig, globalIgnores } from 'eslint/config';
-// eslint-disable-next-line import/no-unresolved
+import { typescriptConfig } from '@egy186/eslint-config/typescript';
 import { vitest } from '@egy186/eslint-config/vitest';
+/* eslint-enable import/no-unresolved */
 
 const config = defineConfig([
   globalIgnores([
@@ -14,8 +15,8 @@ const config = defineConfig([
     ...base,
     files: [
       '**/*.js',
-      '!src/browser/**/*.js',
-      '!src/test-fixtures/is-same-browser.js'
+      '!src/browser/**/*.ts',
+      '!src/test-fixtures/is-same-browser.ts'
     ],
     rules: {
       ...base.rules,
@@ -27,14 +28,15 @@ const config = defineConfig([
     ...browser,
     files: [
       'docs/**/*.js',
-      'src/browser/**/*.js',
-      'src/test-fixtures/is-same-browser.js'
+      'src/browser/**/*.ts',
+      'src/test-fixtures/is-same-browser.ts'
     ],
     rules: {
       ...browser.rules,
       'jsdoc/no-defaults': 'off'
     }
   },
+  typescriptConfig({ projectService: { allowDefaultProject: ['*.ts'] } }),
   {
     files: ['docs/**/*.js'],
     languageOptions: {

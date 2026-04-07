@@ -20,7 +20,7 @@ describe('ICO.parseICO in the browser', () => {
       const images = await parseICO(arrayBuffer);
       expect(images.length).toBeGreaterThan(0);
 
-      // eslint-disable-next-line max-statements
+      // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
       await Promise.all(images.map(async (image, index) => {
         // Skip basic.ico[6], ref: https://github.com/egy186/icojs/pull/106
         if (browserName === 'Firefox') {

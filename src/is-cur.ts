@@ -7,7 +7,8 @@ import toDataView from 'to-data-view';
  * @returns {boolean} Arg is CUR or not.
  * @access private
  */
-const isCUR = source => {
+// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+const isCUR = (source: ArrayBuffer | Buffer): boolean => {
   const dataView = toDataView(source);
   return dataView.getUint16(0, true) === 0 && dataView.getUint16(2, true) === 2;
 };

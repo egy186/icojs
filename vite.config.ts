@@ -1,10 +1,10 @@
-// eslint-disable-next-line import/no-unresolved
 import { defineConfig } from 'vite';
 
 const config = defineConfig({
   build: {
+    emptyOutDir: false,
     lib: {
-      entry: 'src/browser/index.js',
+      entry: 'src/browser/index.ts',
       formats: ['umd'],
       name: 'ICO'
     },
