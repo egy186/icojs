@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 
@@ -13,7 +12,7 @@ export default defineConfig({
       {
         test: {
           environment: 'node',
-          include: ['src/node/*.test.js'],
+          include: ['src/node/*.test.ts'],
           name: 'node'
         }
       },
@@ -29,7 +28,7 @@ export default defineConfig({
             ],
             provider: playwright()
           },
-          include: ['src/browser/*.test.js'],
+          include: ['src/browser/*.test.ts'],
           name: 'browser'
         }
       }

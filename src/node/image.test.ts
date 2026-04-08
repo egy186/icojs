@@ -14,14 +14,14 @@ describe('Image', () => {
     });
     it('is expected to create ImageData from PNG', async () => {
       const buffer = await readFile(new URL('../test-fixtures/images/1x1/1x1-1bit.png', import.meta.url));
-      const imageData = await Image.decode(buffer);
+      const imageData = await Image.decode(buffer.buffer);
       expect(imageData.data).toStrictEqual(new Uint8ClampedArray([0, 0, 0, 0]));
       expect(imageData.height).toStrictEqual(1);
       expect(imageData.width).toStrictEqual(1);
     });
     it('is expeted to create ImageData from BMP', async () => {
       const buffer = await readFile(new URL('../test-fixtures/images/bmp.bmp', import.meta.url));
-      const imageData = await Image.decode(buffer);
+      const imageData = await Image.decode(buffer.buffer);
       expect(imageData.data).toStrictEqual(bmpImageData.data);
       expect(imageData.height).toStrictEqual(bmpImageData.height);
       expect(imageData.width).toStrictEqual(bmpImageData.width);

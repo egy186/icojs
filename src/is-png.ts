@@ -7,7 +7,8 @@ import toDataView from 'to-data-view';
  * @returns {boolean} Arg is PNG or not.
  * @access private
  */
-const isPNG = source => {
+// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+const isPNG = (source: ArrayBuffer | Buffer): boolean => {
   const dataView = toDataView(source);
   return dataView.getUint32(0, false) === 0x89504E47 && dataView.getUint32(4, false) === 0x0D0A1A0A;
 };

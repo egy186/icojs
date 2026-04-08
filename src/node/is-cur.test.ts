@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 describe('isCUR', () => {
   it('is expected to return true or false', async () => {
     const buffer = await readFile(new URL('../test-fixtures/images/cursor.cur', import.meta.url));
+    // @ts-expect-error test
     expect(() => isCUR('it is not buffer')).toThrow(TypeError);
     expect(isCUR(buffer)).toStrictEqual(true);
     const d = new ArrayBuffer(4);
