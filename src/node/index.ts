@@ -1,5 +1,4 @@
 import Image from './image.js';
-import { MIME_PNG } from '../mime.js';
 import type { ParsedImage } from '../parse.js';
 import { isICO } from '../is-ico.js';
 import { parse } from '../parse.js';
@@ -21,7 +20,7 @@ import { parse } from '../parse.js';
  * @returns {Promise<Array<ParsedImage>>} Resolves to an array of {@link ParsedImage}.
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-const parseICO = async (buffer: ArrayBuffer | Buffer, mime: string = MIME_PNG): Promise<Array<ParsedImage>> => await parse(buffer, mime, Image);
+const parseICO = async (buffer: ArrayBuffer | Buffer, mime = 'image/png'): Promise<Array<ParsedImage>> => await parse(buffer, mime, Image);
 
 /**
  * @module ICO

@@ -1,5 +1,5 @@
 import type { ImageConverter, ImageData } from '../image.js';
-import { MIME_PNG } from '../mime.js';
+import { MIME_PNG } from '../image.js';
 
 const dataURLToArrayBuffer = (dataURL: string): ArrayBuffer => {
   const string = atob(dataURL.replace(/.+,/u, ''));

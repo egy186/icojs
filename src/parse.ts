@@ -1,20 +1,21 @@
 import type { ImageConverter } from './image.js';
-import { MIME_PNG } from './mime.js';
+import { MIME_PNG } from './image.js';
 import decodeIco from 'decode-ico';
 
-interface Hotspot {
-  readonly x: number;
-  readonly y: number;
-}
-
 interface ParsedImage {
+  /** Image width. */
   readonly width: number;
+  /** Image height. */
   readonly height: number;
   /** Color depth as bits per pixel. */
   readonly bpp: number;
+  /** Image buffer. */
   readonly buffer: ArrayBuffer;
   /** This field is present only when the format is CUR. */
-  readonly hotspot?: Hotspot;
+  readonly hotspot?: {
+    readonly x: number;
+    readonly y: number;
+  };
 }
 
 interface IconData {

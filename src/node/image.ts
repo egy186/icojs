@@ -1,5 +1,5 @@
 import type { ImageConverter, ImageData } from '../image.js';
-import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../mime.js';
+import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../image.js';
 import { PNG } from 'pngjs';
 import bmp from '@jimp/bmp';
 import { fileTypeFromBuffer } from 'file-type';
