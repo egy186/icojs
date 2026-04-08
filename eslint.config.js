@@ -15,6 +15,7 @@ const config = defineConfig([
     ...base,
     files: [
       '**/*.js',
+      '**/*.ts',
       '!src/browser/**/*.ts',
       '!src/test-fixtures/is-same-browser.ts'
     ],
