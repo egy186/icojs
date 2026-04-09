@@ -28,7 +28,7 @@ jobs:
       run: npm run lint
 
     - name: Build docs
-       run: npm run docs
+      run: npm run docs
   test:
     runs-on: ubuntu-latest
     strategy:
