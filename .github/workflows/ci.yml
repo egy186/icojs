@@ -26,6 +26,9 @@ jobs:
 
     - name: Lint
       run: npm run lint
+
+    - name: Build docs
+       run: npm run docs
   test:
     runs-on: ubuntu-latest
     strategy:
