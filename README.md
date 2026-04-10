@@ -74,58 +74,6 @@ images.forEach(image => {
 
 [https://egy186.github.io/icojs/demo.html](https://egy186.github.io/icojs/demo.html)
 
-## API
+## API Documentation
 
-<a name="module_ICO"></a>
-
-### ICO
-
-* [ICO](#module_ICO)
-    * [isICO(source)](#exp_module_ICO--isICO) ⇒ <code>boolean</code> ⏏
-    * [parseICO(buffer, [mime])](#exp_module_ICO--parseICO) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
-
-<a name="exp_module_ICO--isICO"></a>
-
-#### isICO(source) ⇒ <code>boolean</code> ⏏
-Check the ArrayBuffer is valid ICO.
-
-**Kind**: global method of [<code>ICO</code>](#module_ICO)  
-**Returns**: <code>boolean</code> - True if arg is ICO.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| source | <code>ArrayBuffer</code> \| <code>Buffer</code> | ICO file data. |
-
-<a name="exp_module_ICO--parseICO"></a>
-
-#### parseICO(buffer, [mime]) ⇒ <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> ⏏
-Parse ICO and return some images.
-
-**Kind**: global method of [<code>ICO</code>](#module_ICO)  
-**Returns**: <code>Promise.&lt;Array.&lt;ParsedImage&gt;&gt;</code> - Resolves to an array of [ParsedImage](#ParsedImage).  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| buffer | <code>ArrayBuffer</code> \| <code>Buffer</code> |  | ICO file data. |
-| [mime] | <code>string</code> | <code>&quot;image/png&quot;</code> | MIME type for output. |
-
-
-## Typedefs
-
-<a name="ParsedImage"></a>
-
-### ParsedImage : <code>object</code>
-**Kind**: global typedef  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| width | <code>number</code> | Image width. |
-| height | <code>number</code> | Image height. |
-| bpp | <code>number</code> | Image color depth as bits per pixel. |
-| buffer | <code>ArrayBuffer</code> | Image buffer. |
-
-
-## License
-
-MIT license
+[https://egy186.github.io/icojs/](https://egy186.github.io/icojs/)

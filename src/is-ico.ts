@@ -3,7 +3,6 @@ import toDataView from 'to-data-view';
 /**
  * Check the ArrayBuffer is valid ICO.
  *
- * @alias module:ICO
  * @param {ArrayBuffer | Buffer} source - ICO file data.
  * @returns {boolean} True if arg is ICO.
  */

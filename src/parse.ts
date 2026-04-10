@@ -2,6 +2,8 @@ import type { ImageConverter } from './image.js';
 import { MIME_PNG } from './image.js';
 import decodeIco from 'decode-ico';
 
+// eslint-disable-next-line jsdoc/no-blank-blocks
+/** */
 interface ParsedImage {
   /** Image width. */
   readonly width: number;

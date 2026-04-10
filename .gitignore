@@ -4,4 +4,3 @@ coverage
 dist
 docs
 node_modules
-templates/api.md

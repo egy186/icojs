@@ -16,7 +16,6 @@ const config = defineConfig([
     files: [
       '**/*.ts',
       'eslint.config.js',
-      'scripts/docs.js',
       '!src/browser/**/*.ts',
       '!src/test-fixtures/is-same-browser.ts'
     ],
