@@ -10,7 +10,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" defer></script>
   <script src="https://unpkg.com/icojs@<%= version %>/dist/ico.js" defer></script>
-  <script src="demo.js" defer=""></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
   <style>
     header h1 a {
@@ -44,12 +43,7 @@
         <%- docs.example %>
       </section>
       <section id="demo">
-        <h2>Demo</h2>
-        <p>Please input ico file.</p>
-        <form action="#">
-          <p><input id="input-file" type="file" class="form-control" aria-label="Choose file" /></p>
-        </form>
-        <section id="demos-parse-results"></section>
+        <%- docs.demo %>
       </section>
       <section id="api">
         <%- docs.api %>

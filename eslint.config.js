@@ -9,26 +9,26 @@ const config = defineConfig([
   globalIgnores([
     'coverage',
     'dist',
-    'types'
+    'docs'
   ]),
   {
     ...base,
     files: [
-      '**/*.js',
       '**/*.ts',
+      'eslint.config.js',
+      'scripts/docs.js',
       '!src/browser/**/*.ts',
       '!src/test-fixtures/is-same-browser.ts'
     ],
     rules: {
       ...base.rules,
-      'jsdoc/no-defaults': 'off',
-      'jsdoc/no-undefined-types': 'off'
+      'jsdoc/no-defaults': 'off'
     }
   },
   {
     ...browser,
     files: [
-      'docs/**/*.js',
+      'assets/demo.js',
       'src/browser/**/*.ts',
       'src/test-fixtures/is-same-browser.ts'
     ],
@@ -38,20 +38,6 @@ const config = defineConfig([
     }
   },
   typescriptConfig({ projectService: { allowDefaultProject: ['*.ts'] } }),
-  {
-    files: ['docs/**/*.js'],
-    languageOptions: {
-      globals: {
-        $: true,
-        ICO: true,
-        hljs: true
-      }
-    },
-    rules: {
-      'import/unambiguous': 'off',
-      'no-console': 'off'
-    }
-  },
   {
     ...vitest,
     rules: {

@@ -42,14 +42,14 @@
     "build": "npm run build:ts && npm run build:umd",
     "build:ts": "tsc",
     "build:umd": "vite build",
-    "clean": "rimraf coverage dist docs/index.html templates/api.md README.md",
+    "clean": "rimraf coverage dist docs templates/api.md README.md",
     "predocs": "npm run jsdoc",
     "docs": "node scripts/docs.js",
     "prejsdoc": "npm run build",
     "jsdoc": "jsdoc2md --files \"dist/**/*.js\" --heading-depth 3 --template templates/api.hbs > templates/api.md",
     "lint": "eslint",
     "test": "vitest run --coverage",
-    "version": "npm run docs && git add docs/index.html README.md"
+    "version": "npm run docs && git add README.md"
   },
   "dependencies": {
     "@jimp/bmp": "^0.22.12",

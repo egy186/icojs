@@ -1,4 +1,5 @@
-import { readFile, writeFile } from 'node:fs/promises';
+// eslint-disable-next-line n/no-unsupported-features/node-builtins
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import ejs from 'ejs';
 import jsonfile from 'jsonfile';
 import { marked } from 'marked';
@@ -30,12 +31,20 @@ const generateDocs = async () => {
   const html = ejs.render(template, {
     docs: {
       api: marked.parse(markdown.api),
+      demo: marked.parse(markdown.demo),
       example: marked.parse(markdown.example),
       install: marked.parse(markdown.install)
     },
     version
   });
+  await mkdir(new URL('../docs', import.meta.url));
   await writeFile(new URL('../docs/index.html', import.meta.url), html, 'utf-8');
+
+  // Copy demo
+  await cp(new URL('../assets', import.meta.url), new URL('../docs', import.meta.url), {
+    recursive: true
+  });
+  await cp(new URL('../dist/ico.js', import.meta.url), new URL('../docs/ico.js', import.meta.url));
 };
 
 generateDocs().catch(err => {
