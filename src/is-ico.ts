@@ -3,8 +3,8 @@ import toDataView from 'to-data-view';
 /**
  * Check the ArrayBuffer is valid ICO.
  *
- * @param {ArrayBuffer | Buffer} source - ICO file data.
- * @returns {boolean} True if arg is ICO.
+ * @param source - ICO file data.
+ * @returns True if arg is ICO.
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const isICO = (source: ArrayBuffer | Buffer): boolean => {

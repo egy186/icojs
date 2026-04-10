@@ -3,8 +3,8 @@ import toDataView from 'to-data-view';
 /**
  * Check the ArrayBuffer is valid PNG.
  *
- * @param {ArrayBuffer | Buffer} source - ArrayBuffer or Buffer object.
- * @returns {boolean} Arg is PNG or not.
+ * @param source - ArrayBuffer or Buffer object.
+ * @returns Arg is PNG or not.
  * @access private
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types

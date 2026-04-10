@@ -58,7 +58,7 @@
     "to-data-view": "^2.0.0"
   },
   "devDependencies": {
-    "@egy186/eslint-config": "^4.4.3",
+    "@egy186/eslint-config": "^4.5.3",
     "@types/node": "^25.5.0",
     "@types/pngjs": "^6.0.5",
     "@vitest/browser-playwright": "^4.1.2",

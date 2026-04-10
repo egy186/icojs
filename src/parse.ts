@@ -31,10 +31,10 @@ interface IconData {
 /**
  * Parse ICO and return some image object.
  *
- * @param {ArrayBuffer | Buffer} data - ICO file data.
- * @param {string} mime - MIME type for output.
- * @param {ImageConverter} Image - Image encoder/decoder.
- * @returns {Promise<Array<ParsedImage>>} Resolves to an array of {@link ParsedImage}.
+ * @param data - ICO file data.
+ * @param mime - MIME type for output.
+ * @param Image - Image encoder/decoder.
+ * @returns Resolves to an array of {@link ParsedImage}.
  * @access private
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/prefer-readonly-parameter-types

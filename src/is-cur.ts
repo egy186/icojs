@@ -3,8 +3,8 @@ import toDataView from 'to-data-view';
 /**
  * Check the ArrayBuffer is valid CUR.
  *
- * @param {ArrayBuffer | Buffer} source - ArrayBuffer or Buffer object.
- * @returns {boolean} Arg is CUR or not.
+ * @param source - ArrayBuffer or Buffer object.
+ * @returns Arg is CUR or not.
  * @access private
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
