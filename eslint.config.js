@@ -36,6 +36,21 @@ const config = defineConfig([
       'jsdoc/no-defaults': 'off'
     }
   },
+  {
+    files: ['assets/demo.js'],
+    languageOptions: {
+      globals: {
+        $: true,
+        ICO: true
+      }
+    },
+    rules: {
+      'import/unambiguous': 'off',
+      'max-lines-per-function': 'off',
+      'no-await-in-loop': 'off',
+      'no-console': 'off'
+    }
+  },
   typescriptConfig({ projectService: { allowDefaultProject: ['*.ts'] } }),
   {
     ...vitest,

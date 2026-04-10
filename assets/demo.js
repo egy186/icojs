@@ -1,6 +1,3 @@
-/* global $, ICO */
-
-// eslint-disable-next-line import/unambiguous, max-lines-per-function
 $(() => {
   // Mime type of output files
   const mime = 'image/png';
@@ -24,22 +21,18 @@ $(() => {
     alert.prependTo('#demos-parse-results');
   };
 
-  const icoParse = files => {
+  const icoParse = async files => {
     for (const file of files) {
-      // Use FileReader for converting File object to ArrayBuffer object
-      const reader = new FileReader();
-      reader.onload = async evt => {
-        try {
-          // Convert *.ico to *.png(s)
-          const images = await ICO.parseICO(evt.target.result, mime);
-          // Debug
-          console.dir(images);
-          parseComplete(null, images);
-        } catch (err) {
-          parseComplete(err);
-        }
-      };
-      reader.readAsArrayBuffer(file);
+      try {
+        const buffer = await file.arrayBuffer();
+        // Convert *.ico to *.png(s)
+        const images = await ICO.parseICO(buffer, mime);
+        // Debug
+        console.dir(images);
+        parseComplete(null, images);
+      } catch (err) {
+        parseComplete(err);
+      }
     }
   };
 

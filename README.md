@@ -31,9 +31,6 @@ or
 <script type="text/javascript" src="node_modules/icojs/dist/ico.js"></script>
 ```
 
-To fully use this library, browsers must support **JavaScript typed arrays**, **Canvas API** and **Promise**.
-Chrome, Edge 12, Firefox and Safari 9 support these functions.
-
 ## Example
 
 ### Node.js:
@@ -57,16 +54,13 @@ images.forEach(image => {
 ```html
 <input type="file" id="input-file" />
 <script>
-  document.getElementById('input-file').addEventListener('change', evt => {
-    // use FileReader for converting File object to ArrayBuffer object
-    var reader = new FileReader();
-    reader.onload = async e => {
-      const images = await ICO.parseICO(e.target.result);
-      // logs images
-      console.dir(images);
-    };
-    reader.readAsArrayBuffer(evt.target.files[0]);
-  }, false);
+  document.querySelector('#input-file').addEventListener('change', async evt => {
+    const file = evt.target.files[0];
+    const buffer = await file.arrayBuffer();
+    const images = await ICO.parseICO(buffer);
+    // logs images
+    console.dir(images);
+  });
 </script>
 ```
 
