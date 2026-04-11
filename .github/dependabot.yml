@@ -22,6 +22,7 @@ updates:
       default-days: 3
       exclude:
         - '@egy186/*'
+    versioning-strategy: increase
   - package-ecosystem: github-actions
     directory: /
     schedule:
