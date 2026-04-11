@@ -67,7 +67,7 @@
     "@vitest/eslint-plugin": "^1.6.14",
     "bowser": "^2.14.1",
     "data-uri-to-buffer": "^8.0.0",
-    "eslint": "^9.39.4",
+    "eslint": "^10.2.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "pixelmatch": "^7.1.0",
     "typedoc": "^0.28.18",
