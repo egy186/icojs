@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "author": "egy186",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
