@@ -15,8 +15,8 @@ const Image = {
   /**
    * Create imageData from image.
    *
-   * @param {ArrayBuffer} arrayBuffer - Image buffer.
-   * @returns {Promise<ImageData>} ImageData.
+   * @param arrayBuffer - Image buffer.
+   * @returns ImageData.
    * @access private
    */
   async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<ImageData> {
@@ -52,9 +52,9 @@ const Image = {
   /**
    * Create image from imgData.data.
    *
-   * @param {ImageData} image - Data.
-   * @param {string} [mime=image/png] - MIME type.
-   * @returns {Promise<ArrayBuffer>} Image.
+   * @param image - Data.
+   * @param mime - MIME type.
+   * @returns Image.
    * @access private
    */
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types

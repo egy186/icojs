@@ -1,0 +1,10 @@
+{
+  "entryPoints": [
+    "./src/node/index.ts"
+  ],
+  "excludeNotDocumented": true,
+  "out": "./docs",
+  "customJs": "./dist/ico.js",
+  "cleanOutputDir": false,
+  "headings": false
+}

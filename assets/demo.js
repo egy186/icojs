@@ -21,21 +21,19 @@ $(() => {
     alert.prependTo('#demos-parse-results');
   };
 
-  const icoParse = file => {
-    // Use FileReader for converting File object to ArrayBuffer object
-    const reader = new FileReader();
-    reader.onload = async evt => {
+  const icoParse = async files => {
+    for (const file of files) {
       try {
+        const buffer = await file.arrayBuffer();
         // Convert *.ico to *.png(s)
-        const images = await ICO.parseICO(evt.target.result, mime);
+        const images = await ICO.parseICO(buffer, mime);
         // Debug
         console.dir(images);
         parseComplete(null, images);
       } catch (err) {
         parseComplete(err);
       }
-    };
-    reader.readAsArrayBuffer(file);
+    }
   };
 
   // Input from drag and drop
@@ -50,33 +48,15 @@ $(() => {
   $(document).on('drop', evt => {
     evt.stopPropagation();
     evt.preventDefault();
-    icoParse(evt.originalEvent.dataTransfer.files[0]);
+    icoParse(evt.originalEvent.dataTransfer.files);
   });
+
   // Input from file
-  const inputFile = $('#input-file');
-  const inputFilePath = $('#input-file-path');
-  const inputEvt = function (evt) {
-    evt.preventDefault();
-    inputFile.click();
-  };
-  $('#input-file-emu').on('click', inputEvt);
-  inputFile.on('change', evt => {
-    inputFilePath.text(evt.target.files[0].name);
-    icoParse(evt.target.files[0]);
+  $('#input-file').on('change', evt => {
+    icoParse(evt.target.files);
   });
-
-  // Highlightjs
-  hljs.highlightAll();
-
-  // Add class
-  $('h2').addClass('border-bottom mt-4 mb-3 pb-2');
-  $('table').addClass('table table-striped table-hover');
 
   // Set theme
   const theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   document.documentElement.setAttribute('data-bs-theme', theme);
-  $('head').append($('<link />', {
-    href: `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/${theme === 'dark' ? 'github-dark' : 'github'}.min.css`,
-    rel: 'stylesheet'
-  }));
 });
