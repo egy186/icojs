@@ -1,12 +1,52 @@
 import type { ImageConverter, ImageData } from '../image.js';
 import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../image.js';
+import { decode as decodeBMP, encode as encodeBMP } from 'bmp-ts';
+import { decode as decodeJPEG, encode as encodeJPEG } from 'jpeg-js';
 import { PNG } from 'pngjs';
-import bmp from '@jimp/bmp';
 import { fileTypeFromBuffer } from 'file-type';
-import jpeg from 'jpeg-js';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const Jimp = bmp.default();
+// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
+const rgbaToAbgr = (src: Buffer): Buffer => {
+  const dest = Buffer.alloc(src.length);
+
+  for (let i = 0; i + 3 < src.length; i += 4) {
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
+    const r = src[i]!;
+    const g = src[i + 1]!;
+    const b = src[i + 2]!;
+    const a = src[i + 3]!;
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
+
+    dest[i] = a;
+    dest[i + 1] = b;
+    dest[i + 2] = g;
+    dest[i + 3] = r;
+  }
+
+  return dest;
+};
+
+// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+const abgrToRgba = (src: Buffer): Buffer => {
+  const dest = Buffer.alloc(src.length);
+
+  for (let i = 0; i + 3 < src.length; i += 4) {
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
+    const b = src[i + 1]!;
+    const g = src[i + 2]!;
+    const r = src[i + 3]!;
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
+
+    dest[i] = r;
+    dest[i + 1] = g;
+    dest[i + 2] = b;
+    // Alpha is fixed
+    dest[i + 3] = 0xFF;
+  }
+
+  return dest;
+};
+
 
 interface ImageDataLike {
   readonly data: Buffer;
@@ -21,8 +61,16 @@ interface ImageDecoders {
 
 const decoders = {
   /* eslint-disable @typescript-eslint/prefer-readonly-parameter-types */
-  [MIME_BMP]: (buffer: Buffer) => Jimp.decoders[MIME_BMP](buffer),
-  [MIME_JPEG]: (buffer: Buffer) => jpeg.decode(buffer),
+  [MIME_BMP]: (buffer: Buffer) => {
+    const bmpImageData = decodeBMP(buffer);
+
+    return {
+      data: abgrToRgba(bmpImageData.data),
+      height: bmpImageData.height,
+      width: bmpImageData.width
+    };
+  },
+  [MIME_JPEG]: (buffer: Buffer) => decodeJPEG(buffer),
   [MIME_PNG]: (buffer: Buffer) => PNG.sync.read(buffer)
   /* eslint-enable @typescript-eslint/prefer-readonly-parameter-types */
 } as const satisfies ImageDecoders;
@@ -34,8 +82,15 @@ interface ImageEncoders {
 
 const encoders = {
   /* eslint-disable @typescript-eslint/prefer-readonly-parameter-types */
-  [MIME_BMP]: (imageData: ImageDataLike) => Jimp.encoders[MIME_BMP]({ bitmap: imageData }),
-  [MIME_JPEG]: (imageData: ImageDataLike) => jpeg.encode(imageData).data,
+  [MIME_BMP]: (imageData: ImageDataLike) => {
+    const bmpImageData = {
+      ...imageData,
+      data: rgbaToAbgr(imageData.data)
+    };
+
+    return encodeBMP(bmpImageData).data;
+  },
+  [MIME_JPEG]: (imageData: ImageDataLike) => encodeJPEG(imageData).data,
   [MIME_PNG]: (imageData: ImageDataLike) => {
     const png = new PNG({
       height: imageData.height,
