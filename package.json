@@ -20,6 +20,10 @@
   "type": "module",
   "exports": {
     ".": {
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "default": "./dist/browser/index.js"
+      },
       "types": "./dist/node/index.d.ts",
       "default": "./dist/node/index.js"
     },

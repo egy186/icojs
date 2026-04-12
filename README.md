@@ -13,22 +13,14 @@ Works on both Node.js and the browser.
 npm install icojs
 ```
 
-### Node.js:
-
 ```js
 import { isICO, parseICO } from 'icojs';
 ```
 
-### Browser:
-
-```js
-import { isICO, parseICO } from 'icojs/browser';
-```
-
-or
+A UMD bundle is also available for browsers.
 
 ```html
-<script type="text/javascript" src="node_modules/icojs/dist/ico.js"></script>
+<script src="node_modules/icojs/dist/ico.js"></script>
 ```
 
 ## Example
