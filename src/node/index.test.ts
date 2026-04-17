@@ -1,36 +1,36 @@
+import { decodeIco, isIco } from './index.js';
 import { describe, expect, it } from 'vitest';
-import { isICO, parseICO } from './index.js';
 import cursorCur from '../test-fixtures/images/cursor.js';
 import { isSame } from '../test-fixtures/is-same.js';
 import { readFile } from 'node:fs/promises';
 
 // eslint-disable-next-line max-lines-per-function
 describe('ICO', () => {
-  describe('.isICO', () => {
+  describe('.isIco', () => {
     it('is expected to return true or false', async () => {
       const buffer = await readFile(new URL('../test-fixtures/images/basic.ico', import.meta.url));
       // @ts-expect-error test
-      expect(() => isICO('it is not buffer')).toThrow(TypeError);
-      expect(isICO(buffer)).toStrictEqual(true);
+      expect(() => isIco('it is not buffer')).toThrow(TypeError);
+      expect(isIco(buffer)).toStrictEqual(true);
       const d = new ArrayBuffer(4);
       const dv = new DataView(d);
-      expect(isICO(d)).toStrictEqual(false);
+      expect(isIco(d)).toStrictEqual(false);
       dv.setUint16(2, 1, true);
-      expect(isICO(d)).toStrictEqual(true);
+      expect(isIco(d)).toStrictEqual(true);
       dv.setUint16(0, 1, true);
-      expect(isICO(d)).toStrictEqual(false);
+      expect(isIco(d)).toStrictEqual(false);
     });
   });
 
   // eslint-disable-next-line max-lines-per-function
-  describe('.parse', () => {
+  describe('.decodeIco', () => {
     it('is expected to be rejected when arg is not buffer', async () => {
       // @ts-expect-error test
-      const promise = parseICO([]);
+      const promise = decodeIco([]);
       await expect(promise).rejects.toThrow(TypeError);
     });
     it('is expected to be rejected when arg is not ico', async () => {
-      const promise = parseICO(new ArrayBuffer(4));
+      const promise = decodeIco(new ArrayBuffer(4));
       await expect(promise).rejects.toThrow('Truncated header');
     });
     const formats = [
@@ -47,9 +47,9 @@ describe('ICO', () => {
     ];
     formats.forEach(format => {
       icons.forEach(icon => {
-        it(`is expected to parse ${icon} (${format ?? 'default'})`, async () => {
+        it(`is expected to decode ${icon} (${format ?? 'default'})`, async () => {
           const buffer = await readFile(new URL(`../test-fixtures/images/${icon}`, import.meta.url));
-          const images = await parseICO(buffer, format);
+          const images = await decodeIco(buffer, format);
           expect(Array.isArray(images)).toStrictEqual(true);
           // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
           await Promise.all(images.map(async image => {
@@ -65,9 +65,9 @@ describe('ICO', () => {
         });
       });
     });
-    it('is expected to parse hotspot of CUR', async () => {
+    it('is expected to decode hotspot of CUR', async () => {
       const buffer = await readFile(new URL('../test-fixtures/images/cursor.cur', import.meta.url));
-      const images = await parseICO(buffer);
+      const images = await decodeIco(buffer);
       // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
       images.forEach((image, index) => {
         expect(image.hotspot?.x).not.toBeUndefined();
