@@ -1,7 +1,7 @@
 import type { ImageConverter, ImageData } from '../image.js';
 import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../image.js';
-import { decode as decodeBMP, encode as encodeBMP } from 'bmp-ts';
-import { decode as decodeJPEG, encode as encodeJPEG } from 'jpeg-js';
+import { decode as decodeBmp, encode as encodeBmp } from 'bmp-ts';
+import { decode as decodeJpeg, encode as encodeJpeg } from 'jpeg-js';
 import { PNG } from 'pngjs';
 import { fileTypeFromBuffer } from 'file-type';
 
@@ -62,7 +62,7 @@ interface ImageDecoders {
 const decoders = {
   /* eslint-disable @typescript-eslint/prefer-readonly-parameter-types */
   [MIME_BMP]: (buffer: Buffer) => {
-    const bmpImageData = decodeBMP(buffer);
+    const bmpImageData = decodeBmp(buffer);
 
     return {
       data: abgrToRgba(bmpImageData.data),
@@ -70,7 +70,7 @@ const decoders = {
       width: bmpImageData.width
     };
   },
-  [MIME_JPEG]: (buffer: Buffer) => decodeJPEG(buffer),
+  [MIME_JPEG]: (buffer: Buffer) => decodeJpeg(buffer),
   [MIME_PNG]: (buffer: Buffer) => PNG.sync.read(buffer)
   /* eslint-enable @typescript-eslint/prefer-readonly-parameter-types */
 } as const satisfies ImageDecoders;
@@ -88,9 +88,9 @@ const encoders = {
       data: rgbaToAbgr(imageData.data)
     };
 
-    return encodeBMP(bmpImageData).data;
+    return encodeBmp(bmpImageData).data;
   },
-  [MIME_JPEG]: (imageData: ImageDataLike) => encodeJPEG(imageData).data,
+  [MIME_JPEG]: (imageData: ImageDataLike) => encodeJpeg(imageData).data,
   [MIME_PNG]: (imageData: ImageDataLike) => {
     const png = new PNG({
       height: imageData.height,

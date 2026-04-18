@@ -8,11 +8,11 @@ import toDataView from 'to-data-view';
  * @access private
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-const isPNG = (source: ArrayBuffer | Buffer): boolean => {
+const isPng = (source: ArrayBuffer | Buffer): boolean => {
   const dataView = toDataView(source);
   return dataView.getUint32(0, false) === 0x89504E47 && dataView.getUint32(4, false) === 0x0D0A1A0A;
 };
 
-export { isPNG };
+export { isPng };
 
-export default isPNG;
+export default isPng;
