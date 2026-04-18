@@ -7,11 +7,11 @@ import toDataView from 'to-data-view';
  * @returns True if arg is ICO.
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-const isICO = (source: ArrayBuffer | Buffer): boolean => {
+const isIco = (source: ArrayBuffer | Buffer): boolean => {
   const dataView = toDataView(source);
   return dataView.getUint16(0, true) === 0 && dataView.getUint16(2, true) === 1;
 };
 
-export { isICO };
+export { isIco };
 
-export default isICO;
+export default isIco;

@@ -3,7 +3,7 @@ $(() => {
   const mime = 'image/png';
 
   // Handler
-  const parseComplete = (err, images) => {
+  const decodeComplete = (err, images) => {
     const alert = $('<div class="alert alert-dismissible fade show">');
     alert.append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
     if (err) {
@@ -18,20 +18,20 @@ $(() => {
         alert.append(`<p class="mb-${index === images.length - 1 ? 0 : 3}"><a href="${url}" target="_blank"><img src="${url}" /> ${text}</a></p>`);
       });
     }
-    alert.prependTo('#demos-parse-results');
+    alert.prependTo('#demo-decode-results');
   };
 
-  const icoParse = async files => {
+  const icoDecode = async files => {
     for (const file of files) {
       try {
         const buffer = await file.arrayBuffer();
         // Convert *.ico to *.png(s)
-        const images = await ICO.parseICO(buffer, mime);
+        const images = await ICO.decodeIco(buffer, mime);
         // Debug
         console.dir(images);
-        parseComplete(null, images);
+        decodeComplete(null, images);
       } catch (err) {
-        parseComplete(err);
+        decodeComplete(err);
       }
     }
   };
@@ -48,12 +48,12 @@ $(() => {
   $(document).on('drop', evt => {
     evt.stopPropagation();
     evt.preventDefault();
-    icoParse(evt.originalEvent.dataTransfer.files);
+    icoDecode(evt.originalEvent.dataTransfer.files);
   });
 
   // Input from file
   $('#input-file').on('change', evt => {
-    icoParse(evt.target.files);
+    icoDecode(evt.target.files);
   });
 
   // Set theme

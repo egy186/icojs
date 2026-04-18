@@ -4,7 +4,7 @@ import decodeIco from 'decode-ico';
 
 // eslint-disable-next-line jsdoc/no-blank-blocks
 /** */
-interface ParsedImage {
+interface DecodeImage {
   /** Image width. */
   readonly width: number;
   /** Image height. */
@@ -29,20 +29,20 @@ interface IconData {
 }
 
 /**
- * Parse ICO and return some image object.
+ * Decode ICO and return some image object.
  *
  * @param data - ICO file data.
  * @param mime - MIME type for output.
  * @param Image - Image encoder/decoder.
- * @returns Resolves to an array of {@link ParsedImage}.
+ * @returns Resolves to an array of {@link DecodeImage}.
  * @access private
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/prefer-readonly-parameter-types
-const parse = async (data: ArrayBuffer | Buffer, mime: string, Image: ImageConverter): Promise<Array<ParsedImage>> => {
+const decode = async (data: ArrayBuffer | Buffer, mime: string, Image: ImageConverter): Promise<Array<DecodeImage>> => {
   const icons = decodeIco(data);
 
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-  const transcodeImage = async (icon: IconData): Promise<ParsedImage> => {
+  const transcodeImage = async (icon: IconData): Promise<DecodeImage> => {
     if (mime === MIME_PNG && icon.type === 'png') {
       return {
         ...icon,
@@ -64,12 +64,12 @@ const parse = async (data: ArrayBuffer | Buffer, mime: string, Image: ImageConve
     });
   };
 
-  const parsedImages = await Promise.all(icons.map(transcodeImage));
-  return parsedImages;
+  const decodedImages = await Promise.all(icons.map(transcodeImage));
+  return decodedImages;
 };
 
-export type { ParsedImage };
+export type { DecodeImage };
 
-export { parse };
+export { decode };
 
-export default parse;
+export default decode;

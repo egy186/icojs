@@ -14,7 +14,7 @@ npm install icojs
 ```
 
 ```js
-import { isICO, parseICO } from 'icojs';
+import { decodeIco, isIco } from 'icojs';
 ```
 
 A UMD bundle is also available for browsers.
@@ -29,10 +29,10 @@ A UMD bundle is also available for browsers.
 
 ```js
 import { readFile, writeFile } from 'node:fs/promises';
-import { parseICO } from 'icojs';
+import { decodeIco } from 'icojs';
 
 const buffer = await readFile('favicon.ico');
-const images = await parseICO(buffer, 'image/png');
+const images = await decodeIco(buffer, 'image/png');
 // save as png files
 images.forEach(image => {
   const file = `${image.width}x${image.height}-${image.bpp}bit.png`;
@@ -49,7 +49,7 @@ images.forEach(image => {
   document.querySelector('#input-file').addEventListener('change', async evt => {
     const file = evt.target.files[0];
     const buffer = await file.arrayBuffer();
-    const images = await ICO.parseICO(buffer);
+    const images = await ICO.decodeIco(buffer);
     // logs images
     console.dir(images);
   });

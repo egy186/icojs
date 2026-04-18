@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import Bowser from 'bowser';
+import { decodeIco } from './index.js';
 import { isSame } from '../test-fixtures/is-same-browser.js';
-import { parseICO } from './index.js';
 
 const browserName = Bowser.getParser(window.navigator.userAgent).getBrowserName();
 
-describe('ICO.parseICO in the browser', () => {
+describe('ICO.decodeIco in the browser', () => {
   const icons = [
     'basic.ico',
     'cursor.cur',
@@ -13,11 +13,11 @@ describe('ICO.parseICO in the browser', () => {
     'png.ico'
   ];
   icons.forEach(icon => {
-    it(`parse ${icon}`, async () => {
+    it(`decode ${icon}`, async () => {
       const res = await fetch(`/src/test-fixtures/images/${icon}`);
       const arrayBuffer = await res.arrayBuffer();
 
-      const images = await parseICO(arrayBuffer);
+      const images = await decodeIco(arrayBuffer);
       expect(images.length).toBeGreaterThan(0);
 
       // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
