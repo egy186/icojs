@@ -14,7 +14,7 @@ npm install icojs
 ```
 
 ```js
-import { decodeIco, isIco } from 'icojs';
+import { decodeIco, encodeIco, isIco } from 'icojs';
 ```
 
 A UMD bundle is also available for browsers.

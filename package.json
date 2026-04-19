@@ -1,10 +1,11 @@
 {
   "name": "icojs",
   "version": "0.22.0",
-  "description": "decode ico file",
+  "description": "decode/encode ico file",
   "keywords": [
     "ico",
-    "decode"
+    "decode",
+    "encode"
   ],
   "homepage": "https://egy186.github.io/icojs",
   "bugs": {
