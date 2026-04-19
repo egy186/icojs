@@ -55,7 +55,8 @@ const config = defineConfig([
   {
     ...vitest,
     rules: {
-      '@stylistic/array-element-newline': 'off'
+      '@stylistic/array-element-newline': 'off',
+      'no-await-in-loop': 'off'
     }
   }
 ]);

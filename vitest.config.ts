@@ -13,7 +13,8 @@ export default defineConfig({
         test: {
           environment: 'node',
           include: ['src/node/*.test.ts'],
-          name: 'node'
+          name: 'node',
+          setupFiles: ['src/test-fixtures/setup.ts']
         }
       },
       {
@@ -29,7 +30,8 @@ export default defineConfig({
             provider: playwright()
           },
           include: ['src/browser/*.test.ts'],
-          name: 'browser'
+          name: 'browser',
+          setupFiles: ['src/test-fixtures/setup.ts']
         }
       }
     ]

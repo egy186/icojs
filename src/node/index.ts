@@ -1,6 +1,6 @@
 import type { DecodeImage } from '../decode.js';
 import type { EncodeImage } from '../encode.js';
-import Image from './image.js';
+import { Image } from './image.js';
 import { decode } from '../decode.js';
 import { encode } from '../encode.js';
 import { isIco } from '../is-ico.js';
