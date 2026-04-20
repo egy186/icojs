@@ -23,9 +23,16 @@ A UMD bundle is also available for browsers.
 <script src="node_modules/icojs/dist/ico.js"></script>
 ```
 
+## Demo
+
+* Decoder: [https://egy186.github.io/icojs/demo-decoder.html](https://egy186.github.io/icojs/demo-decoder.html)
+* Encoder: [https://egy186.github.io/icojs/demo-encoder.html](https://egy186.github.io/icojs/demo-encoder.html)
+
 ## Example
 
-### Node.js:
+### Decoding
+
+Node.js:
 
 ```js
 import { readFile, writeFile } from 'node:fs/promises';
@@ -41,7 +48,7 @@ images.forEach(image => {
 });
 ```
 
-### Browser:
+Browser:
 
 ```html
 <input type="file" id="input-file" />
@@ -56,9 +63,41 @@ images.forEach(image => {
 </script>
 ```
 
-## Demo
+### Encoding
 
-[https://egy186.github.io/icojs/demo.html](https://egy186.github.io/icojs/demo.html)
+Node.js:
+
+```js
+import { readFile, writeFile } from 'node:fs/promises';
+import { encodeIco } from 'icojs';
+
+const buffer1 = await readFile('16x16.png');
+const buffer2 = await readFile('32x32.png');
+const ico = await encodeIco([
+  { buffer: buffer1 },
+  { buffer: buffer2 }
+]);
+// save as a ico file
+writeFile('favicon.ico', Buffer.from(ico));
+```
+
+Browser:
+
+```html
+<input type="file" id="input-file" multiple />
+<script>
+  document.querySelector('#input-file').addEventListener('change', async evt => {
+    const files = Array.from(evt.target.files);
+    const iconList = await Promise.all(files.map(async file => {
+      const buffer = await file.arrayBuffer();
+      return { buffer };
+    }));
+    const ico = await ICO.encodeIco(iconList);
+    // logs ico
+    console.dir(ico);
+  });
+</script>
+```
 
 ## API Documentation
 
