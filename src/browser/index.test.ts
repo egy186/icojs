@@ -1,47 +1,68 @@
+import { decodeIco, encodeIco } from './index.js';
 import { describe, expect, it } from 'vitest';
-import Bowser from 'bowser';
-import { decodeIco } from './index.js';
-import { isSame } from '../test-fixtures/is-same-browser.js';
+import { getParser } from 'bowser';
+import { testIcon } from '../test-fixtures/test-icon.js';
 
-const browserName = Bowser.getParser(window.navigator.userAgent).getBrowserName();
+const browserName = getParser(window.navigator.userAgent).getBrowserName();
 
-describe('ICO.decodeIco in the browser', () => {
-  const icons = [
-    'basic.ico',
-    'cursor.cur',
-    'palette.ico',
-    'png.ico'
-  ];
-  icons.forEach(icon => {
-    it(`decode ${icon}`, async () => {
-      const res = await fetch(`/src/test-fixtures/images/${icon}`);
-      const arrayBuffer = await res.arrayBuffer();
+// eslint-disable-next-line max-lines-per-function
+describe('ICO in the browser', () => {
+  describe('.decodeIco', () => {
+    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, complexity, max-statements
+    it.for(Object.entries(testIcon))('is expected to decode %s', async ([iconName, { buffer, iconList }]) => {
+      const images = await decodeIco(buffer);
+      expect(images.length).toStrictEqual(iconList.length);
 
-      const images = await decodeIco(arrayBuffer);
-      expect(images.length).toBeGreaterThan(0);
+      for (const [index, icon] of iconList.entries()) {
+        expect(images[index]?.bpp).toStrictEqual(icon.bpp);
+        expect(images[index]?.buffer).toBeInstanceOf(ArrayBuffer);
+        expect(images[index]?.width).toStrictEqual(icon.width);
+        expect(images[index]?.height).toStrictEqual(icon.height);
 
-      // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
-      await Promise.all(images.map(async (image, index) => {
-        // Skip basic.ico[6], ref: https://github.com/egy186/icojs/pull/106
+        // Skip browser specific test failures, ref: https://github.com/egy186/icojs/pull/106
         if (browserName === 'Firefox') {
-          if (icon === 'basic.ico' && index === 6) {
-            return;
+          if (iconName === 'basic.ico' && index === 6) {
+            continue;
           }
         }
         if (browserName === 'Safari') {
-          if (icon === 'basic.ico' && (index === 1 || index === 4 || index === 5 || index === 6)) {
-            return;
+          if (iconName === 'basic.ico' && (index === 1 || index === 4 || index === 5 || index === 6)) {
+            continue;
           }
-          if (icon === 'palette.ico' && index === 0) {
-            return;
+          if (iconName === 'palette.ico' && index === 0) {
+            continue;
           }
         }
 
-        const name = `${image.width}x${image.height}-${image.bpp}bit`;
-        const expected = `${icon.slice(0, icon.lastIndexOf('.'))}/${name}.png`;
+        await expect(images[index]?.buffer).toMatchImage(icon.buffer);
+      }
+    });
+  });
 
-        expect(await isSame(image.buffer, expected)).toBe(true);
-      }));
+  describe('.encodeIco', () => {
+    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
+    it.for(Object.entries(testIcon))('is expected to encode %s', async ([iconName, { iconList }]) => {
+      // Encoding 32bit BMP is not supported.
+      // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+      const filteredIconList = iconList.filter(icon => icon.bpp !== 32);
+
+      const ico = await encodeIco(filteredIconList);
+      const images = await decodeIco(ico);
+      expect(images.length).toStrictEqual(filteredIconList.length);
+
+      for (const [index, icon] of filteredIconList.entries()) {
+        // Skip browser specific test failures
+        if (browserName === 'Safari') {
+          if (iconName === 'basic.ico' && (index === 1 || index === 5)) {
+            continue;
+          }
+          if (iconName === 'palette.ico' && index === 0) {
+            continue;
+          }
+        }
+
+        await expect(images[index]?.buffer).toMatchImage(icon.buffer);
+      }
     });
   });
 });

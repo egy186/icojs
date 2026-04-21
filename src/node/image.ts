@@ -151,4 +151,6 @@ const Image = {
   }
 } as const satisfies ImageConverter;
 
+export { Image };
+
 export default Image;

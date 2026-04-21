@@ -27,7 +27,7 @@ const config = defineConfig([
   {
     ...browser,
     files: [
-      'assets/demo.js',
+      'assets/*.js',
       'src/browser/**/*.ts',
       'src/test-fixtures/is-same-browser.ts'
     ],
@@ -37,7 +37,7 @@ const config = defineConfig([
     }
   },
   {
-    files: ['assets/demo.js'],
+    files: ['assets/*.js'],
     languageOptions: {
       globals: {
         $: true,
@@ -55,7 +55,8 @@ const config = defineConfig([
   {
     ...vitest,
     rules: {
-      '@stylistic/array-element-newline': 'off'
+      '@stylistic/array-element-newline': 'off',
+      'no-await-in-loop': 'off'
     }
   }
 ]);

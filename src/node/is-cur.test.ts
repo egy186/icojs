@@ -1,19 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { isCur } from '../is-cur.js';
-import { readFile } from 'node:fs/promises';
+import { testIcon } from '../test-fixtures/test-icon.js';
 
 describe('isCur', () => {
-  it('is expected to return true or false', async () => {
-    const buffer = await readFile(new URL('../test-fixtures/images/cursor.cur', import.meta.url));
+  it('is expected to return true or false', () => {
     // @ts-expect-error test
     expect(() => isCur('it is not buffer')).toThrow(TypeError);
-    expect(isCur(buffer)).toStrictEqual(true);
-    const d = new ArrayBuffer(4);
-    const dv = new DataView(d);
-    expect(isCur(d)).toStrictEqual(false);
-    dv.setUint16(2, 2, true);
-    expect(isCur(d)).toStrictEqual(true);
-    dv.setUint16(0, 1, true);
-    expect(isCur(d)).toStrictEqual(false);
+    expect(isCur(testIcon['cursor.cur'].buffer)).toStrictEqual(true);
+    expect(isCur(new Uint8Array([0, 0, 0, 0]).buffer)).toStrictEqual(false);
+    expect(isCur(new Uint8Array([0, 0, 2, 0]).buffer)).toStrictEqual(true);
+    expect(isCur(new Uint8Array([1, 0, 2, 0]).buffer)).toStrictEqual(false);
   });
 });
