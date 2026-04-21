@@ -20,11 +20,15 @@ const Image = {
    * @access private
    */
   async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<ImageData> {
-    return await new Promise(resolve => {
+    return await new Promise((resolve, reject) => {
       const url = URL.createObjectURL(new Blob([arrayBuffer]));
       const img = document.createElement('img');
 
       img.src = url;
+
+      img.onerror = (): void => {
+        reject(new Error('failed to load image'));
+      };
 
       img.onload = (): void => {
         const { naturalHeight: height, naturalWidth: width } = img;
