@@ -1,5 +1,3 @@
-import toDataView from 'to-data-view';
-
 /**
  * Check the ArrayBuffer is valid ICO.
  *
@@ -8,8 +6,10 @@ import toDataView from 'to-data-view';
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const isIco = (source: ArrayBuffer | Buffer): boolean => {
-  const dataView = toDataView(source);
-  return dataView.getUint16(0, true) === 0 && dataView.getUint16(2, true) === 1;
+  const view = source instanceof ArrayBuffer
+    ? new DataView(source, 0, 4)
+    : new DataView(source.buffer, source.byteOffset, 4);
+  return view.getUint16(0, true) === 0 && view.getUint16(2, true) === 1;
 };
 
 export { isIco };
