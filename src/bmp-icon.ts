@@ -66,7 +66,7 @@ const createBmpIcon = (imageData: ImageData): ArrayBuffer => {
   icon.set(bmp, BITMAPINFOHEADER_SIZE);
   icon.set(mask, BITMAPINFOHEADER_SIZE + bmp.byteLength);
 
-  const view = new DataView(icon.buffer);
+  const view = new DataView(icon.buffer, 0, BITMAPINFOHEADER_SIZE);
   view.setUint32(0, BITMAPINFOHEADER_SIZE, true);
   view.setUint32(4, imageData.width, true);
   // Double the height to include the mask

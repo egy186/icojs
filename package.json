@@ -60,8 +60,7 @@
     "decode-ico": "^0.4.1",
     "file-type": "^21.3.4",
     "jpeg-js": "^0.4.4",
-    "pngjs": "^7.0.0",
-    "to-data-view": "^2.0.0"
+    "pngjs": "^7.0.0"
   },
   "devDependencies": {
     "@egy186/eslint-config": "^4.5.3",
