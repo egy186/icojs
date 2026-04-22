@@ -1,6 +1,6 @@
 {
   "name": "icojs",
-  "version": "0.22.1",
+  "version": "0.23.0",
   "description": "decode/encode ico file",
   "keywords": [
     "ico",
