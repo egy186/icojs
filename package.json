@@ -58,7 +58,7 @@
   "dependencies": {
     "bmp-ts": "^1.0.9",
     "decode-ico": "^0.4.1",
-    "file-type": "^21.3.4",
+    "file-type": "^22.0.1",
     "jpeg-js": "^0.4.4",
     "pngjs": "^7.0.0"
   },
