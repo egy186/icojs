@@ -98,23 +98,23 @@ interface EncodeImage {
  * Encode images into ICO.
  *
  * @param encodeImageList - An array of image to encode.
- * @param Image - Image encoder/decoder.
+ * @param imageConverter - Image encoder/decoder.
  * @returns Resolves to an ArrayBuffer of ICO.
  * @access private
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/prefer-readonly-parameter-types
-const encode = async (encodeImageList: ReadonlyArray<EncodeImage>, Image: ImageConverter): Promise<ArrayBuffer> => {
+// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+const encode = async (encodeImageList: ReadonlyArray<EncodeImage>, imageConverter: ImageConverter): Promise<ArrayBuffer> => {
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
   const iconImageList = await Promise.all(encodeImageList.map(async (encodeImage): Promise<IconImage> => {
     let buffer = encodeImage.buffer instanceof ArrayBuffer ? encodeImage.buffer : new Uint8Array(encodeImage.buffer).buffer;
-    const decoded = await Image.decode(buffer);
+    const decoded = await imageConverter.decode(buffer);
 
     const usePngIcon = encodeImage.usePngIcon === true || decoded.width >= ICO.MAX_DIMENSION || decoded.height >= ICO.MAX_DIMENSION;
     if (!usePngIcon) {
       buffer = createBmpIcon(decoded);
     } else if (!isPng(encodeImage.buffer)) {
       // Encode only when the buffer is not PNG
-      buffer = await Image.encode(decoded, MIME_PNG);
+      buffer = await imageConverter.encode(decoded, MIME_PNG);
     }
 
     return {

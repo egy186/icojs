@@ -1,8 +1,7 @@
-import type { ImageConverter, ImageData as TImageData } from '../image.js';
+import type { ImageConverter, ImageDataLike } from '../image.js';
 import { MIME_PNG } from '../image.js';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const Image = {
+const imageConverter = {
   /**
    * Create imageData from image.
    *
@@ -11,7 +10,7 @@ const Image = {
    * @access private
    */
   // eslint-disable-next-line max-statements
-  async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<TImageData> {
+  async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<ImageDataLike> {
     const blob = new Blob([arrayBuffer]);
     const bitmap = await createImageBitmap(blob);
 
@@ -44,7 +43,7 @@ const Image = {
    * @access private
    */
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-  async encode (image: TImageData, mime: string = MIME_PNG): Promise<ArrayBuffer> {
+  async encode (image: ImageDataLike, mime: string = MIME_PNG): Promise<ArrayBuffer> {
     const canvas = new OffscreenCanvas(image.width, image.height);
     const ctx = canvas.getContext('2d');
     if (!ctx) {
@@ -59,6 +58,6 @@ const Image = {
   }
 } as const satisfies ImageConverter;
 
-export { Image };
+export { imageConverter };
 
-export default Image;
+export default imageConverter;

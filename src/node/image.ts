@@ -1,4 +1,4 @@
-import type { ImageConverter, ImageData } from '../image.js';
+import type { ImageConverter, ImageDataLike } from '../image.js';
 import { MIME_BMP, MIME_JPEG, MIME_PNG } from '../image.js';
 import { decode as decodeBmp, encode as encodeBmp } from 'bmp-ts';
 import { decode as decodeJpeg, encode as encodeJpeg } from 'jpeg-js';
@@ -47,8 +47,7 @@ const abgrToRgba = (src: Buffer): Buffer => {
   return dest;
 };
 
-
-interface ImageDataLike {
+interface BufferImageDataLike {
   readonly data: Buffer;
   readonly width: number;
   readonly height: number;
@@ -56,7 +55,7 @@ interface ImageDataLike {
 
 interface ImageDecoders {
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-  readonly [mime: string]: (buffer: Buffer) => ImageData;
+  readonly [mime: string]: (buffer: Buffer) => ImageDataLike;
 }
 
 const decoders = {
@@ -77,12 +76,12 @@ const decoders = {
 
 interface ImageEncoders {
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-  readonly [mime: string]: (imageData: ImageDataLike) => Buffer;
+  readonly [mime: string]: (imageData: BufferImageDataLike) => Buffer;
 }
 
 const encoders = {
   /* eslint-disable @typescript-eslint/prefer-readonly-parameter-types */
-  [MIME_BMP]: (imageData: ImageDataLike) => {
+  [MIME_BMP]: (imageData: BufferImageDataLike) => {
     const bmpImageData = {
       ...imageData,
       data: rgbaToAbgr(imageData.data)
@@ -90,8 +89,8 @@ const encoders = {
 
     return encodeBmp(bmpImageData).data;
   },
-  [MIME_JPEG]: (imageData: ImageDataLike) => encodeJpeg(imageData).data,
-  [MIME_PNG]: (imageData: ImageDataLike) => {
+  [MIME_JPEG]: (imageData: BufferImageDataLike) => encodeJpeg(imageData).data,
+  [MIME_PNG]: (imageData: BufferImageDataLike) => {
     const png = new PNG({
       height: imageData.height,
       width: imageData.width
@@ -105,8 +104,7 @@ const encoders = {
 
 const isKeyOf = <T extends object>(obj: T, key: PropertyKey): key is keyof T => key in obj;
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const Image = {
+const imageConverter = {
   /**
    * Create ImageData from image.
    *
@@ -114,7 +112,7 @@ const Image = {
    * @returns Resolves to ImageData.
    * @access private
    */
-  async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<ImageData> {
+  async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<ImageDataLike> {
     const buffer = Buffer.from(arrayBuffer);
     const { mime } = await fileTypeFromBuffer(buffer) ?? {};
     if (mime === undefined || !isKeyOf(decoders, mime)) {
@@ -138,7 +136,7 @@ const Image = {
    * @access private
    */
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, @typescript-eslint/require-await
-  async encode (image: ImageData, mime: string = MIME_PNG): Promise<ArrayBuffer> {
+  async encode (image: ImageDataLike, mime: string = MIME_PNG): Promise<ArrayBuffer> {
     const imageData = {
       data: Buffer.from(image.data),
       height: image.height,
@@ -151,6 +149,6 @@ const Image = {
   }
 } as const satisfies ImageConverter;
 
-export { Image };
+export { imageConverter };
 
-export default Image;
+export default imageConverter;
