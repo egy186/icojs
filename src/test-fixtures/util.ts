@@ -3,7 +3,6 @@ const isBrowser = (): boolean => 'window' in globalThis;
 // Load image file as a buffer
 const loadFile = async (path: string): Promise<ArrayBuffer> => {
   if (isBrowser()) {
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const res = await fetch(`/src/test-fixtures/images/${path}`);
     return await res.arrayBuffer();
   }
