@@ -1,9 +1,9 @@
-import type { ImageData } from '../image.js';
+import type { ImageDataLike } from '../image.js';
 import { loadFile } from './util.js';
 
 interface TestImageData {
   readonly buffer: ArrayBuffer;
-  readonly imageData: ImageData;
+  readonly imageData: ImageDataLike;
 }
 
 const testImageData = {

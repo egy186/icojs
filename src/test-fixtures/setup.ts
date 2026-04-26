@@ -3,15 +3,14 @@ import { expect } from 'vitest';
 import { isBrowser } from './util.js';
 import pixelmatch from 'pixelmatch';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const { Image } = isBrowser()
+const { imageConverter } = isBrowser()
   ? await import('../browser/image.js')
   : await import('../node/image.js');
 
 expect.extend({
   async toMatchImage (received: Readonly<ArrayBuffer>, expected: Readonly<ArrayBuffer>): Extract<MatcherResult, Promise<unknown>> {
-    const receivedImageData = await Image.decode(received);
-    const expectedImageData = await Image.decode(expected);
+    const receivedImageData = await imageConverter.decode(received);
+    const expectedImageData = await imageConverter.decode(expected);
 
     if (receivedImageData.width !== expectedImageData.width || receivedImageData.height !== expectedImageData.height) {
       return {

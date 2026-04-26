@@ -1,8 +1,8 @@
 import type { DecodeImage } from '../decode.js';
 import type { EncodeImage } from '../encode.js';
-import { Image } from './image.js';
 import { decode } from '../decode.js';
 import { encode } from '../encode.js';
+import { imageConverter } from './image.js';
 import { isIco } from '../is-ico.js';
 
 /**
@@ -13,7 +13,7 @@ import { isIco } from '../is-ico.js';
  * @returns Resolves to an array of {@link DecodeImage}.
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-const decodeIco = async (buffer: ArrayBuffer | Buffer, mime = 'image/png'): Promise<Array<DecodeImage>> => await decode(buffer, mime, Image);
+const decodeIco = async (buffer: ArrayBuffer | Buffer, mime = 'image/png'): Promise<Array<DecodeImage>> => await decode(buffer, mime, imageConverter);
 
 /**
  * Encode images into ICO.
@@ -22,7 +22,7 @@ const decodeIco = async (buffer: ArrayBuffer | Buffer, mime = 'image/png'): Prom
  * @returns Resolves to an ArrayBuffer of ICO.
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-const encodeIco = async (encodeImageList: ReadonlyArray<EncodeImage>): Promise<ArrayBuffer> => await encode(encodeImageList, Image);
+const encodeIco = async (encodeImageList: ReadonlyArray<EncodeImage>): Promise<ArrayBuffer> => await encode(encodeImageList, imageConverter);
 
 const ICO = {
   decodeIco,

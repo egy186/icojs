@@ -1,7 +1,7 @@
-import type { ImageData } from './image.js';
+import type { ImageDataLike } from './image.js';
 
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
-const createBmp24 = ({ data, height, width }: ImageData): Uint8Array => {
+const createBmp24 = ({ data, height, width }: ImageDataLike): Uint8Array => {
   const bytesPerRow = Math.ceil(width * 3);
   const rowSize = Math.ceil(bytesPerRow / 4) * 4;
   const buffer = new Uint8Array(rowSize * height);
@@ -29,7 +29,7 @@ const createBmp24 = ({ data, height, width }: ImageData): Uint8Array => {
 };
 
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
-const createMask = ({ data, height, width }: ImageData): Uint8Array => {
+const createMask = ({ data, height, width }: ImageDataLike): Uint8Array => {
   const bytesPerRow = Math.ceil(width / 8);
   const rowSize = Math.ceil(bytesPerRow / 4) * 4;
   const buffer = new Uint8Array(rowSize * height);
@@ -58,7 +58,7 @@ const createMask = ({ data, height, width }: ImageData): Uint8Array => {
 const BITMAPINFOHEADER_SIZE = 40;
 
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
-const createBmpIcon = (imageData: ImageData): ArrayBuffer => {
+const createBmpIcon = (imageData: ImageDataLike): ArrayBuffer => {
   const bmp = createBmp24(imageData);
   const mask = createMask(imageData);
 

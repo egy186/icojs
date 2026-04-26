@@ -33,12 +33,12 @@ interface IconData {
  *
  * @param data - ICO file data.
  * @param mime - MIME type for output.
- * @param Image - Image encoder/decoder.
+ * @param imageConverter - Image encoder/decoder.
  * @returns Resolves to an array of {@link DecodeImage}.
  * @access private
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/prefer-readonly-parameter-types
-const decode = async (data: ArrayBuffer | Buffer, mime: string, Image: ImageConverter): Promise<Array<DecodeImage>> => {
+// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+const decode = async (data: ArrayBuffer | Buffer, mime: string, imageConverter: ImageConverter): Promise<Array<DecodeImage>> => {
   const icons = decodeIco(data);
 
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
@@ -51,7 +51,7 @@ const decode = async (data: ArrayBuffer | Buffer, mime: string, Image: ImageConv
     }
 
     if (icon.type === 'png') {
-      const decoded = await Image.decode(new Uint8Array(icon.data).buffer);
+      const decoded = await imageConverter.decode(new Uint8Array(icon.data).buffer);
       Object.assign(icon, {
         data: decoded.data,
         type: 'bmp'
@@ -59,7 +59,7 @@ const decode = async (data: ArrayBuffer | Buffer, mime: string, Image: ImageConv
     }
 
     return Object.assign(icon, {
-      buffer: await Image.encode(icon, mime),
+      buffer: await imageConverter.encode(icon, mime),
       type: mime.replace('image/', '')
     });
   };
