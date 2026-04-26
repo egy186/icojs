@@ -66,8 +66,8 @@
     "@egy186/eslint-config": "^4.5.3",
     "@types/node": "^25.6.0",
     "@types/pngjs": "^6.0.5",
-    "@vitest/browser-playwright": "^4.1.4",
-    "@vitest/coverage-istanbul": "^4.1.4",
+    "@vitest/browser-playwright": "^4.1.5",
+    "@vitest/coverage-istanbul": "^4.1.5",
     "@vitest/eslint-plugin": "^1.6.14",
     "bowser": "^2.14.1",
     "data-uri-to-buffer": "^8.0.0",
@@ -75,10 +75,10 @@
     "eslint-import-resolver-typescript": "^4.4.4",
     "pixelmatch": "^7.1.0",
     "typedoc": "^0.28.19",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.58.2",
-    "vite": "^8.0.8",
-    "vitest": "^4.1.4"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.0",
+    "vite": "^8.0.10",
+    "vitest": "^4.1.5"
   },
   "engines": {
     "node": ">=22.22.2"
