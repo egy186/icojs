@@ -20,16 +20,8 @@ describe('ICO in the browser', () => {
         expect(images[index]?.height).toStrictEqual(icon.height);
 
         // Skip browser specific test failures, ref: https://github.com/egy186/icojs/pull/106
-        if (browserName === 'Firefox') {
+        if (browserName === 'Firefox' || browserName === 'Safari') {
           if (iconName === 'basic.ico' && index === 6) {
-            continue;
-          }
-        }
-        if (browserName === 'Safari') {
-          if (iconName === 'basic.ico' && (index === 1 || index === 4 || index === 5 || index === 6)) {
-            continue;
-          }
-          if (iconName === 'palette.ico' && index === 0) {
             continue;
           }
         }
@@ -51,16 +43,6 @@ describe('ICO in the browser', () => {
       expect(images.length).toStrictEqual(filteredIconList.length);
 
       for (const [index, icon] of filteredIconList.entries()) {
-        // Skip browser specific test failures
-        if (browserName === 'Safari') {
-          if (iconName === 'basic.ico' && (index === 1 || index === 5)) {
-            continue;
-          }
-          if (iconName === 'palette.ico' && index === 0) {
-            continue;
-          }
-        }
-
         await expect(images[index]?.buffer).toMatchImage(icon.buffer);
       }
     });
