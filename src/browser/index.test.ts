@@ -5,10 +5,9 @@ import { testIcon } from '../test-fixtures/test-icon.js';
 
 const browserName = getParser(window.navigator.userAgent).getBrowserName();
 
-// eslint-disable-next-line max-lines-per-function
 describe('ICO in the browser', () => {
   describe('.decodeIco', () => {
-    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, complexity, max-statements
+    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
     it.for(Object.entries(testIcon))('is expected to decode %s', async ([iconName, { buffer, iconList }]) => {
       const images = await decodeIco(buffer);
       expect(images.length).toStrictEqual(iconList.length);
@@ -20,16 +19,8 @@ describe('ICO in the browser', () => {
         expect(images[index]?.height).toStrictEqual(icon.height);
 
         // Skip browser specific test failures, ref: https://github.com/egy186/icojs/pull/106
-        if (browserName === 'Firefox') {
+        if (browserName === 'Firefox' || browserName === 'Safari') {
           if (iconName === 'basic.ico' && index === 6) {
-            continue;
-          }
-        }
-        if (browserName === 'Safari') {
-          if (iconName === 'basic.ico' && (index === 1 || index === 4 || index === 5 || index === 6)) {
-            continue;
-          }
-          if (iconName === 'palette.ico' && index === 0) {
             continue;
           }
         }
@@ -40,8 +31,8 @@ describe('ICO in the browser', () => {
   });
 
   describe('.encodeIco', () => {
-    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
-    it.for(Object.entries(testIcon))('is expected to encode %s', async ([iconName, { iconList }]) => {
+    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+    it.for(Object.entries(testIcon))('is expected to encode %s', async ([, { iconList }]) => {
       // Encoding 32bit BMP is not supported.
       // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
       const filteredIconList = iconList.filter(icon => icon.bpp !== 32);
@@ -51,16 +42,6 @@ describe('ICO in the browser', () => {
       expect(images.length).toStrictEqual(filteredIconList.length);
 
       for (const [index, icon] of filteredIconList.entries()) {
-        // Skip browser specific test failures
-        if (browserName === 'Safari') {
-          if (iconName === 'basic.ico' && (index === 1 || index === 5)) {
-            continue;
-          }
-          if (iconName === 'palette.ico' && index === 0) {
-            continue;
-          }
-        }
-
         await expect(images[index]?.buffer).toMatchImage(icon.buffer);
       }
     });
