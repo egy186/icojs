@@ -5,10 +5,9 @@ import { testIcon } from '../test-fixtures/test-icon.js';
 
 const browserName = getParser(window.navigator.userAgent).getBrowserName();
 
-// eslint-disable-next-line max-lines-per-function
 describe('ICO in the browser', () => {
   describe('.decodeIco', () => {
-    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, complexity, max-statements
+    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
     it.for(Object.entries(testIcon))('is expected to decode %s', async ([iconName, { buffer, iconList }]) => {
       const images = await decodeIco(buffer);
       expect(images.length).toStrictEqual(iconList.length);
@@ -32,8 +31,8 @@ describe('ICO in the browser', () => {
   });
 
   describe('.encodeIco', () => {
-    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, max-statements
-    it.for(Object.entries(testIcon))('is expected to encode %s', async ([iconName, { iconList }]) => {
+    // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
+    it.for(Object.entries(testIcon))('is expected to encode %s', async ([, { iconList }]) => {
       // Encoding 32bit BMP is not supported.
       // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
       const filteredIconList = iconList.filter(icon => icon.bpp !== 32);
