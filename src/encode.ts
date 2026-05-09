@@ -80,14 +80,15 @@ class ICO {
   }
 }
 
-// eslint-disable-next-line jsdoc/no-blank-blocks
-/** */
+/**
+ * Image object for encoding.
+ */
 interface EncodeImage {
   /** Image buffer. */
   readonly buffer: ArrayBuffer | Buffer;
   /** Whether to use PNG format for the image. Defaults to `true` when the image dimensions are 256px, `false` otherwise. */
   readonly usePngIcon?: boolean;
-  /** Cursor hotspot. */
+  /** Cursor hotspot coordinates for a CUR file. */
   readonly hotspot?: {
     readonly x: number;
     readonly y: number;
@@ -95,12 +96,12 @@ interface EncodeImage {
 }
 
 /**
- * Encode images into ICO.
+ * Encode images into an ICO buffer.
  *
- * @param encodeImageList - An array of image to encode.
+ * @param encodeImageList - An array of image objects to encode.
  * @param imageConverter - Image encoder/decoder.
- * @returns Resolves to an ArrayBuffer of ICO.
- * @access private
+ * @returns Resolves to an ICO buffer.
+ * @private
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const encode = async (encodeImageList: ReadonlyArray<EncodeImage>, imageConverter: ImageConverter): Promise<ArrayBuffer> => {

@@ -3,11 +3,11 @@ import { MIME_PNG } from '../image.js';
 
 const imageConverter = {
   /**
-   * Create imageData from image.
+   * Create ImageData from an image buffer.
    *
-   * @param arrayBuffer - Image buffer.
-   * @returns ImageData.
-   * @access private
+   * @param arrayBuffer - Image buffer to decode.
+   * @returns Decoded image data.
+   * @private
    */
   // eslint-disable-next-line max-statements
   async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<ImageDataLike> {
@@ -35,12 +35,12 @@ const imageConverter = {
   },
 
   /**
-   * Create image from imgData.data.
+   * Create an image buffer from ImageData.
    *
-   * @param image - Data.
-   * @param mime - MIME type.
-   * @returns Image.
-   * @access private
+   * @param image - Image data to encode.
+   * @param mime - Output MIME type.
+   * @returns Encoded image buffer.
+   * @private
    */
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
   async encode (image: ImageDataLike, mime: string = MIME_PNG): Promise<ArrayBuffer> {

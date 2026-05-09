@@ -1,8 +1,8 @@
 /**
- * Check the ArrayBuffer is valid ICO.
+ * Check whether the buffer is a ICO file.
  *
- * @param source - ICO file data.
- * @returns True if arg is ICO.
+ * @param source - Input data to inspect.
+ * @returns `true` when the source is a ICO file, `false` otherwise.
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const isIco = (source: ArrayBuffer | Buffer): boolean => {
