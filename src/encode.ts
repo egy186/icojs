@@ -88,7 +88,7 @@ interface EncodeImage {
   readonly buffer: ArrayBuffer | Buffer;
   /** Whether to use PNG format for the image. Defaults to `true` when the image dimensions are 256px, `false` otherwise. */
   readonly usePngIcon?: boolean;
-  /** Cursor hotspot coordinates for a CUR file. */
+  /** Cursor hotspot coordinates. */
   readonly hotspot?: {
     readonly x: number;
     readonly y: number;

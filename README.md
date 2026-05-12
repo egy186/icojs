@@ -4,7 +4,8 @@
 [![CI](https://github.com/egy186/icojs/actions/workflows/ci.yml/badge.svg)](https://github.com/egy186/icojs/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/egy186/icojs/badge.svg?branch=main)](https://coveralls.io/github/egy186/icojs?branch=main)
 
-A JavaScript library for decoding and encoding ICO files. Works in both Node.js and the browser.
+A JavaScript library for decoding and encoding ICO files.
+Works in both Node.js and the browser.
 
 ## Install
 
