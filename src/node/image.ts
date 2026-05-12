@@ -106,11 +106,11 @@ const isKeyOf = <T extends object>(obj: T, key: PropertyKey): key is keyof T => 
 
 const imageConverter = {
   /**
-   * Create ImageData from image.
+   * Create ImageData from an image buffer.
    *
-   * @param arrayBuffer - Image buffer.
-   * @returns Resolves to ImageData.
-   * @access private
+   * @param arrayBuffer - Image buffer to decode.
+   * @returns Decoded image data.
+   * @private
    */
   async decode (arrayBuffer: Readonly<ArrayBuffer>): Promise<ImageDataLike> {
     const buffer = Buffer.from(arrayBuffer);
@@ -128,12 +128,12 @@ const imageConverter = {
   },
 
   /**
-   * Create image from ImageData.
+   * Create an image buffer from ImageData.
    *
-   * @param image - Data.
-   * @param mime - MIME type.
-   * @returns Resolves to image.
-   * @access private
+   * @param image - Image data to encode.
+   * @param mime - Output MIME type.
+   * @returns Encoded image buffer.
+   * @private
    */
   // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types, @typescript-eslint/require-await
   async encode (image: ImageDataLike, mime: string = MIME_PNG): Promise<ArrayBuffer> {

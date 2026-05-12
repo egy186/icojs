@@ -1,9 +1,9 @@
 /**
- * Check the ArrayBuffer is valid PNG.
+ * Check whether the buffer is a PNG file.
  *
- * @param source - ArrayBuffer or Buffer object.
- * @returns Arg is PNG or not.
- * @access private
+ * @param source - Input data to inspect.
+ * @returns `true` when the source is a PNG file, `false` otherwise.
+ * @private
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const isPng = (source: ArrayBuffer | Buffer): boolean => {

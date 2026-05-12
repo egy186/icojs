@@ -2,8 +2,9 @@ import type { ImageConverter } from './image.js';
 import { MIME_PNG } from './image.js';
 import decodeIco from 'decode-ico';
 
-// eslint-disable-next-line jsdoc/no-blank-blocks
-/** */
+/**
+ * Decoded image object.
+ */
 interface DecodeImage {
   /** Image width. */
   readonly width: number;
@@ -13,7 +14,7 @@ interface DecodeImage {
   readonly bpp: number;
   /** Image buffer. */
   readonly buffer: ArrayBuffer;
-  /** This field is present only when the format is CUR. */
+  /** Cursor hotspot coordinates. This field is present only when the format is CUR. */
   readonly hotspot?: {
     readonly x: number;
     readonly y: number;
@@ -29,13 +30,13 @@ interface IconData {
 }
 
 /**
- * Decode ICO and return some image object.
+ * Decode an ICO buffer into images.
  *
- * @param data - ICO file data.
+ * @param data - ICO file buffer.
  * @param mime - MIME type for output.
  * @param imageConverter - Image encoder/decoder.
- * @returns Resolves to an array of {@link DecodeImage}.
- * @access private
+ * @returns Resolves to an array of decoded image objects.
+ * @private
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const decode = async (data: ArrayBuffer | Buffer, mime: string, imageConverter: ImageConverter): Promise<Array<DecodeImage>> => {

@@ -1,9 +1,9 @@
 /**
- * Check the ArrayBuffer is valid CUR.
+ * Check whether the buffer is a CUR file.
  *
- * @param source - ArrayBuffer or Buffer object.
- * @returns Arg is CUR or not.
- * @access private
+ * @param source - Input data to inspect.
+ * @returns `true` when the source is a CUR file, `false` otherwise.
+ * @private
  */
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const isCur = (source: ArrayBuffer | Buffer): boolean => {
