@@ -1,8 +1,17 @@
 $(() => {
+  const createAlert = () => {
+    const alert = $('<div class="alert alert-dismissible">');
+    const button = $('<button type="button" class="btn-close" aria-label="Close"></button>');
+    button.on('click', () => {
+      alert.remove();
+    });
+    alert.append(button);
+    return alert;
+  };
+
   // Handler
   const encodeComplete = (err, ico) => {
-    const alert = $('<div class="alert alert-dismissible fade show">');
-    alert.append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+    const alert = createAlert();
     if (err) {
       alert.addClass('alert-danger');
       alert.append(`<p class="mb-0"><strong>Error:</strong> ${err.message}</p>`);
