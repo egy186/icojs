@@ -66,7 +66,7 @@
     "@egy186/eslint-config": "^4.6.0",
     "@types/node": "^25.8.0",
     "@types/pngjs": "^6.0.5",
-    "@vitest/browser-playwright": "^4.1.5",
+    "@vitest/browser-playwright": "^4.1.7",
     "@vitest/coverage-istanbul": "^4.1.5",
     "@vitest/eslint-plugin": "^1.6.17",
     "bowser": "^2.14.1",
