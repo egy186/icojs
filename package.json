@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@egy186/eslint-config": "^4.6.0",
-    "@types/node": "^25.9.1",
+    "@types/node": "^26.0.0",
     "@types/pngjs": "^6.0.5",
     "@vitest/browser-playwright": "^4.1.9",
     "@vitest/coverage-istanbul": "^4.1.9",
