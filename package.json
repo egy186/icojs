@@ -72,7 +72,7 @@
     "bowser": "^2.14.1",
     "data-uri-to-buffer": "^8.0.0",
     "eslint": "^9.39.4",
-    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-import-resolver-typescript": "^4.4.5",
     "pixelmatch": "^7.2.0",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
