@@ -63,15 +63,15 @@
     "pngjs": "^7.0.0"
   },
   "devDependencies": {
-    "@egy186/eslint-config": "^4.6.0",
+    "@egy186/eslint-config": "^4.6.2",
     "@types/node": "^26.1.1",
     "@types/pngjs": "^6.0.5",
     "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-istanbul": "^4.1.10",
-    "@vitest/eslint-plugin": "^1.6.17",
+    "@vitest/eslint-plugin": "^1.6.23",
     "bowser": "^2.14.1",
     "data-uri-to-buffer": "^8.0.0",
-    "eslint": "^9.39.4",
+    "eslint": "^10.7.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "pixelmatch": "^7.2.0",
     "typedoc": "^0.28.20",
