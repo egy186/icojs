@@ -7,7 +7,7 @@ const loadFile = async (path: string): Promise<ArrayBuffer> => {
     return await res.arrayBuffer();
   }
 
-  const { readFile } = await import('node:fs/promises');
+  const { readFile } = process.getBuiltinModule('node:fs/promises');
 
   const buffer = await readFile(new URL(`./images/${path}`, import.meta.url));
   return buffer.buffer;
