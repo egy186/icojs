@@ -28,7 +28,7 @@ jobs:
       run: npm run build
 
     - name: Publish
-      run: npm publish
+      run: npm stage publish
   build-pages:
     runs-on: ubuntu-latest
     needs: publish
