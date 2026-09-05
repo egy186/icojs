@@ -1,9 +1,7 @@
 import { base, browser } from '@egy186/eslint-config';
-/* eslint-disable import/no-unresolved */
 import { defineConfig, globalIgnores } from 'eslint/config';
 import { typescriptConfig } from '@egy186/eslint-config/typescript';
 import { vitest } from '@egy186/eslint-config/vitest';
-/* eslint-enable import/no-unresolved */
 
 const config = defineConfig([
   globalIgnores([
@@ -45,7 +43,7 @@ const config = defineConfig([
       }
     },
     rules: {
-      'import/unambiguous': 'off',
+      'import-x/unambiguous': 'off',
       'max-lines-per-function': 'off',
       'no-await-in-loop': 'off',
       'no-console': 'off'
