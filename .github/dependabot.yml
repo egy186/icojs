@@ -5,15 +5,12 @@ updates:
     schedule:
       interval: daily
     groups:
-      chai:
-        patterns:
-          - chai
-          - chai-as-promised
       eslint:
         patterns:
           - '@egy186/eslint-config'
           - '@vitest/eslint-plugin'
           - eslint
+          - typescript-eslint
       vitest:
         patterns:
           - '@vitest/*'
