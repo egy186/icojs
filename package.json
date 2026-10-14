@@ -73,7 +73,7 @@
     "data-uri-to-buffer": "^8.0.0",
     "eslint": "^10.12.0",
     "eslint-import-resolver-typescript": "^4.4.5",
-    "pixelmatch": "^7.2.0",
+    "pixelmatch": "^8.0.0",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0",
