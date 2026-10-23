@@ -9,7 +9,7 @@ const config = defineConfig({
       name: 'ICO'
     },
     outDir: 'dist',
-    rollupOptions: {
+    rolldownOptions: {
       output: {
         entryFileNames: 'ico.js',
         exports: 'named'
