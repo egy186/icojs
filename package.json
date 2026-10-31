@@ -68,7 +68,7 @@
     "@types/pngjs": "^6.0.5",
     "@vitest/browser-playwright": "^5.0.5",
     "@vitest/coverage-istanbul": "^5.0.5",
-    "@vitest/eslint-plugin": "^1.6.27",
+    "@vitest/eslint-plugin": "^1.6.28",
     "bowser": "^2.15.0",
     "data-uri-to-buffer": "^8.0.0",
     "eslint": "^10.13.0",
@@ -76,7 +76,7 @@
     "pixelmatch": "^8.0.0",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.0",
+    "typescript-eslint": "^8.72.1",
     "vite": "^8.3.4",
     "vitest": "^5.0.5"
   },
