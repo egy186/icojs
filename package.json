@@ -76,7 +76,7 @@
     "pixelmatch": "^8.0.0",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1",
+    "typescript-eslint": "^8.72.2",
     "vite": "^8.3.4",
     "vitest": "^5.1.0"
   },
