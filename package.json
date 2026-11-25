@@ -56,7 +56,7 @@
     "test": "vitest run --coverage"
   },
   "dependencies": {
-    "bmp-ts": "^1.0.9",
+    "bmp-ts": "^1.1.0",
     "decode-ico": "^0.4.1",
     "file-type": "^22.3.0",
     "jpeg-js": "^0.4.4",
