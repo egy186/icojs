@@ -53,7 +53,7 @@ const config = defineConfig([
   {
     ...vitest,
     rules: {
-      '@stylistic/array-element-newline': 'off',
+      '@stylistic/list-style': 'off',
       'no-await-in-loop': 'off'
     }
   }

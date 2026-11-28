@@ -1,3 +1,5 @@
+/* eslint-disable import-x/avoid-barrel-files */
+
 import type { DecodeImage } from '../decode.js';
 import type { EncodeImage } from '../encode.js';
 import { decode } from '../decode.js';
