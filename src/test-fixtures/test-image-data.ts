@@ -12,7 +12,7 @@ const testImageData = {
     buffer: await loadFile('bmp.bmp'),
     imageData: {
       data: new Uint8ClampedArray([
-        /* eslint-disable @stylistic/array-element-newline */
+        /* eslint-disable @stylistic/list-style */
         255, 0, 0, 255,
         0, 255, 0, 255,
         0, 0, 255, 255,
@@ -21,7 +21,7 @@ const testImageData = {
         255, 255, 0, 255,
         0, 255, 255, 255,
         255, 255, 255, 255
-        /* eslint-enable @stylistic/array-element-newline */
+        /* eslint-enable @stylistic/list-style */
       ]),
       height: 2,
       width: 4

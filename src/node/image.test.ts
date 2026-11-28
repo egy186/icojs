@@ -11,7 +11,7 @@ describe('Image', () => {
     });
 
     // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
-    it.for(Object.entries(testImageData))('is expected to create ImageData from %s', async ([,{ buffer, imageData }]) => {
+    it.for(Object.entries(testImageData))('is expected to create ImageData from %s', async ([, { buffer, imageData }]) => {
       const result = await imageConverter.decode(buffer);
       expect(result.data).toStrictEqual(imageData.data);
       expect(result.height).toStrictEqual(imageData.height);
